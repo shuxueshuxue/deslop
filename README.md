@@ -46,7 +46,7 @@ The models to aim at are Wikipedia, Hacker News technical comments, and academic
 ## Install
 
 ```sh
-git clone https://github.com/<you>/deslop.git ~/.claude/skills/deslop
+git clone https://github.com/shuxueshuxue/deslop.git ~/.claude/skills/deslop
 ```
 
 Then, in Claude Code:
