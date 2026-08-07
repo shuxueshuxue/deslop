@@ -62,7 +62,15 @@ disagree, the checks win.
    - em dashes (`—` / `——`)
    - personification (abstract subject performing a human or biological action)
 4. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
-5. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
+5. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
+   is the most common way a deslop run makes text worse. Check every replacement you just made:
+   - Did a written word become a spoken one? (`判据` → `怎么判`, `触发源` → `触发的地方`)
+   - Did a two-syllable verb become one syllable? Chinese written register prefers two.
+   - Did a heading become a casual question? Headings sit further toward written register than body.
+
+   If a sentence now sounds like conversation rather than a document, put it back and pick a
+   *common* word instead of a *spoken* one. The target is common, not casual.
+6. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
 
 For a document of any size, run step 2 in a **fresh-context subagent**. Self-auditing prose you just
 wrote does not work — you re-read your own intent instead of the words on the page. Hand the subagent
