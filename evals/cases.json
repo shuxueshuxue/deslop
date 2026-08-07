@@ -1,0 +1,318 @@
+{
+  "schema": 1,
+  "about": "Each case contains the exact input and its gold outcome. `tier: lexicon` is a stable surface-form expectation for scan.py. `tier: judgment` needs sentence context, audience, or provenance; score it with a model response through evals/run.py --predictions.",
+  "cases": [
+    {
+      "id": "zh-seed-enumeration-preface",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "跑出来两件事。",
+      "findings": [
+        {"span": "跑出来两件事。", "category": "template"}
+      ],
+      "reason": "Reports an unnecessary count before the enumeration; the more specific phrase suppresses its nested physical-verb hit."
+    },
+    {
+      "id": "zh-seed-tool-jargon",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "这是真的 tell。",
+      "findings": [{"span": "tell", "category": "jargon"}],
+      "reason": "An internal English label is used for a general Chinese reader."
+    },
+    {
+      "id": "zh-seed-suppress-script",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "没让脚本压掉这条检查。",
+      "findings": [{"span": "压掉", "category": "physical"}],
+      "reason": "A physical action is used for suppressing an abstract check."
+    },
+    {
+      "id": "zh-seed-coinage",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "先自扫，再提交。",
+      "findings": [{"span": "自扫", "category": "vocab"}],
+      "reason": "Coined two-character abbreviation."
+    },
+    {
+      "id": "zh-seed-regression-loan",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "找出一处我自己的回归。",
+      "findings": [{"span": "回归", "category": "borrowed"}],
+      "reason": "Regression translated into ordinary prose."
+    },
+    {
+      "id": "zh-seed-cache-breakdown",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "这次故障是缓存击穿。",
+      "findings": [{"span": "缓存击穿", "category": "unsettled-term"}],
+      "reason": "The label is contested enough that a general explanation is safer."
+    },
+    {
+      "id": "zh-seed-say-hit",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "你说中了这个缺陷。",
+      "findings": [{"span": "说中", "category": "physical"}],
+      "reason": "Target-hitting metaphor used for a correct statement."
+    },
+    {
+      "id": "zh-physical-landing",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (落地 entry)",
+      "input": "这个方案下周落地。",
+      "findings": [{"span": "落地", "category": "physical"}],
+      "reason": "A physical landing hides whether the work ships, is implemented, or is delivered."
+    },
+    {
+      "id": "zh-physical-catch",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (接住 entry)",
+      "input": "服务会接住所有异常。",
+      "findings": [{"span": "接住", "category": "physical"}],
+      "reason": "A physical catch hides the error-handling behavior."
+    },
+    {
+      "id": "zh-borrowed-reuse",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (复用 entry)",
+      "input": "把这段逻辑复用到另一个服务。",
+      "findings": [{"span": "复用", "category": "borrowed"}],
+      "reason": "Workplace shorthand in general prose."
+    },
+    {
+      "id": "en-leverage",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (leverage entry)",
+      "input": "We leveraged the new API to reduce the setup time.",
+      "findings": [{"span": "leveraged", "category": "vocab"}],
+      "reason": "A common verb has a plain replacement."
+    },
+    {
+      "id": "en-template-and-puffery",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (In today's / fast-paced entries)",
+      "input": "In today's fast-paced landscape, teams need a plan.",
+      "findings": [{"span": "In today's fast-paced landscape", "category": "template"}],
+      "reason": "A stock opening is more useful as one worklist item than as three nested hits."
+    },
+    {
+      "id": "en-transition",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (Additionally entry)",
+      "input": "Additionally, the service records the request ID.",
+      "findings": [{"span": "Additionally", "category": "transition"}],
+      "reason": "Sentence-initial connective is removable."
+    },
+    {
+      "id": "en-template-unpack",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (Let's unpack entry)",
+      "input": "Let's unpack why the request failed.",
+      "findings": [{"span": "Let's unpack", "category": "template"}],
+      "reason": "Teaching frame instead of the explanation."
+    },
+    {
+      "id": "en-reversal",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (not just ... but entry)",
+      "input": "This is not just faster, but also cheaper.",
+      "findings": [{"span": "not just faster, but also", "category": "shape"}],
+      "reason": "Staged reversal."
+    },
+    {
+      "id": "en-key-insight",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (key insight entry)",
+      "input": "The key insight is that the cache expires first.",
+      "findings": [{"span": "key insight", "category": "jargon"}],
+      "reason": "Self-importance frame rather than the fact."
+    },
+    {
+      "id": "en-deep-dive",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (deep dive entry)",
+      "input": "The report includes a deep dive into the migration.",
+      "findings": [{"span": "deep dive", "category": "vocab"}],
+      "reason": "Elevated metaphor for analysis."
+    },
+    {
+      "id": "zh-negative-criterion",
+      "tier": "lexicon",
+      "source": "human seed; references/titles.md (drift 判据 example)",
+      "input": "drift 判据有三个条件。",
+      "findings": [],
+      "reason": "判据 is an established written technical noun here; changing it to 怎么判 is over-correction."
+    },
+    {
+      "id": "zh-negative-trigger-source",
+      "tier": "lexicon",
+      "source": "human seed",
+      "input": "触发源是 pre-commit hook。",
+      "findings": [],
+      "reason": "The compact written noun is clearer than 触发的地方."
+    },
+    {
+      "id": "zh-negative-carry",
+      "tier": "lexicon",
+      "source": "human seed; references/markers-zh.md (register boundary)",
+      "input": "这层承载配置和状态。",
+      "findings": [],
+      "reason": "承载 is a normal two-syllable written verb; replacing it with 装 loses register."
+    },
+    {
+      "id": "zh-negative-human-signed",
+      "tier": "lexicon",
+      "source": "spexcode-base/studies/slides/tech-share.html (slide 6)",
+      "input": "正文分两部分：很短的 raw source 由人签字，下面的展开部分交给 agent 自由迭代。",
+      "findings": [],
+      "reason": "由人签字 identifies authorship; it is not a physical-verb flourish."
+    },
+    {
+      "id": "en-negative-test-harness",
+      "tier": "lexicon",
+      "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
+      "input": "A test harness controls the loop around the model.",
+      "findings": [],
+      "reason": "Harness is the established technical name in this context."
+    },
+    {
+      "id": "en-negative-robust-estimator",
+      "tier": "lexicon",
+      "source": "references/lexicon.tsv (former robust note)",
+      "input": "The robust estimator tolerates outliers.",
+      "findings": [],
+      "reason": "Robust is a statistics term of art."
+    },
+    {
+      "id": "en-negative-literal-harness",
+      "tier": "lexicon",
+      "source": "new contrast case",
+      "input": "The climber inspected the harness before the ascent.",
+      "findings": [],
+      "reason": "Literal noun use."
+    },
+    {
+      "id": "zh-quote-lexicon-example",
+      "tier": "judgment",
+      "source": "README.md (What it catches table)",
+      "input": "不要把“判据”改成“怎么判”。",
+      "findings": [],
+      "reason": "The suspect word is cited as an example, not used by the author."
+    },
+    {
+      "id": "en-quote-lexicon-example",
+      "tier": "judgment",
+      "source": "README.md (What it catches table)",
+      "input": "Avoid labels such as “load-bearing” and “key insight”.",
+      "findings": [],
+      "reason": "The author is naming examples to avoid."
+    },
+    {
+      "id": "en-quoted-source",
+      "tier": "judgment",
+      "source": "spexcode-base/studies/slides/tech-share.html (closing quotation)",
+      "input": "“You are still responsible for your software, just as before.”",
+      "findings": [],
+      "reason": "A quotation is not the editor's prose."
+    },
+    {
+      "id": "zh-term-art-anchor",
+      "tier": "judgment",
+      "source": "SKILL.md (terms of art)",
+      "input": "改名后重新定位 anchor。",
+      "findings": [],
+      "reason": "Anchor names a mechanism for the technical audience."
+    },
+    {
+      "id": "zh-term-art-cache-breakdown",
+      "tier": "judgment",
+      "source": "human seed",
+      "input": "缓存击穿发生在热点键过期且并发请求回源时。",
+      "findings": [{"span": "缓存击穿", "category": "unsettled-term"}],
+      "reason": "Even when defined, the label assumes a disputed taxonomy; ask the writer to state the failure mode for a broad audience."
+    },
+    {
+      "id": "zh-physical-needs-context",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "这个补丁没有压掉旧的告警。",
+      "findings": [{"span": "压掉", "category": "physical"}],
+      "reason": "Unlike a literal suppression control, the sentence leaves the operation vague."
+    },
+    {
+      "id": "zh-physical-literal-control",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "管理员在控制台中关闭了这条告警。",
+      "findings": [],
+      "reason": "This states the operation literally and should not be rewritten merely because a previous draft said 压掉."
+    },
+    {
+      "id": "zh-written-register-heading",
+      "tier": "judgment",
+      "source": "references/titles.md (over-correction example)",
+      "input": "标题写作：drift 判据。",
+      "findings": [],
+      "reason": "A noun-phrase heading should not be made conversational."
+    },
+    {
+      "id": "en-model-jargon-use",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "The system provides a seamless journey from draft to deployment.",
+      "findings": [
+        {"span": "seamless", "category": "puffery"},
+        {"span": "journey", "category": "puffery"}
+      ],
+      "reason": "Both words perform product marketing rather than describe a mechanism."
+    },
+    {
+      "id": "en-model-term-art",
+      "tier": "judgment",
+      "source": "SKILL.md (terms of art)",
+      "input": "The garbage collector pauses the process.",
+      "findings": [],
+      "reason": "Garbage collector is the established name of the mechanism."
+    },
+    {
+      "id": "zh-self-document-mention",
+      "tier": "judgment",
+      "source": "SKILL.md (style-guide false positives)",
+      "input": "本文会提到 load-bearing、key insight、判据和赛道作为反例。",
+      "findings": [],
+      "reason": "A style guide must be able to mention its own examples."
+    },
+    {
+      "id": "zh-slide-harness-term",
+      "tier": "judgment",
+      "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
+      "input": "会话级 harness 的问题是状态不能跨会话保留。",
+      "findings": [],
+      "reason": "Harness is defined for this technical audience before use."
+    },
+    {
+      "id": "zh-slide-postmortem-term",
+      "tier": "judgment",
+      "source": "spexcode-base/studies/slides/tech-share.html (slide 3 legend)",
+      "input": "事故复盘记录故障原因和修复。",
+      "findings": [],
+      "reason": "复盘 is a conventional document name here."
+    },
+    {
+      "id": "en-model-direct-use",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "At its core, this is a comprehensive solution.",
+      "findings": [
+        {"span": "At its core", "category": "template"},
+        {"span": "comprehensive", "category": "puffery"}
+      ],
+      "reason": "Both phrases assert importance without adding scope or mechanism."
+    }
+  ]
+}

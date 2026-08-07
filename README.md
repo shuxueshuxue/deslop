@@ -13,8 +13,8 @@ A [Claude Code](https://claude.ai/code) skill. Chinese and English.
 LLM-written or LLM-polished prose carries tells. They are learnable, countable, and removable.
 
 `deslop` audits a document against a marker taxonomy, produces a per-line kill list with plain
-replacements, applies them, and re-measures three countable indicators — so the result is verifiable
-rather than asserted.
+replacements, applies them, and re-measures two mechanical indicators plus a manual personification
+count — so the result is verifiable rather than asserted.
 
 ## The thing most people get wrong
 
@@ -82,7 +82,7 @@ python3 scan.py --lang zh draft.md        # one language only
 
 ```
 count   term            category   replacement          note
-5       harness         vocab      use
+5       leverage        vocab      use
 1       不是历史，是     shape      (只说后半句)          对偶反转。计数指标。
 
 # lexicon hits: 7  (2.9 per 1000 chars)
@@ -90,7 +90,7 @@ count   term            category   replacement          note
 # em dash: 1
 ```
 
-271 terms in `references/lexicon.tsv`, Chinese and English, each with a plain replacement. It reports
+Candidate terms in `references/lexicon.tsv`, Chinese and English, each with a plain replacement. It reports
 candidates and never rewrites: some entries are correct in context and say so in the note column.
 
 Word choice is the half a script can do. A dramatized closer, a paragraph that ends by restating
@@ -103,7 +103,7 @@ lookups. Run the scanner for the worklist, then audit for what it cannot see.
 2. **Scan** for lexicon hits — the cheap mechanical pass.
 3. **Audit** line by line, in a **fresh-context subagent**. Self-auditing prose you just wrote does
    not work: you re-read your own intent instead of the words on the page.
-4. **Count** three indicators — staged reversals, em dashes, personification.
+4. **Count** staged reversals and em dashes mechanically; count personification in the audit table.
 5. **Apply** the literal denotation. Never swap one vivid word for another vivid word.
 6. **Re-measure** and report both numbers.
 
@@ -128,7 +128,7 @@ case where all three existed alongside the register problems.
 ```
 SKILL.md                        the skill
 scan.py                         the scanner (python3, no dependencies)
-references/lexicon.tsv          271 terms, zh + en, with replacements and false-positive notes
+references/lexicon.tsv          candidate terms, zh + en, with replacements and false-positive notes
 references/markers-zh.md        Chinese taxonomy, eight categories
 references/markers-en.md        English markers, sourced to HN 48905248
 references/titles.md            headings: name the content, don't narrate the reading path

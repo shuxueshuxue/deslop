@@ -62,15 +62,34 @@ def strip_markup(text):
 
 
 def scan(text, lexicon, langs):
+    """Return one most-specific candidate for each overlapping span.
+
+    A phrase rule such as ``In today's fast-paced landscape`` says more than
+    three separate word rules inside it. Showing all four makes a worklist
+    noisier without giving the editor another decision to make.
+    """
     hits = defaultdict(list)  # key -> [(lineno, matched, line)]
-    lines = text.split("\n")
-    for i, line in enumerate(lines, 1):
-        for e in lexicon:
+    for i, line in enumerate(text.split("\n"), 1):
+        candidates = []
+        for order, e in enumerate(lexicon):
             if langs and e["lang"] not in langs:
                 continue
             for m in e["rx"].finditer(line):
-                hits[(e["lang"], e["src"], e["cat"], e["repl"], e["note"])].append(
-                    (i, m.group(0), line.strip()))
+                candidates.append((m.start(), m.end(), order, e, m.group(0)))
+
+        # Prefer a longer phrase. Exact ties keep the earlier lexicon row,
+        # allowing a specific entry to override a general catch-all pattern.
+        candidates.sort(key=lambda hit: (-(hit[1] - hit[0]), hit[2], hit[0]))
+        selected = []
+        for candidate in candidates:
+            start, end, _, _, _ = candidate
+            if any(start < kept[1] and kept[0] < end for kept in selected):
+                continue
+            selected.append(candidate)
+
+        for _, _, _, e, matched in selected:
+            hits[(e["lang"], e["src"], e["cat"], e["repl"], e["note"])].append(
+                (i, matched, line.strip()))
     return hits
 
 

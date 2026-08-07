@@ -4,9 +4,9 @@ description: >-
   Strip the LLM tells out of prose. Use when text needs to read as written by a person — a talk,
   a README, a design doc, release notes, a paper — or when someone says it "sounds like AI",
   "sounds like marketing", or asks to make it plainer. Audits the text against a marker taxonomy,
-  produces a per-line kill list with plain replacements, applies them, and re-measures three
-  countable indicators so the result is verifiable rather than asserted. Chinese and English.
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent
+  produces a per-line kill list with plain replacements, applies them, and re-measures two
+  mechanical indicators plus manual semantic findings so the result is verifiable rather than
+  asserted. Chinese and English.
 ---
 
 # deslop
@@ -53,9 +53,11 @@ disagree, the checks win.
 1. **Extract the prose.** Strip markup so you audit what a reader actually sees, not the source.
 2. **Sweep the physical verbs. Do this before anything else.**
 
-   List every action verb in the text, then ask of each: **does the thing it acts on exist in
-   physical space?** If not, the verb is a metaphor standing in for the literal action, and the
-   literal action is what the reader needs.
+   Start with verbs that create an obvious physical image, then ask: **is this image standing in
+   for an operation the sentence should name?** An abstract object alone is not enough. Report the
+   verb only when a literal replacement says more precisely what happened. `压掉` a check, `接住`
+   an exception, and `说中` a defect pass this test. `由人签字的那一半` does not: it identifies
+   authorship and has no plainer operation to substitute.
 
    One-syllable verbs are the priority — they are the ones that slip through, because they read as
    brisk rather than ornamental: `跑一遍` `扫一遍` `抓到` `压掉` `砍掉` `拉满` `打穿` `接住` `扛住`
@@ -72,28 +74,36 @@ disagree, the checks win.
    fix is not to explain the term; it is to say what happened: `回归` → `改好之后又写回去的毛病`.
    Ask who is reading, not whether the term is correct.
 
-   Keep the ones that are terms of art in the field (`缓存击穿`, `埋点`, `back-pressure`). The test is
-   the same one as everywhere else: would a specialist recognize it as the standard name?
+   Keep established names in a specialist document (`埋点`, `back-pressure`). `缓存击穿` needs a
+   narrower call: it has a common textbook meaning, but explanations and loose usage also mix it
+   with 穿透 and 雪崩. For a broad audience, report it and ask the writer to name the failure mode;
+   for a cache design document that defines the term, leave it.
 
 3. **Run the scanner.** `python3 scan.py --strip FILE` matches the text against
-   `references/lexicon.tsv` (271 entries, Chinese and English) and prints one row per candidate with
+   `references/lexicon.tsv` (Chinese and English) and prints one row per candidate with
    a plain replacement and, where the word is sometimes legitimate, a note. Add `--lines` for line
    numbers, `--lang zh` to restrict.
 
-   The scanner is the cheap mechanical half. It catches vocabulary and fixed phrases, and nothing
-   else — it cannot see a dramatized closer, a superfluous paragraph-ending summary, an analogy doing
-   no work, a heading that narrates instead of naming, or a sentence that survives both nofluff
-   checks. Take its output as a worklist, then do the audit below for everything it is blind to.
+   The scanner is the cheap mechanical half. It catches stable vocabulary and fixed phrases, and
+   nothing else — it cannot decide whether a quotation is being used, whether `robust` is a
+   statistics term, whether `harness` names a mechanism, or whether `判据` and `承载` fit the written
+   register. It also cannot see a dramatized closer, a superfluous paragraph-ending summary, an
+   analogy doing no work, a heading that narrates instead of naming, or a sentence that survives both
+   nofluff checks. Take its output as a worklist, then do the audit below for everything it is blind
+   to.
 4. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
    (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 
    | location | verbatim sentence | category | why it is performance, not statement | plain replacement |
 
    Over-report. Mark uncertain hits `?` rather than dropping them.
-5. **Count three indicators** before and after. These are the falsifiable part:
+5. **Count two mechanical indicators** before and after. These are the falsifiable part:
    - staged reversals (`it's not X, it's Y` / `不是 X，是 Y`)
    - em dashes (`—` / `——`)
-   - personification (abstract subject performing a human or biological action)
+
+   Count personification separately in the audit table. It requires knowing whether the subject is
+   abstract and whether the verb is conventional, so a word-list counter would manufacture a number
+   rather than measure one.
 6. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
 7. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
    is the most common way a deslop run makes text worse. Check every replacement you just made:
@@ -116,8 +126,9 @@ the extracted text and the marker file, and demand the table.
 
 ## Jargon: the default is against it
 
-**The ordinary word wins unless the reader needs the exact name.** Two conditions, both required, or
-the term goes: the reader works in the field, and no ordinary word carries the same meaning.
+**The ordinary word wins unless the reader needs the exact name.** This is an audit default, not a
+word-list rule. Keep a term when the reader works in the field and an ordinary replacement loses its
+meaning; otherwise ask the writer to name the concrete operation.
 
 Most jargon fails the second condition. `回归` means regression, and `功能退化` or `实现错误` say the
 same thing in words a person uses. `鲁棒` is a transliteration and almost never earns its place.
@@ -128,11 +139,13 @@ A real term of art still stands. If a mechanism is literally named *drift*, then
 name; same for *idempotent* / *幂等*, *deadlock* / *死锁*, *garbage collection*, *back-pressure*.
 Flattening those makes the text read as though the author does not know the field.
 
-The bar is not "a specialist would recognise it" — specialists recognise jargon too. It is:
+The evidence is not merely "a specialist would recognise it" — specialists recognise jargon too. It
+includes:
 
-1. **One agreed referent.** If practitioners argue about which of two similar terms means which, the
-   word is not carrying precision. `缓存击穿` fails here: it, `缓存穿透` and `缓存雪崩` are routinely
-   swapped even by the people using them.
+1. **One agreed referent.** A well-defined name earns weight, but it is not a binary test. `缓存击穿`
+   has a common definition (a hot key expires and concurrent requests reach storage), while loose
+   usage is also often mixed with `缓存穿透` and `缓存雪崩`. Treat this as an audience and explanation
+   question, not proof that the term is invalid everywhere.
 2. **No ordinary word for it.** `幂等` has none. `功能退化` is the ordinary word for `回归`, so `回归`
    goes.
 
@@ -143,11 +156,14 @@ why `击穿` on its own is a verb to replace, while `死锁` is a name to keep.
 The exemption is narrow, and it is about the reader: the same word can be a term in a design doc and
 jargon in a talk.
 
-The scanner cannot make this call, so it flags terms of art and leaves the judgment to you. Two
-scanner false-positive classes are predictable enough to expect:
+The scanner cannot make this call, so it reports surface forms as candidates and leaves their final
+judgment to the audit. It deliberately keeps context-heavy words such as `robust`, `harness`,
+`判据`, `承载`, and `复盘` out of the word list; a term with a project-specific rule such as `回归`
+can still appear as a candidate. Two false-positive classes are predictable enough to expect in any
+candidate list:
 
-- **A document about slop quotes slop.** Scanning this skill's own README returns `load-bearing`,
-  `key insight`, `判据`, `赛道` — every one of them an example being named, not used. Same for style
+- **A document about slop quotes slop.** Scanning this skill's own README returns `load-bearing` and
+  `key insight` when they are examples being named, not used. Same for style
   guides, review notes, and any text with a "do not write this" table.
 - **Quoted material.** A hit inside someone else's sentence is theirs, not yours. Leave it.
 
@@ -166,7 +182,7 @@ enumerations. A number you cannot trust is worse than no number.
 ## Reference files
 
 - `scan.py` — the scanner. No dependencies beyond python3.
-- `references/lexicon.tsv` — 271 candidate terms, Chinese and English, each with a plain replacement
+- `references/lexicon.tsv` — candidate terms, Chinese and English, each with a plain replacement
   and a note where the word is legitimate in some contexts. Sources: Wikipedia's WP:AIVOCAB (every
   word there needs a citation to an outside study), Kobak et al. 2025 on excess vocabulary in
   biomedical abstracts, Juzek & Ward 2025, HN 48905248, and the Chinese lists from
