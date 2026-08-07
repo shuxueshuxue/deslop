@@ -34,6 +34,15 @@ Humble and plain is the target. Sly and clever is the defect.
 An editor who mistakes plainness for the problem sands the text into mush and misses every real tell.
 The models to aim at are Wikipedia, Hacker News technical comments, and academic papers.
 
+## Two checks that catch most of it
+
+1. **Delete it — is any information lost?**
+2. **If a reader asks "what specifically does this mean", can you answer with a fact?**
+
+From the [nofluff](https://nofluff.0x01.me/nofluff.txt) standard, folded in as
+`references/nofluff.md`. The tables below tell you where to look; these tell you whether the sentence
+should exist. When they disagree, the checks win.
+
 ## What it catches
 
 | | |
@@ -94,10 +103,16 @@ case where all three existed alongside the register problems.
 SKILL.md                        the skill
 references/markers-zh.md        Chinese taxonomy, eight categories
 references/markers-en.md        English markers, sourced to HN 48905248
+references/titles.md            headings: name the content, don't narrate the reading path
+references/nofluff.md           the nofluff standard's two checks, and what it adds
 references/worked-example.md    a real audit: 45 findings, 12/10/14 → 0/0/0
 ```
 
 ## Credit
+
+The two checks and four of the rules come from the [nofluff](https://nofluff.0x01.me/nofluff.txt)
+writing standard.
+
 
 The English marker list draws on the Hacker News thread cataloguing "claudish"
 ([48905248](https://news.ycombinator.com/item?id=48905248)), where readers named the specific words

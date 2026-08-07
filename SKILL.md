@@ -33,11 +33,26 @@ Plain is also not colloquial. `references/markers-zh.md` opens with a register a
 the dubbing register of Japanese films — that pins the target between written and spoken language.
 Read it before editing Chinese text; overshooting into casual speech is as wrong as posturing.
 
+## Two checks that catch most of it
+
+Before working through the taxonomy, run every sentence past these:
+
+1. **Delete it — is any information lost?** If not, delete it.
+2. **If a reader asks "what specifically does this mean", can you answer with a fact?** If not, it is
+   filler.
+
+These come from the nofluff standard (`references/nofluff.md`), which also supplies four rules the
+marker tables do not: do not stress what no reader would misread; delete rather than patch; do not
+substitute intensity for argument; coining a term usually means the thinking is not finished.
+
+The tables tell you where to look. These two checks tell you whether it should exist at all. When they
+disagree, the checks win.
+
 ## Procedure
 
 1. **Extract the prose.** Strip markup so you audit what a reader actually sees, not the source.
 2. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
-   (English). Produce a table — one row per hit:
+   (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 
    | location | verbatim sentence | category | why it is performance, not statement | plain replacement |
 
@@ -77,4 +92,6 @@ by someone who does not know the field.
 
 - `references/markers-zh.md` — Chinese marker taxonomy, eight categories, with examples.
 - `references/markers-en.md` — English markers, sourced to a Hacker News thread cataloguing them.
+- `references/titles.md` — headings: name the content, do not narrate the reading path. Seven rules.
+- `references/nofluff.md` — the nofluff standard's two checks and the four rules the tables lack.
 - `references/worked-example.md` — a real audit: 45 findings, before/after pairs, indicators 12/10/14 → 0/0/0.
