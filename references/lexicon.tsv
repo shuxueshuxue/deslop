@@ -1,0 +1,279 @@
+> deslop lexicon — one candidate per row. The scanner (scan.py) reports hits; it never rewrites.
+> Columns: lang  pattern  category  replacement  note
+> lang: en | zh   ·   pattern: Python regex (ASCII patterns get \b…\b added automatically)
+> category: vocab puffery editorial transition template shape jargon hedge assistant
+> note: when the word is legitimate. A blank note does NOT mean "always wrong" — see SKILL.md.
+> Sources: WP:AIVOCAB (each word there needs an external citation) · Kobak et al. 2025 excess
+> vocabulary (Science Advances 11(27)) · Juzek & Ward 2025 · HN 48905248 · Chinese community lists.
+lang	pattern	category	replacement	note
+en	delve	vocab	look at / examine	era: GPT-4. Dropped off sharply in 2025.
+en	delves? into	vocab	examines
+en	tapestry	puffery	(cut)	Literal textile use is fine.
+en	testament	puffery	(cut, state the fact)
+en	stands? as a testament	puffery	shows
+en	serves? as a reminder	puffery	(cut)
+en	underscore[sd]?	vocab	show / stress	Literal underline mark, or film scoring, is fine.
+en	showcas(e|es|ed|ing)	vocab	show	era: GPT-4o and later. Still elevated in 2026.
+en	pivotal	vocab	central / decisive
+en	meticulous(ly)?	vocab	careful(ly)
+en	intricate	vocab	detailed / complicated
+en	intricacies	vocab	details
+en	interplay	vocab	interaction
+en	landscape	vocab	field / market / situation	Actual scenery or a landscape orientation is fine.
+en	realm	vocab	field / area
+en	robust	vocab	(say what it withstands)	Statistics term of art: robust estimator.
+en	vibrant	puffery	(cut)
+en	boasts	puffery	has
+en	bolstered	vocab	strengthened / supported
+en	garner(ed|ing)?	vocab	get / receive
+en	foster(s|ed|ing)?	vocab	encourage / cause	Foster care, foster parent.
+en	enhanc(e|es|ed|ing)	vocab	improve / add to
+en	enduring	puffery	lasting / (cut)
+en	crucial	vocab	necessary / decisive	Kobak: one of the ten highest-impact excess words.
+en	valuable insights?	template	(say what was learned)
+en	align(s|ed)? with	vocab	matches / agrees with
+en	resonate(s|d)? with	vocab	(cut, or: appeals to)
+en	emphasi[sz](e|es|ed|ing)	vocab	stress / say	era: elevated in every era through 2026.
+en	highlight(s|ed|ing)	vocab	show / point out	Literal highlighting of text is fine.
+en	Additionally,	transition	Also, / (cut)	Sentence-initial. Kobak's list.
+en	Moreover,	transition	(cut)
+en	Furthermore,	transition	(cut)
+en	Notably,	transition	(cut)
+en	comprehensive	puffery	complete / full
+en	holistic	jargon	(say what it covers)
+en	seamless(ly)?	puffery	(cut)
+en	myriad	vocab	many
+en	plethora	vocab	many / too many
+en	harness(ing)?	vocab	use
+en	unlock(s|ing)?	puffery	(cut, or: allow)
+en	elevat(e|es|ed|ing)	puffery	raise / improve
+en	embark(ing)? on	puffery	start
+en	journey	puffery	(cut)	A literal trip is fine.
+en	cornerstone	puffery	(cut, or: basis)
+en	beacon	puffery	(cut)
+en	paradigm	jargon	model / approach	Kuhn's paradigm shift, in context.
+en	synergy	jargon	(cut)
+en	ever-evolving	puffery	changing
+en	fast-paced	puffery	(cut)
+en	in today's [a-z-]+ (age|era|world|landscape)	template	(cut)
+en	navigat(e|es|ing) the (complexities|challenges|landscape)	puffery	deal with
+en	plays? an? (vital|crucial|key|significant|pivotal) role	puffery	(say what it does)
+en	leaves? a lasting (impact|impression)	puffery	(cut)
+en	setting the stage for	template	(cut)
+en	marks? a (shift|turning point)	template	(say what changed)
+en	key turning point	template	(cut)
+en	indelible mark	puffery	(cut)
+en	deeply rooted	puffery	(cut)
+en	nestled in the heart of	puffery	in
+en	rich (cultural )?(heritage|history|tradition)	puffery	(cut)
+en	groundbreaking	puffery	new / first
+en	renowned	puffery	well-known / (cut)
+en	diverse array	puffery	range
+en	it'?s (important|critical|crucial|worth) (to )?(note|noting|remember|consider)	editorial	(cut, state it)
+en	It is worth noting	editorial	(cut)
+en	In (summary|conclusion)	template	(cut)
+en	Overall,	template	(cut)
+en	Despite (its|these) (challenges|limitations)	template	(cut)
+en	Future (Outlook|Prospects|Directions)	template	(say what is next)
+en	Challenges and (Legacy|Opportunities)	template	(name them)
+en	Industry reports	editorial	(cite one)
+en	Experts (argue|say|believe)	editorial	(name the expert)
+en	Observers have (cited|noted)	editorial	(name them)
+en	Some critics argue	editorial	(name the critic)
+en	load-bearing	jargon	(say what it carries)	HN 48905248.
+en	key insight	jargon	(state the insight)	HN 48905248.
+en	synthesi[sz](e|es|ed|ing)	jargon	combine / summarize	HN 48905248. Chemistry sense is fine.
+en	(the )?honest (take|caveat|answer)	editorial	(cut, just say it)	HN 48905248.
+en	Good question	assistant	(cut)	HN 48905248.
+en	You'?re absolutely right	assistant	(cut)
+en	I hope this helps	assistant	(cut)
+en	Certainly!	assistant	(cut)
+en	Of course!	assistant	(cut)
+en	Would you like	assistant	(cut)
+en	let me know if	assistant	(cut)
+en	as of my last (knowledge )?(update|training)	hedge	(cut, or give the date)
+en	Up to my last training update	hedge	(cut)
+en	based on (the )?available (information|sources)	hedge	(cut, or name the source)
+en	not widely (available|documented|disclosed)	hedge	(say what you checked)
+en	as an? (AI|large) language model	assistant	(cut)
+en	not just [^,.]{2,40}, but( also)?	shape	(state Y only)	Negative parallelism. Counted indicator.
+en	(isn'?t|is not) (just )?[^,.]{2,40}, (it'?s|but)	shape	(state Y only)	Counted indicator.
+en	rather than merely	shape	(state it plainly)
+zh	赋能	jargon	(说清楚给了什么)
+zh	底层逻辑	jargon	原理 / 机制
+zh	认知升级	jargon	(删)
+zh	闭环	jargon	(说清楚哪一环接回哪一环)	控制论/工程语境里是术语。
+zh	长期主义	jargon	(删)
+zh	(关键)?抓手	jargon	办法 / 入手处
+zh	价值沉淀	jargon	(说清楚留下了什么)
+zh	赛道	jargon	方向 / 领域
+zh	护城河	jargon	(说清楚别人为什么追不上)
+zh	组合拳	jargon	(逐项列出)
+zh	打法	jargon	做法
+zh	颗粒度	jargon	粗细 / 精度
+zh	对齐	jargon	一致 / 统一	模型训练的 alignment 是术语。
+zh	深度链接	jargon	(视语境)	若指可点开的 deep link，是术语，不要改。
+zh	深耕	puffery	做了 N 年
+zh	聚焦	puffery	针对 / 只做
+zh	精准发力	puffery	(删)
+zh	全方位	puffery	(列出覆盖了什么)
+zh	多维度	puffery	(列出是哪几个)
+zh	系统性地	puffery	(删)
+zh	极大地	puffery	(给数字)
+zh	显著(提升|改善|增强)	puffery	(给数字)	统计显著性是术语。
+zh	助力	puffery	帮 / (删)
+zh	引领	puffery	(删)
+zh	重塑	puffery	改 / 换掉
+zh	释放(潜力|价值|活力)	puffery	(删)
+zh	激发活力	puffery	(删)
+zh	夯实	puffery	(删)
+zh	筑牢	puffery	(删)
+zh	打造	puffery	做 / 建
+zh	标志着	puffery	(说清楚变了什么)
+zh	奠定(了)?基础	puffery	(删)
+zh	关键转折点	puffery	(说清楚前后差别)
+zh	具有重要意义	puffery	(说清楚有什么用)
+zh	发挥(着)?(关键|重要)作用	puffery	(说清楚做了什么)
+zh	至关重要	puffery	(说清楚少了它会怎样)
+zh	不可或缺	puffery	(同上)
+zh	举足轻重	puffery	(删)
+zh	令人(叹为观止|瞩目|印象深刻)	puffery	(删)
+zh	叹为观止	puffery	(删)
+zh	熠熠生辉	puffery	(删)
+zh	浓墨重彩	puffery	(删)
+zh	波澜壮阔	puffery	(删)
+zh	(生动|完美|深刻)(诠释|揭示|体现)	puffery	说明 / 表明
+zh	淋漓尽致	puffery	(删)
+zh	里程碑	puffery	(说清楚跨过了什么)
+zh	新纪元	puffery	(删)
+zh	应运而生	puffery	(删)
+zh	蓬勃发展	puffery	(给数字)
+zh	方兴未艾	puffery	(删)
+zh	大有可为	puffery	(删)
+zh	在当今[^，。]{0,6}(社会|时代|背景下)	template	(删)
+zh	随着[^，。]{2,12}的(发展|普及|推进)	template	(删，直接说事)
+zh	值得注意的是	editorial	(删，直接说)
+zh	需要指出的是	editorial	(删)
+zh	不难看出	editorial	(删)
+zh	众所周知	editorial	(删)
+zh	综上所述	template	(删)
+zh	总而言之	template	(删)
+zh	总的来说	template	(删)
+zh	一言以蔽之	template	(删)
+zh	不仅如此	transition	(删)
+zh	与此同时	transition	同时 / (删)
+zh	事实上	transition	(删)
+zh	此外	transition	另外 / (删)
+zh	然而	transition	但 / (删)	连用超过两次才算。
+zh	希望(这)?(对你)?有(所)?帮助	assistant	(删)
+zh	你值得	assistant	(删)
+zh	作为一名	assistant	(删)
+zh	进行[一二三四五六七八九十]?次?[^，。]{0,4}(处理|优化|分析|梳理)	vocab	(直接用那个动词)	空转词。
+zh	通过[^，。]{2,10}的方式	vocab	(直接说怎么做)	空转词。
+zh	不是[^，。]{2,20}，(而)?是	shape	(只说后半句)	对偶反转。计数指标。
+zh	不(只|仅)(是)?[^，。]{2,20}，(更|还)(是)?	shape	(只说后半句)	计数指标。
+zh	你以为[^，。]{2,20}，(其实|实际上)	shape	(直接说结论)
+zh	与其说[^，。]{2,20}，不如说	shape	(直接说结论)
+zh	[^，。]{2,20}的本质(是|在于)	shape	(直接说是什么)
+zh	很多人(以为|觉得|认为)	shape	(删，别替读者设定)
+zh	问题不在[^，。]{1,10}，而在	shape	(只说后半句)
+zh	——	shape	(改逗号、冒号或句号)	计数指标。
+zh	判据	vocab	判定规则 / 怎么判定	抬高的书面词。
+zh	范式	vocab	做法 / 模式	科学哲学语境里是术语。
+zh	语境	vocab	场合 / 上下文	语言学里是术语。
+zh	维度	vocab	方面	数学/张量语境里是术语。
+zh	层面	vocab	(删或说具体是哪一层)
+zh	承载	vocab	(视语境)	比「装」「放」好，不要反向改成单字动词。
+zh	赋予	vocab	给
+zh	彰显	puffery	表明 / 说明
+zh	助推	puffery	推动 / (删)
+zh	锚定	vocab	(视语境)	若指 anchor 机制是术语，不要改。
+en	Here'?s the thing	template	(直接说)
+en	The truth is	template	(cut)
+en	Let me be clear	template	(cut)
+en	It turns out	template	(cut)
+en	to be honest	editorial	(cut)
+en	Here'?s (the kicker|where it gets interesting)	template	(cut)
+en	At its core	template	(cut)
+en	At the end of the day	template	(cut)
+en	When it comes to	template	(cut, name the subject)
+en	In a world where	template	(cut)
+en	The reality is	template	(cut)
+en	It bears mentioning	editorial	(cut)
+en	(really|just|literally|genuinely|simply|actually|truly|fundamentally|inherently|inevitably|interestingly|importantly|crucially|remarkably|arguably)	vocab	(cut)	Adverb crutch. Judge per sentence; some are load-free.
+en	serves? as	vocab	is
+en	stands? as	vocab	is
+en	constitutes	vocab	is
+en	represents	vocab	is	Legitimate when something literally stands for another thing.
+en	features	vocab	has	Noun sense (a product feature) is fine.
+en	Full stop\.	template	(cut)
+en	Period\.	template	(cut)
+en	Let that sink in	template	(cut)
+en	Make no mistake	template	(cut)
+en	Here'?s why that matters	template	(cut)
+en	Let'?s (break this down|unpack|dive in)	template	(cut)
+en	Think of it (as|like)	template	(explain it directly)
+en	Imagine a world where	template	(cut)
+en	In this (section|article|post),? (we|I)	template	(cut)
+en	As we'?ll see	template	(cut)
+en	Let me walk you through	template	(cut)
+en	leverag(e|es|ed|ing)	vocab	use	Finance sense (leverage ratio) is fine.
+en	utiliz(e|es|ed|ing)	vocab	use
+en	streamlin(e|es|ed|ing)	vocab	simplify
+en	unpack(s|ed|ing)?	vocab	explain	Literal unpacking, or tuple unpacking, is fine.
+en	deep dive	vocab	analysis
+en	facilitat(e|es|ed|ing)	vocab	help / allow
+en	ecosystem	vocab	system / community	Biology term of art.
+en	profound	puffery	(cut)
+en	paramount	puffery	(cut)
+en	Consequently,	transition	So
+en	Thus,	transition	So
+en	Hence,	transition	So
+en	(Nonetheless|Nevertheless),	transition	Still / But
+en	cultivat(e|es|ed|ing)	vocab	build / encourage	Agriculture sense is fine.
+zh	(这|那)说明	template	(删，上一句已经说完)	段末收尾。ninehills。
+zh	到这里	template	(删)	段末收尾。
+zh	由此可见	template	(删)
+zh	通过以上分析	template	(删)
+zh	(这|那)本身就是	template	(删)
+zh	一句话(总结|概括|讲|落地)	template	(删标签，直接给结论)
+zh	简而言之	template	(删)
+zh	概括来说	template	(删)
+zh	总结一下	template	(删)
+zh	沉淀	jargon	积累 / 留下
+zh	对标	jargon	比照 / 对比
+zh	拉通	jargon	打通 / (说清楚接了什么)
+zh	协同	jargon	配合
+zh	联动	jargon	(说清楚谁跟着谁动)
+zh	洞察	jargon	看法 / 发现
+zh	心智	jargon	印象 / 认知	认知科学里是术语。
+zh	调性	jargon	风格
+zh	战役	jargon	(删，除非真是军事)
+zh	链路	jargon	路径 / 流程	网络/链路层是术语。
+zh	势能	jargon	(删，除非真是物理)
+zh	兜底	jargon	(说清楚谁在什么情况下承担)
+zh	触点	jargon	接触的地方	谨慎档：产品设计里有固定用法。
+zh	卡点	jargon	卡住的地方	谨慎档。
+zh	矩阵	jargon	(视语境)	谨慎档：数学矩阵是术语。
+zh	复盘	jargon	回顾	谨慎档。
+zh	提炼	jargon	归纳	谨慎档。
+zh	接住	vocab	(说清楚做了什么)	翻译腔：物理动作用在抽象对象上。
+zh	击穿	vocab	(同上)	缓存击穿是术语。
+zh	打穿	vocab	(同上)
+zh	扛住	vocab	承受 / 撑住
+zh	锋利	vocab	(删，除非真是刀)
+zh	真拆开看	template	(删)	讲解腔。
+zh	(这|那)背后是	template	(直接说是什么)
+zh	真正(关键的问题|重要的)是	template	(直接说)
+zh	你(要先|得先)明白	template	(删)	训人感。
+zh	先问问是不是	template	(删)
+zh	近年来	template	(删)	开篇套话。
+zh	越来越多的关注	template	(删)
+zh	非常	vocab	很 / (删)
+zh	极其	vocab	很 / (删)
+zh	据(业内人士|知情人士)	editorial	(说清楚是谁)	模糊归属。
+zh	有(评论|观点)认为	editorial	(说清楚是谁)
+zh	据不完全统计	editorial	(给口径)
+zh	归根结底	template	(删)	升华句信号。
+zh	说到底	template	(删)
+zh	这(其实)?(和|跟)[^，。]{2,12}(一样|类似)	shape	(直接给建议)	升华句：把工程观察上升成人生道理。

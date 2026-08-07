@@ -51,18 +51,27 @@ disagree, the checks win.
 ## Procedure
 
 1. **Extract the prose.** Strip markup so you audit what a reader actually sees, not the source.
-2. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
+2. **Run the scanner first.** `python3 scan.py --strip FILE` matches the text against
+   `references/lexicon.tsv` (271 entries, Chinese and English) and prints one row per candidate with
+   a plain replacement and, where the word is sometimes legitimate, a note. Add `--lines` for line
+   numbers, `--lang zh` to restrict.
+
+   The scanner is the cheap mechanical half. It catches vocabulary and fixed phrases, and nothing
+   else — it cannot see a dramatized closer, a superfluous paragraph-ending summary, an analogy doing
+   no work, a heading that narrates instead of naming, or a sentence that survives both nofluff
+   checks. Take its output as a worklist, then do the audit below for everything it is blind to.
+3. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
    (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 
    | location | verbatim sentence | category | why it is performance, not statement | plain replacement |
 
    Over-report. Mark uncertain hits `?` rather than dropping them.
-3. **Count three indicators** before and after. These are the falsifiable part:
+4. **Count three indicators** before and after. These are the falsifiable part:
    - staged reversals (`it's not X, it's Y` / `不是 X，是 Y`)
    - em dashes (`—` / `——`)
    - personification (abstract subject performing a human or biological action)
-4. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
-5. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
+5. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
+6. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
    is the most common way a deslop run makes text worse. Check every replacement you just made:
    - Did a written word become a spoken one? (`判据` → `怎么判`, `触发源` → `触发的地方`)
    - Did a two-syllable verb become one syllable? Chinese written register prefers two.
@@ -70,9 +79,9 @@ disagree, the checks win.
 
    If a sentence now sounds like conversation rather than a document, put it back and pick a
    *common* word instead of a *spoken* one. The target is common, not casual.
-6. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
+7. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
 
-For a document of any size, run step 2 in a **fresh-context subagent**. Self-auditing prose you just
+For a document of any size, run step 3 in a **fresh-context subagent**. Self-auditing prose you just
 wrote does not work — you re-read your own intent instead of the words on the page. Hand the subagent
 the extracted text and the marker file, and demand the table.
 
@@ -88,6 +97,18 @@ prose instead.
 Getting this wrong is worse than leaving a tell, because it makes the text sound like it was written
 by someone who does not know the field.
 
+The scanner cannot make this call, so it flags terms of art and leaves the judgment to you. Two
+scanner false-positive classes are predictable enough to expect:
+
+- **A document about slop quotes slop.** Scanning this skill's own README returns `load-bearing`,
+  `key insight`, `判据`, `赛道` — every one of them an example being named, not used. Same for style
+  guides, review notes, and any text with a "do not write this" table.
+- **Quoted material.** A hit inside someone else's sentence is theirs, not yours. Leave it.
+
+An indicator earns a place in the count only if its hits are almost always real. The rule-of-three
+tell is real, but it is not counted: on the first document scanned, all five hits were ordinary
+enumerations. A number you cannot trust is worse than no number.
+
 ## Scope discipline
 
 - Rewrite sentences. Do not restructure arguments, cut sections, or change claims — that is editing,
@@ -98,6 +119,12 @@ by someone who does not know the field.
 
 ## Reference files
 
+- `scan.py` — the scanner. No dependencies beyond python3.
+- `references/lexicon.tsv` — 271 candidate terms, Chinese and English, each with a plain replacement
+  and a note where the word is legitimate in some contexts. Sources: Wikipedia's WP:AIVOCAB (every
+  word there needs a citation to an outside study), Kobak et al. 2025 on excess vocabulary in
+  biomedical abstracts, Juzek & Ward 2025, HN 48905248, and the Chinese lists from
+  `ninehills/public-skills` (MIT). Add rows here rather than hard-coding words into prose.
 - `references/markers-zh.md` — Chinese marker taxonomy, eight categories, with examples.
 - `references/markers-en.md` — English markers, sourced to a Hacker News thread cataloguing them.
 - `references/titles.md` — headings: name the content, do not narrate the reading path. Seven rules.
