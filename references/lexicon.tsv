@@ -295,3 +295,11 @@ zh	打磨	physical	改进 / 修	同上。
 zh	盘活	physical	(说清楚做了什么)	同上。
 zh	撬动	physical	(说清楚用什么带动了什么)	同上。
 zh	埋点	physical	(视语境)	数据采集里是固定术语，不要改。
+zh	回归	borrowed	改好之后又写回去的毛病	regression 的直译。日常中文里「回归」是别的意思，读起来不像人话。
+zh	收敛	borrowed	稳定下来 / 不再变	同类直译词。数学语境里是术语。
+zh	泛化	borrowed	推广到别的情况	机器学习里是术语。
+zh	鲁棒	borrowed	抗得住 / 稳	robust 的音译，写给圈外人要换。
+zh	对标	borrowed	比照
+zh	复用	borrowed	重复使用	工程语境里常见，写给圈外人要换。
+zh	实例	borrowed	例子 / 一个具体的	instance 的直译。
+zh	语义	borrowed	意思	语言学/编译器里是术语。

@@ -65,6 +65,13 @@ disagree, the checks win.
    Replace with what happened: `跑一遍` → `运行一次`, `抓到` → `找出`, `命中` → `报出`,
    `扫这份文档` → `检查这份文档`, `落地` → `上线` or `交付`.
 
+   The same question decides a second class: **a term that is standard inside a field but is not a
+   word in the reader's ordinary language.** `tell` written to someone who does not work on this
+   tool. `回归` for a regression — in everyday Chinese that word means something else, so the sentence
+   reads as translated rather than spoken. `命中` `落地` `收敛` `鲁棒` `复用` are the same shape. The
+   fix is not to explain the term; it is to say what happened: `回归` → `改好之后又写回去的毛病`.
+   Ask who is reading, not whether the term is correct.
+
    Keep the ones that are terms of art in the field (`缓存击穿`, `埋点`, `back-pressure`). The test is
    the same one as everywhere else: would a specialist recognize it as the standard name?
 
