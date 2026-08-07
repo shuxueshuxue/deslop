@@ -17,10 +17,14 @@ Prose written or polished by an LLM carries tells. They are learnable, countable
 
 **AI flavor is not "plain, careful wording." Plain, careful wording is the target.**
 
-AI flavor is **performance**: vivid analogies, personification, staged reversals, punchy closers.
-It reads well line by line, which is exactly why it survives editing. The test for any sentence:
+AI flavor is the writer showing you how clever they are. Every marker in the taxonomy is one form
+of it: the vivid analogy, the staged reversal, the punchy closer, the word picked because it sounds
+learned. They all do the same job — prove the author is smart. It reads well line by line, which is
+exactly why it survives editing. The test for any sentence:
 
-> Is this **stating** something, or **performing** it?
+> Is this **saying the thing**, or **being clever**?
+
+Humble and plain is the target. Sly and clever is the defect.
 
 A writer who mistakes "plain" for "the problem" will sand the text into mush and miss every real tell.
 Aim at Wikipedia, Hacker News technical comments, and academic papers: direct, unadorned, specific.
