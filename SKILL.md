@@ -112,17 +112,20 @@ For a document of any size, run step 4 in a **fresh-context subagent**. Self-aud
 wrote does not work — you re-read your own intent instead of the words on the page. Hand the subagent
 the extracted text and the marker file, and demand the table.
 
-## The false-positive that matters
+## Jargon: the default is against it
 
-Domain terms often look vivid. **Do not flatten a term of art.**
+**The ordinary word wins unless the reader needs the exact name.** Two conditions, both required, or
+the term goes: the reader works in the field, and no ordinary word carries the same meaning.
 
-If a project's mechanism is literally named *drift*, then "spec drift" is the term, not a metaphor.
-Same for *anchor*, *warm cache*, *garbage collection*, *starvation*. The test: would a specialist
-reader recognize this as the standard name for the thing? If yes, keep it. Flatten the surrounding
-prose instead.
+Most jargon fails the second condition. `回归` means regression, and `功能退化` or `实现错误` say the
+same thing in words a person uses. `鲁棒` is a transliteration and almost never earns its place.
+`复用` is workplace speech, not standard Chinese. When a term survives, it is because a specialist
+would lose precision without it — not because it is correct, and not because it is shorter.
 
-Getting this wrong is worse than leaving a tell, because it makes the text sound like it was written
-by someone who does not know the field.
+A real term of art still stands. If a mechanism is literally named *drift*, then "spec drift" is its
+name; same for *anchor*, *garbage collection*, *back-pressure*, *缓存击穿*, *埋点*. Flattening those
+makes the text read as though the author does not know the field. But that exemption is narrow, and
+it is about the reader: the same word can be a term in a design doc and jargon in a talk.
 
 The scanner cannot make this call, so it flags terms of art and leaves the judgment to you. Two
 scanner false-positive classes are predictable enough to expect:
