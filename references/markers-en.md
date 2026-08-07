@@ -65,7 +65,27 @@ state lives on, the cache is warm, the pipeline is healthy, the spec knows*.
 
 Some of these are established terms of art (*warm cache*, *healthy*). See the false-positive rule.
 
-## 7. Dramatized closers
+## 7. Elevated diction
+
+A rarer, more "professional"-sounding word where a common one exists. Models reach for the word that
+sounds learned; readers hear someone posturing.
+
+| posturing | plain |
+|---|---|
+| utilize | use |
+| leverage | use |
+| facilitate | help · let |
+| commence | start |
+| in order to | to |
+| a multitude of | many |
+| it is imperative that | X must |
+
+Adjacent habits worth the same pass: **nominalization** (`perform a validation` → `validate`) and
+**stacked qualifiers** (`in certain specific circumstances` → `sometimes`).
+
+This does not apply to terms of art. See the last section.
+
+## 8. Dramatized closers
 
 A short assertion parked at the end of a paragraph to leave an aftertaste.
 
@@ -75,7 +95,7 @@ A short assertion parked at the end of a paragraph to leave an aftertaste.
 
 Delete it and check whether any information was lost. Usually none was.
 
-## 8. Rhythm
+## 9. Rhythm
 
 Beyond individual words: LLM prose keeps a **uniform cadence**. Every paragraph concedes, then turns,
 then lands a summary assertion. Every section is a triad. Reviewers notice the metronome before they

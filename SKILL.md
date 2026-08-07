@@ -67,6 +67,6 @@ by someone who does not know the field.
 
 ## Reference files
 
-- `references/markers-zh.md` — Chinese marker taxonomy, seven categories, with examples.
+- `references/markers-zh.md` — Chinese marker taxonomy, eight categories, with examples.
 - `references/markers-en.md` — English markers, sourced to a Hacker News thread cataloguing them.
 - `references/worked-example.md` — a real audit: 45 findings, before/after pairs, indicators 12/10/14 → 0/0/0.

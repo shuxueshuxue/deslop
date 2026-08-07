@@ -41,6 +41,7 @@ The models to aim at are Wikipedia, Hacker News technical comments, and academic
 | **Self-assessment** | `Naur 说得对` → `与 Naur 的结论一致` · `my honest take` → *(cut)* |
 | **Em dashes** | counted, and checked for where they land |
 | **Latching** | one vivid word reused across a document |
+| **Elevated diction** | a rarer, more "professional"-sounding word where a common one exists — 判据 → 判定规则 · utilize → use |
 | **Jargon** | 赛道 / 闭环 / 抓手 · load-bearing / key insight / synthesize |
 
 ## Install
@@ -87,7 +88,7 @@ case where all three existed alongside the register problems.
 
 ```
 SKILL.md                        the skill
-references/markers-zh.md        Chinese taxonomy, seven categories
+references/markers-zh.md        Chinese taxonomy, eight categories
 references/markers-en.md        English markers, sourced to HN 48905248
 references/worked-example.md    a real audit: 45 findings, 12/10/14 → 0/0/0
 ```
