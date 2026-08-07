@@ -23,7 +23,11 @@ It reads well line by line, which is exactly why it survives editing. The test f
 > Is this **stating** something, or **performing** it?
 
 A writer who mistakes "plain" for "the problem" will sand the text into mush and miss every real tell.
-Aim at Wikipedia, Hacker News technical comments, and academic papers — direct, unadorned, specific.
+Aim at Wikipedia, Hacker News technical comments, and academic papers: direct, unadorned, specific.
+
+Plain is also not colloquial. `references/markers-zh.md` opens with a register anchor for Chinese —
+the dubbing register of Japanese films — that pins the target between written and spoken language.
+Read it before editing Chinese text; overshooting into casual speech is as wrong as posturing.
 
 ## Procedure
 
