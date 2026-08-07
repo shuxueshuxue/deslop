@@ -101,8 +101,10 @@ disagree, the checks win.
    - Did a two-syllable verb become one syllable? Chinese written register prefers two.
    - Did a heading become a casual question? Headings sit further toward written register than body.
    - **Re-run the taxonomy on the words you just wrote in.** A replacement is new prose and can carry
-     the same defect it replaced: `砍掉` swapped for `压掉` is one physical verb on an abstract object
-     traded for another. Coinages leak in here too (`自扫` for "scan the document against itself").
+     the same defect it replaced. This happens constantly: `砍掉` swapped for `压掉`, then `击穿`
+     swapped for `打穿` — one physical verb on an abstract object traded for another, twice, by
+     someone who had just written the rule against it. Coinages leak in the same way (`自扫` for
+     "scan the document against itself"). Read your replacements as if someone else wrote them.
 
    If a sentence now sounds like conversation rather than a document, put it back and pick a
    *common* word instead of a *spoken* one. The target is common, not casual.
@@ -123,9 +125,23 @@ same thing in words a person uses. `鲁棒` is a transliteration and almost neve
 would lose precision without it — not because it is correct, and not because it is shorter.
 
 A real term of art still stands. If a mechanism is literally named *drift*, then "spec drift" is its
-name; same for *anchor*, *garbage collection*, *back-pressure*, *缓存击穿*, *埋点*. Flattening those
-makes the text read as though the author does not know the field. But that exemption is narrow, and
-it is about the reader: the same word can be a term in a design doc and jargon in a talk.
+name; same for *idempotent* / *幂等*, *deadlock* / *死锁*, *garbage collection*, *back-pressure*.
+Flattening those makes the text read as though the author does not know the field.
+
+The bar is not "a specialist would recognise it" — specialists recognise jargon too. It is:
+
+1. **One agreed referent.** If practitioners argue about which of two similar terms means which, the
+   word is not carrying precision. `缓存击穿` fails here: it, `缓存穿透` and `缓存雪崩` are routinely
+   swapped even by the people using them.
+2. **No ordinary word for it.** `幂等` has none. `功能退化` is the ordinary word for `回归`, so `回归`
+   goes.
+
+Note that a term of art can still be a metaphor — *deadlock*, *garbage collection*, *back-pressure*
+all are. Being a physical metaphor does not disqualify a word; being an *unsettled* one does. That is
+why `击穿` on its own is a verb to replace, while `死锁` is a name to keep.
+
+The exemption is narrow, and it is about the reader: the same word can be a term in a design doc and
+jargon in a talk.
 
 The scanner cannot make this call, so it flags terms of art and leaves the judgment to you. Two
 scanner false-positive classes are predictable enough to expect:
