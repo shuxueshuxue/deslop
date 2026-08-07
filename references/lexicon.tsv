@@ -21,6 +21,7 @@ en	intricacies	vocab	details
 en	interplay	vocab	interaction
 en	landscape	vocab	field / market / situation	Actual scenery or a landscape orientation is fine.
 en	realm	vocab	field / area
+en	robust	vocab	(say what it withstands)	Statistics term of art: robust estimator.
 en	vibrant	puffery	(cut)
 en	boasts	puffery	has
 en	bolstered	vocab	strengthened / supported
@@ -43,6 +44,7 @@ en	holistic	jargon	(say what it covers)
 en	seamless(ly)?	puffery	(cut)
 en	myriad	vocab	many
 en	plethora	vocab	many / too many
+en	harness(ing)?	vocab	use	Test/agent harness is an established name; literal harness is also fine.
 en	unlock(s|ing)?	puffery	(cut, or: allow)
 en	elevat(e|es|ed|ing)	puffery	raise / improve
 en	embark(ing)? on	puffery	start
@@ -176,10 +178,12 @@ zh	[^，。]{2,20}的本质(是|在于)	shape	(直接说是什么)
 zh	很多人(以为|觉得|认为)	shape	(删，别替读者设定)
 zh	问题不在[^，。]{1,10}，而在	shape	(只说后半句)
 zh	——	shape	(改逗号、冒号或句号)	计数指标。
+zh	判据	vocab	判别方法 / 判断依据	标题里常显得抬高；不要反向改成「怎么判」。
 zh	范式	vocab	做法 / 模式	科学哲学语境里是术语。
 zh	语境	vocab	场合 / 上下文	语言学里是术语。
 zh	维度	vocab	方面	数学/张量语境里是术语。
 zh	层面	vocab	(删或说具体是哪一层)
+zh	承载	vocab	(视语境)	比「装」「放」好，不要反向改成单字动词。
 zh	赋予	vocab	给
 zh	彰显	puffery	表明 / 说明
 zh	助推	puffery	推动 / (删)
@@ -196,6 +200,7 @@ en	When it comes to	template	(cut, name the subject)
 en	In a world where	template	(cut)
 en	The reality is	template	(cut)
 en	It bears mentioning	editorial	(cut)
+en	(really|just|literally|genuinely|simply|actually|truly|fundamentally|inherently|inevitably|interestingly|importantly|crucially|remarkably|arguably)	vocab	(cut)	Adverb crutch. Judge per sentence; some are load-free.
 en	serves? as	vocab	is
 en	stands? as	vocab	is
 en	constitutes	vocab	is
@@ -250,6 +255,7 @@ zh	兜底	jargon	(说清楚谁在什么情况下承担)
 zh	触点	jargon	接触的地方	谨慎档：产品设计里有固定用法。
 zh	卡点	jargon	卡住的地方	谨慎档。
 zh	矩阵	jargon	(视语境)	谨慎档：数学矩阵是术语。
+zh	复盘	jargon	回顾	谨慎档。
 zh	提炼	jargon	归纳	谨慎档。
 zh	接住	physical	(说清楚做了什么)	翻译腔：物理动作用在抽象对象上。
 zh	缓存击穿	unsettled-term	(说明热点键失效后的并发回源)	广泛使用但定义也常被混同；面向圈外人时写出故障机制。

@@ -20,8 +20,22 @@ import scan  # noqa: E402
 CASES = Path(__file__).with_name("cases.json")
 
 
-def signature(finding):
+def candidate_signature(finding):
     return finding["span"], finding["category"]
+
+
+def judgment_signature(finding):
+    return finding["span"], finding["category"], finding["verdict"]
+
+
+def expected_candidates(case):
+    return case.get("candidate_findings", case["findings"])
+
+
+def expected_judgments(case):
+    if "judgments" in case:
+        return case["judgments"]
+    return [{**finding, "verdict": "rewrite"} for finding in case["findings"]]
 
 
 def load_cases(path):
@@ -42,6 +56,12 @@ def load_cases(path):
         for finding in case["findings"]:
             if not isinstance(finding.get("span"), str) or not isinstance(finding.get("category"), str):
                 raise ValueError(f"{case['id']}: each finding needs span and category")
+        for finding in expected_candidates(case):
+            if not isinstance(finding.get("span"), str) or not isinstance(finding.get("category"), str):
+                raise ValueError(f"{case['id']}: each candidate needs span and category")
+        for finding in expected_judgments(case):
+            if finding.get("verdict") not in {"keep", "rewrite"}:
+                raise ValueError(f"{case['id']}: judgment verdict must be keep or rewrite")
     return data["cases"]
 
 
@@ -53,11 +73,11 @@ def scanner_findings(case, lexicon):
     return findings
 
 
-def score(cases, predicted_by_id):
+def score(cases, predicted_by_id, expected_for_case, signature):
     expected = set()
     predicted = set()
     for case in cases:
-        expected.update((case["id"], *signature(f)) for f in case["findings"])
+        expected.update((case["id"], *signature(f)) for f in expected_for_case(case))
         predicted.update((case["id"], *signature(f)) for f in predicted_by_id.get(case["id"], []))
     true_positive = len(expected & predicted)
     false_positive = len(predicted - expected)
@@ -68,10 +88,11 @@ def score(cases, predicted_by_id):
     return true_positive, false_positive, false_negative, precision, recall, f1
 
 
-def print_score(label, cases, predicted_by_id):
-    tp, fp, fn, precision, recall, f1 = score(cases, predicted_by_id)
-    clean = sum(not case["findings"] for case in cases)
-    print(f"{label}: {len(cases)} cases, {sum(len(c['findings']) for c in cases)} expected findings, {clean} clean cases")
+def print_score(label, cases, predicted_by_id, expected_for_case, signature, noun):
+    tp, fp, fn, precision, recall, f1 = score(cases, predicted_by_id, expected_for_case, signature)
+    expected_count = sum(len(expected_for_case(case)) for case in cases)
+    clean = sum(not expected_for_case(case) for case in cases)
+    print(f"{label}: {len(cases)} cases, {expected_count} expected {noun}, {clean} empty cases")
     print(f"  TP {tp}  FP {fp}  FN {fn}  precision {precision:.1%}  recall {recall:.1%}  F1 {f1:.1%}")
 
 
@@ -86,10 +107,15 @@ def load_predictions(path, known_ids):
             raise ValueError(f"{path}: unknown case id {case_id!r}")
         if case_id in results:
             raise ValueError(f"{path}: duplicate prediction for {case_id}")
-        findings = row.get("findings")
-        if not isinstance(findings, list):
-            raise ValueError(f"{path}: {case_id} needs a findings list")
-        results[case_id] = findings
+        judgments = row.get("judgments")
+        if not isinstance(judgments, list):
+            raise ValueError(f"{path}: {case_id} needs a judgments list")
+        for judgment in judgments:
+            if (not isinstance(judgment.get("span"), str)
+                    or not isinstance(judgment.get("category"), str)
+                    or judgment.get("verdict") not in {"keep", "rewrite"}):
+                raise ValueError(f"{path}: {case_id} has an invalid judgment")
+        results[case_id] = judgments
     return results
 
 
@@ -102,21 +128,24 @@ def main():
 
     cases = load_cases(args.cases)
     lexicon = scan.load_lexicon(scan.LEXICON)
-    lexical = [case for case in cases if case["tier"] == "lexicon"]
-    judgment = [case for case in cases if case["tier"] == "judgment"]
-
-    print_score("lexicon", lexical, {case["id"]: scanner_findings(case, lexicon) for case in lexical})
-    print_score("scanner on judgment tier (diagnostic, not a model)", judgment,
-                {case["id"]: scanner_findings(case, lexicon) for case in judgment})
+    candidate_predictions = {case["id"]: scanner_findings(case, lexicon) for case in cases}
+    print_score("candidate detection", cases, candidate_predictions,
+                expected_candidates, candidate_signature, "candidates")
+    judgment_cases = [case for case in cases if case["tier"] == "judgment"]
+    print_score("candidate-only rewrite diagnostic (not a model)", judgment_cases,
+                {case_id: [{**finding, "verdict": "rewrite"} for finding in findings]
+                 for case_id, findings in candidate_predictions.items()},
+                expected_judgments, judgment_signature, "judgments")
 
     if args.predictions:
-        predictions = load_predictions(args.predictions, {case["id"] for case in judgment})
-        missing = [case["id"] for case in judgment if case["id"] not in predictions]
+        predictions = load_predictions(args.predictions, {case["id"] for case in judgment_cases})
+        missing = [case["id"] for case in judgment_cases if case["id"] not in predictions]
         if missing:
-            raise ValueError(f"{args.predictions}: missing {len(missing)} judgment cases")
-        print_score("model judgment", judgment, predictions)
+            raise ValueError(f"{args.predictions}: missing {len(missing)} reviewed cases")
+        print_score("model judgment", judgment_cases, predictions,
+                    expected_judgments, judgment_signature, "judgments")
     else:
-        print("model judgment: not scored; pass --predictions with one decision per judgment case")
+        print("model judgment: not scored; pass --predictions with one decision per reviewed case")
 
 
 if __name__ == "__main__":

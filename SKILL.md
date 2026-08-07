@@ -84,13 +84,14 @@ disagree, the checks win.
    a plain replacement and, where the word is sometimes legitimate, a note. Add `--lines` for line
    numbers, `--lang zh` to restrict.
 
-   The scanner is the cheap mechanical half. It catches stable vocabulary and fixed phrases, and
-   nothing else — it cannot decide whether a quotation is being used, whether `robust` is a
-   statistics term, whether `harness` names a mechanism, or whether `判据` and `承载` fit the written
-   register. It also cannot see a dramatized closer, a superfluous paragraph-ending summary, an
-   analogy doing no work, a heading that narrates instead of naming, or a sentence that survives both
-   nofluff checks. Take its output as a worklist, then do the audit below for everything it is blind
-   to.
+   The scanner is the cheap mechanical half. It catches vocabulary and fixed phrases as
+   **candidates**, and nothing else — a hit is not an instruction to rewrite. It cannot decide
+   whether a quotation is being used, whether `robust` is a statistics term, whether `harness` names
+   a mechanism, or whether `判据` and `承载` fit the written register. Keep those rows in the lexicon
+   with notes so the audit sees them; decide keep or rewrite only after reading the sentence. It also
+   cannot see a dramatized closer, a superfluous paragraph-ending summary, an analogy doing no work,
+   a heading that narrates instead of naming, or a sentence that survives both nofluff checks. Take
+   its output as a worklist, then do the audit below for everything it is blind to.
 4. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
    (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 
@@ -157,10 +158,9 @@ The exemption is narrow, and it is about the reader: the same word can be a term
 jargon in a talk.
 
 The scanner cannot make this call, so it reports surface forms as candidates and leaves their final
-judgment to the audit. It deliberately keeps context-heavy words such as `robust`, `harness`,
-`判据`, `承载`, and `复盘` out of the word list; a term with a project-specific rule such as `回归`
-can still appear as a candidate. Two false-positive classes are predictable enough to expect in any
-candidate list:
+judgment to the audit. Context-heavy rows such as `robust`, `harness`, `判据`, `承载`, and `复盘` stay
+in the word list with notes; suppressing them would hide the very over-corrections the final pass
+must catch. Two false-positive classes are predictable enough to expect in any candidate list:
 
 - **A document about slop quotes slop.** Scanning this skill's own README returns `load-bearing` and
   `key insight` when they are examples being named, not used. Same for style

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "about": "Each case contains the exact input and its gold outcome. `tier: lexicon` is a stable surface-form expectation for scan.py. `tier: judgment` needs sentence context, audience, or provenance; score it with a model response through evals/run.py --predictions.",
+  "about": "Each case separates candidate detection from editorial judgment. `candidate_findings` says what scan.py must report; `judgments` says whether a reviewer keeps or rewrites it. Compact cases use `findings` for a candidate whose judgment is rewrite.",
   "cases": [
     {
       "id": "zh-seed-enumeration-preface",
@@ -141,12 +141,14 @@
       "reason": "Elevated metaphor for analysis."
     },
     {
-      "id": "zh-negative-criterion",
-      "tier": "lexicon",
+      "id": "zh-human-review-criterion",
+      "tier": "judgment",
       "source": "human seed; references/titles.md (drift 判据 example)",
       "input": "drift 判据有三个条件。",
       "findings": [],
-      "reason": "判据 is an established written technical noun here; changing it to 怎么判 is over-correction."
+      "candidate_findings": [{"span": "判据", "category": "vocab"}],
+      "judgments": [{"span": "判据", "category": "vocab", "verdict": "rewrite"}],
+      "reason": "Human review called drift 判据 AI-flavored. Keep it as a scanner candidate, but replace it with 判别方法 rather than 怎么判."
     },
     {
       "id": "zh-negative-trigger-source",
@@ -157,12 +159,14 @@
       "reason": "The compact written noun is clearer than 触发的地方."
     },
     {
-      "id": "zh-negative-carry",
-      "tier": "lexicon",
+      "id": "zh-overcorrection-carry",
+      "tier": "judgment",
       "source": "human seed; references/markers-zh.md (register boundary)",
       "input": "这层承载配置和状态。",
       "findings": [],
-      "reason": "承载 is a normal two-syllable written verb; replacing it with 装 loses register."
+      "candidate_findings": [{"span": "承载", "category": "vocab"}],
+      "judgments": [{"span": "承载", "category": "vocab", "verdict": "keep"}],
+      "reason": "The scanner should surface 承载, then review must keep it rather than replace it with 装."
     },
     {
       "id": "zh-negative-human-signed",
@@ -173,28 +177,34 @@
       "reason": "由人签字 identifies authorship; it is not a physical-verb flourish."
     },
     {
-      "id": "en-negative-test-harness",
-      "tier": "lexicon",
+      "id": "en-term-test-harness",
+      "tier": "judgment",
       "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
       "input": "A test harness controls the loop around the model.",
       "findings": [],
-      "reason": "Harness is the established technical name in this context."
+      "candidate_findings": [{"span": "harness", "category": "vocab"}],
+      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
+      "reason": "The scanner should surface harness, then review keeps the established technical name."
     },
     {
-      "id": "en-negative-robust-estimator",
-      "tier": "lexicon",
-      "source": "references/lexicon.tsv (former robust note)",
+      "id": "en-term-robust-estimator",
+      "tier": "judgment",
+      "source": "references/lexicon.tsv (robust note)",
       "input": "The robust estimator tolerates outliers.",
       "findings": [],
-      "reason": "Robust is a statistics term of art."
+      "candidate_findings": [{"span": "robust", "category": "vocab"}],
+      "judgments": [{"span": "robust", "category": "vocab", "verdict": "keep"}],
+      "reason": "The scanner should surface robust, then review keeps the statistics term of art."
     },
     {
-      "id": "en-negative-literal-harness",
-      "tier": "lexicon",
+      "id": "en-literal-harness",
+      "tier": "judgment",
       "source": "new contrast case",
       "input": "The climber inspected the harness before the ascent.",
       "findings": [],
-      "reason": "Literal noun use."
+      "candidate_findings": [{"span": "harness", "category": "vocab"}],
+      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
+      "reason": "The scanner should surface the literal noun, then review keeps it."
     },
     {
       "id": "zh-quote-lexicon-example",
@@ -202,6 +212,8 @@
       "source": "README.md (What it catches table)",
       "input": "不要把“判据”改成“怎么判”。",
       "findings": [],
+      "candidate_findings": [{"span": "判据", "category": "vocab"}],
+      "judgments": [{"span": "判据", "category": "vocab", "verdict": "keep"}],
       "reason": "The suspect word is cited as an example, not used by the author."
     },
     {
@@ -210,6 +222,14 @@
       "source": "README.md (What it catches table)",
       "input": "Avoid labels such as “load-bearing” and “key insight”.",
       "findings": [],
+      "candidate_findings": [
+        {"span": "load-bearing", "category": "jargon"},
+        {"span": "key insight", "category": "jargon"}
+      ],
+      "judgments": [
+        {"span": "load-bearing", "category": "jargon", "verdict": "keep"},
+        {"span": "key insight", "category": "jargon", "verdict": "keep"}
+      ],
       "reason": "The author is naming examples to avoid."
     },
     {
@@ -218,6 +238,8 @@
       "source": "spexcode-base/studies/slides/tech-share.html (closing quotation)",
       "input": "“You are still responsible for your software, just as before.”",
       "findings": [],
+      "candidate_findings": [{"span": "just", "category": "vocab"}],
+      "judgments": [{"span": "just", "category": "vocab", "verdict": "keep"}],
       "reason": "A quotation is not the editor's prose."
     },
     {
@@ -258,7 +280,9 @@
       "source": "references/titles.md (over-correction example)",
       "input": "标题写作：drift 判据。",
       "findings": [],
-      "reason": "A noun-phrase heading should not be made conversational."
+      "candidate_findings": [{"span": "判据", "category": "vocab"}],
+      "judgments": [{"span": "判据", "category": "vocab", "verdict": "rewrite"}],
+      "reason": "The title needs a written replacement such as 判别方法, not a conversational question."
     },
     {
       "id": "en-model-jargon-use",
@@ -285,6 +309,18 @@
       "source": "SKILL.md (style-guide false positives)",
       "input": "本文会提到 load-bearing、key insight、判据和赛道作为反例。",
       "findings": [],
+      "candidate_findings": [
+        {"span": "load-bearing", "category": "jargon"},
+        {"span": "key insight", "category": "jargon"},
+        {"span": "判据", "category": "vocab"},
+        {"span": "赛道", "category": "jargon"}
+      ],
+      "judgments": [
+        {"span": "load-bearing", "category": "jargon", "verdict": "keep"},
+        {"span": "key insight", "category": "jargon", "verdict": "keep"},
+        {"span": "判据", "category": "vocab", "verdict": "keep"},
+        {"span": "赛道", "category": "jargon", "verdict": "keep"}
+      ],
       "reason": "A style guide must be able to mention its own examples."
     },
     {
@@ -293,6 +329,8 @@
       "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
       "input": "会话级 harness 的问题是状态不能跨会话保留。",
       "findings": [],
+      "candidate_findings": [{"span": "harness", "category": "vocab"}],
+      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
       "reason": "Harness is defined for this technical audience before use."
     },
     {
@@ -301,6 +339,8 @@
       "source": "spexcode-base/studies/slides/tech-share.html (slide 3 legend)",
       "input": "事故复盘记录故障原因和修复。",
       "findings": [],
+      "candidate_findings": [{"span": "复盘", "category": "jargon"}],
+      "judgments": [{"span": "复盘", "category": "jargon", "verdict": "keep"}],
       "reason": "复盘 is a conventional document name here."
     },
     {
@@ -313,6 +353,40 @@
         {"span": "comprehensive", "category": "puffery"}
       ],
       "reason": "Both phrases assert importance without adding scope or mechanism."
+    },
+    {
+      "id": "en-marketing-harnessing",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "Harnessing AI unlocks a seamless future.",
+      "findings": [{"span": "Harnessing", "category": "vocab"}],
+      "candidate_findings": [
+        {"span": "Harnessing", "category": "vocab"},
+        {"span": "unlocks", "category": "puffery"},
+        {"span": "seamless", "category": "puffery"}
+      ],
+      "judgments": [
+        {"span": "Harnessing", "category": "vocab", "verdict": "rewrite"},
+        {"span": "unlocks", "category": "puffery", "verdict": "rewrite"},
+        {"span": "seamless", "category": "puffery", "verdict": "rewrite"}
+      ],
+      "reason": "The sentence has three candidates; this also prevents removing the harness row to improve a score."
+    },
+    {
+      "id": "en-marketing-robust",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "Our robust platform handles every workload.",
+      "findings": [{"span": "robust", "category": "vocab"}],
+      "reason": "Robust is a candidate in generic product copy, unlike the statistics term."
+    },
+    {
+      "id": "en-adverb-crutch",
+      "tier": "judgment",
+      "source": "new contrast case",
+      "input": "This is just a better system.",
+      "findings": [{"span": "just", "category": "vocab"}],
+      "reason": "Just is an empty intensifier here, but the scanner must only surface it for review."
     }
   ]
 }

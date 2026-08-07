@@ -1,18 +1,33 @@
 # Evaluation set
 
-`cases.json` is the source of truth. Every case contains its input, expected
-findings, provenance, and a reason. An empty `findings` list means the text
-must not be reported or rewritten.
+`cases.json` is the source of truth. Every case contains its input, provenance,
+and a reason. It records two different expectations:
 
-Two tiers prevent the scanner from claiming a judgment it cannot make:
+- `candidate_findings`: what the word-list scanner must report. A candidate is
+  not an edit instruction.
+- `judgments`: the review result for the candidate: `keep` or `rewrite`.
 
-- `lexicon`: exact, context-independent candidate forms. `run.py` calls
-  `scan.py` and reports precision, recall, and F1.
-- `judgment`: quotation versus use, audience, terms of art, and Chinese
-  register. A reviewer or model must read the sentence. The runner scores an
-  independent prediction file against the same metrics.
+For backward-compatible compact cases, `findings` means both a candidate and a
+`rewrite` judgment. Cases that need a distinct contract set both explicit
+fields.
 
-Run the lexical baseline and the scanner-overreach diagnostic:
+The two layers prevent the scanner from claiming a judgment it cannot make:
+
+- Candidate detection: `run.py` calls `scan.py` and scores whether expected
+  candidate forms were reported. Terms of art and quoted examples stay here.
+- Judgment: a reviewer or model reads the sentence and labels each candidate
+  `keep` or `rewrite`. This covers quotation versus use, audience, terms of
+  art, and Chinese register.
+
+`tier: lexicon` contains direct word-list fixtures. `tier: judgment` contains
+the context-sensitive fixtures used for the candidate-only and model metrics;
+both tiers still contribute to candidate detection.
+
+Candidate precision/recall measures lexical coverage only. Do not use it as a
+claim that all reported text should be changed; the judgment score measures
+that separate editorial decision.
+
+Run candidate detection and the candidate-only rewrite diagnostic:
 
 ```sh
 python3 evals/run.py
@@ -26,23 +41,29 @@ To score a model or human review, provide all judgment case IDs:
   "predictions": [
     {
       "id": "en-quote-lexicon-example",
-      "findings": []
+      "judgments": [
+        {"span": "load-bearing", "category": "jargon", "verdict": "keep"},
+        {"span": "key insight", "category": "jargon", "verdict": "keep"}
+      ]
     },
     {
       "id": "en-model-jargon-use",
-      "findings": [
-        {"span": "seamless", "category": "puffery"},
-        {"span": "journey", "category": "puffery"}
+      "judgments": [
+        {"span": "seamless", "category": "puffery", "verdict": "rewrite"},
+        {"span": "journey", "category": "puffery", "verdict": "rewrite"}
       ]
     }
   ]
 }
 ```
 
+The JSON above is an excerpt; a scored file must contain every reviewed case
+ID.
+
 ```sh
 python3 evals/run.py --predictions review.json
 ```
 
-The scanner-on-judgment number is deliberately labeled diagnostic. It measures
-how badly a lexical matcher overreaches when asked to decide sentence meaning;
-it is not a substitute for model evaluation.
+The candidate-only rewrite number is deliberately labeled diagnostic. It
+measures how badly a lexical matcher overreaches when every candidate is treated
+as an edit; it is not a substitute for model evaluation.
