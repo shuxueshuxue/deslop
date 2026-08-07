@@ -74,12 +74,88 @@ def scan(text, lexicon, langs):
     return hits
 
 
+
+# ---------------------------------------------------------------- pipeline mode
+
+PUNCT_CHECKS = [
+    ("——", "em dash", "改成逗号、冒号或句号"),
+    ("—", "em dash", "改成逗号、冒号或句号"),
+    ("！", "感叹号", "技术文档里删掉；只有推文/社交场景且确有情绪才留"),
+    ("!", "exclamation", "same as 感叹号"),
+    ("……", "省略号", "说清楚省掉的是什么，或删"),
+    ("；", "分号", "多数情况下断成两句更清楚"),
+    ("、", "顿号", "只用于并列名词。连接两个分句要用逗号"),
+    ("：", "冒号", "后面必须是它引出的东西；不要用来制造停顿"),
+    ("“", "弯引号", "中文用直角引号「」"),
+    ("”", "弯引号", "中文用直角引号「」"),
+]
+
+# One-syllable physical verb roots. The object decides: if it is not a thing in space, this is a
+# metaphor and the literal action is what the sentence needs.
+PHYS_ROOTS = "跑扫抓压砍拉打接扛烧啃撕掰拧堵卡踩撑顶捞碾劈磨捏揪抠扒挖撬盘捋铺摊掀戳穿兜咬踢滚翻"
+PHYS_RE = re.compile(f"[{PHYS_ROOTS}](?:掉|住|下|上|开|通|穿|爆|满|齐|平|出|回|一遍|一下)?")
+
+SENT_RE = re.compile(r"[^。！？；\n]*[。！？；]|[^。！？；\n]+")
+
+
+def pipeline(text, lexicon, langs):
+    """Emit a per-sentence worksheet: every token candidate and every punctuation mark, each with a
+    verdict column for the editor to fill. The script decides nothing; it refuses to let a unit go
+    unexamined."""
+    n = 0
+    for raw in text.split("\n"):
+        line = raw.strip()
+        if not line:
+            continue
+        for m in SENT_RE.finditer(line):
+            sent = m.group(0).strip()
+            if not sent:
+                continue
+            n += 1
+            chars = len(re.sub(r"\s", "", sent))
+            print(f"\nS{n}  ({chars} 字)  {sent}")
+
+            verbs = sorted({v.group(0) for v in PHYS_RE.finditer(sent)})
+            if verbs:
+                print(f"  动作动词  {' · '.join(verbs)}")
+                print("            → 逐个问：它作用的东西在物理空间里存在吗？不存在就换成字面动作。")
+
+            marks = []
+            for ch, name, fix in PUNCT_CHECKS:
+                c = sent.count(ch)
+                if c:
+                    marks.append(f"{ch} ×{c}（{name}：{fix}）")
+            tail = sent[-1] if sent else ""
+            if tail not in "。！？；":
+                marks.append("句末无标点（是断句还是漏了？）")
+            if re.search(r"[\u4e00-\u9fff][A-Za-z0-9]|[A-Za-z0-9][\u4e00-\u9fff]", sent):
+                marks.append("中英/中数之间缺空格")
+            if re.search(r"[\u4e00-\u9fff][,.;:?]", sent):
+                marks.append("中文句子里混入半角标点")
+            if marks:
+                print("  标点      " + "\n            ".join(marks))
+
+            hits = []
+            for e in lexicon:
+                if langs and e["lang"] not in langs:
+                    continue
+                for hm in e["rx"].finditer(sent):
+                    hits.append(f"{hm.group(0)} → {e['repl']}" + (f"（{e['note']}）" if e["note"] else ""))
+            if hits:
+                print("  词表      " + "\n            ".join(dict.fromkeys(hits)))
+
+            print("  判定      [ ]")
+    print(f"\n共 {n} 句。每句的「判定」都要填：保留 / 改写（写出改成什么）/ 删除。")
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("files", nargs="*")
     ap.add_argument("--lines", action="store_true", help="one row per hit, with line numbers")
     ap.add_argument("--lang", action="append", choices=["en", "zh"], help="restrict to a language")
     ap.add_argument("--strip", action="store_true", help="remove HTML/markdown markup first")
+    ap.add_argument("--pipeline", action="store_true",
+                    help="per-sentence worksheet: tokens, verbs, punctuation, one verdict each")
     ap.add_argument("--lexicon", default=LEXICON)
     args = ap.parse_args()
 
@@ -88,6 +164,10 @@ def main():
         else sys.stdin.read()
     if args.strip:
         text = strip_markup(text)
+
+    if args.pipeline:
+        pipeline(text, lexicon, set(args.lang or []))
+        return
 
     hits = scan(text, lexicon, set(args.lang or []))
     total = sum(len(v) for v in hits.values())

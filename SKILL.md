@@ -51,7 +51,24 @@ disagree, the checks win.
 ## Procedure
 
 1. **Extract the prose.** Strip markup so you audit what a reader actually sees, not the source.
-2. **Run the scanner first.** `python3 scan.py --strip FILE` matches the text against
+2. **Sweep the physical verbs. Do this before anything else.**
+
+   List every action verb in the text, then ask of each: **does the thing it acts on exist in
+   physical space?** If not, the verb is a metaphor standing in for the literal action, and the
+   literal action is what the reader needs.
+
+   One-syllable verbs are the priority — they are the ones that slip through, because they read as
+   brisk rather than ornamental: `跑一遍` `扫一遍` `抓到` `压掉` `砍掉` `拉满` `打穿` `接住` `扛住`
+   `命中` `捋一遍`. Two-syllable compounds hide the same defect and are harder to see because they
+   have hardened into industry speech: `落地` `收口` `打磨` `盘活` `撬动` `沉淀` `对齐`.
+
+   Replace with what happened: `跑一遍` → `运行一次`, `抓到` → `找出`, `命中` → `报出`,
+   `扫这份文档` → `检查这份文档`, `落地` → `上线` or `交付`.
+
+   Keep the ones that are terms of art in the field (`缓存击穿`, `埋点`, `back-pressure`). The test is
+   the same one as everywhere else: would a specialist recognize it as the standard name?
+
+3. **Run the scanner.** `python3 scan.py --strip FILE` matches the text against
    `references/lexicon.tsv` (271 entries, Chinese and English) and prints one row per candidate with
    a plain replacement and, where the word is sometimes legitimate, a note. Add `--lines` for line
    numbers, `--lang zh` to restrict.
@@ -60,28 +77,31 @@ disagree, the checks win.
    else — it cannot see a dramatized closer, a superfluous paragraph-ending summary, an analogy doing
    no work, a heading that narrates instead of naming, or a sentence that survives both nofluff
    checks. Take its output as a worklist, then do the audit below for everything it is blind to.
-3. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
+4. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
    (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 
    | location | verbatim sentence | category | why it is performance, not statement | plain replacement |
 
    Over-report. Mark uncertain hits `?` rather than dropping them.
-4. **Count three indicators** before and after. These are the falsifiable part:
+5. **Count three indicators** before and after. These are the falsifiable part:
    - staged reversals (`it's not X, it's Y` / `不是 X，是 Y`)
    - em dashes (`—` / `——`)
    - personification (abstract subject performing a human or biological action)
-5. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
-6. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
+6. **Apply.** Replace with the literal denotation. Never swap one vivid word for another vivid word.
+7. **Re-read for over-correction.** This is a separate pass, not a note to keep in mind — skipping it
    is the most common way a deslop run makes text worse. Check every replacement you just made:
    - Did a written word become a spoken one? (`判据` → `怎么判`, `触发源` → `触发的地方`)
    - Did a two-syllable verb become one syllable? Chinese written register prefers two.
    - Did a heading become a casual question? Headings sit further toward written register than body.
+   - **Re-run the taxonomy on the words you just wrote in.** A replacement is new prose and can carry
+     the same defect it replaced: `砍掉` swapped for `压掉` is one physical verb on an abstract object
+     traded for another. Coinages leak in here too (`自扫` for "scan the document against itself").
 
    If a sentence now sounds like conversation rather than a document, put it back and pick a
    *common* word instead of a *spoken* one. The target is common, not casual.
-7. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
+8. **Re-measure and report both numbers.** "Reversals 12 → 0" is evidence; "now it reads naturally" is not.
 
-For a document of any size, run step 3 in a **fresh-context subagent**. Self-auditing prose you just
+For a document of any size, run step 4 in a **fresh-context subagent**. Self-auditing prose you just
 wrote does not work — you re-read your own intent instead of the words on the page. Hand the subagent
 the extracted text and the marker file, and demand the table.
 
