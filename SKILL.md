@@ -33,6 +33,28 @@ Plain is also not colloquial. `references/markers-zh.md` opens with a register a
 the dubbing register of Japanese films — that pins the target between written and spoken language.
 Read it before editing Chinese text; overshooting into casual speech is as wrong as posturing.
 
+## The default is to change the sentence
+
+Assume nothing survives. Raw model prose has almost no sentence that is usable as written — not
+because any one word is wrong, but because the whole register is off by a constant. An edit that
+touches a tenth of the lines has not done the job; it has removed the worst offenders and left the
+text still sounding like a model wrote it.
+
+So the burden of proof runs the other way from most editing: **keeping a sentence needs a reason,
+changing it does not.** If you find yourself writing a list of what you deliberately left alone, the
+pass was too timid.
+
+One thing this is not. Aggressive means *how much you touch*, never *how the result reads*. The
+output is still plain, still humble, still shorter than what it replaced. A pass that changes every
+line and makes the text louder has failed twice: it kept the register and spent the edits.
+
+Two things do still stop you, and neither is about timidity:
+
+- **A quotation is not yours to rewrite.** Restating someone's published sentence in plainer words
+  misrepresents them. Mark it and move on.
+- **Claims, structure, and sections belong to the author.** Rewrite the sentence that carries a claim;
+  do not change what it claims.
+
 ## Two checks that catch most of it
 
 Before working through the taxonomy, run every sentence past these:
@@ -179,11 +201,8 @@ enumerations. A number you cannot trust is worse than no number.
 
 ## Scope discipline
 
-- Rewrite sentences. Do not restructure arguments, cut sections, or change claims — that is editing,
-  not deslopping, and it needs the author's sign-off.
-- If a sentence is a **quotation**, leave it and mark it. Translating someone's published line into
-  plainer prose misrepresents them.
-- If removing a tell would remove information, keep the information and drop only the ornament.
+If removing a tell would remove information, keep the information and drop only the ornament. That is
+a rewrite, not a reprieve — the sentence still changes, it just keeps what it was carrying.
 
 ## Reference files
 

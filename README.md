@@ -34,6 +34,18 @@ Humble and plain is the target. Sly and clever is the defect.
 An editor who mistakes plainness for the problem sands the text into mush and misses every real tell.
 The models to aim at are Wikipedia, Hacker News technical comments, and academic papers.
 
+## The default is to change the sentence
+
+Assume nothing survives. Raw model prose has almost no sentence usable as written — not because any
+one word is wrong, but because the whole register is off by a constant. A pass that touches a tenth
+of the lines has removed the worst offenders and left the text still sounding like a model wrote it.
+
+So the burden of proof runs the other way from most editing: **keeping a sentence needs a reason,
+changing it does not.**
+
+Aggressive means how much you touch, never how the result reads. The output is still plain, still
+shorter than what it replaced.
+
 ## Two checks that catch most of it
 
 1. **Delete it — is any information lost?**
@@ -112,11 +124,11 @@ lookups. Run the scanner for the worklist, then audit for what it cannot see.
 ## What it will not do
 
 **It does not flatten terms of art.** If a mechanism is literally named *drift*, then "spec drift" is
-the term, not a metaphor. Same for *anchor*, *warm cache*, *starvation*, *back-pressure*. Flattening
-those makes text read as though the author does not know the field — worse than leaving a tell.
+the term, not a metaphor. Same for *anchor*, *garbage collection*, *back-pressure*. The bar is narrow:
+one agreed referent, and no ordinary word for the thing. Most jargon fails the second condition.
 
-**It does not edit arguments.** It restates sentences. Restructuring, cutting sections, and changing
-claims need the author's sign-off.
+**It does not edit arguments.** It rewrites the sentence that carries a claim; it does not change what
+the sentence claims. Restructuring and cutting sections need the author's sign-off.
 
 **It does not check whether the text is right.** Register and comprehension are different defects. A
 document can be perfectly plain and still contain a dangling pronoun, a contradiction between two

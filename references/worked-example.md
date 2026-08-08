@@ -66,17 +66,6 @@ The reviewer's note on this one is the sharpest in the audit: *「说得对」�
 > 测试也绿 → 测试通过
 > 踩过的坑 → 已知的失败案例
 
-## What was deliberately not changed
-
-- **`drift` / 漂移** — the mechanism under discussion is literally named drift. Flattening it to
-  「偏差」 everywhere would have made the deck read as though the author did not know the term. It was
-  flattened only in surrounding prose (`越漂越远` → `偏差逐渐增大`) and kept where it names the mechanism.
-- **The title's parallelism** — the audit proposed replacing a two-part title with a flat noun phrase.
-  Rejected: a title may use parallelism, and the proposed replacement read like a paper title rather
-  than a talk title. Judgment overrides the checklist.
-- **Quoted material** — a translated quotation from a 1986 paper was flagged as stiff. Left as is and
-  marked, because restating someone's published sentence in plainer words misrepresents them.
-
 ## What the audit could not do
 
 Two earlier rounds of review, by subagents with different briefs, had found problems the marker
