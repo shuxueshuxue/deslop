@@ -125,6 +125,12 @@ For a document of any size, run step 4 in a **fresh-context subagent**. Self-aud
 wrote does not work — you re-read your own intent instead of the words on the page. Hand the subagent
 the extracted text and the marker file, and demand the table.
 
+Then read the whole document straight through, once, at the end. The line-by-line passes and the
+scanner both work item by item, and there is a class of damage they cannot see: the boundary between
+two items. An edit that swallowed the heading between two paragraphs leaves both paragraphs correct
+on their own and the seam between them nonsense. Resolving to be more careful does not help here —
+care does not produce a second reading. A different kind of pass does.
+
 ## Jargon: the default is against it
 
 **The ordinary word wins unless the reader needs the exact name.** This is an audit default, not a
