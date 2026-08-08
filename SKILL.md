@@ -52,8 +52,53 @@ Two things do still stop you, and neither is about timidity:
 
 - **A quotation is not yours to rewrite.** Restating someone's published sentence in plainer words
   misrepresents them. Mark it and move on.
-- **Claims, structure, and sections belong to the author.** Rewrite the sentence that carries a claim;
-  do not change what it claims.
+- **Claims belong to the author.** Rewrite the sentence that carries a claim; do not change what it
+  claims. Shape is a different matter — see below.
+
+## Compression punctuation, and why fixing it changes the document
+
+`——`, `、`, `：` all do one job: **let a sentence carry more than one thought without committing to
+a second sentence.** Model prose compresses because it optimizes coverage per sentence. A person
+writing technical prose commits — one thought, full stop, next thought.
+
+The em dash joins clauses, so it is visible. `、` joins list items and `：` stages a reveal, so both
+hide behind being grammatical. **Legality was never the test.** Every one of these is correct
+Chinese; so is the em dash, and you do not spare that one. The moment you catch yourself writing
+"most of these 顿号 are legitimate parallel nouns," the pass has already failed: you started
+defending your own sentences instead of judging them, and the burden of proof flipped back.
+
+The test for each mark:
+
+> **Did it replace a full stop, or a line break?**
+
+Replaced a full stop → write two sentences. Replaced a line break → write an actual list. Neither →
+only then may it stay.
+
+So the residue is narrow: a two-item pair inside one clause, or a product string you are quoting
+verbatim. Three items strung on `、` in running prose is a list the document declined to make. A
+mid-prose `：` introducing an explanation is a second sentence, sometimes a heading.
+
+**Substitution is not the fix.** Turning `怎么选、状态怎么读、设置里有什么` into
+`怎么选，状态怎么读，设置里有什么` keeps the shape and changes the mark. Nothing was decompressed.
+
+**This is where a deslop pass earns its keep, and it changes the document's shape.** Sentences split,
+inline enumerations become real lists, overloaded paragraphs split into sections, and headings appear
+that were never written because a colon was holding their place. That is in scope: the shape *is* the
+tell. What stays out of scope is what the document asserts. Rearranging how a claim is presented is
+editing register; changing the claim is not yours.
+
+## Chinese: drop 你
+
+Chinese drops subjects. Dense `你` in a Chinese document is almost always English documentation
+register carried across — the Mintlify starter's own style file says *"use active voice and second
+person (you)"*, which is right for English and wrong here. Grammatical, and still imported, exactly
+like `回归` for a regression.
+
+`你像发微信一样给它发消息派活，它在你指定的那台机器上干活` → `像发微信一样给它发消息派活，它就在指定的那台机器上干活`. Shorter, and it states the fact instead of coaching a reader.
+
+Delete by default. Keep only where the sentence genuinely contrasts one person's thing against
+another's (`你的 agent` vs `别人的 agent`), or where dropping it makes the actor ambiguous. This rule
+is for documents; a reply written to one person is dialogue, and `你` belongs there.
 
 ## Two checks that catch most of it
 
@@ -120,9 +165,15 @@ disagree, the checks win.
    | location | verbatim sentence | category | why it is performance, not statement | plain replacement |
 
    Over-report. Mark uncertain hits `?` rather than dropping them.
-5. **Count two mechanical indicators** before and after. These are the falsifiable part:
+5. **Count four mechanical indicators** before and after. These are the falsifiable part:
    - staged reversals (`it's not X, it's Y` / `不是 X，是 Y`)
    - em dashes (`—` / `——`)
+   - `顿号` — every `、` the author wrote (marks inside `「」` are quoted, and not counted)
+   - `句中冒号` — a `：` mid-prose; label colons (`- **附件**：说明`) and line-final ones that
+     introduce the block below are not counted, because those are structure rather than staging
+
+   The last two usually start high and are the entry point to the structural work above. Drive them
+   toward zero and justify every survivor by name.
 
    Count personification separately in the audit table. It requires knowing whether the subject is
    abstract and whether the verb is conventional, so a word-list counter would manufacture a number

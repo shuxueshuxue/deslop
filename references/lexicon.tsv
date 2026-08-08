@@ -305,3 +305,4 @@ zh	对标	borrowed	比照
 zh	复用	borrowed	重复使用 / 拿来再用	工程口头语，不是普通话。
 zh	实例	borrowed	例子 / 具体的一个	instance 的直译。面向对象语境里才是术语。
 zh	语义	borrowed	意思	语言学/编译器里是术语。
+zh	你	borrowed	(多数情况直接删)	中文可省主语。「你」密集出现多半是英文文档规范的 second person 直接搬过来（Mintlify 等模板就明写 use second person）。文档正文默认删；只在必须跟「别人的」对照时留。对话体、面向单个读者的回信不适用此条。

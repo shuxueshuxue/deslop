@@ -20,11 +20,46 @@ LEXICON = os.path.join(HERE, "references", "lexicon.tsv")
 # real but was cut from this list: on the first document scanned, all 5 hits were ordinary
 # enumerations ("需求文档、Gherkin、wiki 设计文档、OpenAPI"). A number you cannot trust is worse
 # than no number, so triads stay a judgment call in the audit rather than a counter here.
+#
+# 、 and ： join —— as counted marks because all three do one job: let a sentence carry more than
+# one thought without committing to a second sentence. The em dash joins clauses so it is visible;
+# 、 joins list items and ： stages a reveal, so both hide behind being grammatical. Legality was
+# never the test — every one of these is legal Chinese. Each mark is a place the document declined
+# to build structure: 、 is a list not written as a list, a mid-prose ： is a second sentence or a
+# heading. Counting them is how the structure gets found.
 INDICATORS = [
     ("staged reversal", r"(不是[^，。]{2,20}，(而)?是|不(只|仅)(是)?[^，。]{2,20}，(更|还)(是)?"
                         r"|not just [^,.]{2,40}, but|(isn'?t|is not) (just )?[^,.]{2,40}, (it'?s|but))"),
     ("em dash", r"——|(?<= )—(?= )"),
+    ("顿号", lambda text: _count_dunhao(text)),
+    ("句中冒号", lambda text: _count_staging_colon(text)),
 ]
+
+# A mark inside 「」/『』 is quoted UI text or someone else's sentence — not the author's punctuation.
+QUOTED_RE = re.compile(r"[「『][^」』]*[」』]")
+# `- **附件**：说明` is a label, not a staged reveal; a line-final ： introduces the block below it.
+LABEL_COLON_RE = re.compile(r"^\s*(?:[-*+]\s+|\d+[.)]\s+)?(?:\*\*[^*]+\*\*|[^：\s]{1,12})：")
+
+
+def _uncounted(line):
+    """Drop quoted spans so reproducing a product string never inflates the author's own count."""
+    return QUOTED_RE.sub("", line)
+
+
+def _count_dunhao(text):
+    return sum(_uncounted(line).count("、") for line in text.split("\n"))
+
+
+def _count_staging_colon(text):
+    """Count only the ： that stages: not a label colon, not one introducing the block below."""
+    n = 0
+    for line in text.split("\n"):
+        body = _uncounted(line)
+        if body.lstrip().startswith("|"):      # a table row's ： belongs to the cell, not the prose
+            continue
+        body = LABEL_COLON_RE.sub("", body, count=1)
+        n += len(re.findall(r"：(?=\s*\S)", body))
+    return n
 
 
 def load_lexicon(path):
@@ -207,7 +242,7 @@ def main():
     print(f"\n# lexicon hits: {total}  ({total / max(chars, 1) * 1000:.1f} per 1000 chars, "
           f"{chars} chars scanned)", file=sys.stderr)
     for name, pat in INDICATORS:
-        n = len(re.findall(pat, text))
+        n = pat(text) if callable(pat) else len(re.findall(pat, text))
         print(f"# {name}: {n}", file=sys.stderr)
 
 

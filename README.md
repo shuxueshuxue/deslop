@@ -62,6 +62,8 @@ should exist. When they disagree, the checks win.
 | **Action metaphor** | `接住每个事件` → `对每个事件创建一条记录` · `costs collapsed` → `costs fell` |
 | **Personification** | `状态活不过一次调用` → `调用结束即失效` · `history reminds you` → `history does not indicate` |
 | **Staged reversal** | `不是 X，是 Y` · `it's not x, it's y` — the single most reliable tell |
+| **Compression punctuation** | `——` `、` `：` — one sentence carrying three thoughts. Counted, and the fix restructures the document |
+| **Imported second person** | dense `你` in Chinese prose, carried over from English docs style |
 | **Dramatized closer** | a short assertion parked at a paragraph's end to leave an aftertaste |
 | **Self-assessment** | `Naur 说得对` → `与 Naur 的结论一致` · `my honest take` → *(cut)* |
 | **Em dashes** | counted, and checked for where they land |
@@ -100,7 +102,14 @@ count   term            category   replacement          note
 # lexicon hits: 7  (2.9 per 1000 chars)
 # staged reversal: 1
 # em dash: 1
+# 顿号: 14
+# 句中冒号: 3
 ```
+
+`顿号` and `句中冒号` usually start high. They are not a punctuation problem — each mark is a place
+the document declined to build structure, so driving them down splits sentences, turns inline
+enumerations into real lists, and surfaces headings that a colon was standing in for. Legality is not
+the test: every one of these marks is correct Chinese, and so is the em dash.
 
 Candidate terms in `references/lexicon.tsv`, Chinese and English, each with a plain replacement. It reports
 candidates and never rewrites: some entries are correct in context and say so in the note column.
