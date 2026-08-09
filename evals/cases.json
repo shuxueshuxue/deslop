@@ -21,6 +21,53 @@
       "reason": "An internal English label is used for a general Chinese reader."
     },
     {
+      "id": "zh-humanizer-symbolic-puffery",
+      "tier": "lexicon",
+      "source": "humanizer-zh pattern 1",
+      "input": "这个项目作为团队创新的证明。",
+      "findings": [{"span": "作为团队创新的证明", "category": "puffery"}],
+      "reason": "The phrase assigns broad symbolic meaning instead of naming what the project does."
+    },
+    {
+      "id": "zh-humanizer-vague-attribution",
+      "tier": "lexicon",
+      "source": "humanizer-zh pattern 5",
+      "input": "行业专家认为这项工作很重要。",
+      "findings": [{"span": "行业专家认为", "category": "editorial"}],
+      "reason": "It borrows unnamed authority without a source."
+    },
+    {
+      "id": "zh-humanizer-challenge-outlook",
+      "tier": "lexicon",
+      "source": "humanizer-zh patterns 6 and 24",
+      "input": "尽管存在一些挑战，未来前景依然光明。",
+      "findings": [
+        {"span": "尽管存在一些挑战", "category": "template"},
+        {"span": "前景依然光明", "category": "puffery"}
+      ],
+      "reason": "The sentence names neither the challenges nor a concrete next step."
+    },
+    {
+      "id": "zh-humanizer-structural-contrast",
+      "tier": "judgment",
+      "source": "humanizer-zh patterns 9 and 10",
+      "input": "活动包括演讲、讨论和社交机会。",
+      "findings": [],
+      "candidate_findings": [],
+      "judgments": [],
+      "reason": "A three-item list can be ordinary; keep it unless the surrounding document shows forced triads."
+    },
+    {
+      "id": "zh-humanizer-voice-boundary",
+      "tier": "judgment",
+      "source": "humanizer-zh personality guidance",
+      "input": "我在凌晨三点想到这个方案，感觉特别不安。",
+      "findings": [],
+      "candidate_findings": [],
+      "judgments": [],
+      "reason": "A personal detail is not an AI tell when it is the author's real fact; never invent one during editing."
+    },
+    {
       "id": "zh-seed-suppress-script",
       "tier": "lexicon",
       "source": "human seed",

@@ -115,6 +115,16 @@ substitute intensity for argument; coining a term usually means the thinking is 
 The tables tell you where to look. These two checks tell you whether it should exist at all. When they
 disagree, the checks win.
 
+## Voice without invention
+
+Human-sounding prose needs a point of view, but it does not need invented personality. Keep first person
+when it records the author's real observation or decision. Do not add an anecdote, metric, source, emotion,
+or joke just to make a draft feel human. Do not introduce deliberate typos or filler either.
+
+Break a uniform cadence by changing sentence or paragraph structure, not by adding a second summary or a
+three-item slogan. For technical prose, the target is a specific person speaking plainly, with uncertainty
+where the facts are uncertain. "Inject soul" is not a license to change the claim.
+
 ## Procedure
 
 1. **Extract the prose.** Strip markup so you audit what a reader actually sees, not the source.
@@ -159,6 +169,10 @@ disagree, the checks win.
    cannot see a dramatized closer, a superfluous paragraph-ending summary, an analogy doing no work,
    a heading that narrates instead of naming, or a sentence that survives both nofluff checks. Take
    its output as a worklist, then do the audit below for everything it is blind to.
+   In Chinese, explicitly check the structural tells in `references/markers-zh.md`: uniform sentence
+   cadence, forced three-item lists, headings such as `挑战与未来展望`, generic optimistic conclusions,
+   and vague attributions such as `专家认为`. These are not lexical hits; they require a whole-paragraph
+   reading.
 4. **Audit.** Go line by line against `references/markers-zh.md` (Chinese) or `references/markers-en.md`
    (English), and every heading against `references/titles.md`. Produce a table, one row per hit:
 

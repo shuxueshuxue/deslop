@@ -28,7 +28,7 @@ LEXICON = os.path.join(HERE, "references", "lexicon.tsv")
 # to build structure: 、 is a list not written as a list, a mid-prose ： is a second sentence or a
 # heading. Counting them is how the structure gets found.
 INDICATORS = [
-    ("staged reversal", r"(不是[^，。]{2,20}，(而)?是|不(只|仅)(是)?[^，。]{2,20}，(更|还)(是)?"
+    ("staged reversal", r"(不是[^，。]{2,20}，(而)?是|不(?:只|仅)+(?:是)?[^，。]{2,20}，(?:而|更|还)?是"
                         r"|not just [^,.]{2,40}, but|(isn'?t|is not) (just )?[^,.]{2,40}, (it'?s|but))"),
     ("em dash", r"——|(?<= )—(?= )"),
     ("顿号", lambda text: _count_dunhao(text)),
