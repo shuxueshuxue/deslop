@@ -161,6 +161,8 @@ references/worked-example.md    a real audit: 45 findings, 12/10/14 → 0/0/0
 
 ## Credit
 
+This project is promoted through [linux.do](https://linux.do/).
+
 The two checks and four of the rules come from the [nofluff](https://nofluff.0x01.me/nofluff.txt)
 writing standard.
 

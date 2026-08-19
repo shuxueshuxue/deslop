@@ -136,6 +136,8 @@ references/worked-example.md    完整审查示例：45 个问题，12/10/14 →
 
 ## 致谢与来源
 
+本项目由 [linux.do](https://linux.do/) 社区推广。
+
 两个快速检查和四条规则来自 [nofluff](https://nofluff.0x01.me/nofluff.txt) 写作标准。
 
 英文标记列表参考 Hacker News 上整理 “claudish” 特征的讨论（[48905248](https://news.ycombinator.com/item?id=48905248)），引用和出处见 [`references/markers-en.md`](references/markers-en.md)。
