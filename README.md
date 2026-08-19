@@ -2,102 +2,92 @@
 
 # deslop
 
-**Strip the LLM tells out of prose.**
+**去掉技术文案里的模型腔。**
 
-A [Claude Code](https://claude.ai/code) skill. Chinese and English.
+这是一个供 [Claude Code](https://claude.ai/code) 使用的 skill，支持中文和英文。
+
+中文（默认） | [English](./README.en.md)
 
 </div>
 
 ---
 
-LLM-written or LLM-polished prose carries tells. They are learnable, countable, and removable.
+LLM 写的或润色过的文字通常会留下固定的句式和用词。它们可以被识别、统计，也可以被改掉。
 
-`deslop` audits a document against a marker taxonomy, produces a per-line kill list with plain
-replacements, applies them, and re-measures two mechanical indicators plus a manual personification
-count — so the result is verifiable rather than asserted.
+`deslop` 按照标记分类检查文档，逐行列出需要删除或改写的内容，应用修改后再测量机械指标和拟人化用法。结果有可复核的数字，不只是一句“读起来更自然”。
 
-## The thing most people get wrong
+## 最容易弄错的地方
 
-**AI flavor is not "plain, careful wording." Plain, careful wording is the target.**
+**平实、谨慎的文字不是问题，正是目标。**
 
-AI flavor is the writer showing you how clever they are. Every marker below is one form of it — the
-vivid analogy, the staged reversal, the punchy closer, the word picked because it sounds learned. They
-all do the same job: prove the author is smart. It reads well line by line, which is exactly why it
-survives editing.
+模型腔的问题在于，作者在展示自己有多聪明。生动的类比、刻意的反转、段尾的漂亮收束，以及听起来更专业的词，都在做同一件事：让作者显得聪明。逐句看它们往往没有语法问题，所以更容易被留下。
 
-The test for any sentence:
+检查每句话时只问一件事：
 
-> Is this **saying the thing**, or **being clever**?
+> 这句话是在陈述事实，还是在表演？
 
-Humble and plain is the target. Sly and clever is the defect.
+目标是谦逊、平实、具体的技术文档。可以参考 Wikipedia、Hacker News 上的技术评论和学术论文。
 
-An editor who mistakes plainness for the problem sands the text into mush and misses every real tell.
-The models to aim at are Wikipedia, Hacker News technical comments, and academic papers.
+## 修改的默认规则
 
-## The default is to change the sentence
+不要假定原句可以保留。模型文字通常是整篇文字的语域偏离目标，不能只改掉少数最明显的句子。
 
-Assume nothing survives. Raw model prose has almost no sentence usable as written — not because any
-one word is wrong, but because the whole register is off by a constant. A pass that touches a tenth
-of the lines has removed the worst offenders and left the text still sounding like a model wrote it.
+保留一句话需要理由，改写一句话不需要。这里的“激进”只表示修改范围大，不表示让结果更响亮。改完的文字仍应平实，并且比原文更短或信息更密。
 
-So the burden of proof runs the other way from most editing: **keeping a sentence needs a reason,
-changing it does not.**
+## 两个快速检查
 
-Aggressive means how much you touch, never how the result reads. The output is still plain, still
-shorter than what it replaced.
+1. **删掉这句话，信息有没有减少？** 没有就删掉。
+2. **读者问“具体是什么意思”时，能不能用事实回答？** 不能就继续改写。
 
-## Two checks that catch most of it
+这两条来自 [nofluff](https://nofluff.0x01.me/nofluff.txt) 标准，完整内容见 [`references/nofluff.md`](references/nofluff.md)。分类表告诉你去哪里找问题；这两条决定一句话是否应该存在。
 
-1. **Delete it — is any information lost?**
-2. **If a reader asks "what specifically does this mean", can you answer with a fact?**
+## 能检查什么
 
-From the [nofluff](https://nofluff.0x01.me/nofluff.txt) standard, folded in as
-`references/nofluff.md`. The tables below tell you where to look; these tell you whether the sentence
-should exist. When they disagree, the checks win.
-
-## What it catches
-
-| | |
+| 类型 | 示例 |
 |---|---|
-| **Action metaphor** | `接住每个事件` → `对每个事件创建一条记录` · `costs collapsed` → `costs fell` |
-| **Personification** | `状态活不过一次调用` → `调用结束即失效` · `history reminds you` → `history does not indicate` |
-| **Staged reversal** | `不是 X，是 Y` · `it's not x, it's y` — the single most reliable tell |
-| **Compression punctuation** | `——` `、` `：` — one sentence carrying three thoughts. Counted, and the fix restructures the document |
-| **Imported second person** | dense `你` in Chinese prose, carried over from English docs style |
-| **Dramatized closer** | a short assertion parked at a paragraph's end to leave an aftertaste |
-| **Self-assessment** | `Naur 说得对` → `与 Naur 的结论一致` · `my honest take` → *(cut)* |
-| **Em dashes** | counted, and checked for where they land |
-| **Latching** | one vivid word reused across a document |
-| **Elevated diction** | a rarer, more "professional"-sounding word where a common one exists — 判据 → 判定规则 · utilize → use |
-| **Jargon** | 赛道 / 闭环 / 抓手 · load-bearing / key insight / synthesize |
+| **动作类比** | `接住每个事件` → `为每个事件创建一条记录`；`costs collapsed` → `costs fell` |
+| **拟人** | `状态活不过一次调用` → `调用结束即失效`；`history reminds you` → `history does not indicate` |
+| **对偶反转** | `不是 X，是 Y`；`it's not X, it's Y`。这是最稳定的模型腔标记之一 |
+| **压缩标点** | `——`、`、`、`：` 把多个想法塞进一句话；检查会统计它们，并要求把结构拆开 |
+| **翻译过来的第二人称** | 中文技术文档里密集出现的“你”，通常是英文文档语气的遗留 |
+| **戏剧性收尾** | 段尾追加一句短断言，制造余味却没有增加信息 |
+| **作者自评** | `Naur 说得对` → `与 Naur 的结论一致`；`my honest take` → 删除 |
+| **破折号** | 统计数量和出现位置，检查是否用来代替完整句子 |
+| **词语复读** | 同一个生动词在全文反复出现 |
+| **抬高的用词** | `判据` → `判定规则`；`utilize` → `use` |
+| **圈内黑话** | 赛道、闭环、抓手；`load-bearing`、`key insight`、`synthesize` |
 
-## Install
+标准术语不会被强行改成普通词。如果机制的正式名称就是 *drift*、*anchor*、*garbage collection* 或 *back-pressure*，就保留术语；只有在存在准确的普通替代词时才改写。
+
+## 安装
 
 ```sh
 git clone https://github.com/shuxueshuxue/deslop.git ~/.claude/skills/deslop
 ```
 
-Then, in Claude Code:
+然后在 Claude Code 中使用：
 
 ```
-/deslop  the README
-/deslop  slides/talk.html — Chinese, conference audience
+/deslop  README
+/deslop  slides/talk.html —— 面向中文会议听众
 ```
 
-Or just say *"this sounds like AI, fix it"* — the skill's description matches that.
+也可以直接说“这段文字有 AI 味，帮我改掉”。Skill 的描述已经覆盖这类请求。
 
-## The scanner
+## 扫描器
 
 ```sh
-python3 scan.py --strip draft.md          # candidates, most frequent first
-python3 scan.py --strip --lines draft.md  # one row per hit, with line numbers
-python3 scan.py --lang zh draft.md        # one language only
+python3 scan.py --strip draft.md          # 按出现频率列出候选
+python3 scan.py --strip --lines draft.md  # 每个命中显示行号
+python3 scan.py --lang zh draft.md        # 只检查中文
 ```
+
+输出示例：
 
 ```
 count   term            category   replacement          note
 5       leverage        vocab      use
-1       不是历史，是     shape      (只说后半句)          对偶反转。计数指标。
+1       不是历史，是     shape      （只保留后半句）       对偶反转，计入指标
 
 # lexicon hits: 7  (2.9 per 1000 chars)
 # staged reversal: 1
@@ -106,84 +96,56 @@ count   term            category   replacement          note
 # 句中冒号: 3
 ```
 
-`顿号` and `句中冒号` usually start high. They are not a punctuation problem — each mark is a place
-the document declined to build structure, so driving them down splits sentences, turns inline
-enumerations into real lists, and surfaces headings that a colon was standing in for. Legality is not
-the test: every one of these marks is correct Chinese, and so is the em dash.
+`references/lexicon.tsv` 中的每个中文或英文词条都带有普通替代词。扫描器只报告候选，不会自动改写；有些词在特定上下文中完全正确，词条备注会说明这一点。
 
-Candidate terms in `references/lexicon.tsv`, Chinese and English, each with a plain replacement. It reports
-candidates and never rewrites: some entries are correct in context and say so in the note column.
+顿号和句中冒号通常一开始很多。这些标点本身没有错，但文档常用一个句子代替本应分开的结构。改写时应拆分句子，把行内枚举改成真正的列表，必要时把冒号后的说明改成标题。
 
-Word choice is the half a script can do. A dramatized closer, a paragraph that ends by restating
-itself, an analogy carrying no weight, a heading that narrates instead of naming — none of those are
-lookups. Run the scanner for the worklist, then audit for what it cannot see.
+词汇选择只是脚本能处理的一半。戏剧性收尾、重复段意的句子、没有实际作用的类比，以及描述阅读路径而不是内容的标题，都需要人工审查。
 
-## How it works
+## 工作流程
 
-1. **Extract** the prose so the audit sees what a reader sees, not the markup.
-2. **Scan** for lexicon hits — the cheap mechanical pass.
-3. **Audit** line by line, in a **fresh-context subagent**. Self-auditing prose you just wrote does
-   not work: you re-read your own intent instead of the words on the page.
-4. **Count** staged reversals and em dashes mechanically; count personification in the audit table.
-5. **Apply** the literal denotation. Never swap one vivid word for another vivid word.
-6. **Re-measure** and report both numbers.
+1. **提取正文。** 去掉 Markdown 和 HTML 标记，只检查读者真正看到的文字。
+2. **运行扫描器。** 先得到词汇候选和机械指标。
+3. **逐行审查。** 在全新的上下文中检查句子，避免只按自己刚才的意图阅读。
+4. **统计指标。** 机械统计对偶反转和破折号；在审查表中单独统计拟人。
+5. **应用修改。** 使用字面含义，不要用另一个生动词替换原来的生动词。
+6. **重新测量。** 报告修改前后的数字。
 
-`reversals 12 → 0` is evidence. *"now it reads naturally"* is not.
+`reversals 12 → 0` 是证据，“现在读起来很自然”不是。
 
-## What it will not do
+## 不负责什么
 
-**It does not flatten terms of art.** If a mechanism is literally named *drift*, then "spec drift" is
-the term, not a metaphor. Same for *anchor*, *garbage collection*, *back-pressure*. The bar is narrow:
-one agreed referent, and no ordinary word for the thing. Most jargon fails the second condition.
+**不抹平术语。** 术语有明确含义且没有普通替代词时会保留。把 *spec drift* 改成生硬的中文，反而会让文档失去准确性。
 
-**It does not edit arguments.** It rewrites the sentence that carries a claim; it does not change what
-the sentence claims. Restructuring and cutting sections need the author's sign-off.
+**不修改论点。** 工具可以重写表达论点的句子，但不会改变论点本身。重排章节和删除段落需要作者确认。
 
-**It does not check whether the text is right.** Register and comprehension are different defects. A
-document can be perfectly plain and still contain a dangling pronoun, a contradiction between two
-pages, or a misread citation. See [`references/worked-example.md`](references/worked-example.md) for a
-case where all three existed alongside the register problems.
+**不检查事实正确性。** 语域和事实是两类问题。文字可以很平实，但仍然存在悬空指代、自相矛盾或错误引用。完整示例见 [`references/worked-example.md`](references/worked-example.md)。
 
-## Files
+## 文件说明
 
 ```
-SKILL.md                        the skill
-scan.py                         the scanner (python3, no dependencies)
-references/lexicon.tsv          candidate terms, zh + en, with replacements and false-positive notes
-references/markers-zh.md        Chinese taxonomy, eight categories
-references/markers-en.md        English markers, sourced to HN 48905248
-references/titles.md            headings: name the content, don't narrate the reading path
-references/nofluff.md           the nofluff standard's two checks, and what it adds
-references/worked-example.md    a real audit: 45 findings, 12/10/14 → 0/0/0
+SKILL.md                        skill 的完整规则
+scan.py                         扫描器（仅依赖 Python 3）
+references/lexicon.tsv          中英文候选词、替代词和误报备注
+references/markers-zh.md        中文标记分类，共八类
+references/markers-en.md        英文标记，来源为 HN 48905248
+references/titles.md            标题规则：命名内容，不叙述阅读路径
+references/nofluff.md           nofluff 的两个检查和补充规则
+references/worked-example.md    完整审查示例：45 个问题，12/10/14 → 0/0/0
 ```
 
-## Credit
+## 致谢与来源
 
-The two checks and four of the rules come from the [nofluff](https://nofluff.0x01.me/nofluff.txt)
-writing standard.
+两个快速检查和四条规则来自 [nofluff](https://nofluff.0x01.me/nofluff.txt) 写作标准。
 
+英文标记列表参考 Hacker News 上整理 “claudish” 特征的讨论（[48905248](https://news.ycombinator.com/item?id=48905248)），引用和出处见 [`references/markers-en.md`](references/markers-en.md)。
 
-The English marker list draws on the Hacker News thread cataloguing "claudish"
-([48905248](https://news.ycombinator.com/item?id=48905248)), where readers named the specific words
-and sentence shapes. Quotes are attributed in `references/markers-en.md`.
+词汇表包含四类来源：
 
-The lexicon is assembled from four kinds of source, and the difference matters — a measured word list
-and a curated one fail differently:
-
-- **Measured.** Kobak, González-Márquez, Horvát & Lause, [*Delving into LLM-assisted writing in
-  biomedical publications through excess vocabulary*](https://www.science.org/doi/10.1126/sciadv.adt3813)
-  (Science Advances 11(27), 2025) — word frequencies in 14M PubMed abstracts before and after
-  ChatGPT. Also Juzek & Ward, [*Why Does ChatGPT "Delve" So Much?*](https://arxiv.org/abs/2412.11385) (ACL 2025).
-- **Curated with a citation bar.** Wikipedia's
-  [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) (WP:AIVOCAB) —
-  a word is only listed there if its overuse is corroborated by an outside source. It also tracks
-  which words belong to which model era, and warns that a word being overused does not make its
-  synonyms suspect.
-- **Curated by practitioners.** The Chinese lists come from
-  [ninehills/public-skills](https://github.com/ninehills/public-skills) (MIT, via
-  [nmhjklnm/skills](https://github.com/nmhjklnm/skills)) — the jargon two-tier list, the
-  paragraph-closing summary tell, the translationese verb list.
-- **Observed.** Entries added from real audits, marked in the note column.
+- **测量结果。** Kobak、González-Márquez、Horvát 和 Lause 对 1400 万篇 PubMed 摘要的研究：[Science Advances 11(27), 2025](https://www.science.org/doi/10.1126/sciadv.adt3813)；以及 Juzek 与 Ward 的 [*Why Does ChatGPT “Delve” So Much?*](https://arxiv.org/abs/2412.11385)。
+- **有引用的整理。** Wikipedia 的 [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)（WP:AIVOCAB）。
+- **实践者整理。** [ninehills/public-skills](https://github.com/ninehills/public-skills)（MIT，经 [nmhjklnm/skills](https://github.com/nmhjklnm/skills)）。
+- **实际审查。** 来自真实审查的新词条，会在备注列标明。
 
 ## License
 
