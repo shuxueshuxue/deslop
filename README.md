@@ -44,19 +44,7 @@
 
 ## 九步
 
-上图是完整流程，固定顺序，不许跳步。
-
-<div align="center">
-  <img src="assets/art/phase-frame.png" width="252" alt="框定：先把不能漂的片段冻住">
-  <img src="assets/art/phase-find.png" width="252" alt="查找：逐行标出命中">
-  <img src="assets/art/phase-apply.png" width="252" alt="修改与验证：把过长的改齐">
-</div>
-
-<div align="center">
-  <sub>框定 · 查找 · 修改与验证</sub>
-</div>
-
-三件事值得单独说：
+上图是完整流程，固定顺序，不许跳步。三件事值得单独说：
 
 1. **动手之前先冻结。**把数字，引用，命令，报错，责任归属都划出来，另记一份关系账本，
    哪个数字修饰哪个对象，谁做了什么，什么基于什么。这层没有词表能替代，也是唯一错了就无法从成品倒推的一层。
@@ -88,11 +76,6 @@
 它需要的信息不在文本里。
 
 ## 三层指标
-
-<div align="center">
-  <img src="assets/art/measure.png" width="300" alt="前后两次读数">
-</div>
-
 
 一条指标只有在"命中基本都是真的"时才配进计数集。实测说不是，就降级，
 并且把理由印在每一份报告里，防止有人悄悄装回去。
@@ -173,6 +156,11 @@ deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指�
 | [`docs/pipeline.html`](./docs/pipeline.html) | 流程图解，28 KB 单页，手写 SVG，无外部依赖 |
 | [`worked-example/`](./worked-example/) | 一次完整实跑 |
 
+顶部那条 banner 的底图由图像模型生成，提示词要求画面里不出现任何字母，字是后期用真字体排上去的。
+图像模型排出来的字母是歪的，而在一个讲去 AI 味的仓库里，歪字母是最响的痕迹。
+底图画的是字行本身，密而带花饰的左边渐变到干净的右边，属于 H6 唯一豁免的那种情况：
+所写对象本身就是那个域。合成脚本在 [`tools/make_banner.py`](./tools/make_banner.py)。
+
 词表由 `tools/build_lexicon.py` 从四个上游 checkout 生成，不是手抄。去重按"能不能被已有正则命中"判，
 不按字符串相等，否则同一个词会有四家四行。
 
@@ -182,17 +170,6 @@ deslop 对自己也跑。全仓破折号 0，对偶反转都在每篇两处的�
 比喻候选逐条判过，自己引入的活比喻 0 处。
 
 `evals/run.py` 是词表检测的回归分数：46 条用例，召回 100%，一处已知误报是 `你` 那条刻意放宽的规则。
-
-## 海报
-
-<div align="center">
-  <img src="assets/poster.png" width="560" alt="deslop 海报">
-</div>
-
-配图由 `gpt-image-2` 生成，字全部是后期用真字体排的。图像模型排出来的字母是歪的，
-而在一个讲去除 AI 痕迹的仓库里，歪掉的字母是最响的那个痕迹。生成脚本在
-[`tools/make_poster.py`](./tools/make_poster.py) 和 [`tools/compose_art.py`](./tools/compose_art.py)，
-原图 16.5 MB，压到 2.8 MB。
 
 ## License
 
