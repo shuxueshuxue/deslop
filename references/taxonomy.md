@@ -287,6 +287,44 @@ different quantity.
 
 ---
 
+### D6. Scope loss in relay 转述损耗 `本项目新增`
+
+**Pattern.** A number that has a source, has a specific attribution, and is quantitatively
+unambiguous, but which reached the author through a paraphrase that dropped the original record's
+qualifiers. It is then used at the original's scope while only carrying the paraphrase's.
+
+**Why the other three checks pass it.** D1 asks whether there is a source. D2 asks whether the
+attribution is specific. D5 asks whether the quantity is unambiguous. This clears all three. It is
+broken somewhere none of them looks: **the qualifiers evaporated in transit, and evaporation leaves
+no mark.** The sentence reads better than an honest one would.
+
+**Detection is not about the sentence.** It is about how the number reached you. One question:
+
+> **Did I read the original record for this number?**
+
+No is a hit. It does not matter whether the relay was a person, another session, a summary, or an
+earlier note of your own.
+
+**Default action.** Read the original record, or mark the claim as second-hand with its qualifiers
+unverified. Doing neither and using it anyway is the defect.
+
+**Worked instance**, from this repository's own exchange with the study its worked example is drawn
+from. A sentence being cited repeatedly:
+
+> 一次干净试跑 23/23 任务检查全过，而 spec 工作流零采纳
+
+The original record is a smoke run: a clean-entry container, a fresh session, one model, `n=1`, and
+what it measured was whether an agent would reach for the tooling **on its own**. It would not. But
+ordinary use of that system is a stop hook holding the turn and a pre-commit check holding the
+commit, which is event-triggered and blocking, and under those conditions adoption is routine.
+
+The honest sentence is *"autonomous adoption is zero when nothing fires and nothing blocks"*. What
+survived the relay was the word zero. The container, the model, the sample size, the smoke framing
+and the word *autonomous* all evaporated, and none of their absence was visible in the citing text.
+
+**Keep-condition.** The original record was read and its qualifiers survive into the sentence; or the
+sentence is about the practice of relaying, as this one is.
+
 ## E. Diction
 
 ### E1. AI vocabulary `H D S N`

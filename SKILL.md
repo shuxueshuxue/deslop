@@ -629,7 +629,9 @@ With the rewrite, report:
 1. **the indicator table, before and after.** from `tools/measure.py --diff`;
 2. **named survivors.** every gated hit still present, with the reason it stays;
 3. **the proposed-deletion list**, if scope was `bounded`;
-4. **the missing-basis notes**, if any claim needed one and did not have it;
+4. **the missing-basis notes**, if any claim needed one and did not have it. A number the author
+   reached through a paraphrase rather than the original record belongs here even when it has a
+   source and a specific attribution. See `taxonomy.md` D6;
 5. **the scope line, every time, not once.** State that the pass checked register and did not check
    whether the text is right. This is not a disclaimer you make when you feel uncertain. It is
    mandatory output, because a cleaner register makes a factual defect *harder* to see: the
@@ -727,6 +729,21 @@ The mechanism is ordinary. A rule gets written with one counter-example in hand,
 exposes one cause, and the other cause never enters the author's view at all, so the rule looks
 complete and reads complete. Rules written after an incident are the obvious place to look, because
 their text will faithfully record exactly the cause the incident happened to expose.
+
+A third position on the same shape, and the one that hides best: **a relay carries less scope than
+the record it came from, and the loss leaves no mark.** A number quoted from a paraphrase has a
+source, a specific attribution and an unambiguous value, so every attribution check passes, while the
+qualifiers that bounded it are simply not there any more. `taxonomy.md` D6.
+
+Put the three together and the pattern is one sentence with three placements:
+
+| where the mismatch sits | what you end up believing |
+|---|---|
+| the check sees less than the defect spans | it passed |
+| the measurement is taken above the size the decision is made at | the number supports the claim |
+| the relay carries less than the record | the citation means what you need it to mean |
+
+All three are silent, and silence is the reason each one needs its own gate rather than more care.
 
 The snapshot guard in §11 is the same shape on a different axis. Whether the input is still the right
 input has a scope of the whole file over time, and no per-line check sees it, so it needs its own
