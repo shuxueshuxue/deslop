@@ -352,12 +352,35 @@ promotion rule here takes those numbers:
 | 10% and above | probation: report the number next to the indicator, do not act on it alone |
 | above 25% | demote, and write down why where the next person will read it |
 
+The three tiers are not a naming choice. They come from the obligation-gates work, which defines
+enforcement in three levels and gives the reason there are three rather than two:
+
+- **none.** Nothing happens when the rule is broken. The artifact is available, not obligatory.
+- **triage.** The mechanism runs on the change and produces located candidates, which a person or
+  an agent then handles one at a time. The mechanism itself decides nothing. It tolerates imprecision,
+  because the cost of one false positive is one judgement, not one blocked change.
+- **blocking.** The mechanism decides, and a violation stops the change. This demands a
+  near-zero false-positive rate, because the cost is a wrong block, and the more expensive cost is
+  that a wrong block is a reason to switch the check off.
+
+The middle level is where almost everything lives that a machine can *find* but cannot *judge*.
+Collapsing it into "none" throws away the location and makes a person search again; collapsing it
+into "blocking" costs the check its legitimacy and takes neighbouring checks down with it. Three
+levels is not finer granularity. Two levels leaves a whole class of property with nowhere to sit.
+
 **What is actually measured here, and what is not.** `evals/run.py` scores the lexicon scan as a
 whole against 46 cases: currently 100% recall at 96.0% precision, with the single false positive
-coming from a deliberately broad rule. That is a corpus-level number. **Per-indicator precision is
-not yet measured**, so the three demotions in this section rest on inspection rather than on a rate,
-and the table above is a rule the corpus cannot yet enforce. Saying so is cheaper than implying a
-rigour that is not there.
+coming from a deliberately broad rule.
+
+That is a corpus number, and **the decision it is being asked to support is a per-indicator one.**
+Aggregate precision tells you whether the scanner is worth running at all. It cannot tell you which
+indicator may block, because what licenses one indicator to block is that indicator's own precision.
+**Per-indicator precision is not measured here.** The three demotions in this section therefore rest
+on inspection rather than on a rate, and the table above is a rule the corpus cannot yet enforce.
+
+This gap is worth naming rather than papering over, because it has the shape §12 is about: the
+measurement was taken at one size and the decision is made at a smaller one, so the number reads as
+support for a claim it does not actually cover.
 
 **Personification, bolded assertion and metaphor are decided in the audit table. No script decides
 them.** Deciding
@@ -693,6 +716,17 @@ this case.
 So the reading of "no script can count this" is **"only a person can see this"**, never "this matters
 less". The two causes tell you which person-shaped check to reach for: a straight read of the whole
 document, or a decision per candidate.
+
+**Where to go looking for a rule that has collapsed two causes into one.** This repository wrote H6's
+demotion reason as a precision problem, and the failure H6 actually missed was a scope problem. The
+generalisation is a usable check on any rule, not just this one:
+
+> **If a rule's stated reason comes from a single event, suspect that it has compressed its causes.**
+
+The mechanism is ordinary. A rule gets written with one counter-example in hand, that counter-example
+exposes one cause, and the other cause never enters the author's view at all, so the rule looks
+complete and reads complete. Rules written after an incident are the obvious place to look, because
+their text will faithfully record exactly the cause the incident happened to expose.
 
 The snapshot guard in §11 is the same shape on a different axis. Whether the input is still the right
 input has a scope of the whole file over time, and no per-line check sees it, so it needs its own
