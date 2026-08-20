@@ -77,6 +77,28 @@ Three things are worth saying separately:
    text you just wrote yourself; D checks the junction between two edits, which the first three
    passes structurally cannot see because they work item by item.
 
+## Which way this tool fails
+
+Worth saying up front, because the pipeline causes it.
+
+Readability is the goal, and **a condition of applicability is exactly what makes a sentence blunt**.
+`in a clean-entry container`, `a single run`, `a smoke test`, `autonomously`. These look like any
+other clause and carry no signature a script can find. So a pass that goes well removes them by
+preference. Compare:
+
+> In one smoke run, in a clean-entry container, a fresh session adopted the workflow zero times on its own.
+>
+> An agent passed every check and never used the workflow.
+
+The second reads better, and every register instinct in this repository prefers it. It is also a
+different claim, and nothing downstream reports the difference, because what remains is well formed
+and correctly attributed.
+
+The fix is order, not care. **Qualifiers are frozen before the register work starts**, marked once by
+whoever knows where the number came from, after which the tooling only has to leave them alone. That
+is why D6 runs at step 02 rather than in the audit, and why it annotates instead of rewriting: the
+information it needs is not in the text.
+
 ## Three tiers of indicator
 
 <div align="center">

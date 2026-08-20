@@ -325,6 +325,21 @@ and the word *autonomous* all evaporated, and none of their absence was visible 
 **Keep-condition.** The original record was read and its qualifiers survive into the sentence; or the
 sentence is about the practice of relaying, as this one is.
 
+**Where this check runs, and why it cannot run in the audit.** At the freeze step, `SKILL.md` §1
+step 2, and its output is a set of frozen spans rather than a row in the table.
+
+The audit is deliberately performed in a fresh context, because that is what stops an author from
+re-reading their own intent. That same property makes it structurally unable to answer this family's
+question: an auditor with no history cannot know which numbers arrived through a relay. The two jobs
+need opposite amounts of context, so they cannot be the same pass.
+
+**And this family is the one a good register pass makes worse.** Conditions of applicability are
+prose with no formal signature, and they are exactly what makes a sentence blunt, so any pass
+optimising for readability removes them by preference. The cleaner the result, the less visible the
+loss. That is why the qualifiers must be frozen *before* the register work starts, by the one
+operator who knows where the number came from, and why D6 is `audit-only` and never auto-applied:
+**the information it needs is not in the text.**
+
 ## E. Diction
 
 ### E1. AI vocabulary `H D S N`

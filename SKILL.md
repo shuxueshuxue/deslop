@@ -109,6 +109,10 @@ Fixed. Do not skip, do not reorder. Steps 1–5 cost minutes and prevent most of
 
 1. **Scene.** `chat / status / docs / public-writing / academic / code-context`, plus any scene pack (§2).
 2. **Protected spans + fact ledger.** freeze what may not drift, before reading for style (§4).
+   **Run the D6 provenance question here, not in the audit** (`taxonomy.md` D6). For every number
+   the text leans on, ask whether you read the original record; where the answer is no, or where the
+   record carries conditions the sentence needs, mark those words as frozen spans. This is the only
+   step whose operator has the provenance knowledge, and the freeze is the output.
 3. **Tier.** how hard the text is hit, from the density of what matched (§5). Tier is *severity*,
    not force.
 4. **Level.** `minimal / standard / aggressive`: how hard you hit back (§3).
@@ -237,6 +241,24 @@ Freeze these before you read for style. Anything below is protected in every sce
   hyphens, all preserved.
 - **Errors, logs, status codes, metric names, measurements, baselines.** Never turn *observed* into
   *proven*, never drop a sample range or a comparison baseline.
+- **Conditions of applicability.** The words that bound where a claim holds: `in a clean-entry
+  container`, `a fresh session`, `one model`, `a smoke run`, `n=1`, `autonomously`, `on the training
+  split`, `under load`. Freeze them with the numbers they bound, not separately.
+
+  **This class is the one the rest of this file puts at risk**, so it gets its own paragraph.
+  The other protected classes have a shape a script can find: a numeral, a backtick, a quotation
+  mark, a path. A condition of applicability is ordinary prose and looks like every other clause.
+  It is also, precisely, the part that makes a sentence blunt, which means **a pass optimising for
+  readability applies steady pressure to remove it.** Compare:
+
+  > 在一个 clean-entry 容器里的一次 smoke 中，一个全新 session 自主采纳为零
+  > 一个 agent 通过了全部检查却没用那套工作流
+
+  The second reads better. Every register instinct in this document prefers it. It is also a
+  different claim, and nothing downstream will report the difference, because the sentence that
+  remains is well formed and correctly attributed. See `taxonomy.md` D6, and mark these spans at
+  step 2 before any of the rest runs.
+
 - **In `code-context`:** the described runtime behaviour, applicable conditions, and boundary notes.
   Strip stance words from a comment; keep what it says the code does. A neighbouring line already
   showing a number does not make the sentence redundant.
@@ -744,6 +766,12 @@ Put the three together and the pattern is one sentence with three placements:
 | the relay carries less than the record | the citation means what you need it to mean |
 
 All three are silent, and silence is the reason each one needs its own gate rather than more care.
+
+**What this is and is not.** Three placements sharing a shape is a reason to take the shape
+seriously. It is not a demonstration that the shape is right. The study it comes from has not yet
+measured its own central prediction, and nothing here measures this one either. Treat it as a
+working generalisation that has earned attention by recurring, and keep it separable from the parts
+of this file that rest on a count.
 
 The snapshot guard in §11 is the same shape on a different axis. Whether the input is still the right
 input has a scope of the whole file over time, and no per-line check sees it, so it needs its own
