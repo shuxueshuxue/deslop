@@ -5,7 +5,14 @@ Written as explicit (old, new) pairs rather than a hand-retyped document: everyt
 here stays byte-identical, so the quotations, numbers, placeholders, and table data cannot drift.
 Every pair traces to a finding in 02-audit.md.
 """
+import hashlib
+import os
 import sys
+
+# The snapshot this rewrite was audited against. Checked before anything is applied, because a
+# rewrite applied to a moved input fails silently: no error, no conflict, a clean-looking audit
+# table, and the author's retracted claims quietly restored. See tools/freeze.py.
+INPUT_SHA = "021e54a9bfdfb907480ff00ba1f206ab5755c3577785c0b2409eb1f2420c2eb8"
 
 EDITS = [
 # ---- F1/2 punctuation, F3 stance, F5 bold: status line and abstract -------------------
@@ -104,8 +111,12 @@ EDITS = [
 ("Prompt is therefore the **baseline**, not an arm:", "Prompt is therefore the baseline rather than an arm:"),
 ("| prompt | baseline — the rule exists and is stated |", "| prompt | baseline; the rule exists and is stated |"),
 
-("**A null interaction falsifies the mechanism**",
- "A null interaction falsifies the mechanism"),
+# The author ruled on this one after reading the report. I had cut it, then reverted on the grounds
+# that removing a hedged self-assessment strengthens a claim I do not own. The author owns it. Their
+# ruling: it grades their own design rather than the evidence, and the clause that follows already
+# shows why the feature is strong, so the announcement adds nothing. Cut, on their authority.
+("**A null interaction falsifies the mechanism** even if the main effects come out in the predicted direction. We consider this the strongest feature of the design: it can distinguish",
+ "A null interaction falsifies the mechanism even if the main effects come out in the predicted direction. The design can therefore distinguish"),
 
 ("The construction constraint is severe and it is forced by a failure mode named in the repair-benchmark literature:",
  "The construction constraint is forced by a failure mode named in the repair-benchmark literature:"),
@@ -154,7 +165,13 @@ EDITS = [
 
 
 def main():
-    text = open("00-input.md", encoding="utf-8").read()
+    raw = open("00-input.md", "rb").read()
+    actual = hashlib.sha256(raw).hexdigest()
+    if actual != INPUT_SHA:
+        print(f"REFUSED: 00-input.md is not the audited snapshot.\n"
+              f"  expected {INPUT_SHA}\n  actual   {actual}", file=sys.stderr)
+        return 1
+    text = raw.decode("utf-8")
     missed = []
     for old, new in EDITS:
         n = text.count(old)

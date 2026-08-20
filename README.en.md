@@ -1,15 +1,12 @@
 <div align="center">
+  <img src="assets/banner.png" width="900" alt="deslop">
+</div>
 
-# deslop
-
-**Strip the LLM tells out of prose, and hand back numbers you can check.**
-
-A [Claude Code](https://claude.ai/code) skill. Chinese and English.
+<div align="center">
 
 [中文（默认）](./README.md) | English
 
 </div>
-
 <br>
 
 <div align="center">
@@ -53,21 +50,39 @@ triads. The standard is "as few as the text can carry", not literal zero. Real p
 
 ## The nine steps
 
-The diagram above is the whole procedure. Fixed order, no skipping. Three things are worth saying
-separately:
+The diagram above is the whole procedure. Fixed order, no skipping.
+
+<div align="center">
+  <img src="assets/art/phase-frame.png" width="252" alt="Frame: freeze what may not drift">
+  <img src="assets/art/phase-find.png" width="252" alt="Find: flag hits line by line">
+  <img src="assets/art/phase-apply.png" width="252" alt="Apply and verify: bring the overlong lines back">
+</div>
+
+<div align="center">
+  <sub>frame · find · apply and verify</sub>
+</div>
+
+Three things are worth saying separately:
 
 1. **Freeze before you touch anything.** Numbers, quotations, commands, error strings and attribution
    get marked, plus a separate ledger of relations: which number modifies which object, who did what,
    what is based on what. No word list can do this layer, and it is the only one whose damage cannot
    be recovered from the finished text.
-2. **Only step 06 must be done by a person, and it must be a different person.** Whoever wrote the
-   text cannot audit it. They re-read their own intent instead of the words on the page. Here that is
-   implemented as a hard requirement: the audit runs in a fresh-context subagent.
+2. **Only step 06 must run in a fresh context.** Whatever wrote the text cannot audit it. It
+   re-reads its own intent instead of the words on the page, and that is as true of an agent as of a
+   person. The rule is implemented as a hard requirement: the audit runs in a fresh-context subagent.
+   A human enters the loop twice, to sign off the proposed-deletion list under `bounded` scope and to
+   read the report.
 3. **Four rereads, and they may not be merged.** They see different things. B checks the replacement
    text you just wrote yourself; D checks the junction between two edits, which the first three
    passes structurally cannot see because they work item by item.
 
 ## Three tiers of indicator
+
+<div align="center">
+  <img src="assets/art/measure.png" width="300" alt="Two readings, before and after">
+</div>
+
 
 An indicator earns a place in the counted set only if its hits are almost always real. When
 measurement says otherwise it gets demoted, and the reason is printed in every report so nobody
@@ -167,6 +182,17 @@ zero live metaphors introduced by the author.
 
 `evals/run.py` scores lexical detection against 46 cases: 100% recall, with one known false positive
 from the deliberately broad `你` rule.
+
+## Poster
+
+<div align="center">
+  <img src="assets/poster.png" width="560" alt="deslop poster">
+</div>
+
+Artwork generated with `gpt-image-2`; every letterform is set afterwards in real type. Image models
+garble letters, and garbled letters on a repository about removing AI tells would be the loudest tell
+available. The scripts are [`tools/make_poster.py`](./tools/make_poster.py) and
+[`tools/compose_art.py`](./tools/compose_art.py). Raw output was 16.5 MB, compressed to 2.8 MB.
 
 ## License
 

@@ -19,8 +19,13 @@ Headline: em dashes 38 to 0, staged reversals 7 to 1, editorial stance 7 to 2, w
 named. Prose words 3462 to 3385, sentences 227 to 242. **More sentences and fewer words** is the
 signature of decompression rather than deletion.
 
-The rewrite is a proposal. The source file belongs to a live session that is still writing the paper,
-so nothing was edited in place.
+The rewrite is a proposal and **it should not be merged.** The source file moved after the snapshot
+was frozen: commit `1c8c2a1` retracted two claims this pass preserved and backfilled measurements
+that did not exist yet, and a sibling draft may replace the file entirely. The status section in
+`05-report.md` records which three findings survive the version change and which do not.
+
+A stale worked example is still a usable worked example. What it demonstrates is the procedure and
+its numbers, and those do not depend on which draft wins.
 
 Reproduce:
 

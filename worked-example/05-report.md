@@ -11,7 +11,7 @@ listed there is byte-identical to the input.
 |---|---|---|---|
 | **em dash** | **38** | **0** | |
 | **staged reversal** | **7** | **1** | 1 named survivor |
-| **editorial stance** | **7** | **2** | 2 named survivors |
+| **editorial stance** | **7** | **1** | 1 named survivor |
 | assistant residue | 0 | 0 | |
 | knowledge-cutoff disclaimer | 0 | 0 | |
 | emoji | 0 | 0 | ✓/✗ in tables are table glyphs |
@@ -48,7 +48,7 @@ gated (`SKILL.md` §5.1): a threshold here would have penalised the fix.
 | staged reversal | §1, `…was a *precondition for landing the change*, not because writing it was cheap` | **Load-bearing argument.** The first half is a misconception the reader genuinely holds, having just read §1's argument that agents make capture cheap. Deleting it costs §1's two-stage structure its basis. Exemption 1 of 2. |
 | staged reversal | §4.1, `So "load-bearing" is not a property of an artifact, a syntax, or a toolchain; it is a property of the gate.` | **Term definition.** Exemption 2 of 2. **It no longer registers on the counter** — rewriting the sentence put commas before the semicolon, which the pattern does not match. It is therefore a survivor the after-count of `1` does not include, and this line is how it stays visible. |
 | editorial stance | §2.2, `The strongest available evidence for C0 is…` | Grades the evidence, not the sentence. A methodological statement an author defends. |
-| editorial stance | §5.2, `We consider this the strongest feature of the design:` | Same class, and hedged. Removing `We consider` would have strengthened a claim. I cut this one on the first pass and put it back on the reread; see `02-audit.md`. |
+| ~~editorial stance §5.2~~ | *cut, on the author's ruling* | I cut it, reverted it on the reread (removing a hedged self-assessment strengthens a claim I do not own), and the author then ruled it out: it grades their own design rather than the evidence, and the clause that follows already shows why the feature is strong. The author owns the claim, so the author's ruling settles it. |
 | inline-title list item | §2.2, `- **targeting precision**: given a diff, does the graph identify…` | The Humanizer pattern is a bold label whose body restates the label. Here the body *defines* it. |
 | mid-sentence bold | abstract `**trigger** / **enforce** / **expression**`; §5.3 `**F**` / `**X**` | Definition on first use, and variable names. |
 | mixed metaphor field | `ecosystem`, once, §5.5 | One field, used literally about a software ecosystem. |
@@ -109,6 +109,28 @@ should be stated as such without anxiety."* The two heaviest stance findings in 
 `**Three independent groups reaching the same direction is the strongest available evidence that the
 direction is right.**` are both the paper defending its novelty in exactly the way its own note
 warns against. The register audit and the author's intent point the same way.
+
+## Status: do not merge
+
+The input is superseded. `00-input.md` is `paper-draft.md` at commit `f07c9ac`; commit `1c8c2a1`
+then changed the file, and its current hash is `c4037d0d…`. The author's changes retract two claims
+this rewrite would have preserved verbatim, and backfill measurements that did not exist in the
+snapshot. Any edit pair landing in a changed region no longer applies.
+
+Beyond that, the file itself may be retired: a sibling draft (`paper-draft-agent-first.md`,
+`spexcode-base` `bfd76f4`) opens from the agent failure instead, and the author judges its structure
+better. Which one is the main draft is a human decision that has not been made.
+
+Three findings survive the version change, because none of them depends on the text:
+
+1. **The two audit-only defects are content, not register.** Whichever draft wins still needs them.
+   The author supplied the missing names for the second: the three studies are ManyIFEval, RECAST,
+   and an unaccepted preprint that should be downgraded to a marked citation rather than counted.
+2. **The novelty defence recurs.** §2.2 and §6 both defend novelty in exactly the way the draft's own
+   writing note 5 forbids, and the author reports being corrected on it in person twice on this lane.
+   That makes it an author habit rather than two sentences, and per-sentence fixes will not hold.
+   See the recurrence rule now in `SKILL.md` §10.
+3. **Em dashes, 38 → 0.** The author reports the same density in their Chinese prose.
 
 ## Caveats
 

@@ -1,7 +1,7 @@
 {
  "lang": "en",
  "scene": "academic",
- "units": 3385,
+ "units": 3378,
  "scale": 16,
  "gated": {
   "staged reversal": 1,
@@ -20,7 +20,7 @@
    32
   ],
   "editorial stance": [
-   2,
+   1,
    16
   ],
   "lecture tone": [
@@ -44,15 +44,19 @@
   "sentences": 242,
   "sentence length mean": 14.1,
   "sentence length CV": 0.645,
-  "conjunction density /1000": 2.66,
+  "conjunction density /1000": 2.96,
   "nominalisation": 0,
-  "metaphor fields mixed": 1,
+  "metaphor candidates": 2,
+  "metaphor fields touched": 2,
   "rule-of-three candidates": 9,
   "lexicon hits": 7
  },
  "metaphor_detail": {
   "ecology": [
    "ecosystem"
+  ],
+  "medicine": [
+   "diagnose"
   ]
  },
  "lexicon_by_category": {

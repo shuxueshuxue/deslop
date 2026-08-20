@@ -1,7 +1,10 @@
 # Audit: *The Graveyard Reopens*, draft skeleton
 
 Input: `00-input.md`, sha256 `021e54a9…2c2eb8`, taken from `spexcode-base` at commit `f07c9ac`.
-The live file has moved since; this pass is against the frozen snapshot.
+
+**The input is superseded.** Commit `1c8c2a1` changed the file (current hash `c4037d0d…`), retracting
+two claims that this pass preserved verbatim and backfilling real measurements. A sibling draft may
+replace the file entirely. Do not merge this output; see the status section in `05-report.md`.
 
 ## Frame
 
@@ -226,7 +229,7 @@ what the second and fourth passes catch is the point of having them.
 
 | # | what I had done | why it was wrong | corrected to |
 |---|---|---|---|
-| 1 | `We consider this the strongest feature of the design:` → `The design can therefore distinguish…` | **My over-correction.** It grades the design, not the sentence, and it is hedged (`We consider`). Removing the hedge strengthens a claim, which is a principle-layer violation. It is also the same class as `The strongest available evidence`, which I had already kept — the ruling has to be consistent. | reverted, kept verbatim |
+| 1 | `We consider this the strongest feature of the design:` → `The design can therefore distinguish…` | **Reverted by me, then reinstated by the author.** My reasoning for reverting was that removing a hedged self-assessment strengthens a claim I do not own. That reasoning was right about the limit of my authority and wrong about the outcome. The author ruled: it grades their own design rather than the evidence, and the clause that follows already shows why the feature is strong. **Whoever owns the claim decides.** The consistency argument against `The strongest available evidence` does not hold either, because that one grades the evidence base, which the author kept. | cut |
 | 2 | `the overwhelming majority of violations` → `most violations` | **My over-correction.** The phrase reports the magnitude of someone else's measurement. Softening it blurs a protected quantity. Only the em dash in that sentence was ever the finding. | reverted, kept verbatim |
 | 3 | `the one nobody has published` → `has not been reported for any comparable system` | I narrowed a claim while removing an adjacent self-grade. The self-grade (`the one that matters most`) was the finding; the novelty claim was not mine to shrink. | `The third has not been published, and it bounds the others:` |
 | 4 | `the pairs that have bite` → `the pairs where the rule changes what a compliant implementation looks like` | Replacing the vivid verb was right, but my replacement paraphrased the claim rather than naming the operation. | `precisely the pairs where the rule constrains the implementation` |

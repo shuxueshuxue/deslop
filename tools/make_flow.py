@@ -18,41 +18,41 @@ STEP_X, COL_B, RIGHT = 132, 430, 884
 RAIL, NUM_X = 100, 46
 
 STEPS = [
-    dict(n="01", y=124, name="入口判定", who="机器 + 人", tone="mix",
+    dict(n="01", y=124, name="入口判定", who="agent", tone="agent",
          d=["这段文本该不该改。要逐字翻译的，要仿模板的，", "主体是代码日志的，要事实校对的，都退回"]),
-    dict(n="02", y=220, name="判场景", who="机器 + 人", tone="mix",
+    dict(n="02", y=220, name="判场景", who="agent", tone="agent",
          d=["六个场景选一个。它决定合格标准是什么，", "聊天的标准和论文的标准不是同一条线"]),
-    dict(n="03", y=316, name="划保护片段", who="人 · 冻结不许改", tone="freeze",
+    dict(n="03", y=316, name="划保护片段", who="agent · 产出冻结层", tone="freeze",
          d=["数字，引用，命令，报错，责任归属。", "另记一份关系账本，这层没有词表能替代"]),
-    dict(n="04", y=440, name="前测", who="脚本 · measure.py", tone="meter",
+    dict(n="04", y=440, name="前测", who="脚本 · measure.py", tone="script",
          d=["读数存成 JSON。第 09 步要和它对照，", "这是整条流程里唯一能证伪的部分"]),
-    dict(n="05", y=536, name="词面扫描", who="机器", tone="machine",
+    dict(n="05", y=536, name="词面扫描", who="脚本 + agent", tone="agent",
          d=["物理动词（中）／抬高词（英），再过 553 行词表。", "出候选，不出判定"]),
-    dict(n="06", y=632, name="逐行审计", who="人 · 必须换人", tone="human",
-         d=["逐行出表，一行一条命中，宁可多报。", "写的人审不了自己写的，所以在空白上下文里做"]),
-    dict(n="07", y=816, name="应用替换", who="人", tone="human",
+    dict(n="06", y=632, name="逐行审计", who="agent · 必须换上下文", tone="fresh",
+         d=["逐行出表，一行一条命中，宁可多报。", "写的那个 agent 审不了自己写的，所以换一个空白上下文"]),
+    dict(n="07", y=816, name="应用替换", who="agent", tone="agent",
          d=["换成字面动作。文本只在这一步被改，", "不许用另一个花哨词换掉这个花哨词"]),
-    dict(n="08", y=918, name="四遍回读", who="人 · 不许合并", tone="human",
+    dict(n="08", y=918, name="四遍回读", who="agent · 不许合并", tone="agent",
          d=["四遍看的不是同一种东西，所以不许合并。", "B 或 D 命中，回到 07 重改"]),
-    dict(n="09", y=1052, name="后测与报告", who="脚本 + 人", tone="meter",
+    dict(n="09", y=1052, name="后测与报告", who="脚本 + agent，交给人", tone="script",
          d=["交前后两个数，每个还留在表上的命中", "逐条写明为什么留"]),
 ]
 PHASES = [("框定", 70, 80), ("查找", 386, 396), ("修改与验证", 762, 772)]
 REREADS = [("A", "保真", "保护片段没漂"), ("B", "过校正", "查你刚写下的"),
            ("C", "残留", "固定只查五类"), ("D", "通读", "看两处修改的交界")]
 ASIDE = ("不是语域问题，本流程不处理", "悬空指代 · 前后矛盾 · 引文误读 · 数字错")
-LEGEND = [("machine", "机器"), ("human", "人"), ("meter", "脚本测量"), ("freeze", "冻结")]
+LEGEND = [("script", "脚本"), ("agent", "agent"), ("fresh", "换上下文"), ("freeze", "冻结不许改")]
 
 LIGHT = dict(bg="#ffffff", panel="#ffffff", ink="#15171b", ink2="#4a5058", muted="#8a919b",
-             rule="#e3dfd6", rail="#d6d1c6", machine="#a8b0ba", human="#b26a00",
-             meter="#1b4fa8", freeze="#5f3ab5", mix="#a8b0ba", red="#a8241c")
+             rule="#e3dfd6", rail="#d6d1c6", agent="#a8b0ba", fresh="#b26a00",
+             script="#1b4fa8", freeze="#5f3ab5", red="#a8241c")
 DARK = dict(bg="#0d1117", panel="#0d1117", ink="#e9ecf1", ink2="#b2bbc6", muted="#868f9c",
-            rule="#2a3038", rail="#39414b", machine="#5d6672", human="#e0952f",
-            meter="#6fa0f0", freeze="#a98cf0", mix="#5d6672", red="#e06a60")
+            rule="#2a3038", rail="#39414b", agent="#5d6672", fresh="#e0952f",
+            script="#6fa0f0", freeze="#a98cf0", red="#e06a60")
 TOKENS = dict(bg="var(--panel)", panel="var(--panel)", ink="var(--ink)", ink2="var(--ink-2)",
               muted="var(--muted)", rule="var(--rule)", rail="var(--rule-2)",
-              machine="var(--steel)", human="var(--amber)", meter="var(--blue)",
-              freeze="var(--violet)", mix="var(--steel)", red="var(--red)")
+              agent="var(--steel)", fresh="var(--amber)", script="var(--blue)",
+              freeze="var(--violet)", red="var(--red)")
 
 SANS = ('system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",'
         '"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif')

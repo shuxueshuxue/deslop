@@ -1,15 +1,12 @@
 <div align="center">
+  <img src="assets/banner.png" width="900" alt="deslop">
+</div>
 
-# deslop
-
-**检查并改写文本里的模型腔，交出前后可核对的数字。**
-
-供 [Claude Code](https://claude.ai/code) 使用的中英文写作 skill。
+<div align="center">
 
 中文（默认） | [English](./README.en.md)
 
 </div>
-
 <br>
 
 <div align="center">
@@ -47,16 +44,34 @@
 
 ## 九步
 
-上图是完整流程，固定顺序，不许跳步。三件事值得单独说：
+上图是完整流程，固定顺序，不许跳步。
+
+<div align="center">
+  <img src="assets/art/phase-frame.png" width="252" alt="框定：先把不能漂的片段冻住">
+  <img src="assets/art/phase-find.png" width="252" alt="查找：逐行标出命中">
+  <img src="assets/art/phase-apply.png" width="252" alt="修改与验证：把过长的改齐">
+</div>
+
+<div align="center">
+  <sub>框定 · 查找 · 修改与验证</sub>
+</div>
+
+三件事值得单独说：
 
 1. **动手之前先冻结。**把数字，引用，命令，报错，责任归属都划出来，另记一份关系账本，
    哪个数字修饰哪个对象，谁做了什么，什么基于什么。这层没有词表能替代，也是唯一错了就无法从成品倒推的一层。
-2. **只有第 06 步必须由人做，而且必须换人。**写的人审不了自己写的，他重读的是自己的意图，
-   不是纸面上的字。在本项目里这条实现成一句硬要求，审计跑在一个空白上下文的子会话里。
+2. **只有第 06 步必须换一个空白上下文。**写的那个 agent 审不了自己写的东西，它重读的是自己的意图，
+   不是纸面上的字。这条实现成一句硬要求，审计跑在一个空白上下文的子会话里。人在这条流程里出现两次：
+   `bounded` scope 下的删除清单要人拍板，以及最后收报告。
 3. **回读分四遍，不许合并。**它们看见的东西不同。B 专门查你自己刚写下的替换文字，
    D 专门查两处修改之间的交界，前三遍逐条走，看不见交界。
 
 ## 三层指标
+
+<div align="center">
+  <img src="assets/art/measure.png" width="300" alt="前后两次读数">
+</div>
+
 
 一条指标只有在"命中基本都是真的"时才配进计数集。实测说不是，就降级，
 并且把理由印在每一份报告里，防止有人悄悄装回去。
@@ -146,6 +161,17 @@ deslop 对自己也跑。全仓破折号 0，对偶反转都在每篇两处的�
 比喻候选逐条判过，自己引入的活比喻 0 处。
 
 `evals/run.py` 是词表检测的回归分数：46 条用例，召回 100%，一处已知误报是 `你` 那条刻意放宽的规则。
+
+## 海报
+
+<div align="center">
+  <img src="assets/poster.png" width="560" alt="deslop 海报">
+</div>
+
+配图由 `gpt-image-2` 生成，字全部是后期用真字体排的。图像模型排出来的字母是歪的，
+而在一个讲去除 AI 痕迹的仓库里，歪掉的字母是最响的那个痕迹。生成脚本在
+[`tools/make_poster.py`](./tools/make_poster.py) 和 [`tools/compose_art.py`](./tools/compose_art.py)，
+原图 16.5 MB，压到 2.8 MB。
 
 ## License
 

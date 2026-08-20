@@ -195,7 +195,7 @@ This also removes a confound that a four-alternative design would carry: no cond
 
 **Rationale.** At local scope the falsifier arrives inside the artifact's natural radius regardless of engineering; there is nothing for a gate to add. At system scope the natural radius is near zero and the engineered radius is the only radius there is.
 
-A null interaction falsifies the mechanism even if the main effects come out in the predicted direction. We consider this the strongest feature of the design: it can distinguish "gates help" (already established) from "gates help *for the reason we claim*" (not established).
+A null interaction falsifies the mechanism even if the main effects come out in the predicted direction. The design can therefore distinguish "gates help" (already established) from "gates help *for the reason we claim*" (not established).
 
 ### 5.3 Well-formed units
 

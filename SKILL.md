@@ -119,7 +119,8 @@ Fixed. Do not skip, do not reorder. Steps 1–5 cost minutes and prevent most of
 8. **Scan.** the lexicon is a worklist of candidates, never a verdict (§6.2).
 9. **Audit.** line by line against `references/taxonomy.md`, headings against `references/titles.md`.
    Produce the table in §7. In a fresh-context subagent for anything longer than a page.
-10. **Apply.** literal denotation. Never swap one vivid word for another vivid word.
+10. **Apply.** literal denotation. Never swap one vivid word for another vivid word. Verify the
+    input hash first with `python3 tools/freeze.py check FILE <sha>`, and refuse if it moved (§11).
 11. **Reread, in four separate passes** (§9). They catch different damage and cannot be merged.
 12. **Measure after, and report both numbers.** "Reversals 12 → 0" is evidence. "Now it reads
     naturally" is not.
@@ -332,6 +333,31 @@ re-promotes them:
   §0.1: the ban is enforced in the audit, and the script's job is to make sure no candidate goes
   unexamined. `python3 tools/measure.py FILE --metaphor` prints every borrowed-domain term and every
   physical verb with a line number. `taxonomy.md` H6.
+
+### 5.2 What "almost always real" is worth as a number
+
+"Almost always real" is a judgement until someone puts a rate on it. Google's engineering practice
+puts one on the same decision: a **blocking** check is held to zero effective false positives, an
+**advisory** one is capped at 10%, a rate at or above 10% puts the check on probation, and above 25%
+it may be turned off outright.
+
+That is the same line this section draws, named from the other side. "Precision too low, so it may
+only list candidates" and "false-positive rate too high, so it may not block" are one rule. So the
+promotion rule here takes those numbers:
+
+| measured false-positive rate | tier |
+|---|---|
+| effectively zero | **GATED** — may fail a pass |
+| under 10% | **CAPPED** or **REPORTED** — lists candidates, decides nothing |
+| 10% and above | probation: report the number next to the indicator, do not act on it alone |
+| above 25% | demote, and write down why where the next person will read it |
+
+**What is actually measured here, and what is not.** `evals/run.py` scores the lexicon scan as a
+whole against 46 cases: currently 100% recall at 96.0% precision, with the single false positive
+coming from a deliberately broad rule. That is a corpus-level number. **Per-indicator precision is
+not yet measured**, so the three demotions in this section rest on inspection rather than on a rate,
+and the table above is a rule the corpus cannot yet enforce. Saying so is cheaper than implying a
+rigour that is not there.
 
 **Personification, bolded assertion and metaphor are decided in the audit table. No script decides
 them.** Deciding
@@ -580,7 +606,17 @@ With the rewrite, report:
 1. **the indicator table, before and after.** from `tools/measure.py --diff`;
 2. **named survivors.** every gated hit still present, with the reason it stays;
 3. **the proposed-deletion list**, if scope was `bounded`;
-4. **the missing-basis notes**, if any claim needed one and did not have it.
+4. **the missing-basis notes**, if any claim needed one and did not have it;
+5. **the scope line, every time, not once.** State that the pass checked register and did not check
+   whether the text is right. This is not a disclaimer you make when you feel uncertain. It is
+   mandatory output, because a cleaner register makes a factual defect *harder* to see: the
+   surrounding prose comes back more confident and the reader's guard drops. §11.
+6. **a recurrence note, when one applies.** If a family's hits cluster into what looks like an author
+   habit rather than isolated sentences, say so and say which family. Per-sentence replacements do
+   not hold against a habit, and the author is the only one who can act on it. The signal is a family
+   that reappears across drafts, or one the author has already been corrected on. In the worked
+   example this was the novelty defence: two sentences on the page, but the author had been corrected
+   on it twice before, which makes the finding "this keeps happening", not "fix these two lines".
 
 Add a one-line explanation only where a high-risk false positive was avoided
 (`kept the system subject and the term, to avoid distortion`). Never a paragraph of self-assessment.
@@ -599,7 +635,75 @@ comprehension pass with a different brief, and a rewrite that improves the regis
 
 If the text is going out under someone's name, run that pass too, separately.
 
+**Say this in the report every time.** §10 item 5 makes it mandatory rather than optional, because
+the risk rises exactly when the pass went well. Confident prose is read less carefully.
+
+One more thing this pass cannot see: **whether the input is still current.** A frozen snapshot is
+what makes the before/after numbers meaningful, and it is also what goes stale. Record the input's
+hash and the commit it came from, and say plainly that edits landing in a region changed since then
+no longer apply. A rewrite that silently restores a claim the author has retracted is worse than no
+rewrite.
+
 ---
+
+## 12. Why the pipeline has this shape
+
+Every check sees a fixed amount of text at once, and a defect whose scope is larger than that gets
+missed. It gets missed **silently**, which is the part that matters: each unit passes its own
+inspection, nothing is flagged, and the report comes back clean. Under-detection here does not look
+like under-detection. It looks like a pass.
+
+So the pipeline runs four checks at four sizes, and each one exists because the size below it cannot
+see far enough:
+
+| what it sees at once | the check | what only it can catch |
+|---|---|---|
+| a word or phrase | the lexicon scan (§6.2) | fixed vocabulary |
+| a sentence | one audit row (§7) | the shape of that sentence |
+| the document | the counted indicators, the source-domain aggregate, Pass D (§9) | density, sustained metaphor, damage at the junction between two edits |
+| the author, across documents | the recurrence note (§10 item 6) | a habit |
+
+This repository has recorded a failure at each of the top two, and both were invisible one row at a
+time:
+
+- **Sustained metaphor.** A whole document explained through one borrowed domain. Every row passed on
+  its own; fourteen rows shared a source domain. The aggregate column in §7 is what sees it, and
+  nothing smaller can. `taxonomy.md` H6.
+- **A recurring habit.** Two sentences on one page defending novelty, in a draft whose own writing
+  notes forbid exactly that, by an author who had already been corrected on it twice. Deleting the
+  two sentences does not hold, because the thing that produced them is larger than the page.
+
+### 12.1 A family without a counter is telling you something, and it is not "unimportant"
+
+Whether a family has a counter is a fact about the family, not about the tooling. But it has two
+different causes, and they call for different tools, so the useful move is to say which one applies:
+
+**No counter because of scope.** The defect is a property of the whole, so there is no unit to count.
+Symmetry padding (B5), uniform cadence (B10) and sustained metaphor (H6) are all like this: nothing
+is wrong at any one place, and the thing that is wrong only exists at document size. There is nothing
+to list. Only a whole-document read finds it, which is what Pass D and the source-domain aggregate
+are for.
+
+**No counter because of precision.** There *is* a unit, and a script can find it, but hits are not
+almost always real. Rule of three, conjunction density, bolded assertion and personification are all
+like this. Here the script still earns its keep: it lists candidates with line numbers and refuses to
+let one go unexamined, and a person decides each one. `--metaphor` and `--hits` exist for exactly
+this case.
+
+So the reading of "no script can count this" is **"only a person can see this"**, never "this matters
+less". The two causes tell you which person-shaped check to reach for: a straight read of the whole
+document, or a decision per candidate.
+
+The snapshot guard in §11 is the same shape on a different axis. Whether the input is still the right
+input has a scope of the whole file over time, and no per-line check sees it, so it needs its own
+gate. That gate is `tools/freeze.py`, run before anything is applied.
+
+The framing is not ours. It comes from the obligation-gates study this repository's worked example is
+drawn from, whose claim is that an intent artifact decays in proportion to how many falsifying events
+arrive outside whatever forces you to look at it. Applied to editing, the reading is direct. **The
+part of a defect that lies outside what your check can see is unmeasurable by that check, and it
+will read as absence.** The only useful response is another check
+at the larger size, which is why this pipeline has four instead of one.
 
 ## Reference files
 

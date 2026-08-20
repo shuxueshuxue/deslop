@@ -203,7 +203,7 @@ footer pre{
 <section id="flow">
   <h2>流程</h2>
   <p class="lede">九步，固定顺序，不许跳步。左边一列是步骤号，中间一列写清这一步由谁执行。
-  节点的颜色只编码这一件事，因为整条流程里只有一步必须由人做，而且必须换一个没写过这篇文本的人。</p>
+  节点的颜色只编码这一件事，因为整条流程里只有一步必须换一个空白上下文的 agent 来做。</p>
 
   <div class="frame">
     <div class="frame-hd"><span>9 步 · 1 条返回边 · 1 条分流 · 手写 SVG</span><span class="dots"><i></i><i></i><i></i></span></div>
@@ -223,14 +223,14 @@ footer pre{
     .rl{fill:var(--red);font:600 11px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.08em}
     .lg{fill:var(--muted);font:10.5px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.1em}
     </style>
-    <circle cx="658" cy="34" r="4" fill="var(--steel)"/>
-    <text class="lg" x="669" y="38">机器</text>
-    <circle cx="718" cy="34" r="4" fill="var(--amber)"/>
-    <text class="lg" x="729" y="38">人</text>
-    <circle cx="766" cy="34" r="4" fill="var(--blue)"/>
-    <text class="lg" x="777" y="38">脚本测量</text>
-    <circle cx="850" cy="34" r="4" fill="var(--violet)"/>
-    <text class="lg" x="861" y="38">冻结</text>
+    <circle cx="601" cy="34" r="4" fill="var(--blue)"/>
+    <text class="lg" x="612" y="38">脚本</text>
+    <circle cx="662" cy="34" r="4" fill="var(--steel)"/>
+    <text class="lg" x="673" y="38">agent</text>
+    <circle cx="732" cy="34" r="4" fill="var(--amber)"/>
+    <text class="lg" x="743" y="38">换上下文</text>
+    <circle cx="815" cy="34" r="4" fill="var(--violet)"/>
+    <text class="lg" x="826" y="38">冻结不许改</text>
     <text class="ph" x="132" y="70">框定</text>
     <line x1="132" y1="80" x2="884" y2="80" stroke="var(--rule)" stroke-width="1"/>
     <text class="ph" x="132" y="386">查找</text>
@@ -242,19 +242,19 @@ footer pre{
     <text class="num" x="46" y="126" text-anchor="end">01</text>
     <circle cx="100" cy="119" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="124">入口判定</text>
-    <text class="wh" x="132" y="145">机器 + 人</text>
+    <text class="wh" x="132" y="145">agent</text>
     <text class="de" x="430" y="123">这段文本该不该改。要逐字翻译的，要仿模板的，</text>
     <text class="de" x="430" y="144">主体是代码日志的，要事实校对的，都退回</text>
     <text class="num" x="46" y="222" text-anchor="end">02</text>
     <circle cx="100" cy="215" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="220">判场景</text>
-    <text class="wh" x="132" y="241">机器 + 人</text>
+    <text class="wh" x="132" y="241">agent</text>
     <text class="de" x="430" y="219">六个场景选一个。它决定合格标准是什么，</text>
     <text class="de" x="430" y="240">聊天的标准和论文的标准不是同一条线</text>
     <text class="num" x="46" y="318" text-anchor="end">03</text>
     <circle cx="100" cy="311" r="4.5" fill="var(--violet)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="316">划保护片段</text>
-    <text class="wh" x="132" y="337">人 · 冻结不许改</text>
+    <text class="wh" x="132" y="337">agent · 产出冻结层</text>
     <text class="de" x="430" y="315">数字，引用，命令，报错，责任归属。</text>
     <text class="de" x="430" y="336">另记一份关系账本，这层没有词表能替代</text>
     <text class="num" x="46" y="442" text-anchor="end">04</text>
@@ -266,31 +266,31 @@ footer pre{
     <text class="num" x="46" y="538" text-anchor="end">05</text>
     <circle cx="100" cy="531" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="536">词面扫描</text>
-    <text class="wh" x="132" y="557">机器</text>
+    <text class="wh" x="132" y="557">脚本 + agent</text>
     <text class="de" x="430" y="535">物理动词（中）／抬高词（英），再过 553 行词表。</text>
     <text class="de" x="430" y="556">出候选，不出判定</text>
     <text class="num" x="46" y="634" text-anchor="end">06</text>
     <circle cx="100" cy="627" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="632">逐行审计</text>
-    <text class="wh" x="132" y="653">人 · 必须换人</text>
+    <text class="wh" x="132" y="653">agent · 必须换上下文</text>
     <text class="de" x="430" y="631">逐行出表，一行一条命中，宁可多报。</text>
-    <text class="de" x="430" y="652">写的人审不了自己写的，所以在空白上下文里做</text>
+    <text class="de" x="430" y="652">写的那个 agent 审不了自己写的，所以换一个空白上下文</text>
     <text class="num" x="46" y="818" text-anchor="end">07</text>
-    <circle cx="100" cy="811" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
+    <circle cx="100" cy="811" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="816">应用替换</text>
-    <text class="wh" x="132" y="837">人</text>
+    <text class="wh" x="132" y="837">agent</text>
     <text class="de" x="430" y="815">换成字面动作。文本只在这一步被改，</text>
     <text class="de" x="430" y="836">不许用另一个花哨词换掉这个花哨词</text>
     <text class="num" x="46" y="920" text-anchor="end">08</text>
-    <circle cx="100" cy="913" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
+    <circle cx="100" cy="913" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="918">四遍回读</text>
-    <text class="wh" x="132" y="939">人 · 不许合并</text>
+    <text class="wh" x="132" y="939">agent · 不许合并</text>
     <text class="de" x="430" y="917">四遍看的不是同一种东西，所以不许合并。</text>
     <text class="de" x="430" y="938">B 或 D 命中，回到 07 重改</text>
     <text class="num" x="46" y="1054" text-anchor="end">09</text>
     <circle cx="100" cy="1047" r="4.5" fill="var(--blue)" stroke="var(--panel)" stroke-width="3"/>
     <text class="nm" x="132" y="1052">后测与报告</text>
-    <text class="wh" x="132" y="1073">脚本 + 人</text>
+    <text class="wh" x="132" y="1073">脚本 + agent，交给人</text>
     <text class="de" x="430" y="1051">交前后两个数，每个还留在表上的命中</text>
     <text class="de" x="430" y="1072">逐条写明为什么留</text>
     <line x1="424" y1="668" x2="424" y2="710" stroke="var(--rule)" stroke-width="2"/>
@@ -314,7 +314,7 @@ footer pre{
 
   <div class="callout">
     <p><b>这张图只编码了两件事，其余都是标签。</b>第一件事是次数。文本被改一次，测量两次，
-    中间隔着一个必须换人的审计。第二件事是回读分四遍且不许合并，因为它们看见的东西不同。
+    中间隔着一个必须换上下文的审计。第二件事是回读分四遍且不许合并，因为它们看见的东西不同。
     A 看保护片段有没有漂，B 看你自己刚写下的替换文字，C 看残留，D 看两处修改之间的接缝。</p>
     <p>第二件事是有代价的。B 和 D 命中意味着回到 07 重改，而不是在 08 里就地修补。
     在本次实跑里，这条返回边用了七次。</p>
@@ -375,7 +375,7 @@ footer pre{
 
     <article class="st">
       <h4><span class="n">05</span>词面扫描</h4>
-      <p class="role">机器只做便宜的一半</p>
+      <p class="role">脚本只做便宜的一半</p>
       <p>中文先扫物理动词，例如 <code>跑一遍</code> <code>抓到</code> <code>压掉</code> <code>落地</code> <code>收口</code>。
       问一句就够了。这个画面是不是替代了句子本该说出的那个操作。英文先扫抬高词，例如 <code>utilize</code>
       <code>facilitate</code> <code>commence</code>。</p>
@@ -392,11 +392,12 @@ footer pre{
 
     <article class="st" data-tone="setup">
       <h4><span class="n">06</span>逐行审计</h4>
-      <p class="role">唯一必须由人做的一步，而且必须换人</p>
+      <p class="role">唯一必须换一个空白上下文的一步</p>
       <p>逐行对着标记表检查一遍，一行一条命中，宁可多报。表有六列，依次是位置，原句，族，
       为什么这是表演而不是陈述，平替，留不留。</p>
-      <p><b>必须换人。</b>写的人审不了自己写的东西，他重读的是自己的意图，不是纸面上的字。
-      在本项目里这条被实现成一句硬要求，审计跑在一个空白上下文的子会话里。</p>
+      <p><b>必须换上下文。</b>写的那个 agent 审不了自己写的东西，它重读的是自己的意图，
+      不是纸面上的字。这一点对人和对 agent 一样成立，所以实现成一句硬要求，
+      审计跑在一个空白上下文的子会话里。</p>
       <p class="from"><b>来源</b> deslop 审计表 + fresh-context subagent</p>
     </article>
 
