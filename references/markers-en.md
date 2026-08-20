@@ -35,7 +35,7 @@ Count them. One is a good line. Five is a template.
 
 ## 3. Compulsive hedging and self-assessment
 
-Claude models reach for **"honest"** constantly — *honest assessment, honest caveat, the honest
+Claude models reach for **"honest"** constantly: *honest assessment, honest caveat, the honest
 answer, to be honest* (user `lendal`). Same family: *frankly, candidly, I'll be direct, my take is*.
 
 Adjacent tic, parodied in-thread by user `rydtsc`: opening with **"You're absolutely right to
@@ -99,7 +99,7 @@ Delete it and check whether any information was lost. Usually none was.
 
 Beyond individual words: LLM prose keeps a **uniform cadence**. Every paragraph concedes, then turns,
 then lands a summary assertion. Every section is a triad. Reviewers notice the metronome before they
-notice any single word — by the third paragraph they can predict the shape of the next one.
+notice any single word. By the third paragraph they can predict the shape of the next one.
 
 Fixing this means varying paragraph length and structure, not swapping words.
 
@@ -114,4 +114,4 @@ The cost is not aesthetic. Readers who recognize the register discount the conte
 
 *Drift*, *anchor*, *warm*, *starvation*, *garbage collection*, *back-pressure* are names, not
 metaphors, when the field uses them as names. Flattening them makes the text read as though the
-author does not know the field — worse than leaving a tell.
+author does not know the field, which is worse than leaving a tell.

@@ -1,319 +1,564 @@
-> deslop lexicon — one candidate per row. The scanner (scan.py) reports hits; it never rewrites.
-> Columns: lang  pattern  category  replacement  note
+> prose-deslop merged lexicon — one candidate per row. The scanner reports hits; it never rewrites.
+> Columns: lang  pattern  category  replacement  note  source
 > lang: en | zh   ·   pattern: Python regex (ASCII patterns get \b…\b added automatically)
-> category: vocab puffery editorial transition template shape jargon hedge assistant physical borrowed unsettled-term
+> category: vocab puffery editorial transition template shape jargon hedge assistant physical
+>           borrowed unsettled-term stance opener closer empathy debug violence
 > note: when the word is legitimate. A blank note does NOT mean "always wrong" — see SKILL.md.
-> Sources: WP:AIVOCAB (each word there needs an external citation) · Kobak et al. 2025 excess
-> vocabulary (Science Advances 11(27)) · Juzek & Ward 2025 · HN 48905248 · Chinese community lists.
-lang	pattern	category	replacement	note
-en	delve	vocab	look at / examine	era: GPT-4. Dropped off sharply in 2025.
-en	delves? into	vocab	examines
-en	tapestry	puffery	(cut)	Literal textile use is fine.
-en	testament	puffery	(cut, state the fact)
-en	stands? as a testament	puffery	shows
-en	serves? as a reminder	puffery	(cut)
-en	underscore[sd]?	vocab	show / stress	Literal underline mark, or film scoring, is fine.
-en	showcas(e|es|ed|ing)	vocab	show	era: GPT-4o and later. Still elevated in 2026.
-en	pivotal	vocab	central / decisive
-en	meticulous(ly)?	vocab	careful(ly)
-en	intricate	vocab	detailed / complicated
-en	intricacies	vocab	details
-en	interplay	vocab	interaction
-en	landscape	vocab	field / market / situation	Actual scenery or a landscape orientation is fine.
-en	realm	vocab	field / area
-en	robust	vocab	(say what it withstands)	Statistics term of art: robust estimator.
-en	vibrant	puffery	(cut)
-en	boasts	puffery	has
-en	bolstered	vocab	strengthened / supported
-en	garner(ed|ing)?	vocab	get / receive
-en	foster(s|ed|ing)?	vocab	encourage / cause	Foster care, foster parent.
-en	enhanc(e|es|ed|ing)	vocab	improve / add to
-en	enduring	puffery	lasting / (cut)
-en	crucial	vocab	necessary / decisive	Kobak: one of the ten highest-impact excess words.
-en	valuable insights?	template	(say what was learned)
-en	align(s|ed)? with	vocab	matches / agrees with
-en	resonate(s|d)? with	vocab	(cut, or: appeals to)
-en	emphasi[sz](e|es|ed|ing)	vocab	stress / say	era: elevated in every era through 2026.
-en	highlight(s|ed|ing)	vocab	show / point out	Literal highlighting of text is fine.
-en	Additionally	transition	Also, / (cut)	Sentence-initial. Kobak's list.
-en	Moreover,	transition	(cut)
-en	Furthermore,	transition	(cut)
-en	Notably,	transition	(cut)
-en	comprehensive	puffery	complete / full
-en	holistic	jargon	(say what it covers)
-en	seamless(ly)?	puffery	(cut)
-en	myriad	vocab	many
-en	plethora	vocab	many / too many
-en	harness(ing)?	vocab	use	Test/agent harness is an established name; literal harness is also fine.
-en	unlock(s|ing)?	puffery	(cut, or: allow)
-en	elevat(e|es|ed|ing)	puffery	raise / improve
-en	embark(ing)? on	puffery	start
-en	journey	puffery	(cut)	A literal trip is fine.
-en	cornerstone	puffery	(cut, or: basis)
-en	beacon	puffery	(cut)
-en	paradigm	jargon	model / approach	Kuhn's paradigm shift, in context.
-en	synergy	jargon	(cut)
-en	ever-evolving	puffery	changing
-en	fast-paced	puffery	(cut)
-en	in today's [a-z-]+ (age|era|world|landscape)	template	(cut)
-en	navigat(e|es|ing) the (complexities|challenges|landscape)	puffery	deal with
-en	plays? an? (vital|crucial|key|significant|pivotal) role	puffery	(say what it does)
-en	leaves? a lasting (impact|impression)	puffery	(cut)
-en	setting the stage for	template	(cut)
-en	marks? a (shift|turning point)	template	(say what changed)
-en	key turning point	template	(cut)
-en	indelible mark	puffery	(cut)
-en	deeply rooted	puffery	(cut)
-en	nestled in the heart of	puffery	in
-en	rich (cultural )?(heritage|history|tradition)	puffery	(cut)
-en	groundbreaking	puffery	new / first
-en	renowned	puffery	well-known / (cut)
-en	diverse array	puffery	range
-en	it'?s (important|critical|crucial|worth) (to )?(note|noting|remember|consider)	editorial	(cut, state it)
-en	It is worth noting	editorial	(cut)
-en	In (summary|conclusion)	template	(cut)
-en	Overall,	template	(cut)
-en	Despite (its|these) (challenges|limitations)	template	(cut)
-en	Future (Outlook|Prospects|Directions)	template	(say what is next)
-en	Challenges and (Legacy|Opportunities)	template	(name them)
-en	Industry reports	editorial	(cite one)
-en	Experts (argue|say|believe)	editorial	(name the expert)
-en	Observers have (cited|noted)	editorial	(name them)
-en	Some critics argue	editorial	(name the critic)
-en	load-bearing	jargon	(say what it carries)	HN 48905248.
-en	key insight	jargon	(state the insight)	HN 48905248.
-en	synthesi[sz](e|es|ed|ing)	jargon	combine / summarize	HN 48905248. Chemistry sense is fine.
-en	(the )?honest (take|caveat|answer)	editorial	(cut, just say it)	HN 48905248.
-en	Good question	assistant	(cut)	HN 48905248.
-en	You'?re absolutely right	assistant	(cut)
-en	I hope this helps	assistant	(cut)
-en	Certainly!	assistant	(cut)
-en	Of course!	assistant	(cut)
-en	Would you like	assistant	(cut)
-en	let me know if	assistant	(cut)
-en	as of my last (knowledge )?(update|training)	hedge	(cut, or give the date)
-en	Up to my last training update	hedge	(cut)
-en	based on (the )?available (information|sources)	hedge	(cut, or name the source)
-en	not widely (available|documented|disclosed)	hedge	(say what you checked)
-en	as an? (AI|large) language model	assistant	(cut)
-en	not just [^,.]{2,40}, but( also)?	shape	(state Y only)	Negative parallelism. Counted indicator.
-en	(isn'?t|is not) (just )?[^,.]{2,40}, (it'?s|but)	shape	(state Y only)	Counted indicator.
-en	rather than merely	shape	(state it plainly)
-zh	赋能	jargon	(说清楚给了什么)
-zh	底层逻辑	jargon	原理 / 机制
-zh	认知升级	jargon	(删)
-zh	闭环	jargon	(说清楚哪一环接回哪一环)	控制论/工程语境里是术语。
-zh	长期主义	jargon	(删)
-zh	(关键)?抓手	jargon	办法 / 入手处
-zh	(作为|充当)[^，。]{0,24}(证明|体现|标志)	puffery	(直接说发生了什么)	象征意义框架；真实的职位或身份用法需人工保留。
-zh	不仅仅是[^，。]{2,20}，而(是)?	shape	(直接说后半句)	否定式排比。
-zh	(行业|多位|一些)?专家(认为|指出|表示)	editorial	(给出姓名、来源或删掉)	没有具体来源时是模糊归因。
-zh	观察者(认为|指出|表示)	editorial	(给出具体的人或删掉)	没有具体来源时是模糊归因。
-zh	尽管存在[^，。]{0,20}挑战	template	(说具体发生了什么)	套话式挑战段落。
-zh	未来(前景|展望|方向)	template	(说明下一步)	空泛的未来段落标题或结尾。
-zh	前景[^，。]{0,4}(光明|广阔|可期)	puffery	(给出计划或数字)	通用积极结论。
-zh	与[^，。]{1,15}保持一致	vocab	(说清楚哪两个东西相同)	可保留，但需要明确两者。
-zh	旨在	vocab	用来	空转的目的框架。
-zh	确保	vocab	(说清楚保证的条件)	只有说明保证条件时才有信息。
-zh	无缝	puffery	(说清楚省掉了哪一步)	流程或产品宣传词；技术术语需人工保留。
-zh	价值沉淀	jargon	(说清楚留下了什么)
-zh	赛道	jargon	方向 / 领域
-zh	护城河	jargon	(说清楚别人为什么追不上)
-zh	组合拳	jargon	(逐项列出)
-zh	打法	jargon	做法
-zh	颗粒度	jargon	粗细 / 精度
-zh	对齐	jargon	一致 / 统一	模型训练的 alignment 是术语。
-zh	深度链接	jargon	(视语境)	若指可点开的 deep link，是术语，不要改。
-zh	深耕	puffery	做了 N 年
-zh	聚焦	puffery	针对 / 只做
-zh	精准发力	puffery	(删)
-zh	全方位	puffery	(列出覆盖了什么)
-zh	多维度	puffery	(列出是哪几个)
-zh	系统性地	puffery	(删)
-zh	极大地	puffery	(给数字)
-zh	显著(提升|改善|增强)	puffery	(给数字)	统计显著性是术语。
-zh	助力	puffery	帮 / (删)
-zh	引领	puffery	(删)
-zh	重塑	puffery	改 / 换掉
-zh	释放(潜力|价值|活力)	puffery	(删)
-zh	激发活力	puffery	(删)
-zh	夯实	puffery	(删)
-zh	筑牢	puffery	(删)
-zh	打造	puffery	做 / 建
-zh	标志着	puffery	(说清楚变了什么)
-zh	奠定(了)?基础	puffery	(删)
-zh	关键转折点	puffery	(说清楚前后差别)
-zh	具有重要意义	puffery	(说清楚有什么用)
-zh	发挥(着)?(关键|重要)作用	puffery	(说清楚做了什么)
-zh	至关重要	puffery	(说清楚少了它会怎样)
-zh	不可或缺	puffery	(同上)
-zh	举足轻重	puffery	(删)
-zh	令人(叹为观止|瞩目|印象深刻)	puffery	(删)
-zh	叹为观止	puffery	(删)
-zh	熠熠生辉	puffery	(删)
-zh	浓墨重彩	puffery	(删)
-zh	波澜壮阔	puffery	(删)
-zh	(生动|完美|深刻)(诠释|揭示|体现)	puffery	说明 / 表明
-zh	淋漓尽致	puffery	(删)
-zh	里程碑	puffery	(说清楚跨过了什么)
-zh	新纪元	puffery	(删)
-zh	应运而生	puffery	(删)
-zh	蓬勃发展	puffery	(给数字)
-zh	方兴未艾	puffery	(删)
-zh	大有可为	puffery	(删)
-zh	在当今[^，。]{0,6}(社会|时代|背景下)	template	(删)
-zh	随着[^，。]{2,12}的(发展|普及|推进)	template	(删，直接说事)
-zh	值得注意的是	editorial	(删，直接说)
-zh	需要指出的是	editorial	(删)
-zh	不难看出	editorial	(删)
-zh	众所周知	editorial	(删)
-zh	综上所述	template	(删)
-zh	总而言之	template	(删)
-zh	总的来说	template	(删)
-zh	一言以蔽之	template	(删)
-zh	不仅如此	transition	(删)
-zh	与此同时	transition	同时 / (删)
-zh	事实上	transition	(删)
-zh	此外	transition	另外 / (删)
-zh	然而	transition	但 / (删)	连用超过两次才算。
-zh	希望(这)?(对你)?有(所)?帮助	assistant	(删)
-zh	你值得	assistant	(删)
-zh	作为一名	assistant	(删)
-zh	进行[一二三四五六七八九十]?次?[^，。]{0,4}(处理|优化|分析|梳理)	vocab	(直接用那个动词)	空转词。
-zh	通过[^，。]{2,10}的方式	vocab	(直接说怎么做)	空转词。
-zh	不是[^，。]{2,20}，(而)?是	shape	(只说后半句)	对偶反转。计数指标。
-zh	不(只|仅)(是)?[^，。]{2,20}，(更|还)(是)?	shape	(只说后半句)	计数指标。
-zh	你以为[^，。]{2,20}，(其实|实际上)	shape	(直接说结论)
-zh	与其说[^，。]{2,20}，不如说	shape	(直接说结论)
-zh	[^，。]{2,20}的本质(是|在于)	shape	(直接说是什么)
-zh	很多人(以为|觉得|认为)	shape	(删，别替读者设定)
-zh	问题不在[^，。]{1,10}，而在	shape	(只说后半句)
-zh	——	shape	(改逗号、冒号或句号)	计数指标。
-zh	判据	vocab	判别方法 / 判断依据	标题里常显得抬高；不要反向改成「怎么判」。
-zh	范式	vocab	做法 / 模式	科学哲学语境里是术语。
-zh	语境	vocab	场合 / 上下文	语言学里是术语。
-zh	维度	vocab	方面	数学/张量语境里是术语。
-zh	层面	vocab	(删或说具体是哪一层)
-zh	承载	vocab	(视语境)	比「装」「放」好，不要反向改成单字动词。
-zh	赋予	vocab	给
-zh	彰显	puffery	表明 / 说明
-zh	助推	puffery	推动 / (删)
-zh	锚定	vocab	(视语境)	若指 anchor 机制是术语，不要改。
-en	Here'?s the thing	template	(直接说)
-en	The truth is	template	(cut)
-en	Let me be clear	template	(cut)
-en	It turns out	template	(cut)
-en	to be honest	editorial	(cut)
-en	Here'?s (the kicker|where it gets interesting)	template	(cut)
-en	At its core	template	(cut)
-en	At the end of the day	template	(cut)
-en	When it comes to	template	(cut, name the subject)
-en	In a world where	template	(cut)
-en	The reality is	template	(cut)
-en	It bears mentioning	editorial	(cut)
-en	(really|just|literally|genuinely|simply|actually|truly|fundamentally|inherently|inevitably|interestingly|importantly|crucially|remarkably|arguably)	vocab	(cut)	Adverb crutch. Judge per sentence; some are load-free.
-en	serves? as	vocab	is
-en	stands? as	vocab	is
-en	constitutes	vocab	is
-en	represents	vocab	is	Legitimate when something literally stands for another thing.
-en	features	vocab	has	Noun sense (a product feature) is fine.
-en	Full stop\.	template	(cut)
-en	Period\.	template	(cut)
-en	Let that sink in	template	(cut)
-en	Make no mistake	template	(cut)
-en	Here'?s why that matters	template	(cut)
-en	Let'?s (break this down|unpack|dive in)	template	(cut)
-en	Think of it (as|like)	template	(explain it directly)
-en	Imagine a world where	template	(cut)
-en	In this (section|article|post),? (we|I)	template	(cut)
-en	As we'?ll see	template	(cut)
-en	Let me walk you through	template	(cut)
-en	leverag(e|es|ed|ing)	vocab	use	Finance sense (leverage ratio) is fine.
-en	utiliz(e|es|ed|ing)	vocab	use
-en	streamlin(e|es|ed|ing)	vocab	simplify
-en	unpack(s|ed|ing)?	vocab	explain	Literal unpacking, or tuple unpacking, is fine.
-en	deep dive	vocab	analysis
-en	facilitat(e|es|ed|ing)	vocab	help / allow
-en	ecosystem	vocab	system / community	Biology term of art.
-en	profound	puffery	(cut)
-en	paramount	puffery	(cut)
-en	Consequently,	transition	So
-en	Thus,	transition	So
-en	Hence,	transition	So
-en	(Nonetheless|Nevertheless),	transition	Still / But
-en	cultivat(e|es|ed|ing)	vocab	build / encourage	Agriculture sense is fine.
-zh	(这|那)说明	template	(删，上一句已经说完)	段末收尾。ninehills。
-zh	到这里	template	(删)	段末收尾。
-zh	由此可见	template	(删)
-zh	通过以上分析	template	(删)
-zh	(这|那)本身就是	template	(删)
-zh	一句话(总结|概括|讲|落地)	template	(删标签，直接给结论)
-zh	简而言之	template	(删)
-zh	概括来说	template	(删)
-zh	总结一下	template	(删)
-zh	沉淀	jargon	积累 / 留下
-zh	对标	jargon	比照 / 对比
-zh	拉通	jargon	打通 / (说清楚接了什么)
-zh	协同	jargon	配合
-zh	联动	jargon	(说清楚谁跟着谁动)
-zh	洞察	jargon	看法 / 发现
-zh	心智	jargon	印象 / 认知	认知科学里是术语。
-zh	调性	jargon	风格
-zh	战役	jargon	(删，除非真是军事)
-zh	链路	jargon	路径 / 流程	网络/链路层是术语。
-zh	势能	jargon	(删，除非真是物理)
-zh	兜底	jargon	(说清楚谁在什么情况下承担)
-zh	触点	jargon	接触的地方	谨慎档：产品设计里有固定用法。
-zh	卡点	jargon	卡住的地方	谨慎档。
-zh	矩阵	jargon	(视语境)	谨慎档：数学矩阵是术语。
-zh	复盘	jargon	回顾	谨慎档。
-zh	提炼	jargon	归纳	谨慎档。
-zh	接住	physical	(说清楚做了什么)	翻译腔：物理动作用在抽象对象上。
-zh	缓存击穿	unsettled-term	(说明热点键失效后的并发回源)	广泛使用但定义也常被混同；面向圈外人时写出故障机制。
-zh	击穿	physical	(说清楚什么绕过了什么)	物理动作用在抽象对象上。
-zh	打穿	physical	(同上)
-zh	扛住	physical	承受 / 撑住
-zh	锋利	vocab	(删，除非真是刀)
-zh	真拆开看	template	(删)	讲解腔。
-zh	(这|那)背后是	template	(直接说是什么)
-zh	真正(关键的问题|重要的)是	template	(直接说)
-zh	你(要先|得先)明白	template	(删)	训人感。
-zh	先问问是不是	template	(删)
-zh	近年来	template	(删)	开篇套话。
-zh	越来越多的关注	template	(删)
-zh	非常	vocab	很 / (删)
-zh	极其	vocab	很 / (删)
-zh	据(业内人士|知情人士)	editorial	(说清楚是谁)	模糊归属。
-zh	有(评论|观点)认为	editorial	(说清楚是谁)
-zh	据不完全统计	editorial	(给口径)
-zh	归根结底	template	(删)	升华句信号。
-zh	说到底	template	(删)
-zh	这(其实)?(和|跟)[^，。]{2,12}(一样|类似)	shape	(直接给建议)	升华句：把工程观察上升成人生道理。
-zh	(跑出来|说|讲|有|总结出)(两|三|四|五|几)(件事|个点|点|条)[。：]	template	(删，直接说第一件)	枚举前的预告短句。正常人不先报数再枚举。
-zh	压掉	physical	(说清楚做了什么)	物理动词用在抽象对象上。
-zh	砍掉	physical	删掉 / 去掉	同上。
-zh	拉满	physical	(给程度)	同上。
-zh	(打爆|烧穿|拉爆)	physical	(说清楚结果)	同上。
-zh	\btell(?=[。！？；，,])	jargon	特征 / 信号	圈内黑话：写给圈外人时不要直接用工具内部术语。
-zh	\bslop\b	jargon	AI 味 / 套话	同上。除非读者已在这个语境里。
-zh	自扫	vocab	扫它自己 / 用它扫这份文档	自造的双字缩略词。nofluff：造词通常说明思考没完成。
-zh	说中	physical	判断正确 / 说对了	射击动词用在判断上。
-zh	(跑|扫|抓|压|砍|拉|打|接|扛|烧|啃|撕|掰|拧|堵|卡|踩|撑|顶|捞|碾|劈|磨|捏|揪|抠|扒|挖|撬|盘|捋|铺|摊|掀|戳|穿|兜)(掉|住|下|上|开|通|穿|爆|满|齐|平|一遍|出来)	physical	(说清楚做了什么)	一字物理动词＋补语。对象不在物理空间就是比喻，必须换成字面动作。
-zh	(跑|扫|抠|捋|盘)一(遍|下)	physical	运行一次 / 检查一遍	同上。
-zh	命中	physical	报出 / 匹配到	射击动词用在匹配结果上。
-zh	落地	physical	上线 / 做出来 / 交付	极常见，但仍是比喻。说清楚到底发生了什么。
-zh	收口	physical	收尾 / 结束	同上。
-zh	抓手	physical	办法 / 入手处	见 jargon 档。
-zh	打磨	physical	改进 / 修	同上。
-zh	盘活	physical	(说清楚做了什么)	同上。
-zh	撬动	physical	(说清楚用什么带动了什么)	同上。
-zh	埋点	physical	(视语境)	数据采集里是固定术语，不要改。
-zh	回归	borrowed	功能退化 / 实现错误 / 改好之后又坏了	regression 的直译。日常中文里这两个字是别的意思。给实词，别给一句描述。
-zh	收敛	borrowed	稳定下来 / 不再变	同类直译词。只有读者是数学/优化方向的才留。
-zh	泛化	borrowed	推广到别的情况	机器学习里是术语。
-zh	鲁棒	borrowed	不容易坏 / 抗得住	robust 的音译。音译词几乎总该换掉。
-zh	对标	borrowed	比照
-zh	复用	borrowed	重复使用 / 拿来再用	工程口头语，不是普通话。
-zh	实例	borrowed	例子 / 具体的一个	instance 的直译。面向对象语境里才是术语。
-zh	语义	borrowed	意思	语言学/编译器里是术语。
-zh	你	borrowed	(多数情况直接删)	中文可省主语。「你」密集出现多半是英文文档规范的 second person 直接搬过来（Mintlify 等模板就明写 use second person）。文档正文默认删；只在必须跟「别人的」对照时留。对话体、面向单个读者的回信不适用此条。
+> source: deslop | shuorenhua | humanizer-zh | natural-talk (first table it entered from)
+> Upstream sources of the words themselves: WP:AIVOCAB · Wikipedia:Signs of AI writing ·
+> Kobak et al. 2025 (Science Advances 11(27)) · Juzek & Ward 2025 · HN 48905248 ·
+> awesome-ai-research-writing · Chinese community lists (Linux.do / X / 即刻).
+lang	pattern	category	replacement	note	source
+en	delve	vocab	look at / examine	era: GPT-4. Dropped off sharply in 2025.	deslop
+en	delves? into	vocab	examines		deslop
+en	tapestry	puffery	(cut)	Literal textile use is fine.	deslop
+en	testament	puffery	(cut, state the fact)		deslop
+en	stands? as a testament	puffery	shows		deslop
+en	serves? as a reminder	puffery	(cut)		deslop
+en	underscore[sd]?	vocab	show / stress	Literal underline mark, or film scoring, is fine.	deslop
+en	showcas(e|es|ed|ing)	vocab	show	era: GPT-4o and later. Still elevated in 2026.	deslop
+en	pivotal	vocab	central / decisive		deslop
+en	meticulous(ly)?	vocab	careful(ly)		deslop
+en	intricate	vocab	detailed / complicated		deslop
+en	intricacies	vocab	details		deslop
+en	interplay	vocab	interaction		deslop
+en	landscape	vocab	field / market / situation	Actual scenery or a landscape orientation is fine.	deslop
+en	realm	vocab	field / area		deslop
+en	robust	vocab	(say what it withstands)	Statistics term of art: robust estimator.	deslop
+en	vibrant	puffery	(cut)		deslop
+en	boasts	puffery	has		deslop
+en	bolstered	vocab	strengthened / supported		deslop
+en	garner(ed|ing)?	vocab	get / receive		deslop
+en	foster(s|ed|ing)?	vocab	encourage / cause	Foster care, foster parent.	deslop
+en	enhanc(e|es|ed|ing)	vocab	improve / add to		deslop
+en	enduring	puffery	lasting / (cut)		deslop
+en	crucial	vocab	necessary / decisive	Kobak: one of the ten highest-impact excess words.	deslop
+en	valuable insights?	template	(say what was learned)		deslop
+en	align(s|ed)? with	vocab	matches / agrees with		deslop
+en	resonate(s|d)? with	vocab	(cut, or: appeals to)		deslop
+en	emphasi[sz](e|es|ed|ing)	vocab	stress / say	era: elevated in every era through 2026.	deslop
+en	highlight(s|ed|ing)	vocab	show / point out	Literal highlighting of text is fine.	deslop
+en	Additionally	transition	Also, / (cut)	Sentence-initial. Kobak's list.	deslop
+en	Moreover,	transition	(cut)		deslop
+en	Furthermore,	transition	(cut)		deslop
+en	Notably,	transition	(cut)		deslop
+en	comprehensive	puffery	complete / full		deslop
+en	holistic	jargon	(say what it covers)		deslop
+en	seamless(ly)?	puffery	(cut)		deslop
+en	myriad	vocab	many		deslop
+en	plethora	vocab	many / too many		deslop
+en	harness(ing)?	vocab	use	Test/agent harness is an established name; literal harness is also fine.	deslop
+en	unlock(s|ing)?	puffery	(cut, or: allow)		deslop
+en	elevat(e|es|ed|ing)	puffery	raise / improve		deslop
+en	embark(ing)? on	puffery	start		deslop
+en	journey	puffery	(cut)	A literal trip is fine.	deslop
+en	cornerstone	puffery	(cut, or: basis)		deslop
+en	beacon	puffery	(cut)		deslop
+en	paradigm	jargon	model / approach	Kuhn's paradigm shift, in context.	deslop
+en	synergy	jargon	(cut)		deslop
+en	ever-evolving	puffery	changing		deslop
+en	fast-paced	puffery	(cut)		deslop
+en	in today's [a-z-]+ (age|era|world|landscape)	template	(cut)		deslop
+en	navigat(e|es|ing) the (complexities|challenges|landscape)	puffery	deal with		deslop
+en	plays? an? (vital|crucial|key|significant|pivotal) role	puffery	(say what it does)		deslop
+en	leaves? a lasting (impact|impression)	puffery	(cut)		deslop
+en	setting the stage for	template	(cut)		deslop
+en	marks? a (shift|turning point)	template	(say what changed)		deslop
+en	key turning point	template	(cut)		deslop
+en	indelible mark	puffery	(cut)		deslop
+en	deeply rooted	puffery	(cut)		deslop
+en	nestled in the heart of	puffery	in		deslop
+en	rich (cultural )?(heritage|history|tradition)	puffery	(cut)		deslop
+en	groundbreaking	puffery	new / first		deslop
+en	renowned	puffery	well-known / (cut)		deslop
+en	diverse array	puffery	range		deslop
+en	it'?s (important|critical|crucial|worth) (to )?(note|noting|remember|consider)	editorial	(cut, state it)		deslop
+en	It is worth noting	editorial	(cut)		deslop
+en	In (summary|conclusion)	template	(cut)		deslop
+en	Overall,	template	(cut)		deslop
+en	Despite (its|these) (challenges|limitations)	template	(cut)		deslop
+en	Future (Outlook|Prospects|Directions)	template	(say what is next)		deslop
+en	Challenges and (Legacy|Opportunities)	template	(name them)		deslop
+en	Industry reports	editorial	(cite one)		deslop
+en	Experts (argue|say|believe)	editorial	(name the expert)		deslop
+en	Observers have (cited|noted)	editorial	(name them)		deslop
+en	Some critics argue	editorial	(name the critic)		deslop
+en	load-bearing	jargon	(say what it carries)	HN 48905248.	deslop
+en	key insight	jargon	(state the insight)	HN 48905248.	deslop
+en	synthesi[sz](e|es|ed|ing)	jargon	combine / summarize	HN 48905248. Chemistry sense is fine.	deslop
+en	(the )?honest (take|caveat|answer)	editorial	(cut, just say it)	HN 48905248.	deslop
+en	Good question	assistant	(cut)	HN 48905248.	deslop
+en	You'?re absolutely right	assistant	(cut)		deslop
+en	I hope this helps	assistant	(cut)		deslop
+en	Certainly!	assistant	(cut)		deslop
+en	Of course!	assistant	(cut)		deslop
+en	Would you like	assistant	(cut)		deslop
+en	let me know if	assistant	(cut)		deslop
+en	as of my last (knowledge )?(update|training)	hedge	(cut, or give the date)		deslop
+en	Up to my last training update	hedge	(cut)		deslop
+en	based on (the )?available (information|sources)	hedge	(cut, or name the source)		deslop
+en	not widely (available|documented|disclosed)	hedge	(say what you checked)		deslop
+en	as an? (AI|large) language model	assistant	(cut)		deslop
+en	not just [^,.]{2,40}, but( also)?	shape	(state Y only)	Negative parallelism. Counted indicator.	deslop
+en	(isn'?t|is not) (just )?[^,.]{2,40}, (it'?s|but)	shape	(state Y only)	Counted indicator.	deslop
+en	rather than merely	shape	(state it plainly)		deslop
+zh	赋能	jargon	(说清楚给了什么)		deslop
+zh	底层逻辑	jargon	原理 / 机制		deslop
+zh	认知升级	jargon	(删)		deslop
+zh	闭环	jargon	(说清楚哪一环接回哪一环)	控制论/工程语境里是术语。	deslop
+zh	长期主义	jargon	(删)		deslop
+zh	(关键)?抓手	jargon	办法 / 入手处		deslop
+zh	(作为|充当)[^，。]{0,24}(证明|体现|标志)	puffery	(直接说发生了什么)	象征意义框架；真实的职位或身份用法需人工保留。	deslop
+zh	不仅仅是[^，。]{2,20}，而(是)?	shape	(直接说后半句)	否定式排比。	deslop
+zh	(行业|多位|一些)?专家(认为|指出|表示)	editorial	(给出姓名、来源或删掉)	没有具体来源时是模糊归因。	deslop
+zh	观察者(认为|指出|表示)	editorial	(给出具体的人或删掉)	没有具体来源时是模糊归因。	deslop
+zh	尽管存在[^，。]{0,20}挑战	template	(说具体发生了什么)	套话式挑战段落。	deslop
+zh	未来(前景|展望|方向)	template	(说明下一步)	空泛的未来段落标题或结尾。	deslop
+zh	前景[^，。]{0,4}(光明|广阔|可期)	puffery	(给出计划或数字)	通用积极结论。	deslop
+zh	与[^，。]{1,15}保持一致	vocab	(说清楚哪两个东西相同)	可保留，但需要明确两者。	deslop
+zh	旨在	vocab	用来	空转的目的框架。	deslop
+zh	确保	vocab	(说清楚保证的条件)	只有说明保证条件时才有信息。	deslop
+zh	无缝	puffery	(说清楚省掉了哪一步)	流程或产品宣传词；技术术语需人工保留。	deslop
+zh	价值沉淀	jargon	(说清楚留下了什么)		deslop
+zh	赛道	jargon	方向 / 领域		deslop
+zh	护城河	jargon	(说清楚别人为什么追不上)		deslop
+zh	组合拳	jargon	(逐项列出)		deslop
+zh	打法	jargon	做法		deslop
+zh	颗粒度	jargon	粗细 / 精度		deslop
+zh	对齐	jargon	一致 / 统一	模型训练的 alignment 是术语。	deslop
+zh	深度链接	jargon	(视语境)	若指可点开的 deep link，是术语，不要改。	deslop
+zh	深耕	puffery	做了 N 年		deslop
+zh	聚焦	puffery	针对 / 只做		deslop
+zh	精准发力	puffery	(删)		deslop
+zh	全方位	puffery	(列出覆盖了什么)		deslop
+zh	多维度	puffery	(列出是哪几个)		deslop
+zh	系统性地	puffery	(删)		deslop
+zh	极大地	puffery	(给数字)		deslop
+zh	显著(提升|改善|增强)	puffery	(给数字)	统计显著性是术语。	deslop
+zh	助力	puffery	帮 / (删)		deslop
+zh	引领	puffery	(删)		deslop
+zh	重塑	puffery	改 / 换掉		deslop
+zh	释放(潜力|价值|活力)	puffery	(删)		deslop
+zh	激发活力	puffery	(删)		deslop
+zh	夯实	puffery	(删)		deslop
+zh	筑牢	puffery	(删)		deslop
+zh	打造	puffery	做 / 建		deslop
+zh	标志着	puffery	(说清楚变了什么)		deslop
+zh	奠定(了)?基础	puffery	(删)		deslop
+zh	关键转折点	puffery	(说清楚前后差别)		deslop
+zh	具有重要意义	puffery	(说清楚有什么用)		deslop
+zh	发挥(着)?(关键|重要)作用	puffery	(说清楚做了什么)		deslop
+zh	至关重要	puffery	(说清楚少了它会怎样)		deslop
+zh	不可或缺	puffery	(同上)		deslop
+zh	举足轻重	puffery	(删)		deslop
+zh	令人(叹为观止|瞩目|印象深刻)	puffery	(删)		deslop
+zh	叹为观止	puffery	(删)		deslop
+zh	熠熠生辉	puffery	(删)		deslop
+zh	浓墨重彩	puffery	(删)		deslop
+zh	波澜壮阔	puffery	(删)		deslop
+zh	(生动|完美|深刻)(诠释|揭示|体现)	puffery	说明 / 表明		deslop
+zh	淋漓尽致	puffery	(删)		deslop
+zh	里程碑	puffery	(说清楚跨过了什么)		deslop
+zh	新纪元	puffery	(删)		deslop
+zh	应运而生	puffery	(删)		deslop
+zh	蓬勃发展	puffery	(给数字)		deslop
+zh	方兴未艾	puffery	(删)		deslop
+zh	大有可为	puffery	(删)		deslop
+zh	在当今[^，。]{0,6}(社会|时代|背景下)	template	(删)		deslop
+zh	随着[^，。]{2,12}的(发展|普及|推进)	template	(删，直接说事)		deslop
+zh	值得注意的是	editorial	(删，直接说)		deslop
+zh	需要指出的是	editorial	(删)		deslop
+zh	不难看出	editorial	(删)		deslop
+zh	众所周知	editorial	(删)		deslop
+zh	综上所述	template	(删)		deslop
+zh	总而言之	template	(删)		deslop
+zh	总的来说	template	(删)		deslop
+zh	一言以蔽之	template	(删)		deslop
+zh	不仅如此	transition	(删)		deslop
+zh	与此同时	transition	同时 / (删)		deslop
+zh	事实上	transition	(删)		deslop
+zh	此外	transition	另外 / (删)		deslop
+zh	然而	transition	但 / (删)	连用超过两次才算。	deslop
+zh	希望(这)?(对你)?有(所)?帮助	assistant	(删)		deslop
+zh	你值得	assistant	(删)		deslop
+zh	作为一名	assistant	(删)		deslop
+zh	进行[一二三四五六七八九十]?次?[^，。]{0,4}(处理|优化|分析|梳理)	vocab	(直接用那个动词)	空转词。	deslop
+zh	通过[^，。]{2,10}的方式	vocab	(直接说怎么做)	空转词。	deslop
+zh	不是[^，。]{2,20}，(而)?是	shape	(只说后半句)	对偶反转。计数指标。	deslop
+zh	不(只|仅)(是)?[^，。]{2,20}，(更|还)(是)?	shape	(只说后半句)	计数指标。	deslop
+zh	你以为[^，。]{2,20}，(其实|实际上)	shape	(直接说结论)		deslop
+zh	与其说[^，。]{2,20}，不如说	shape	(直接说结论)		deslop
+zh	[^，。]{2,20}的本质(是|在于)	shape	(直接说是什么)		deslop
+zh	很多人(以为|觉得|认为)	shape	(删，别替读者设定)		deslop
+zh	问题不在[^，。]{1,10}，而在	shape	(只说后半句)		deslop
+zh	——	shape	(改逗号、冒号或句号)	计数指标。	deslop
+zh	判据	vocab	判别方法 / 判断依据	标题里常显得抬高；不要反向改成「怎么判」。	deslop
+zh	范式	vocab	做法 / 模式	科学哲学语境里是术语。	deslop
+zh	语境	vocab	场合 / 上下文	语言学里是术语。	deslop
+zh	维度	vocab	方面	数学/张量语境里是术语。	deslop
+zh	层面	vocab	(删或说具体是哪一层)		deslop
+zh	承载	vocab	(视语境)	比「装」「放」好，不要反向改成单字动词。	deslop
+zh	赋予	vocab	给		deslop
+zh	彰显	puffery	表明 / 说明		deslop
+zh	助推	puffery	推动 / (删)		deslop
+zh	锚定	vocab	(视语境)	若指 anchor 机制是术语，不要改。	deslop
+en	Here'?s the thing	template	(直接说)		deslop
+en	The truth is	template	(cut)		deslop
+en	Let me be clear	template	(cut)		deslop
+en	It turns out	template	(cut)		deslop
+en	to be honest	editorial	(cut)		deslop
+en	Here'?s (the kicker|where it gets interesting)	template	(cut)		deslop
+en	At its core	template	(cut)		deslop
+en	At the end of the day	template	(cut)		deslop
+en	When it comes to	template	(cut, name the subject)		deslop
+en	In a world where	template	(cut)		deslop
+en	The reality is	template	(cut)		deslop
+en	It bears mentioning	editorial	(cut)		deslop
+en	(really|just|literally|genuinely|simply|actually|truly|fundamentally|inherently|inevitably|interestingly|importantly|crucially|remarkably|arguably)	vocab	(cut)	Adverb crutch. Judge per sentence; some are load-free.	deslop
+en	serves? as	vocab	is		deslop
+en	stands? as	vocab	is		deslop
+en	constitutes	vocab	is		deslop
+en	represents	vocab	is	Legitimate when something literally stands for another thing.	deslop
+en	features	vocab	has	Noun sense (a product feature) is fine.	deslop
+en	Full stop\.	template	(cut)		deslop
+en	Period\.	template	(cut)		deslop
+en	Let that sink in	template	(cut)		deslop
+en	Make no mistake	template	(cut)		deslop
+en	Here'?s why that matters	template	(cut)		deslop
+en	Let'?s (break this down|unpack|dive in)	template	(cut)		deslop
+en	Think of it (as|like)	template	(explain it directly)		deslop
+en	Imagine a world where	template	(cut)		deslop
+en	In this (section|article|post),? (we|I)	template	(cut)		deslop
+en	As we'?ll see	template	(cut)		deslop
+en	Let me walk you through	template	(cut)		deslop
+en	leverag(e|es|ed|ing)	vocab	use	Finance sense (leverage ratio) is fine.	deslop
+en	utiliz(e|es|ed|ing)	vocab	use		deslop
+en	streamlin(e|es|ed|ing)	vocab	simplify		deslop
+en	unpack(s|ed|ing)?	vocab	explain	Literal unpacking, or tuple unpacking, is fine.	deslop
+en	deep dive	vocab	analysis		deslop
+en	facilitat(e|es|ed|ing)	vocab	help / allow		deslop
+en	ecosystem	vocab	system / community	Biology term of art.	deslop
+en	profound	puffery	(cut)		deslop
+en	paramount	puffery	(cut)		deslop
+en	Consequently,	transition	So		deslop
+en	Thus,	transition	So		deslop
+en	Hence,	transition	So		deslop
+en	(Nonetheless|Nevertheless),	transition	Still / But		deslop
+en	cultivat(e|es|ed|ing)	vocab	build / encourage	Agriculture sense is fine.	deslop
+zh	(这|那)说明	template	(删，上一句已经说完)	段末收尾。ninehills。	deslop
+zh	到这里	template	(删)	段末收尾。	deslop
+zh	由此可见	template	(删)		deslop
+zh	通过以上分析	template	(删)		deslop
+zh	(这|那)本身就是	template	(删)		deslop
+zh	一句话(总结|概括|讲|落地)	template	(删标签，直接给结论)		deslop
+zh	简而言之	template	(删)		deslop
+zh	概括来说	template	(删)		deslop
+zh	总结一下	template	(删)		deslop
+zh	沉淀	jargon	积累 / 留下		deslop
+zh	对标	jargon	比照 / 对比		deslop
+zh	拉通	jargon	打通 / (说清楚接了什么)		deslop
+zh	协同	jargon	配合		deslop
+zh	联动	jargon	(说清楚谁跟着谁动)		deslop
+zh	洞察	jargon	看法 / 发现		deslop
+zh	心智	jargon	印象 / 认知	认知科学里是术语。	deslop
+zh	调性	jargon	风格		deslop
+zh	战役	jargon	(删，除非真是军事)		deslop
+zh	链路	jargon	路径 / 流程	网络/链路层是术语。	deslop
+zh	势能	jargon	(删，除非真是物理)		deslop
+zh	兜底	jargon	(说清楚谁在什么情况下承担)		deslop
+zh	触点	jargon	接触的地方	谨慎档：产品设计里有固定用法。	deslop
+zh	卡点	jargon	卡住的地方	谨慎档。	deslop
+zh	矩阵	jargon	(视语境)	谨慎档：数学矩阵是术语。	deslop
+zh	复盘	jargon	回顾	谨慎档。	deslop
+zh	提炼	jargon	归纳	谨慎档。	deslop
+zh	接住	physical	(说清楚做了什么)	翻译腔：物理动作用在抽象对象上。	deslop
+zh	缓存击穿	unsettled-term	(说明热点键失效后的并发回源)	广泛使用但定义也常被混同；面向圈外人时写出故障机制。	deslop
+zh	击穿	physical	(说清楚什么绕过了什么)	物理动作用在抽象对象上。	deslop
+zh	打穿	physical	(同上)		deslop
+zh	扛住	physical	承受 / 撑住		deslop
+zh	锋利	vocab	(删，除非真是刀)		deslop
+zh	真拆开看	template	(删)	讲解腔。	deslop
+zh	(这|那)背后是	template	(直接说是什么)		deslop
+zh	真正(关键的问题|重要的)是	template	(直接说)		deslop
+zh	你(要先|得先)明白	template	(删)	训人感。	deslop
+zh	先问问是不是	template	(删)		deslop
+zh	近年来	template	(删)	开篇套话。	deslop
+zh	越来越多的关注	template	(删)		deslop
+zh	非常	vocab	很 / (删)		deslop
+zh	极其	vocab	很 / (删)		deslop
+zh	据(业内人士|知情人士)	editorial	(说清楚是谁)	模糊归属。	deslop
+zh	有(评论|观点)认为	editorial	(说清楚是谁)		deslop
+zh	据不完全统计	editorial	(给口径)		deslop
+zh	归根结底	template	(删)	升华句信号。	deslop
+zh	说到底	template	(删)		deslop
+zh	这(其实)?(和|跟)[^，。]{2,12}(一样|类似)	shape	(直接给建议)	升华句：把工程观察上升成人生道理。	deslop
+zh	(跑出来|说|讲|有|总结出)(两|三|四|五|几)(件事|个点|点|条)[。：]	template	(删，直接说第一件)	枚举前的预告短句。正常人不先报数再枚举。	deslop
+zh	压掉	physical	(说清楚做了什么)	物理动词用在抽象对象上。	deslop
+zh	砍掉	physical	删掉 / 去掉	同上。	deslop
+zh	拉满	physical	(给程度)	同上。	deslop
+zh	(打爆|烧穿|拉爆)	physical	(说清楚结果)	同上。	deslop
+zh	\btell(?=[。！？；，,])	jargon	特征 / 信号	圈内黑话：写给圈外人时不要直接用工具内部术语。	deslop
+zh	\bslop\b	jargon	AI 味 / 套话	同上。除非读者已在这个语境里。	deslop
+zh	自扫	vocab	扫它自己 / 用它扫这份文档	自造的双字缩略词。nofluff：造词通常说明思考没完成。	deslop
+zh	说中	physical	判断正确 / 说对了	射击动词用在判断上。	deslop
+zh	(跑|扫|抓|压|砍|拉|打|接|扛|烧|啃|撕|掰|拧|堵|卡|踩|撑|顶|捞|碾|劈|磨|捏|揪|抠|扒|挖|撬|盘|捋|铺|摊|掀|戳|穿|兜)(掉|住|下|上|开|通|穿|爆|满|齐|平|一遍|出来)	physical	(说清楚做了什么)	一字物理动词＋补语。对象不在物理空间就是比喻，必须换成字面动作。	deslop
+zh	(跑|扫|抠|捋|盘)一(遍|下)	physical	运行一次 / 检查一遍	同上。	deslop
+zh	命中	physical	报出 / 匹配到	射击动词用在匹配结果上。	deslop
+zh	落地	physical	上线 / 做出来 / 交付	极常见，但仍是比喻。说清楚到底发生了什么。	deslop
+zh	收口	physical	收尾 / 结束	同上。	deslop
+zh	抓手	physical	办法 / 入手处	见 jargon 档。	deslop
+zh	打磨	physical	改进 / 修	同上。	deslop
+zh	盘活	physical	(说清楚做了什么)	同上。	deslop
+zh	撬动	physical	(说清楚用什么带动了什么)	同上。	deslop
+zh	埋点	physical	(视语境)	数据采集里是固定术语，不要改。	deslop
+zh	回归	borrowed	功能退化 / 实现错误 / 改好之后又坏了	regression 的直译。日常中文里这两个字是别的意思。给实词，别给一句描述。	deslop
+zh	收敛	borrowed	稳定下来 / 不再变	同类直译词。只有读者是数学/优化方向的才留。	deslop
+zh	泛化	borrowed	推广到别的情况	机器学习里是术语。	deslop
+zh	鲁棒	borrowed	不容易坏 / 抗得住	robust 的音译。音译词几乎总该换掉。	deslop
+zh	对标	borrowed	比照		deslop
+zh	复用	borrowed	重复使用 / 拿来再用	工程口头语，不是普通话。	deslop
+zh	实例	borrowed	例子 / 具体的一个	instance 的直译。面向对象语境里才是术语。	deslop
+zh	语义	borrowed	意思	语言学/编译器里是术语。	deslop
+zh	你	borrowed	(多数情况直接删)	中文可省主语。「你」密集出现多半是英文文档规范的 second person 直接搬过来（Mintlify 等模板就明写 use second person）。文档正文默认删；只在必须跟「别人的」对照时留。对话体、面向单个读者的回信不适用此条。	deslop
+zh	值得一提的是	opener	删掉		shuorenhua:Tier 1
+zh	不可否认的是	opener	删掉		shuorenhua:Tier 1
+zh	不难发现	opener	删掉		shuorenhua:Tier 1
+zh	不容忽视	opener	删掉		shuorenhua:Tier 1
+zh	让我们一起来看看	opener	删掉		shuorenhua:Tier 1
+zh	在当今	opener	删掉或给具体时间	时代/社会/环境下	shuorenhua:Tier 1
+zh	随着.{0,12}的不断发展	opener	删掉或说清楚发展了什么		shuorenhua:Tier 1
+zh	在这个.{0,12}的时代	opener	删掉		shuorenhua:Tier 1
+zh	不得不说	opener	删掉，直接说		shuorenhua:Tier 1
+zh	诚然	opener	删掉		shuorenhua:Tier 1
+zh	深入探讨	opener	删掉，直接讨论		shuorenhua:Tier 1
+zh	具体来说	opener	删掉或简化		shuorenhua:Tier 1
+zh	更重要的是	opener	删掉		shuorenhua:Tier 1
+zh	深刻的	puffery	说清楚具体影响了什么	影响/意义/变革	shuorenhua:Tier 1
+zh	深远的	puffery	同上	影响/意义	shuorenhua:Tier 1
+zh	不可磨灭的	puffery	说清楚具体做了什么	贡献/印记	shuorenhua:Tier 1
+zh	毋庸置疑	puffery	删掉		shuorenhua:Tier 1
+zh	令人惊叹	puffery	给具体数据		shuorenhua:Tier 1
+zh	意义非凡	puffery	说清楚什么意义		shuorenhua:Tier 1
+zh	前所未有	puffery	给对比数据		shuorenhua:Tier 1
+zh	史无前例	puffery	同上		shuorenhua:Tier 1
+zh	毫不夸张地说	puffery	删掉		shuorenhua:Tier 1
+zh	(?:值得深思|令人深思|引发思考|发人深省)	puffery	删掉，内容本身说话		shuorenhua:Tier 1
+zh	不禁让人	puffery	删掉	想到/感叹	shuorenhua:Tier 1
+zh	颠覆性	puffery	说清楚改变了什么	的变革/创新	shuorenhua:Tier 1
+zh	痛点	jargon	问题		shuorenhua:Tier 1
+zh	场景化	jargon	按场景		shuorenhua:Tier 1
+zh	降本增效	jargon	省钱提速		shuorenhua:Tier 1
+zh	顶层设计	jargon	整体规划		shuorenhua:Tier 1
+zh	体感	jargon	感觉、体验		shuorenhua:Tier 1
+zh	触达	jargon	到达、联系到		shuorenhua:Tier 1
+zh	透传	jargon	传递		shuorenhua:Tier 1
+zh	砍一刀	debug	删掉、去掉		shuorenhua:Tier 1
+zh	收窄	debug	缩小范围		shuorenhua:Tier 1
+zh	避免漂移	debug	别跑偏		shuorenhua:Tier 1
+zh	根因	debug	原因、根本原因		shuorenhua:Tier 1
+zh	有点满	debug	内容太多了		shuorenhua:Tier 1
+zh	(?:更稳|最稳|不稳)	debug	更可靠 / 最可靠 / 不可靠	如果上下文已有指标、技术对象或稳定性结果，不要机械改	shuorenhua:Tier 1
+zh	夹具	debug	固定方案、测试数据（说清楚具体指什么）	fixture	shuorenhua:Tier 1
+zh	拆开看	debug	分开说、逐个看		shuorenhua:Tier 1
+zh	偏硬	debug	太死板		shuorenhua:Tier 1
+zh	落盘	debug	保存、写入、记下来	如果宾语是 `代码 / 部署 / 配置 / 文档 / 设计方案` 等具体技术对象，且能复述"写到哪里、做了什么"，先不要机械改 · 用于抽象动作 / 空对象 / 泛化表演时	shuorenhua:Tier 1
+zh	已经落下去	debug	已经做了、已经生效	如果上下文已经说清"落到哪个文件 / 哪一版 / 哪个分支"，可以保留 · 不带具体技术对象时	shuorenhua:Tier 1
+zh	对上了	debug	吻合、一致		shuorenhua:Tier 1
+zh	坐实了	debug	确认了、证实了		shuorenhua:Tier 1
+zh	做一个更硬的排除法	debug	用排除法再查一遍		shuorenhua:Tier 1
+zh	抓到的现象	debug	发现的问题		shuorenhua:Tier 1
+zh	压实	debug	落实、确认好		shuorenhua:Tier 1
+zh	收束	debug	收尾、结束		shuorenhua:Tier 1
+zh	锁住	debug	固定好、确认		shuorenhua:Tier 1
+zh	(?:更硬|硬写)	debug	更死板 / 直接写死（说清楚为什么）		shuorenhua:Tier 1
+zh	口径	debug	说法、措辞		shuorenhua:Tier 1
+zh	这轮	debug	这次		shuorenhua:Tier 1
+zh	能吃	debug	能接受、能处理		shuorenhua:Tier 1
+zh	说穿	debug	说白了（删掉，直接说）		shuorenhua:Tier 1
+zh	(?:不躲|不藏|不绕|不逃)	debug	删掉，直接说就行		shuorenhua:Tier 1
+zh	说人话就是	debug	删掉，直接说		shuorenhua:Tier 1
+zh	(?:我不猜|不靠猜|不瞎猜)	debug	删掉，说清楚你掌握了什么信息		shuorenhua:Tier 1
+zh	补一刀	violence	再加一点、补充		shuorenhua:Tier 1
+zh	(?:更狠|狠一点)	violence	更彻底、更严格		shuorenhua:Tier 1
+zh	狠狠干	violence	删掉（AI 硬凹干劲）		shuorenhua:Tier 1
+zh	打坏	violence	破坏、损坏		shuorenhua:Tier 1
+zh	拍脑门	violence	随便决定（说清楚是谁在随便决定）		shuorenhua:Tier 1
+zh	拍板	violence	决定、定了（说清楚谁定的）		shuorenhua:Tier 1
+zh	保姆级	puffery	删掉或换成"详细"	教程/攻略	shuorenhua:Tier 1
+zh	硬核	puffery	删掉	干货/分析	shuorenhua:Tier 1
+zh	干货	puffery	删掉（每篇都说干货等于没说）		shuorenhua:Tier 1
+zh	拆解	puffery	分析、讲解		shuorenhua:Tier 1
+zh	梳理	puffery	整理		shuorenhua:Tier 1
+zh	盘点	puffery	列举、介绍		shuorenhua:Tier 1
+zh	(?:避坑|踩坑|不踩坑)	puffery	注意、别犯的错		shuorenhua:Tier 1
+zh	一文读懂	puffery	删掉		shuorenhua:Tier 1
+zh	万字长文	puffery	删掉		shuorenhua:Tier 1
+zh	建议收藏	puffery	删掉		shuorenhua:Tier 1
+zh	强烈推荐	puffery	删掉或说清楚为什么推荐		shuorenhua:Tier 1
+zh	划重点	puffery	删掉		shuorenhua:Tier 1
+zh	绝绝子	puffery	删掉（AI 硬凹网感）		shuorenhua:Tier 1
+zh	谁懂啊	puffery	删掉		shuorenhua:Tier 1
+zh	真的会谢	puffery	删掉		shuorenhua:Tier 1
+zh	姐妹们	puffery	删掉（AI 硬凹人设）		shuorenhua:Tier 1
+zh	狠狠	puffery	删掉	XX 了	shuorenhua:Tier 1
+zh	真正的\ X\ 不是.{0,12}而是.{0,12}	shape	多数直接说真正成立的判断		shuorenhua:Tier 1
+zh	这不仅仅是.{0,12}更是.{0,12}	shape	多数删掉拔高层，保留事实判断		shuorenhua:Tier 1
+zh	最后比拼的是.{0,12}	shape	直接说真正决定因素是什么		shuorenhua:Tier 1
+zh	总体来看	transition	同上		shuorenhua:Tier 1
+zh	换句话说	transition	删掉（说一遍就够了）		shuorenhua:Tier 1
+zh	不言而喻	transition	删掉		shuorenhua:Tier 1
+zh	可以说	transition	删掉（直接说就行）		shuorenhua:Tier 1
+zh	某种程度上	transition	删掉或说清楚什么程度		shuorenhua:Tier 1
+zh	从某种意义上说	transition	同上		shuorenhua:Tier 1
+zh	在此过程中	transition	删掉		shuorenhua:Tier 1
+zh	在这个过程中	transition	删掉		shuorenhua:Tier 1
+zh	本质上	transition	删掉或说清楚		shuorenhua:Tier 1
+zh	核心在于	transition	直接说		shuorenhua:Tier 1
+zh	关键在于	transition	直接说		shuorenhua:Tier 1
+zh	由此可以看出	transition	删掉		shuorenhua:Tier 1
+zh	与其.{0,12}不如积极拥抱.{0,12}	closer	删掉，不做鸡汤		shuorenhua:Tier 1
+zh	只有.{0,12}才能.{0,12}	closer	看上下文，AI 喜欢用这个做总结		shuorenhua:Tier 1
+zh	让我们拭目以待	closer	删掉		shuorenhua:Tier 1
+zh	未来可期	closer	删掉		shuorenhua:Tier 1
+zh	研究表明.{0,12}	editorial	给出具体研究名称或删掉		shuorenhua:Tier 1
+zh	数据显示.{0,12}	editorial	给出具体数据来源或直接给数据		shuorenhua:Tier 1
+zh	业内人士认为.{0,12}	editorial	说清楚谁		shuorenhua:Tier 1
+zh	据报道.{0,12}	editorial	给出具体媒体和时间		shuorenhua:Tier 1
+zh	好问题！	assistant	删掉		shuorenhua:Tier 1
+zh	这是一个很好的观点	assistant	删掉		shuorenhua:Tier 1
+zh	好，/\ 行，	assistant	删掉，直接响应	作为回复开场	shuorenhua:Tier 1
+zh	结论先说清楚	assistant	删掉，直接给结论		shuorenhua:Tier 1
+zh	简单的说	assistant	删掉		shuorenhua:Tier 1
+zh	不是.{0,12}而是.{0,12}	assistant	看是否必要，多数可删掉前半句		shuorenhua:Tier 1
+zh	我先.{0,12}再.{0,12}	assistant	删掉，直接说要做什么		shuorenhua:Tier 1
+zh	我已确认	assistant	删掉（无需宣告）		shuorenhua:Tier 1
+zh	我立马开始	assistant	删掉，直接做		shuorenhua:Tier 1
+zh	要不要我.{0,12}	assistant	删掉，等用户提需求		shuorenhua:Tier 1
+zh	顺手	assistant	删掉（暗示举手之劳来推销额外操作）		shuorenhua:Tier 1
+zh	我先.{0,12}	assistant	删掉，直接做		shuorenhua:Tier 1
+zh	我就在这里	empathy	多数删掉，直接回应		shuorenhua:Tier 1
+zh	不用向我解释	empathy	删掉，除非上下文确实在安抚对方		shuorenhua:Tier 1
+zh	这次我懂了，我真的懂了	empathy	删掉，别演“终于完全理解你”		shuorenhua:Tier 1
+zh	(?:宾语是\ `流量|请求|峰值)	empathy	(cut)		shuorenhua:Tier 1
+zh	我必须很认真地说一句	stance	删掉，直接说		shuorenhua:Tier 1
+zh	我要讲一个更深一点的东西	stance	删掉，直接说		shuorenhua:Tier 1
+zh	(?:绝对是顶刊作者的素养|顶级研究者才具备的批判性思维)	stance	删掉身份认证式夸奖，改成对内容的具体评价		shuorenhua:Tier 1
+zh	不仅.{0,12}而且.{0,12}	transition	(cut)		shuorenhua:Tier 2
+zh	一方面.{0,12}另一方面.{0,12}	transition	(cut)		shuorenhua:Tier 2
+zh	尽管如此	transition	(cut)		shuorenhua:Tier 2
+zh	实际上	transition	(cut)		shuorenhua:Tier 2
+zh	在此基础上	transition	(cut)		shuorenhua:Tier 2
+zh	进一步地	transition	(cut)		shuorenhua:Tier 2
+zh	恰恰	transition	(cut)		shuorenhua:Tier 2
+zh	正是	transition	(cut)		shuorenhua:Tier 2
+zh	无疑	transition	(cut)		shuorenhua:Tier 2
+zh	不外乎	transition	(cut)		shuorenhua:Tier 2
+zh	显著	vocab	(cut)	提升/改善/增长	shuorenhua:Tier 2
+zh	有效	vocab	(cut)	解决/推动/促进	shuorenhua:Tier 2
+zh	全面	vocab	(cut)	覆盖/推进/升级	shuorenhua:Tier 2
+zh	积极	vocab	(cut)	推动/探索/参与	shuorenhua:Tier 2
+zh	持续	vocab	(cut)	优化/推进/深化	shuorenhua:Tier 2
+zh	进一步	vocab	(cut)	加强/完善/深化	shuorenhua:Tier 2
+zh	充分	vocab	(cut)	发挥/利用/体现	shuorenhua:Tier 2
+zh	切实	vocab	(cut)	保障/推进/落实	shuorenhua:Tier 2
+zh	可谓	vocab	(cut)		shuorenhua:Tier 2
+zh	堪称	vocab	(cut)		shuorenhua:Tier 2
+zh	追根溯源	vocab	(cut)		shuorenhua:Tier 2
+zh	(?:安放|抵达|微光|褶皱|丰盈|滚烫|轻盈)	puffery	(cut)		shuorenhua:Tier 2
+en	Can\ we\ talk\ about	opener	(cut)		shuorenhua:Tier 1
+en	Let's\ be\ honest	opener	(cut)		shuorenhua:Tier 1
+en	I'll\ be\ frank	opener	(cut)		shuorenhua:Tier 1
+en	In\ today's\ world	opener	(cut)		shuorenhua:Tier 1
+en	What\ this\ means\ is	opener	(cut)		shuorenhua:Tier 1
+en	Full\ stop\.	closer	(cut)		shuorenhua:Tier 1
+en	Mark\ my\ words\.	closer	(cut)		shuorenhua:Tier 1
+en	I\ promise\.	closer	(cut)		shuorenhua:Tier 1
+en	Read\ that\ again\.	closer	(cut)		shuorenhua:Tier 1
+en	Period\.	closer	(cut)		shuorenhua:Tier 1
+en	navigate	jargon	handle, deal with		shuorenhua:Tier 1
+en	lean\ into	jargon	accept, try		shuorenhua:Tier 1
+en	game\-changer	jargon	important change		shuorenhua:Tier 1
+en	circle\ back	jargon	revisit		shuorenhua:Tier 1
+en	empower	jargon	let, enable		shuorenhua:Tier 1
+en	actionable	jargon	practical		shuorenhua:Tier 1
+en	learnings	jargon	lessons		shuorenhua:Tier 1
+en	thought\ leader	jargon	expert		shuorenhua:Tier 1
+en	best\ practices	jargon	good practices		shuorenhua:Tier 1
+en	commence	vocab	start		shuorenhua:Tier 1
+en	endeavor	vocab	try		shuorenhua:Tier 1
+en	ascertain	vocab	find out		shuorenhua:Tier 1
+en	elucidate	vocab	explain		shuorenhua:Tier 1
+en	ameliorate	vocab	improve		shuorenhua:Tier 1
+en	galvanize	vocab	motivate		shuorenhua:Tier 1
+en	bolster	vocab	support		shuorenhua:Tier 1
+en	spearhead	vocab	lead		shuorenhua:Tier 1
+en	catalyze	vocab	trigger		shuorenhua:Tier 1
+en	reimagine	vocab	rethink		shuorenhua:Tier 1
+en	cutting\-edge	puffery	new, latest		shuorenhua:Tier 1
+en	watershed\ moment	puffery	turning point		shuorenhua:Tier 1
+en	functions\ as\ a	shape	is a		shuorenhua:Tier 1
+en	presents\ a	shape	has a		shuorenhua:Tier 1
+en	In\ order\ to	template	To		shuorenhua:Tier 1
+en	Due\ to\ the\ fact\ that	template	Because		shuorenhua:Tier 1
+en	At\ this\ point\ in\ time	template	Now		shuorenhua:Tier 1
+en	It\ goes\ without\ saying	template	(delete)		shuorenhua:Tier 1
+en	Great\ question!	assistant	(cut)		shuorenhua:Tier 1
+en	Certainly!	assistant	(cut)		shuorenhua:Tier 1
+en	Of\ course!	assistant	(cut)		shuorenhua:Tier 1
+en	Here\ is\ a/an	assistant	(cut)		shuorenhua:Tier 1
+zh	见证了	puffery	(删掉)		humanizer-zh
+zh	是.{0,8}的(体现|证明|缩影)	puffery	(直接陈述事实)		humanizer-zh
+zh	反映了更广泛的	puffery	(删掉)		humanizer-zh
+zh	象征着	puffery	(删掉，除非真在讲象征)	讨论符号学、纹章、宗教象征时是本义	humanizer-zh
+zh	奠定(了)?.{0,6}基础	puffery	(说清楚后来发生了什么)		humanizer-zh
+zh	(关键|重要)(的)?转折点	puffery	(给日期和事件)		humanizer-zh
+zh	不断演变的(格局|生态|图景)	puffery	(删掉)		humanizer-zh
+zh	深深植根于	puffery	(说清楚来源)		humanizer-zh
+zh	独立(媒体)?报道	puffery	(给具体出处)		humanizer-zh
+zh	活跃的社交媒体	puffery	(删掉，或给数据)		humanizer-zh
+zh	坐落(于|在)	puffery	位于 · 在	写地理位置时用「在」	humanizer-zh
+zh	必(游|读|看)之(地|书)	puffery	(删掉)		humanizer-zh
+zh	致力于	puffery	(说清楚做了什么)	机构章程、正式宗旨里是固定表述	humanizer-zh
+zh	自然(之)?美(景|丽)	puffery	(说清楚是什么景观)		humanizer-zh
+zh	开创性的	puffery	新的 · (给对比)	字面「开创」某个具体领域时放行	humanizer-zh
+zh	尽管(存在|面临)(这些|若干|一些)挑战	template	(删掉整句，或说清楚挑战是什么)		humanizer-zh
+zh	挑战与(未来)?展望	template	(改成具体计划或删掉)	作为真实的章节标题且下面确有具体内容时放行	humanizer-zh
+zh	未来(可期|展望|前景(依然)?光明)	closer	(改成具体计划、日期、数字)		humanizer-zh
+zh	相互作用	vocab	互相影响		humanizer-zh
+zh	织锦	puffery	(删掉)	字面纺织品放行	humanizer-zh
+zh	截至我(最后)?的(训练|知识)	assistant	(删掉整句)	用户直接问知识截止时间时如实作答	natural-talk
+zh	根据我(最后)?的训练(更新|数据)?	assistant	(删掉整句)		natural-talk
+zh	虽然具体细节(有限|稀缺|没有广泛记录)	hedge	(去查，或直接说不知道)		humanizer-zh
+zh	基于(现有|可用)信息	hedge	(说清楚信息是什么)		humanizer-zh
+zh	作为(一个)?(AI|人工智能|语言模型)	assistant	(删掉整句)	用户直接问身份时如实、简短作答	natural-talk
+zh	拆一拆	assistant	(删掉，直接说)		natural-talk
+zh	盘一盘	assistant	(删掉，直接说)		natural-talk
+zh	敲黑板	assistant	(删掉，直接说)		natural-talk
+zh	捋一捋	assistant	(删掉，直接说)	deslop 把「捋一遍」列为物理动作词，同族	natural-talk
+zh	下面我们	assistant	(删掉，直接说)		natural-talk
+zh	数据告诉我们	shape	数据显示 · (给数字)		natural-talk
+zh	问题变成了	shape	(直接说问题是什么)		natural-talk
+zh	这个角度很新颖	stance	(删掉，只回应内容)		natural-talk
+en	marks? a (turning point|shift|milestone)	puffery	(give the date and the event)		humanizer-zh
+en	bears? witness to	puffery	(cut)		humanizer-zh
+en	reflect(s|ing)? (a )?broader	puffery	(cut)		humanizer-zh
+en	laid? the (ground|found)work for	puffery	(say what followed)		humanizer-zh
+en	nestled (in|within|among)	puffery	in	Literal nesting (nested loops, nesting birds) is fine.	humanizer-zh
+en	must-(visit|read|see)	puffery	(cut)		humanizer-zh
+en	breathtaking	puffery	(give the number)		humanizer-zh
+en	committed to	puffery	(say what they did)	A commitment with a date and an amount is a fact.	humanizer-zh
+en	despite (these|some|several) challenges	template	(cut, or name the challenge)		humanizer-zh
+en	challenges and (future )?(prospects|outlook)	template	(replace with a plan, or cut)	A real section with real content under it is fine.	humanizer-zh
+en	the future (looks|is) bright	closer	(give the plan, date, number)		humanizer-zh
+en	exciting times ahead	closer	(cut)		humanizer-zh
+en	as of my (last )?(training|knowledge)	assistant	(cut the sentence)	Answer plainly if the user asked about the cutoff.	natural-talk
+en	while (specific|exact) details (are|remain) (limited|scarce)	hedge	(go find out, or say you don't know)		humanizer-zh
+en	based on (the )?available information	hedge	(say what the information is)		humanizer-zh
+en	as an (AI|artificial intelligence|assistant)	assistant	(cut the sentence)	Answer plainly if the user asked who you are.	natural-talk
+en	without further ado	assistant	(cut)		natural-talk
+en	here'?s what you need to know	assistant	(cut)		natural-talk
+en	you'?re absolutely right	assistant	(cut)		natural-talk
+en	great question	assistant	(cut)		natural-talk
+en	I hope (this|that) helps	assistant	(cut)		natural-talk
+en	the data tells us	shape	the data shows · (give the number)		natural-talk
+en	from [a-z ]{3,20} to [a-z ]{3,20}, and (from|everything)	shape	(name the actual span)	A real range with two endpoints on one scale is fine.	humanizer-zh

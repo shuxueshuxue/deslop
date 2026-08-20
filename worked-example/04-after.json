@@ -1,0 +1,113 @@
+{
+ "lang": "en",
+ "scene": "academic",
+ "units": 3385,
+ "scale": 16,
+ "gated": {
+  "staged reversal": 1,
+  "em dash": 0,
+  "assistant residue": 0,
+  "knowledge-cutoff disclaimer": 0,
+  "emoji": 0,
+  "inline-title list item": 1,
+  "-ing pseudo-analysis tail": 0,
+  "copula dodge": 0,
+  "false range": 0
+ },
+ "capped": {
+  "signpost": [
+   0,
+   32
+  ],
+  "editorial stance": [
+   2,
+   16
+  ],
+  "lecture tone": [
+   0,
+   1
+  ],
+  "exclamation": [
+   0,
+   48
+  ],
+  "hedge stacking": [
+   0,
+   0
+  ],
+  "paragraphs with mid-sentence bold": [
+   2,
+   7
+  ]
+ },
+ "reported": {
+  "sentences": 242,
+  "sentence length mean": 14.1,
+  "sentence length CV": 0.645,
+  "conjunction density /1000": 2.66,
+  "nominalisation": 0,
+  "metaphor fields mixed": 1,
+  "rule-of-three candidates": 9,
+  "lexicon hits": 7
+ },
+ "metaphor_detail": {
+  "ecology": [
+   "ecosystem"
+  ]
+ },
+ "lexicon_by_category": {
+  "vocab": 6,
+  "jargon": 1
+ },
+ "lexicon_hits": [
+  {
+   "term": "harness",
+   "cat": "vocab",
+   "repl": "use",
+   "note": "Test/agent harness is an established name; literal harness is also fine.",
+   "source": "deslop"
+  },
+  {
+   "term": "harness",
+   "cat": "vocab",
+   "repl": "use",
+   "note": "Test/agent harness is an established name; literal harness is also fine.",
+   "source": "deslop"
+  },
+  {
+   "term": "paradigm",
+   "cat": "jargon",
+   "repl": "model / approach",
+   "note": "Kuhn's paradigm shift, in context.",
+   "source": "deslop"
+  },
+  {
+   "term": "simply",
+   "cat": "vocab",
+   "repl": "(cut)",
+   "note": "Adverb crutch. Judge per sentence; some are load-free.",
+   "source": "deslop"
+  },
+  {
+   "term": "actually",
+   "cat": "vocab",
+   "repl": "(cut)",
+   "note": "Adverb crutch. Judge per sentence; some are load-free.",
+   "source": "deslop"
+  },
+  {
+   "term": "genuinely",
+   "cat": "vocab",
+   "repl": "(cut)",
+   "note": "Adverb crutch. Judge per sentence; some are load-free.",
+   "source": "deslop"
+  },
+  {
+   "term": "ecosystem",
+   "cat": "vocab",
+   "repl": "system / community",
+   "note": "Biology term of art.",
+   "source": "deslop"
+  }
+ ]
+}

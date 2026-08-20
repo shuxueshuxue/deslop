@@ -4,8 +4,8 @@
     python3 evals/run.py
     python3 evals/run.py --predictions path/to/model-output.json
 
-The lexical score runs scan.py. The judgment score requires a model or human
-prediction file because the scanner deliberately cannot decide use versus
+The lexical score runs the scanner in tools/measure.py. The judgment score requires a
+model or human prediction file because the scanner deliberately cannot decide use versus
 mention, quotation, audience, or terms of art.
 """
 import argparse
@@ -14,8 +14,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-import scan  # noqa: E402
+sys.path.insert(0, str(ROOT / "tools"))
+import measure as scan  # noqa: E402  (measure.py absorbed the standalone scanner)
 
 CASES = Path(__file__).with_name("cases.json")
 

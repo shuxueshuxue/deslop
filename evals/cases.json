@@ -8,7 +8,10 @@
       "source": "human seed",
       "input": "跑出来两件事。",
       "findings": [
-        {"span": "跑出来两件事。", "category": "template"}
+        {
+          "span": "跑出来两件事。",
+          "category": "template"
+        }
       ],
       "reason": "Reports an unnecessary count before the enumeration; the more specific phrase suppresses its nested physical-verb hit."
     },
@@ -17,7 +20,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "这是真的 tell。",
-      "findings": [{"span": "tell", "category": "jargon"}],
+      "findings": [
+        {
+          "span": "tell",
+          "category": "jargon"
+        }
+      ],
       "reason": "An internal English label is used for a general Chinese reader."
     },
     {
@@ -25,7 +33,12 @@
       "tier": "lexicon",
       "source": "humanizer-zh pattern 1",
       "input": "这个项目作为团队创新的证明。",
-      "findings": [{"span": "作为团队创新的证明", "category": "puffery"}],
+      "findings": [
+        {
+          "span": "作为团队创新的证明",
+          "category": "puffery"
+        }
+      ],
       "reason": "The phrase assigns broad symbolic meaning instead of naming what the project does."
     },
     {
@@ -33,7 +46,12 @@
       "tier": "lexicon",
       "source": "humanizer-zh pattern 5",
       "input": "行业专家认为这项工作很重要。",
-      "findings": [{"span": "行业专家认为", "category": "editorial"}],
+      "findings": [
+        {
+          "span": "行业专家认为",
+          "category": "editorial"
+        }
+      ],
       "reason": "It borrows unnamed authority without a source."
     },
     {
@@ -42,10 +60,16 @@
       "source": "humanizer-zh patterns 6 and 24",
       "input": "尽管存在一些挑战，未来前景依然光明。",
       "findings": [
-        {"span": "尽管存在一些挑战", "category": "template"},
-        {"span": "前景依然光明", "category": "puffery"}
+        {
+          "span": "尽管存在一些挑战",
+          "category": "template"
+        },
+        {
+          "span": "未来前景依然光明",
+          "category": "closer"
+        }
       ],
-      "reason": "The sentence names neither the challenges nor a concrete next step."
+      "reason": "Both halves of the formula are hits. The merged lexicon carries the whole closer as one phrase, which is longer than the bare 前景依然光明 and therefore suppresses it — the same overlap rule as zh-seed-enumeration-preface."
     },
     {
       "id": "zh-humanizer-structural-contrast",
@@ -72,7 +96,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "没让脚本压掉这条检查。",
-      "findings": [{"span": "压掉", "category": "physical"}],
+      "findings": [
+        {
+          "span": "压掉",
+          "category": "physical"
+        }
+      ],
       "reason": "A physical action is used for suppressing an abstract check."
     },
     {
@@ -80,7 +109,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "先自扫，再提交。",
-      "findings": [{"span": "自扫", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "自扫",
+          "category": "vocab"
+        }
+      ],
       "reason": "Coined two-character abbreviation."
     },
     {
@@ -88,7 +122,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "找出一处我自己的回归。",
-      "findings": [{"span": "回归", "category": "borrowed"}],
+      "findings": [
+        {
+          "span": "回归",
+          "category": "borrowed"
+        }
+      ],
       "reason": "Regression translated into ordinary prose."
     },
     {
@@ -96,7 +135,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "这次故障是缓存击穿。",
-      "findings": [{"span": "缓存击穿", "category": "unsettled-term"}],
+      "findings": [
+        {
+          "span": "缓存击穿",
+          "category": "unsettled-term"
+        }
+      ],
       "reason": "The label is contested enough that a general explanation is safer."
     },
     {
@@ -104,7 +148,12 @@
       "tier": "lexicon",
       "source": "human seed",
       "input": "你说中了这个缺陷。",
-      "findings": [{"span": "说中", "category": "physical"}],
+      "findings": [
+        {
+          "span": "说中",
+          "category": "physical"
+        }
+      ],
       "reason": "Target-hitting metaphor used for a correct statement."
     },
     {
@@ -112,7 +161,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (落地 entry)",
       "input": "这个方案下周落地。",
-      "findings": [{"span": "落地", "category": "physical"}],
+      "findings": [
+        {
+          "span": "落地",
+          "category": "physical"
+        }
+      ],
       "reason": "A physical landing hides whether the work ships, is implemented, or is delivered."
     },
     {
@@ -120,7 +174,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (接住 entry)",
       "input": "服务会接住所有异常。",
-      "findings": [{"span": "接住", "category": "physical"}],
+      "findings": [
+        {
+          "span": "接住",
+          "category": "physical"
+        }
+      ],
       "reason": "A physical catch hides the error-handling behavior."
     },
     {
@@ -128,7 +187,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (复用 entry)",
       "input": "把这段逻辑复用到另一个服务。",
-      "findings": [{"span": "复用", "category": "borrowed"}],
+      "findings": [
+        {
+          "span": "复用",
+          "category": "borrowed"
+        }
+      ],
       "reason": "Workplace shorthand in general prose."
     },
     {
@@ -136,7 +200,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (leverage entry)",
       "input": "We leveraged the new API to reduce the setup time.",
-      "findings": [{"span": "leveraged", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "leveraged",
+          "category": "vocab"
+        }
+      ],
       "reason": "A common verb has a plain replacement."
     },
     {
@@ -144,7 +213,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (In today's / fast-paced entries)",
       "input": "In today's fast-paced landscape, teams need a plan.",
-      "findings": [{"span": "In today's fast-paced landscape", "category": "template"}],
+      "findings": [
+        {
+          "span": "In today's fast-paced landscape",
+          "category": "template"
+        }
+      ],
       "reason": "A stock opening is more useful as one worklist item than as three nested hits."
     },
     {
@@ -152,7 +226,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (Additionally entry)",
       "input": "Additionally, the service records the request ID.",
-      "findings": [{"span": "Additionally", "category": "transition"}],
+      "findings": [
+        {
+          "span": "Additionally",
+          "category": "transition"
+        }
+      ],
       "reason": "Sentence-initial connective is removable."
     },
     {
@@ -160,7 +239,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (Let's unpack entry)",
       "input": "Let's unpack why the request failed.",
-      "findings": [{"span": "Let's unpack", "category": "template"}],
+      "findings": [
+        {
+          "span": "Let's unpack",
+          "category": "template"
+        }
+      ],
       "reason": "Teaching frame instead of the explanation."
     },
     {
@@ -168,7 +252,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (not just ... but entry)",
       "input": "This is not just faster, but also cheaper.",
-      "findings": [{"span": "not just faster, but also", "category": "shape"}],
+      "findings": [
+        {
+          "span": "not just faster, but also",
+          "category": "shape"
+        }
+      ],
       "reason": "Staged reversal."
     },
     {
@@ -176,7 +265,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (key insight entry)",
       "input": "The key insight is that the cache expires first.",
-      "findings": [{"span": "key insight", "category": "jargon"}],
+      "findings": [
+        {
+          "span": "key insight",
+          "category": "jargon"
+        }
+      ],
       "reason": "Self-importance frame rather than the fact."
     },
     {
@@ -184,7 +278,12 @@
       "tier": "lexicon",
       "source": "references/lexicon.tsv (deep dive entry)",
       "input": "The report includes a deep dive into the migration.",
-      "findings": [{"span": "deep dive", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "deep dive",
+          "category": "vocab"
+        }
+      ],
       "reason": "Elevated metaphor for analysis."
     },
     {
@@ -193,8 +292,19 @@
       "source": "human seed; references/titles.md (drift 判据 example)",
       "input": "drift 判据有三个条件。",
       "findings": [],
-      "candidate_findings": [{"span": "判据", "category": "vocab"}],
-      "judgments": [{"span": "判据", "category": "vocab", "verdict": "rewrite"}],
+      "candidate_findings": [
+        {
+          "span": "判据",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "判据",
+          "category": "vocab",
+          "verdict": "rewrite"
+        }
+      ],
       "reason": "Human review called drift 判据 AI-flavored. Keep it as a scanner candidate, but replace it with 判别方法 rather than 怎么判."
     },
     {
@@ -211,8 +321,19 @@
       "source": "human seed; references/markers-zh.md (register boundary)",
       "input": "这层承载配置和状态。",
       "findings": [],
-      "candidate_findings": [{"span": "承载", "category": "vocab"}],
-      "judgments": [{"span": "承载", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "承载",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "承载",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "The scanner should surface 承载, then review must keep it rather than replace it with 装."
     },
     {
@@ -229,8 +350,19 @@
       "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
       "input": "A test harness controls the loop around the model.",
       "findings": [],
-      "candidate_findings": [{"span": "harness", "category": "vocab"}],
-      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "harness",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "harness",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "The scanner should surface harness, then review keeps the established technical name."
     },
     {
@@ -239,8 +371,19 @@
       "source": "references/lexicon.tsv (robust note)",
       "input": "The robust estimator tolerates outliers.",
       "findings": [],
-      "candidate_findings": [{"span": "robust", "category": "vocab"}],
-      "judgments": [{"span": "robust", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "robust",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "robust",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "The scanner should surface robust, then review keeps the statistics term of art."
     },
     {
@@ -249,8 +392,19 @@
       "source": "new contrast case",
       "input": "The climber inspected the harness before the ascent.",
       "findings": [],
-      "candidate_findings": [{"span": "harness", "category": "vocab"}],
-      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "harness",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "harness",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "The scanner should surface the literal noun, then review keeps it."
     },
     {
@@ -259,8 +413,19 @@
       "source": "README.md (What it catches table)",
       "input": "不要把“判据”改成“怎么判”。",
       "findings": [],
-      "candidate_findings": [{"span": "判据", "category": "vocab"}],
-      "judgments": [{"span": "判据", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "判据",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "判据",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "The suspect word is cited as an example, not used by the author."
     },
     {
@@ -270,12 +435,26 @@
       "input": "Avoid labels such as “load-bearing” and “key insight”.",
       "findings": [],
       "candidate_findings": [
-        {"span": "load-bearing", "category": "jargon"},
-        {"span": "key insight", "category": "jargon"}
+        {
+          "span": "load-bearing",
+          "category": "jargon"
+        },
+        {
+          "span": "key insight",
+          "category": "jargon"
+        }
       ],
       "judgments": [
-        {"span": "load-bearing", "category": "jargon", "verdict": "keep"},
-        {"span": "key insight", "category": "jargon", "verdict": "keep"}
+        {
+          "span": "load-bearing",
+          "category": "jargon",
+          "verdict": "keep"
+        },
+        {
+          "span": "key insight",
+          "category": "jargon",
+          "verdict": "keep"
+        }
       ],
       "reason": "The author is naming examples to avoid."
     },
@@ -285,8 +464,19 @@
       "source": "spexcode-base/studies/slides/tech-share.html (closing quotation)",
       "input": "“You are still responsible for your software, just as before.”",
       "findings": [],
-      "candidate_findings": [{"span": "just", "category": "vocab"}],
-      "judgments": [{"span": "just", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "just",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "just",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "A quotation is not the editor's prose."
     },
     {
@@ -302,7 +492,12 @@
       "tier": "judgment",
       "source": "human seed",
       "input": "缓存击穿发生在热点键过期且并发请求回源时。",
-      "findings": [{"span": "缓存击穿", "category": "unsettled-term"}],
+      "findings": [
+        {
+          "span": "缓存击穿",
+          "category": "unsettled-term"
+        }
+      ],
       "reason": "Even when defined, the label assumes a disputed taxonomy; ask the writer to state the failure mode for a broad audience."
     },
     {
@@ -310,7 +505,12 @@
       "tier": "judgment",
       "source": "new contrast case",
       "input": "这个补丁没有压掉旧的告警。",
-      "findings": [{"span": "压掉", "category": "physical"}],
+      "findings": [
+        {
+          "span": "压掉",
+          "category": "physical"
+        }
+      ],
       "reason": "Unlike a literal suppression control, the sentence leaves the operation vague."
     },
     {
@@ -327,8 +527,19 @@
       "source": "references/titles.md (over-correction example)",
       "input": "标题写作：drift 判据。",
       "findings": [],
-      "candidate_findings": [{"span": "判据", "category": "vocab"}],
-      "judgments": [{"span": "判据", "category": "vocab", "verdict": "rewrite"}],
+      "candidate_findings": [
+        {
+          "span": "判据",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "判据",
+          "category": "vocab",
+          "verdict": "rewrite"
+        }
+      ],
       "reason": "The title needs a written replacement such as 判别方法, not a conversational question."
     },
     {
@@ -337,8 +548,14 @@
       "source": "new contrast case",
       "input": "The system provides a seamless journey from draft to deployment.",
       "findings": [
-        {"span": "seamless", "category": "puffery"},
-        {"span": "journey", "category": "puffery"}
+        {
+          "span": "seamless",
+          "category": "puffery"
+        },
+        {
+          "span": "journey",
+          "category": "puffery"
+        }
       ],
       "reason": "Both words perform product marketing rather than describe a mechanism."
     },
@@ -357,16 +574,44 @@
       "input": "本文会提到 load-bearing、key insight、判据和赛道作为反例。",
       "findings": [],
       "candidate_findings": [
-        {"span": "load-bearing", "category": "jargon"},
-        {"span": "key insight", "category": "jargon"},
-        {"span": "判据", "category": "vocab"},
-        {"span": "赛道", "category": "jargon"}
+        {
+          "span": "load-bearing",
+          "category": "jargon"
+        },
+        {
+          "span": "key insight",
+          "category": "jargon"
+        },
+        {
+          "span": "判据",
+          "category": "vocab"
+        },
+        {
+          "span": "赛道",
+          "category": "jargon"
+        }
       ],
       "judgments": [
-        {"span": "load-bearing", "category": "jargon", "verdict": "keep"},
-        {"span": "key insight", "category": "jargon", "verdict": "keep"},
-        {"span": "判据", "category": "vocab", "verdict": "keep"},
-        {"span": "赛道", "category": "jargon", "verdict": "keep"}
+        {
+          "span": "load-bearing",
+          "category": "jargon",
+          "verdict": "keep"
+        },
+        {
+          "span": "key insight",
+          "category": "jargon",
+          "verdict": "keep"
+        },
+        {
+          "span": "判据",
+          "category": "vocab",
+          "verdict": "keep"
+        },
+        {
+          "span": "赛道",
+          "category": "jargon",
+          "verdict": "keep"
+        }
       ],
       "reason": "A style guide must be able to mention its own examples."
     },
@@ -376,8 +621,19 @@
       "source": "spexcode-base/studies/slides/tech-share.html (slide 8)",
       "input": "会话级 harness 的问题是状态不能跨会话保留。",
       "findings": [],
-      "candidate_findings": [{"span": "harness", "category": "vocab"}],
-      "judgments": [{"span": "harness", "category": "vocab", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "harness",
+          "category": "vocab"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "harness",
+          "category": "vocab",
+          "verdict": "keep"
+        }
+      ],
       "reason": "Harness is defined for this technical audience before use."
     },
     {
@@ -386,8 +642,19 @@
       "source": "spexcode-base/studies/slides/tech-share.html (slide 3 legend)",
       "input": "事故复盘记录故障原因和修复。",
       "findings": [],
-      "candidate_findings": [{"span": "复盘", "category": "jargon"}],
-      "judgments": [{"span": "复盘", "category": "jargon", "verdict": "keep"}],
+      "candidate_findings": [
+        {
+          "span": "复盘",
+          "category": "jargon"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "复盘",
+          "category": "jargon",
+          "verdict": "keep"
+        }
+      ],
       "reason": "复盘 is a conventional document name here."
     },
     {
@@ -396,8 +663,14 @@
       "source": "new contrast case",
       "input": "At its core, this is a comprehensive solution.",
       "findings": [
-        {"span": "At its core", "category": "template"},
-        {"span": "comprehensive", "category": "puffery"}
+        {
+          "span": "At its core",
+          "category": "template"
+        },
+        {
+          "span": "comprehensive",
+          "category": "puffery"
+        }
       ],
       "reason": "Both phrases assert importance without adding scope or mechanism."
     },
@@ -406,16 +679,42 @@
       "tier": "judgment",
       "source": "new contrast case",
       "input": "Harnessing AI unlocks a seamless future.",
-      "findings": [{"span": "Harnessing", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "Harnessing",
+          "category": "vocab"
+        }
+      ],
       "candidate_findings": [
-        {"span": "Harnessing", "category": "vocab"},
-        {"span": "unlocks", "category": "puffery"},
-        {"span": "seamless", "category": "puffery"}
+        {
+          "span": "Harnessing",
+          "category": "vocab"
+        },
+        {
+          "span": "unlocks",
+          "category": "puffery"
+        },
+        {
+          "span": "seamless",
+          "category": "puffery"
+        }
       ],
       "judgments": [
-        {"span": "Harnessing", "category": "vocab", "verdict": "rewrite"},
-        {"span": "unlocks", "category": "puffery", "verdict": "rewrite"},
-        {"span": "seamless", "category": "puffery", "verdict": "rewrite"}
+        {
+          "span": "Harnessing",
+          "category": "vocab",
+          "verdict": "rewrite"
+        },
+        {
+          "span": "unlocks",
+          "category": "puffery",
+          "verdict": "rewrite"
+        },
+        {
+          "span": "seamless",
+          "category": "puffery",
+          "verdict": "rewrite"
+        }
       ],
       "reason": "The sentence has three candidates; this also prevents removing the harness row to improve a score."
     },
@@ -424,7 +723,12 @@
       "tier": "judgment",
       "source": "new contrast case",
       "input": "Our robust platform handles every workload.",
-      "findings": [{"span": "robust", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "robust",
+          "category": "vocab"
+        }
+      ],
       "reason": "Robust is a candidate in generic product copy, unlike the statistics term."
     },
     {
@@ -432,7 +736,12 @@
       "tier": "judgment",
       "source": "new contrast case",
       "input": "This is just a better system.",
-      "findings": [{"span": "just", "category": "vocab"}],
+      "findings": [
+        {
+          "span": "just",
+          "category": "vocab"
+        }
+      ],
       "reason": "Just is an empty intensifier here, but the scanner must only surface it for review."
     }
   ]

@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>prose-deslop 流程</title>
+<style>
+:root{
+  --bg:#f4f3ef; --panel:#ffffff; --panel-2:#faf9f6;
+  --ink:#16181c; --ink-2:#43484f; --muted:#767d87;
+  --rule:#d9d5cc; --rule-2:#c3beb2;
+  --steel:#8b929c; --belt:#dcd8ce; --belt-2:#cbc6ba;
+  --amber:#b26a00; --amber-soft:#f2e3c9;
+  --red:#a8241c; --red-soft:#f5dcd9;
+  --blue:#1b4fa8; --blue-soft:#dbe5f7;
+  --green:#1f6b3a; --green-soft:#d9ecdf;
+  --violet:#5f3ab5; --violet-soft:#e5ddf7;
+  --grid:rgba(22,24,28,.05);
+  --shadow:0 1px 2px rgba(20,22,26,.06), 0 8px 24px rgba(20,22,26,.05);
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417; --panel:#191d22; --panel-2:#1e232a;
+    --ink:#e8ebf0; --ink-2:#b7bfca; --muted:#8b94a1;
+    --rule:#2b3138; --rule-2:#3a424c;
+    --steel:#59626e; --belt:#242a31; --belt-2:#2f3740;
+    --amber:#e0952f; --amber-soft:#3a2c14;
+    --red:#e06a60; --red-soft:#3a1f1c;
+    --blue:#6fa0f0; --blue-soft:#16243d;
+    --green:#5cbd7e; --green-soft:#14301f;
+    --violet:#a98cf0; --violet-soft:#241a3d;
+    --grid:rgba(232,235,240,.045);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121417; --panel:#191d22; --panel-2:#1e232a;
+  --ink:#e8ebf0; --ink-2:#b7bfca; --muted:#8b94a1;
+  --rule:#2b3138; --rule-2:#3a424c;
+  --steel:#59626e; --belt:#242a31; --belt-2:#2f3740;
+  --amber:#e0952f; --amber-soft:#3a2c14;
+  --red:#e06a60; --red-soft:#3a1f1c;
+  --blue:#6fa0f0; --blue-soft:#16243d;
+  --green:#5cbd7e; --green-soft:#14301f;
+  --violet:#a98cf0; --violet-soft:#241a3d;
+  --grid:rgba(232,235,240,.045);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.72;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px; background-position:-1px -1px;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 20px 96px}
+a{color:var(--blue)}
+
+/* ---------- masthead ---------- */
+header.mast{padding:56px 0 28px; border-bottom:1px solid var(--rule)}
+.kicker{font:600 11.5px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--amber)}
+h1{margin:14px 0 6px; font-size:clamp(30px,5.2vw,46px); line-height:1.12; letter-spacing:-.02em; font-weight:680}
+.sub{margin:0; color:var(--ink-2); font-size:clamp(15px,2.1vw,18px); max-width:64ch}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+.chip{
+  font:500 12.5px/1 var(--mono); color:var(--ink-2);
+  border:1px solid var(--rule-2); border-radius:999px; padding:7px 12px; background:var(--panel);
+}
+.chip b{color:var(--ink); font-weight:600}
+
+/* ---------- section ---------- */
+section{padding-top:64px}
+h2{
+  margin:0 0 6px; font-size:clamp(21px,3vw,27px); letter-spacing:-.01em; font-weight:650;
+  display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+}
+h2 .fig{font:600 12px/1 var(--mono); color:var(--amber); letter-spacing:.1em; text-transform:uppercase}
+.lede{margin:0 0 26px; color:var(--ink-2); max-width:72ch}
+h3{margin:38px 0 10px; font-size:17.5px; font-weight:640; letter-spacing:-.005em}
+
+/* ---------- figure frame ---------- */
+.frame{
+  border:1px solid var(--rule); border-radius:14px; background:var(--panel);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.frame-hd{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:11px 16px; border-bottom:1px solid var(--rule); background:var(--panel-2);
+  font:500 12px/1.5 var(--mono); color:var(--muted); letter-spacing:.04em;
+}
+.frame-hd .dots{display:flex; gap:6px}
+.frame-hd .dots i{width:9px; height:9px; border-radius:50%; background:var(--rule-2); display:block}
+.scroll{overflow-x:auto; overflow-y:hidden; padding:22px 18px}
+.scroll svg{display:block}
+/* ---------- station cards ---------- */
+.stations{display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); margin-top:22px}
+.st{
+  border:1px solid var(--rule); border-left:3px solid var(--steel); border-radius:11px;
+  background:var(--panel); padding:16px 17px 15px; box-shadow:var(--shadow);
+}
+.st[data-tone="setup"]{border-left-color:var(--amber)}
+.st[data-tone="mask"]{border-left-color:var(--violet)}
+.st[data-tone="gauge"]{border-left-color:var(--blue)}
+.st[data-tone="qc"]{border-left-color:var(--red)}
+.st[data-tone="out"]{border-left-color:var(--green)}
+.st h4{margin:0 0 4px; font-size:16px; font-weight:640; display:flex; align-items:center; gap:9px}
+.st h4 .n{
+  flex:none; width:23px; height:23px; border-radius:6px; display:grid; place-items:center;
+  font:650 12px/1 var(--mono); background:var(--panel-2); border:1px solid var(--rule-2); color:var(--ink-2);
+}
+.st .role{font:500 11.5px/1 var(--mono); color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin:0 0 9px}
+.st p{margin:0 0 9px; font-size:14.6px; line-height:1.68; color:var(--ink-2)}
+.st p:last-of-type{margin-bottom:0}
+.st .from{
+  margin-top:11px; padding-top:9px; border-top:1px dashed var(--rule-2);
+  font:12.3px/1.5 var(--mono); color:var(--muted);
+}
+.st .from b{color:var(--ink-2); font-weight:600}
+code{font:.895em/1.4 var(--mono); background:var(--panel-2); border:1px solid var(--rule); border-radius:5px; padding:1px 5px}
+.st code{font-size:12.6px}
+
+/* ---------- gauge rack ---------- */
+.rack{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); margin-top:22px}
+.gauge{border:1px solid var(--rule); border-radius:12px; background:var(--panel); overflow:hidden; box-shadow:var(--shadow)}
+.gauge .g-hd{padding:13px 16px 11px; border-bottom:1px solid var(--rule)}
+.gauge .g-tag{font:650 11px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase}
+.gauge .g-name{margin:7px 0 0; font-size:16.5px; font-weight:640}
+.gauge .g-rule{margin:3px 0 0; font-size:13.4px; color:var(--muted)}
+.gauge ul{margin:0; padding:13px 16px 15px 30px; font-size:14px; line-height:1.72; color:var(--ink-2)}
+.gauge li{margin-bottom:3px}
+.gauge.gated .g-tag{color:var(--red)} .gauge.gated .g-hd{background:var(--red-soft)}
+.gauge.capped .g-tag{color:var(--amber)} .gauge.capped .g-hd{background:var(--amber-soft)}
+.gauge.reported .g-tag{color:var(--blue)} .gauge.reported .g-hd{background:var(--blue-soft)}
+
+.pulled{
+  margin-top:16px; border:1px dashed var(--rule-2); border-radius:12px; background:var(--panel-2); padding:17px 19px;
+}
+.pulled h4{margin:0 0 4px; font-size:16px; font-weight:640}
+.pulled > p{margin:0 0 13px; color:var(--muted); font-size:13.8px}
+.pulled ol{margin:0; padding-left:22px; font-size:14.4px; line-height:1.74; color:var(--ink-2)}
+.pulled li{margin-bottom:8px}
+.pulled li b{color:var(--ink)}
+
+/* ---------- traveler ---------- */
+.traveler{border:1px solid var(--rule); border-radius:13px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow)}
+.tv-hd{
+  display:flex; flex-wrap:wrap; gap:6px 26px; align-items:baseline;
+  padding:15px 18px; border-bottom:1px solid var(--rule); background:var(--panel-2);
+}
+.tv-hd .t{font-size:16.5px; font-weight:650}
+.tv-hd .m{font:12.4px/1.5 var(--mono); color:var(--muted)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:14.2px; min-width:520px}
+th,td{padding:10px 16px; text-align:left; border-bottom:1px solid var(--rule)}
+th{font:600 11.6px/1.4 var(--mono); letter-spacing:.09em; text-transform:uppercase; color:var(--muted); background:var(--panel-2)}
+td.num{font:600 14.5px/1 var(--mono); text-align:right; width:88px}
+td.note{color:var(--muted); font-size:13.3px}
+tr:last-child td{border-bottom:none}
+.hit{color:var(--red)} .ok{color:var(--green)}
+.arrow{color:var(--muted); padding:0 6px}
+
+.callout{
+  margin-top:20px; border-left:3px solid var(--amber); background:var(--panel);
+  border:1px solid var(--rule); border-left-width:3px; border-radius:11px; padding:16px 19px; box-shadow:var(--shadow);
+}
+.callout p{margin:0; font-size:14.8px; color:var(--ink-2)}
+.callout p + p{margin-top:9px}
+.callout b{color:var(--ink)}
+
+footer{margin-top:72px; padding-top:26px; border-top:1px solid var(--rule); color:var(--muted); font-size:13.6px}
+footer pre{
+  background:var(--panel); border:1px solid var(--rule); border-radius:10px;
+  padding:14px 16px; overflow-x:auto; font:12.7px/1.75 var(--mono); color:var(--ink-2);
+}
+.toggle{
+  position:fixed; right:16px; top:16px; z-index:9;
+  border:1px solid var(--rule-2); background:var(--panel); color:var(--ink-2);
+  border-radius:9px; padding:7px 11px; font:12px/1 var(--mono); cursor:pointer; box-shadow:var(--shadow);
+}
+@media (max-width:640px){ .wrap{padding:0 15px 72px} header.mast{padding:36px 0 22px} }
+</style>
+</head>
+<body>
+<button class="toggle" id="tg" type="button">明 / 暗</button>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">prose-deslop · 流程说明</div>
+  <h1>把 AI 味去掉的九个步骤</h1>
+  <p class="sub">四个开源项目融合成一套固定顺序。九步，两次测量，四遍不许合并的回读。
+  每次跑完交两个数，不交"现在读起来自然多了"。</p>
+  <div class="chips">
+    <span class="chip"><b>deslop</b> 判据 · 压缩标点 · 前后指标</span>
+    <span class="chip"><b>说人话</b> 控制面 · 保护片段 · 档位×scope</span>
+    <span class="chip"><b>natural-talk</b> 分层 · 上限 · 防矫枉过正</span>
+    <span class="chip"><b>Humanizer-zh</b> 维基百科 AI 写作特征集</span>
+  </div>
+</header></header>
+
+<section id="flow">
+  <h2>流程</h2>
+  <p class="lede">九步，固定顺序，不许跳步。左边一列是步骤号，中间一列写清这一步由谁执行。
+  节点的颜色只编码这一件事，因为整条流程里只有一步必须由人做，而且必须换一个没写过这篇文本的人。</p>
+
+  <div class="frame">
+    <div class="frame-hd"><span>9 步 · 1 条返回边 · 1 条分流 · 手写 SVG</span><span class="dots"><i></i><i></i><i></i></span></div>
+    <div class="scroll">
+    <svg width="960" height="1098" viewBox="0 0 960 1098" role="img" aria-label="prose-deslop 九步流程：入口判定、判场景、划保护片段、前测、词面扫描、逐行审计、应用替换、四遍回读、后测与报告">
+    <defs><marker id="fa" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="var(--red)"/></marker></defs>
+    <style>
+    .num{fill:var(--muted);font:300 25px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;opacity:.5;font-variant-numeric:tabular-nums}
+    .nm{fill:var(--ink);font:600 17px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .wh{fill:var(--muted);font:10.5px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.1em}
+    .de{fill:var(--ink-2);font:13.5px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .ph{fill:var(--muted);font:600 10.5px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.18em}
+    .as{fill:var(--muted);font:12.5px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .asb{fill:var(--ink-2);font:600 12.5px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .rk{fill:var(--ink);font:600 13px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .rc{fill:var(--muted);font:11.5px system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    .rl{fill:var(--red);font:600 11px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.08em}
+    .lg{fill:var(--muted);font:10.5px ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;letter-spacing:.1em}
+    </style>
+    <circle cx="658" cy="34" r="4" fill="var(--steel)"/>
+    <text class="lg" x="669" y="38">机器</text>
+    <circle cx="718" cy="34" r="4" fill="var(--amber)"/>
+    <text class="lg" x="729" y="38">人</text>
+    <circle cx="766" cy="34" r="4" fill="var(--blue)"/>
+    <text class="lg" x="777" y="38">脚本测量</text>
+    <circle cx="850" cy="34" r="4" fill="var(--violet)"/>
+    <text class="lg" x="861" y="38">冻结</text>
+    <text class="ph" x="132" y="70">框定</text>
+    <line x1="132" y1="80" x2="884" y2="80" stroke="var(--rule)" stroke-width="1"/>
+    <text class="ph" x="132" y="386">查找</text>
+    <line x1="132" y1="396" x2="884" y2="396" stroke="var(--rule)" stroke-width="1"/>
+    <text class="ph" x="132" y="762">修改与验证</text>
+    <line x1="132" y1="772" x2="884" y2="772" stroke="var(--rule)" stroke-width="1"/>
+    <line x1="100" y1="119" x2="100" y2="1047" stroke="var(--rule-2)" stroke-width="1"/>
+    <path d="M100 913 C 66 913, 66 811, 94 811" fill="none" stroke="var(--red)" stroke-width="1.2" opacity=".75" marker-end="url(#fa)"/>
+    <text class="num" x="46" y="126" text-anchor="end">01</text>
+    <circle cx="100" cy="119" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="124">入口判定</text>
+    <text class="wh" x="132" y="145">机器 + 人</text>
+    <text class="de" x="430" y="123">这段文本该不该改。要逐字翻译的，要仿模板的，</text>
+    <text class="de" x="430" y="144">主体是代码日志的，要事实校对的，都退回</text>
+    <text class="num" x="46" y="222" text-anchor="end">02</text>
+    <circle cx="100" cy="215" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="220">判场景</text>
+    <text class="wh" x="132" y="241">机器 + 人</text>
+    <text class="de" x="430" y="219">六个场景选一个。它决定合格标准是什么，</text>
+    <text class="de" x="430" y="240">聊天的标准和论文的标准不是同一条线</text>
+    <text class="num" x="46" y="318" text-anchor="end">03</text>
+    <circle cx="100" cy="311" r="4.5" fill="var(--violet)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="316">划保护片段</text>
+    <text class="wh" x="132" y="337">人 · 冻结不许改</text>
+    <text class="de" x="430" y="315">数字，引用，命令，报错，责任归属。</text>
+    <text class="de" x="430" y="336">另记一份关系账本，这层没有词表能替代</text>
+    <text class="num" x="46" y="442" text-anchor="end">04</text>
+    <circle cx="100" cy="435" r="4.5" fill="var(--blue)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="440">前测</text>
+    <text class="wh" x="132" y="461">脚本 · measure.py</text>
+    <text class="de" x="430" y="439">读数存成 JSON。第 09 步要和它对照，</text>
+    <text class="de" x="430" y="460">这是整条流程里唯一能证伪的部分</text>
+    <text class="num" x="46" y="538" text-anchor="end">05</text>
+    <circle cx="100" cy="531" r="4.5" fill="var(--steel)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="536">词面扫描</text>
+    <text class="wh" x="132" y="557">机器</text>
+    <text class="de" x="430" y="535">物理动词（中）／抬高词（英），再过 553 行词表。</text>
+    <text class="de" x="430" y="556">出候选，不出判定</text>
+    <text class="num" x="46" y="634" text-anchor="end">06</text>
+    <circle cx="100" cy="627" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="632">逐行审计</text>
+    <text class="wh" x="132" y="653">人 · 必须换人</text>
+    <text class="de" x="430" y="631">逐行出表，一行一条命中，宁可多报。</text>
+    <text class="de" x="430" y="652">写的人审不了自己写的，所以在空白上下文里做</text>
+    <text class="num" x="46" y="818" text-anchor="end">07</text>
+    <circle cx="100" cy="811" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="816">应用替换</text>
+    <text class="wh" x="132" y="837">人</text>
+    <text class="de" x="430" y="815">换成字面动作。文本只在这一步被改，</text>
+    <text class="de" x="430" y="836">不许用另一个花哨词换掉这个花哨词</text>
+    <text class="num" x="46" y="920" text-anchor="end">08</text>
+    <circle cx="100" cy="913" r="4.5" fill="var(--amber)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="918">四遍回读</text>
+    <text class="wh" x="132" y="939">人 · 不许合并</text>
+    <text class="de" x="430" y="917">四遍看的不是同一种东西，所以不许合并。</text>
+    <text class="de" x="430" y="938">B 或 D 命中，回到 07 重改</text>
+    <text class="num" x="46" y="1054" text-anchor="end">09</text>
+    <circle cx="100" cy="1047" r="4.5" fill="var(--blue)" stroke="var(--panel)" stroke-width="3"/>
+    <text class="nm" x="132" y="1052">后测与报告</text>
+    <text class="wh" x="132" y="1073">脚本 + 人</text>
+    <text class="de" x="430" y="1051">交前后两个数，每个还留在表上的命中</text>
+    <text class="de" x="430" y="1072">逐条写明为什么留</text>
+    <line x1="424" y1="668" x2="424" y2="710" stroke="var(--rule)" stroke-width="2"/>
+    <text class="asb" x="442" y="682">不是语域问题，本流程不处理</text>
+    <text class="as" x="442" y="704">悬空指代 · 前后矛盾 · 引文误读 · 数字错</text>
+    <text class="rl" x="430" y="970">A</text>
+    <text class="rk" x="446" y="970">保真</text>
+    <text class="rc" x="430" y="990">保护片段没漂</text>
+    <text class="rl" x="544" y="970">B</text>
+    <text class="rk" x="560" y="970">过校正</text>
+    <text class="rc" x="544" y="990">查你刚写下的</text>
+    <text class="rl" x="658" y="970">C</text>
+    <text class="rk" x="674" y="970">残留</text>
+    <text class="rc" x="658" y="990">固定只查五类</text>
+    <text class="rl" x="772" y="970">D</text>
+    <text class="rk" x="788" y="970">通读</text>
+    <text class="rc" x="772" y="990">看两处修改的交界</text>
+    </svg>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>这张图只编码了两件事，其余都是标签。</b>第一件事是次数。文本被改一次，测量两次，
+    中间隔着一个必须换人的审计。第二件事是回读分四遍且不许合并，因为它们看见的东西不同。
+    A 看保护片段有没有漂，B 看你自己刚写下的替换文字，C 看残留，D 看两处修改之间的接缝。</p>
+    <p>第二件事是有代价的。B 和 D 命中意味着回到 07 重改，而不是在 08 里就地修补。
+    在本次实跑里，这条返回边用了七次。</p>
+  </div>
+</section>
+
+<section id="stations">
+  <h2>步骤</h2>
+  <p class="lede">九步，每一步写清楚进什么，做什么，出什么，以及这一步是哪个上游项目贡献的。</p>
+  <div class="stations">
+
+    <article class="st" data-tone="setup">
+      <h4><span class="n">01</span>入口判定</h4>
+      <p class="role">该不该改这段文本</p>
+      <p>不是所有文本都该进这套流程。三种情况直接退回：</p>
+      <ul style="margin:0 0 9px; padding-left:20px; font-size:14.6px; line-height:1.68; color:var(--ink-2)">
+        <li>要逐字翻译，要仿官方模板，要仿特定品牌 voice</li>
+        <li>主体是代码、日志、命令、配置、接口名、报错</li>
+        <li>要的是事实校对，不是风格改写</li>
+      </ul>
+      <p class="from"><b>来源</b> 说人话 · When to use</p>
+    </article>
+
+    <article class="st" data-tone="setup">
+      <h4><span class="n">02</span>判场景</h4>
+      <p class="role">它决定合格标准是什么</p>
+      <p>六个场景选一个：<code>chat</code> <code>status</code> <code>docs</code> <code>public-writing</code>
+      <code>academic</code> <code>code-context</code>。场景不是标签，它直接决定这篇文本改到什么程度算对：
+      <code>chat</code> 的标准是"会对朋友这样说吗"，学术的标准是一份好方法章节。</p>
+      <p>把聊天的标准套到论文上，出来是一摊烂泥。把文档的标准套到聊天上，出来是一个又冷又硬的客服。
+      场景判错，后面每一步都偏。</p>
+      <p class="from"><b>来源</b> 说人话场景层 + deslop 语域基准 + natural-talk 朋友测试。<b>本项目新增</b> <code>academic</code> 场景与论文包</p>
+    </article>
+
+    <article class="st" data-tone="mask">
+      <h4><span class="n">03</span>划保护片段</h4>
+      <p class="role">动手之前先冻结</p>
+      <p>冻结的内容分五类：</p>
+      <ul style="margin:0 0 9px; padding-left:20px; font-size:14.6px; line-height:1.68; color:var(--ink-2)">
+        <li>数字、日期、版本、区间、单位</li>
+        <li>引号内原文</li>
+        <li>命令、参数、字段、路径</li>
+        <li>报错、状态码、指标</li>
+        <li>责任归属</li>
+      </ul>
+      <p>还要单独记一份关系账本，这层没有任何词表能替代。哪个数字修饰哪个对象，谁做了什么，什么基于什么。
+      同段共现不等于存在这个关系。原文谓词里找不到依据的，改写里就不许有。</p>
+      <p class="from"><b>来源</b> 说人话 protected spans + 关系账本</p>
+    </article>
+
+    <article class="st" data-tone="gauge">
+      <h4><span class="n">04</span>前测</h4>
+      <p class="role">读数存档</p>
+      <p><code>measure.py --scene &lt;场景&gt;</code>，读数存成 JSON。步骤 09 要和它对照，这是整条流程里唯一能证伪的部分。</p>
+      <p>指标分三层，判定权力不同。GATED 归零，CAPPED 只管超出部分，REPORTED 永不判定。见下一节。</p>
+      <p class="from"><b>来源</b> deslop 前后指标 + natural-talk 数值上限 + 说人话 residual 统计</p>
+    </article>
+
+    <article class="st">
+      <h4><span class="n">05</span>词面扫描</h4>
+      <p class="role">机器只做便宜的一半</p>
+      <p>中文先扫物理动词，例如 <code>跑一遍</code> <code>抓到</code> <code>压掉</code> <code>落地</code> <code>收口</code>。
+      问一句就够了。这个画面是不是替代了句子本该说出的那个操作。英文先扫抬高词，例如 <code>utilize</code>
+      <code>facilitate</code> <code>commence</code>。</p>
+      <p>再过 553 行词表。<b>词表出的是候选，不是判决。</b>下面这些它一个也认不出来：</p>
+      <ul style="margin:0 0 9px; padding-left:20px; font-size:14.6px; line-height:1.68; color:var(--ink-2)">
+        <li>引用，以及统计学里的 <code>robust</code></li>
+        <li>戏剧化收尾</li>
+        <li>节奏过匀</li>
+        <li>只会叙述阅读路径的标题</li>
+        <li>一套贯穿全文并且替代了说明的比喻</li>
+      </ul>
+      <p class="from"><b>来源</b> deslop 物理动词 sweep + 四家词表合并去重</p>
+    </article>
+
+    <article class="st" data-tone="setup">
+      <h4><span class="n">06</span>逐行审计</h4>
+      <p class="role">唯一必须由人做的一步，而且必须换人</p>
+      <p>逐行对着标记表检查一遍，一行一条命中，宁可多报。表有六列，依次是位置，原句，族，
+      为什么这是表演而不是陈述，平替，留不留。</p>
+      <p><b>必须换人。</b>写的人审不了自己写的东西，他重读的是自己的意图，不是纸面上的字。
+      在本项目里这条被实现成一句硬要求，审计跑在一个空白上下文的子会话里。</p>
+      <p class="from"><b>来源</b> deslop 审计表 + fresh-context subagent</p>
+    </article>
+
+    <article class="st">
+      <h4><span class="n">07</span>应用替换</h4>
+      <p class="role">文本只在这一步被改</p>
+      <p>换成字面动作。<b>禁止用另一个花哨词换掉这个花哨词。</b>这是最容易犯的错，
+      而且往往是刚写完这条规则的人犯的。</p>
+      <p>处理压缩标点会改变文本结构。句子拆开，行内枚举变成真列表，段落分节，
+      冒号背后藏着的小标题也要写出来。结构本身就是问题，所以这在范围内；文本主张什么不在范围内。</p>
+      <p class="from"><b>来源</b> deslop 压缩标点 + 说人话 scope 三档</p>
+    </article>
+
+    <article class="st" data-tone="qc">
+      <h4><span class="n">08</span>四遍回读</h4>
+      <p class="role">抓的东西不同，不许合并</p>
+      <p><b>A 保真。</b>保护片段有没有漂，信息有没有丢，语域是否统一，术语是否失真，有没有生硬断裂，
+      以及分析与输出是否一致。</p>
+      <p><b>B 矫枉过正。</b>书面词有没有变口语，双音节动词有没有变单音节，标题有没有变口语疑问句，
+      学术里的 hedge 有没有被改强。最要紧的一条是这个。<b>把整套规则重新对着你自己刚写下的替换文字检查一遍。</b></p>
+      <p><b>C 残留。</b>固定只查五类。残留开场，空收尾，旁白，空泛判断，节奏过匀。</p>
+      <p><b>D 整篇通读一遍。</b>前三遍都逐条走，看不见两处修改之间的接缝。两段各自都对，中间断掉。
+      下决心更仔细没有用，仔细产生不了第二次阅读，只有另一种 pass 能。</p>
+      <p class="from"><b>来源</b> 说人话两遍回读 + deslop 过校正 pass 与整篇通读</p>
+    </article>
+
+    <article class="st" data-tone="out">
+      <h4><span class="n">09</span>后测与报告</h4>
+      <p class="role">交数，不交形容词</p>
+      <p>再跑一次 <code>measure.py</code>，然后交四样东西。前后指标对照表；每一个还留在表上的命中，
+      逐条写明为什么留；<code>bounded</code> scope 下的建议删除清单；缺依据的地方标出来。</p>
+      <p>"破折号 38 → 0"是证据。"现在读起来自然多了"不是。</p>
+      <p class="from"><b>来源</b> deslop 可证伪指标 + 说人话输出合同</p>
+    </article>
+
+  </div>
+</section>
+
+<section id="gauges">
+  <h2>指标分层</h2>
+  <p class="lede">三层指标的判定权力不同，这是 <code>measure.py</code> 报告里的原始分层。
+  一条指标只有在"命中基本都是真的"时才配进计数集；实测说不是，就降级，并且把理由写在下一个人会读到的地方。</p>
+
+  <div class="rack">
+    <div class="gauge gated">
+      <div class="g-hd">
+        <div class="g-tag">Gated</div>
+        <p class="g-name">归零，或逐条具名</p>
+        <p class="g-rule">没有中间地带。</p>
+      </div>
+      <ul>
+        <li>破折号</li><li>对偶反转</li><li>顿号</li><li>句中冒号</li>
+        <li>助手残留</li><li>知识截止免责</li><li>表情符号</li>
+        <li>内联标题列表</li><li><code>-ing</code> 假分析</li>
+        <li>系动词回避</li><li>假区间</li>
+      </ul>
+    </div>
+    <div class="gauge capped">
+      <div class="g-hd">
+        <div class="g-tag">Capped</div>
+        <p class="g-name">上限之内合法</p>
+        <p class="g-rule">只有超出的部分算问题。</p>
+      </div>
+      <ul>
+        <li>路标词</li><li>自我评价</li><li>讲义腔</li>
+        <li>感叹号</li><li>hedge 堆叠</li><li>句内加粗</li>
+      </ul>
+      <ul style="padding-top:0; color:var(--muted); font-size:13.2px; list-style:none; padding-left:16px">
+        <li>上限来自 natural-talk 的 300–500 字回复基准，长文按同一比例折算成密度。</li>
+      </ul>
+    </div>
+    <div class="gauge reported">
+      <div class="g-hd">
+        <div class="g-tag">Reported</div>
+        <p class="g-name">只打印，不判定</p>
+        <p class="g-rule">给人看，永不参与判定。</p>
+      </div>
+      <ul>
+        <li>句长变异系数</li><li>连词密度</li><li>名词化</li>
+        <li>借喻场混用</li><li>三件套候选</li><li>词表命中数</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pulled">
+    <h4>被降级的三条</h4>
+    <p>降级是这套流程的证据标准在起作用，不是妥协。三条降级理由都印在每一份测量报告里，防止有人悄悄装回去。</p>
+    <ol>
+      <li><b>三件套列举。</b>这个问题是真的，指标不是。deslop 扫的第一份文档上，5 处命中全是正常枚举。
+      一个你不能信的数字，比没有数字更糟。</li>
+      <li><b>连词密度。</b>说人话在 95 条语料上实测，判据反了。不该改的那组中位数 5.26/千字，
+      高于该改的那组的 0.00，最大值也更高。一对同密度用例把它钉死。叙事帖 80.00 该删一半，
+      迁移文档 81.08 一个都不能删。全局阈值会优先误伤技术文本。</li>
+      <li><b>整句加粗。</b>这一条是<b>在本次实跑里当场降级的</b>。第一遍后测报了 11 处违规，
+      逐个看下去，9 处是带标签的列表，1 处是引文里别人的加粗。修好计数器之后又发现：
+      它抓不到真正的毛病（8 处整句加粗做强调），而整句加粗和加粗标签在形状上完全一样，只有语义能区分。
+      所以它和拟人一样，只进审计表，不进计数集。</li>
+    </ol>
+  </div>
+</section>
+
+<section id="traveler">
+  <h2>实跑读数</h2>
+  <p class="lede">这套流程做过的一批真活：一份论文框架稿，英文，3462 字。
+  场景 <code>academic</code>，档位 <code>standard</code>，scope <code>structural</code>，无源引用 <code>audit-only</code>。</p>
+
+  <div class="traveler">
+    <div class="tv-hd">
+      <span class="t">The Graveyard Reopens · 论文框架稿</span>
+      <span class="m">输入 sha256 021e54a9…2c2eb8</span>
+      <span class="m">50 条改动</span>
+    </div>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>指标</th><th>前测</th><th></th><th>后测</th><th>处置</th></tr></thead>
+      <tbody>
+        <tr><td>破折号</td><td class="num hit">38</td><td class="arrow">→</td><td class="num ok">0</td><td class="note">全部拆开。43 处标点里，标签分隔 17 处，插入语 16 处，替代句号 10 处</td></tr>
+        <tr><td>对偶反转</td><td class="num hit">7</td><td class="arrow">→</td><td class="num ok">1</td><td class="note">豁免上限 2 处，均已具名</td></tr>
+        <tr><td>自我评价</td><td class="num hit">7</td><td class="arrow">→</td><td class="num ok">2</td><td class="note">两处刻意保留。给证据评级，不是给自己的句子评级</td></tr>
+        <tr><td>句内加粗段落</td><td class="num">2</td><td class="arrow">→</td><td class="num">2</td><td class="note">两处都合法。轴名首次定义，以及变量名</td></tr>
+        <tr><td>正文字数</td><td class="num">3462</td><td class="arrow">→</td><td class="num">3385</td><td class="note">−2.2%</td></tr>
+        <tr><td>句数</td><td class="num">227</td><td class="arrow">→</td><td class="num">242</td><td class="note">+6.6%</td></tr>
+        <tr><td>连词密度 /千字</td><td class="num">2.60</td><td class="arrow">→</td><td class="num">2.66</td><td class="note">升了，而且是预期的，所以它不判定</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>句子变多，字数变少</b>，这是解压缩的特征，不是删减。38 个挂在破折号上的从句变成了句子，同位语，或者括号，
+    多出来的连接材料跟着一起走了。连词密度反而升高。把一个破折号从句拆成两句，有时需要一个原来由破折号隐式承担的显性连词。
+    如果这条指标有判定权，它会惩罚这次修复本身。</p>
+    <p><b>更值得看的是回读抓到的东西。</b>B 和 D 改掉了七条我自己的判断。两条是我矫枉过正
+    （删掉一个带 hedge 的自评，等于把作者没下的论断改强了；把"绝大多数" softening 成"大多数"，
+    等于把别人测出来的量级抹糊了），两条是我在删修饰的同时把作者的论断收窄了，
+    还有三条是我自己拆句造成的接缝损坏。一处指代失效，一处并列形式被破坏，还有一处同一个短语连着出现两次。
+    逐行的两遍一处都没看见。</p>
+  </div>
+</section>
+
+<footer>
+  <p>复现：</p>
+<pre>python3 tools/measure.py worked-example/00-input.md  --scene academic --json &gt; 01-before.json
+python3 worked-example/apply.py
+python3 tools/measure.py worked-example/03-output.md --scene academic --json &gt; 04-after.json
+python3 tools/measure.py --diff 01-before.json 04-after.json</pre>
+  <p><b>本页自查。</b><code>python3 tools/measure.py docs/pipeline.html --scene docs --lang zh</code>：
+  破折号 0，对偶反转 0，句中冒号 0，助手残留 0，表情符号 0，弯引号 0。顿号还剩 14 处，
+  全部在真列表的列表项内部，同类名词并列，再往下拆一层没有意义。正文里已经没有顿号在替列表干活。</p>
+  <p>比喻按 H6 单独扫了一遍（<code>--metaphor</code>）。本页还剩 8 处候选，逐条判过，没有一处是活比喻：
+  一处是死隐喻，其余是本页在点名它禁止的东西，包括第 05 步举例的那几个物理动词，
+  以及下面这段说明上一版删掉了什么。</p>
+  <p><b>这一版是重写的。</b>上一版把"类似流水线"读成了"写一整套工厂比喻"，
+  做出了工位，夹具，遮蔽胶带，通止规，流转卡，还专门写了一段论证"为什么比喻是准的"。
+  指标全绿，四遍回读全过，读者一眼就看出是 AI 味。删掉了 120 处比喻词，
+  保留了线性分段的版式，因为那才是"流水线"这个词在这里的意思。
+  这条规则现在升到了原则层，写在 <code>references/taxonomy.md</code> 的 H6。不造比喻，没有场景豁免，也没有阈值。</p>
+  <p>行为合同在 <code>SKILL.md</code>。四家各带来什么，冲突在哪，谁赢，为什么，都在
+  <code>references/provenance.md</code>。完整实跑在 <code>worked-example/</code>。
+  本页是一个 30 KB 的静态文件，图是手写 SVG，没有任何外部依赖，也不加载脚本库。</p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement, tg=document.getElementById('tg');
+  function dark(){
+    var t=root.getAttribute('data-theme');
+    if(t) return t==='dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  tg.addEventListener('click', function(){
+    root.setAttribute('data-theme', dark() ? 'light' : 'dark');
+  });
+})();
+</script>
+</body>
+</html>

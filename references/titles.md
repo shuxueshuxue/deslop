@@ -1,69 +1,77 @@
-# 标题
+# Headings
 
-标题是全篇被读得最多、也最容易写坏的地方。演示文稿尤其明显：听众先看标题，再决定要不要听正文。
+Headings are the most-read and most easily wrecked part of a document. Slide decks make it obvious:
+the audience reads the heading, then decides whether to listen to the body.
 
-## 一、标题要命名，不要导览
+## 1. Name the content, do not narrate the reading path
 
-导览是在讲阅读路径，不是在讲内容。凡是含「上一页」「接下来」「先看」「下面讲」「我们来看」
-「具体来说」「落到 X 上」的，都是导览。
+Narration describes the route, not the destination. Anything containing 上一页 / 接下来 / 先看 /
+下面讲 / 我们来看 / 具体来说 / 落到 X 上, or *Next up* / *Let's look at* / *Moving on to*, is narration.
 
-| 导览 | 命名 |
+| narration | naming |
 |---|---|
 | 上一页那个「项目级」，拆开是三层 | 项目级 harness 的三层架构 |
 | SpexCode：先看一个 spec 节点 | 一个 spec 节点 |
 | 落到工程上，我关心三件事 | 工程上的三个问题 |
 
-导览话还有一个隐性代价：**它让标题依赖顺序**。跳着看、单独截图、被人引用时就断了。
+Narration also carries a hidden cost: **it makes the heading depend on order.** Read out of sequence,
+screenshotted alone, or quoted by someone else, it breaks.
 
-## 二、标题要能独立成立
+## 2. A heading must stand alone
 
-含「那个」「这一层」「上面说的」这类回指的标题，脱离上下文即失效。
-把它换成那个东西本身的名字。
+Anything with 那个 / 这一层 / 上面说的 / *the above* / *this one* stops working the moment it leaves
+its context. Use the thing's own name.
 
-## 三、名词短语要给得出对象和动作
+## 3. A noun phrase needs an object and an action
 
-只堆名词、不给动作，读者不知道这页要干什么。
+Piled nouns with no action leave the reader unsure what the section does.
 
-| 空 | 实 |
+| empty | concrete |
 |---|---|
 | 该由项目持有的那层状态 | 编排软件本身的生命周期 |
 | 关于测量的一些考虑 | 怎么测一个场景 |
 
-反过来也不要为了有动词而硬套动词：动词得和页面真正做的事对得上。
+Do not force a verb in the other direction either. The verb has to match what the section actually does.
 
-## 四、标题里不许出现端着的词
+## 4. No posturing words in a heading
 
-标题字少，一个生僻词会被放大。参见 `markers-zh.md` 第 7 类。
+Headings are short, so a rare word is magnified. See `taxonomy.md` E2.
 
-| 端着 | 常用 |
+| posturing | common |
 |---|---|
 | drift 判据 | drift 检查的判别方法 |
 | 意图承载体的选型 | 意图写在哪 |
 
-**但别修过头。** 「drift 判据」改成「drift 检查怎么判」就掉进口语了：标题字少，
-一个口语疑问句会比一个生僻词更刺眼，而且它和其它名词短语标题不同级（见第七条）。
-标题的语域比正文更靠书面一侧，参见 `markers-zh.md` 的语气基准。
+**But do not over-correct.** `drift 判据` → `drift 检查怎么判` falls into speech: in a heading, a
+colloquial question is more jarring than a rare word, and it is a different form from the noun-phrase
+headings around it (rule 7). Headings sit further toward written register than the body.
 
-## 五、标题承诺什么，正文就得交付什么
+## 5. Deliver what the heading promised
 
-标题说「编排生命周期」，正文却在讲状态存放位置，两者差半格，听众会觉得跑题。
-改标题或补一句把两者接上，二选一，不要放着。
+If the heading says "orchestration lifecycle" and the body discusses where state is stored, the
+reader feels the drift. Change the heading or connect them. Do not leave it.
 
-## 六、标题不要替正文把结论说完
+## 6. Do not let the heading state the body's conclusion
 
-标题下了结论，正文再说一遍，等于同一件事讲两遍。标题给对象，正文给结论。
+If the heading concludes and the body concludes again, the same thing was said twice. The heading
+gives the object; the body gives the conclusion.
 
-## 七、同级标题保持同一种句式
+## 7. One syntactic form per level
 
-一份稿子里，标题要么全是名词短语，要么全是短句，不要混。
-混用会让读者以为不同页的地位不同。
+Within a document, same-level headings are all noun phrases or all short sentences, never mixed.
+Mixing signals to the reader that some sections outrank others.
 
----
+## Two heading-level tells from the taxonomy
 
-## 自检
+- **"Challenges and Future Prospects"** and its Chinese equivalents are a formulaic section, not a
+  heading choice (`taxonomy.md` B8). A real section with real content under it is fine.
+- **A mid-prose colon is sometimes a heading the document declined to write** (`taxonomy.md` F1).
+  When decompressing punctuation, watch for the sections that were hiding behind a `：`.
 
-念标题，然后问自己三句：
+## Self-check
 
-1. 它有没有告诉我这页讲什么？（不是"这页在整篇里的位置"）
-2. 把它单独摘出来，还成立吗？
-3. 正文讲完之后，回头看这个标题，它承诺的事交付了吗？
+Read the heading, then ask three questions:
+
+1. Does it tell me what this section is about, rather than where it sits in the document?
+2. Pulled out on its own, does it still stand?
+3. After reading the body, did the heading deliver what it promised?

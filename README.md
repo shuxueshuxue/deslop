@@ -2,148 +2,151 @@
 
 # deslop
 
-**检查并改写技术文档里的模型腔。**
+**检查并改写文本里的模型腔，交出前后可核对的数字。**
 
-这是一个供 [Claude Code](https://claude.ai/code) 使用的中英文写作检查 skill。
+供 [Claude Code](https://claude.ai/code) 使用的中英文写作 skill。
 
 中文（默认） | [English](./README.en.md)
 
 </div>
 
----
+<br>
 
-LLM 写过的文字会反复出现某些句式和用词。`deslop` 按照标记分类检查文档，逐行列出问题和替换方案。修改后再测量一次，前后的指标可以直接比较。
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/flow-dark.svg">
+    <img src="assets/flow-light.svg" width="900" alt="deslop 的九个步骤：入口判定、判场景、划保护片段、前测、词面扫描、逐行审计、应用替换、四遍回读、后测与报告">
+  </picture>
+</div>
+
+<br>
 
 ## 判断标准
 
-`deslop` 删除没有增加信息的修辞，并把没有必要的生僻词换成常用词。平实而谨慎的原句可以保留。
+模型写出来的句子有固定的毛病，可以逐条列出，也可以数。
 
-## 修改的默认规则
+它们做的是同一件事：向读者证明写的人很聪明。生动的类比是这样，对偶反转是这样，段末那句短促断言是这样，
+挑一个更显学问的词也是这样。逐句读都不难看，所以改稿时最容易留下来。判据只有一句：
 
-默认重写每句话。确认原句语气合适时才保留。模型文字的问题常分布在全文，局部替换无法统一语气。
+> 这句话是在**说事**，还是在**显得聪明**？
 
-可以修改全文，但修改后的语气应保持平实。删去冗余时不得减少信息。
+平实谨慎的原句不是毛病，那是目标。平实也不等于口语，改到像聊天是另一种改坏。
 
-## 句子去留
+## 两层规则
 
-1. **删掉这句话，信息有没有减少？** 没有就删除。
-2. **读者问「具体是什么意思」时，能不能用事实回答？** 不能就继续改写。
+**原则层，绝对，没有场景豁免。**不编造；不评判人；不改变句子主张什么；不改写引文；不伪造声音；
+**不造比喻**。最后一条最容易被自己开豁免，所以写成绝对的。不要为了说明 A 把 A 换成另一个域的 B。
+判据在读者侧，读者要不要在脑子里把 A 映射到 B 才能懂。三样不在此列：
 
-本仓库对这两条规则的说明见 [`references/nofluff.md`](references/nofluff.md)。分类表用于定位问题，两条检查用于决定句子去留。
+- 领域已经冻结成名字的术语，死锁，幂等，back-pressure
+- 已经死掉的隐喻，深入，支撑，流程，读者不做映射就懂
+- 所写对象本身就是那个域
 
-## 检查项目
+**表达层，弹性，有明确上限。**破折号 · 开场 · 路标词 · 预告动作 · 三件套。标准是"能少用就少用"，
+不是字面归零。真人也会用破折号。
 
-| 类型 | 示例 |
+## 九步
+
+上图是完整流程，固定顺序，不许跳步。三件事值得单独说：
+
+1. **动手之前先冻结。**把数字，引用，命令，报错，责任归属都划出来，另记一份关系账本，
+   哪个数字修饰哪个对象，谁做了什么，什么基于什么。这层没有词表能替代，也是唯一错了就无法从成品倒推的一层。
+2. **只有第 06 步必须由人做，而且必须换人。**写的人审不了自己写的，他重读的是自己的意图，
+   不是纸面上的字。在本项目里这条实现成一句硬要求，审计跑在一个空白上下文的子会话里。
+3. **回读分四遍，不许合并。**它们看见的东西不同。B 专门查你自己刚写下的替换文字，
+   D 专门查两处修改之间的交界，前三遍逐条走，看不见交界。
+
+## 三层指标
+
+一条指标只有在"命中基本都是真的"时才配进计数集。实测说不是，就降级，
+并且把理由印在每一份报告里，防止有人悄悄装回去。
+
+| 层 | 判定权力 | 内容 |
+|---|---|---|
+| **GATED** | 归零，或逐条具名 | 破折号 · 对偶反转 · 顿号 · 句中冒号 · 助手残留 · 知识截止免责 · 表情符号 · 内联标题列表 · `-ing` 假分析 · 系动词回避 · 假区间 |
+| **CAPPED** | 只有超出上限的部分算问题 | 路标词 · 自我评价 · 讲义腔 · 感叹号 · hedge 堆叠 · 句内加粗 |
+| **REPORTED** | 只打印，永不判定 | 句长变异系数 · 连词密度 · 名词化 · 借喻场 · 三件套候选 · 词表命中数 |
+
+被降级的三条：
+
+- **三件套列举。**毛病是真的，指标不是。扫的第一份文档上，5 处命中全是正常枚举。
+- **连词密度。**95 条语料实测，判据反了。不该改的那组中位数 5.26/千字，高于该改的那组的 0.00。
+  一对同密度用例把它钉死：叙事帖 80.00 该删一半，迁移文档 81.08 一个都不能删。
+- **整句加粗。**修好计数器之后发现它抓不到真毛病，而整句加粗和加粗标签在形状上完全一样，只有语义能区分。
+
+拟人和比喻同样不进计数集。名字，死隐喻，字面用法，活比喻，这四样在词面上无法区分。
+`--metaphor` 逐行列出候选并给行号，判定在审计表里做。
+
+## 用
+
+```bash
+python3 tools/measure.py FILE --scene academic      # 改之前先量
+python3 tools/measure.py FILE --metaphor            # 借喻词与物理动词候选，带行号
+python3 tools/measure.py FILE --hits                # 词表候选
+python3 tools/measure.py FILE --worksheet           # 逐句工作表，给审计用
+python3 tools/measure.py --diff before.json after.json
+python3 evals/run.py                                # 词表检测的回归分数
+```
+
+装成 Claude Code skill，把本仓库放到 `~/.claude/skills/deslop`，或者软链过去。
+
+## 实跑读数
+
+`worked-example/` 是在一份真实论文框架稿上做完的全流程，输入冻结在 `00-input.md`。
+
+| 指标 | 前 | 后 |
+|---|---|---|
+| 破折号 | 38 | **0** |
+| 对偶反转 | 7 | 1（豁免，已具名） |
+| 自我评价 | 7 | 2（刻意保留） |
+| 正文字数 | 3462 | 3385 |
+| 句数 | 227 | 242 |
+
+句子变多，字数变少。这是解压缩的特征，不是删减。38 个挂在破折号上的从句变成了句子，同位语，或者括号。
+
+更值得看的是 `02-audit.md` 末尾那一节。第二遍和第四遍回读改掉了七条我自己的判断，
+其中两条是矫枉过正（删掉一个带 hedge 的自评，等于把作者没下的论断改强了），
+三条是拆句造成的交界损坏，逐行的两遍一处都没看见。
+
+## 这一版合并了什么
+
+deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指标 · 过校正回读。
+这一版把另外三个项目并了进来。
+
+| 项目 | 带进来的 |
 |---|---|
-| **动作类比** | `接住每个事件` → `为每个事件创建一条记录` |
-| **拟人** | `状态活不过一次调用` → `调用结束即失效` |
-| **对偶反转** | `不是 X，是 Y` → 直接陈述结论 |
-| **顿号和冒号** | 顿号连接本应成列的内容，句中冒号引出本应独立成句的说明 |
-| **第二人称翻译腔** | 中文技术文档里密集出现的「你」 |
-| **戏剧性收尾** | 段尾短句重复前文，没有提供新信息 |
-| **作者自评** | `Naur 说得对` → `与 Naur 的结论一致` |
-| **破折号** | 统计数量和出现位置，检查是否用来代替完整句子 |
-| **词语重复** | 同一个比喻词在全文反复出现 |
-| **不必要的生僻词** | `判据` → `判定规则` |
-| **圈内黑话** | `抓手` → `办法` |
+| [说人话](https://github.com/MrGeDiao/shuorenhua) | 控制面：场景、保护片段、Tier、档位 × scope、无源引用三模式、两遍回读、annotation mode |
+| [natural-talk](https://github.com/chengzhi-c/natural-talk) | 原则层 / 表达层的分层，数值上限，以及四家里最好的防矫枉过正清单 |
+| [Humanizer-zh](https://github.com/op7418/Humanizer-zh) | 维基百科 *Signs of AI writing* 那套模式：意义拔高、`-ing` 假分析、系动词回避、同义词轮换、假区间、格式痕迹 |
 
-## 安装
+四家在几处直接对立，每一处的裁决和理由都写在 [`references/provenance.md`](./references/provenance.md)。
+最要紧的两条：**注入灵魂**拆成了去味（默认开）和补声音（默认关，需要作者真有的材料）；
+**连词密度**按实测废掉了全局阈值。
 
-```sh
-git clone https://github.com/shuxueshuxue/deslop.git ~/.claude/skills/deslop
-```
+## 文件
 
-然后在 Claude Code 中使用：
+| | |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | 行为合同，固定九步 |
+| [`references/taxonomy.md`](./references/taxonomy.md) | 十二类问题族，标注每一类来自哪个项目 |
+| [`references/decisions.md`](./references/decisions.md) | 单条命中的判定流程、豁免上限、保留条件、`in-place` 替代动作 |
+| [`references/overcorrection.md`](./references/overcorrection.md) | 误杀语料，看着像命中其实不是的 |
+| [`references/provenance.md`](./references/provenance.md) | 四家各带来什么，冲突在哪，谁赢，为什么 |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 553 条候选词，中英文，各带替换、豁免注释和来源项目 |
+| [`tools/measure.py`](./tools/measure.py) | 指标、词表扫描、比喻候选、逐句工作表、前后对照 |
+| [`docs/pipeline.html`](./docs/pipeline.html) | 流程图解，28 KB 单页，手写 SVG，无外部依赖 |
+| [`worked-example/`](./worked-example/) | 一次完整实跑 |
 
-```
-/deslop  README
-/deslop  slides/talk.html，面向中文会议听众
-```
+词表由 `tools/build_lexicon.py` 从四个上游 checkout 生成，不是手抄。去重按"能不能被已有正则命中"判，
+不按字符串相等，否则同一个词会有四家四行。
 
-也可以直接说「这段文字有 AI 味，帮我改掉」。Skill 的描述会匹配这类请求。
+## 本仓库自查
 
-## 扫描器
+deslop 对自己也跑。全仓破折号 0，对偶反转都在每篇两处的豁免上限内，
+比喻候选逐条判过，自己引入的活比喻 0 处。
 
-```sh
-python3 scan.py --strip draft.md          # 按出现频率列出候选
-python3 scan.py --strip --lines draft.md  # 每个命中显示行号
-python3 scan.py --lang zh draft.md        # 只检查中文
-```
+`evals/run.py` 是词表检测的回归分数：46 条用例，召回 100%，一处已知误报是 `你` 那条刻意放宽的规则。
 
-输出示例：
-
-```
-count   term            category   replacement          note
-5       leverage        vocab      use
-1       不是历史，是     shape      （只保留后半句）       对偶反转，计入指标
-
-# lexicon hits: 7  (2.9 per 1000 chars)
-# staged reversal: 1
-# em dash: 1
-# 顿号: 14
-# 句中冒号: 3
-```
-
-`references/lexicon.tsv` 中的每个词条都带有普通替代词。扫描器只报告候选，不会自动改写。有些词在特定上下文中可以保留，词条备注会说明原因。
-
-顿号连接三项以上内容时，应改为列表。冒号后的说明可以独立成立时，应拆成新句或小节。
-
-脚本只能检查词汇和固定句式。以下问题仍需人工审查：
-
-- 戏剧性收尾
-- 重复段意
-- 删除后不损失信息的类比
-- 只描述阅读路径的标题
-
-## 工作流程
-
-1. **提取正文。** 排除 Markdown 和 HTML 标记。
-2. **运行扫描器。** 得到候选词以及四项标点和句式计数。
-3. **逐行审查。** 由未参与改写的 subagent 审查，避免沿用改写时的判断。
-4. **统计指标。** 记录扫描器输出的四项计数。拟人用法由人工记录。
-5. **应用修改。** 按照字面含义改写，不要用新的动作类比替换旧的动作类比。
-6. **重新测量。** 报告修改前后的指标，例如 `reversals 12 → 0`。主观感受不能代替计数。
-
-## 范围
-
-**检查表达方式。** 检查结果说明文字是否符合本项目的写作规则，不评价作者的观点。
-
-**保留术语。** 普通词不能准确表达时保留原术语，例如 *spec drift*。常见例子还包括 *anchor* 和 *garbage collection*。*back-pressure* 同样保留。
-
-**不改变论点。** 工具只重写表达论点的句子。重排章节和删除段落需要作者确认。
-
-**不核对事实。** 文字改得平实之后，仍可能存在悬空指代或前后矛盾，引用内容也可能不准确。审查示例见 [`references/worked-example.md`](references/worked-example.md)。
-
-## 文件说明
-
-```
-SKILL.md                        skill 的完整规则
-scan.py                         扫描器（仅依赖 Python 3）
-references/lexicon.tsv          中英文候选词及其替代词和误报备注
-references/markers-zh.md        中文标记分类，共八类
-references/markers-en.md        英文标记，来源为 HN 48905248
-references/titles.md            标题规则，要求标题直接命名内容
-references/nofluff.md           nofluff 的两个检查和补充规则
-references/worked-example.md    含 45 项问题和修改前后指标的审查示例
-```
-
-## 致谢
-
-本项目由 [linux.do](https://linux.do/) 社区推广。
-
-## 资料来源
-
-两个快速检查和四条规则来自 [nofluff](https://nofluff.0x01.me/nofluff.txt) 写作标准。
-
-英文标记列表参考 Hacker News 上整理「claudish」特征的讨论（[48905248](https://news.ycombinator.com/item?id=48905248)）。引用和出处见 [`references/markers-en.md`](references/markers-en.md)。
-
-词汇表包含四类来源：
-
-- **测量结果。** Kobak 等分析了 1400 万篇 PubMed 摘要，论文发表于 [Science Advances 11(27), 2025](https://www.science.org/doi/10.1126/sciadv.adt3813)。另一项来源是 Juzek 与 Ward 的 [*Why Does ChatGPT "Delve" So Much?*](https://arxiv.org/abs/2412.11385)。
-- **有引用的整理。** Wikipedia 的 [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)（WP:AIVOCAB）。
-- **实践者整理。** [ninehills/public-skills](https://github.com/ninehills/public-skills)（MIT，经 [nmhjklnm/skills](https://github.com/nmhjklnm/skills)）。
-- **审查新增。** 审查中新增的词条会在备注列注明来源。
-
-## 许可
+## License
 
 MIT

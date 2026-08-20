@@ -1,0 +1,40 @@
+# worked-example/00-input.md  [en · academic]  3462 words of prose  (cap scale x16)
+  caps come from natural-talk's 300-500 char chat baseline, held as a density here
+
+## GATED — drive to zero or name every survivor
+  !! staged reversal                  7
+  !! em dash                          38
+     assistant residue                0
+     knowledge-cutoff disclaimer      0
+     emoji                            0
+  !! inline-title list item           1
+     -ing pseudo-analysis tail        0
+     copula dodge                     0
+     false range                      0
+
+## CAPPED — only the excess is a finding
+     signpost                         0  (cap 32)
+     editorial stance                 7  (cap 16)
+     lecture tone                     0  (cap 1)
+     exclamation                      0  (cap 48)
+     hedge stacking                   0  (cap 0)
+  !! paragraphs with >1 bold run      11  (cap 7)
+
+## REPORTED — never gates a pass/fail
+     sentences                        227
+     sentence length mean             15.4
+     sentence length CV               0.655
+         ^ report-only; needs >=12 sentences, and no human-written control corpus exists to set a threshold
+     conjunction density /1000        2.6
+         ^ never gated — shuorenhua calibration inverted it (SNF median 5.26 > SF median 0.00, SNF max 81.08 > SF max 80.00); judge by scene and distribution, not by total
+     nominalisation                   0
+     metaphor fields mixed            1
+     rule-of-three candidates         9
+         ^ never gated — on the first document deslop scanned, 5/5 hits were ordinary enumerations
+     lexicon hits                     8
+
+     metaphor fields: ecology(ecosystem)
+
+## lexicon candidates by category (a hit is a candidate, not a verdict)
+     vocab                            6
+     jargon                           2

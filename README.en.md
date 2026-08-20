@@ -2,192 +2,171 @@
 
 # deslop
 
-**Strip the LLM tells out of prose.**
+**Strip the LLM tells out of prose, and hand back numbers you can check.**
 
 A [Claude Code](https://claude.ai/code) skill. Chinese and English.
 
-[中文（默认）](./README.md)
+[中文（默认）](./README.md) | English
 
 </div>
 
----
+<br>
 
-LLM-written or LLM-polished prose carries tells. They are learnable, countable, and removable.
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/flow-dark.svg">
+    <img src="assets/flow-light.svg" width="900" alt="The nine steps: intake, scene, protected spans, measure before, lexical scan, line-by-line audit, apply, four rereads, measure after and report">
+  </picture>
+</div>
 
-`deslop` audits a document against a marker taxonomy, produces a per-line kill list with plain
-replacements, applies them, and re-measures two mechanical indicators plus a manual personification
-count — so the result is verifiable rather than asserted.
+<br>
 
-## The thing most people get wrong
+## The test
 
-**AI flavor is not "plain, careful wording." Plain, careful wording is the target.**
+Model prose has a fixed set of defects. They can be listed, and they can be counted.
 
-AI flavor is the writer showing you how clever they are. Every marker below is one form of it — the
-vivid analogy, the staged reversal, the punchy closer, the word picked because it sounds learned. They
-all do the same job: prove the author is smart. It reads well line by line, which is exactly why it
-survives editing.
-
-The test for any sentence:
+They all do the same job: they show the reader that the writer is clever. The vivid analogy does it,
+the staged reversal does it, the short assertion at the end of a paragraph does it, and so does the
+word picked because it sounds learned. Read line by line none of it looks wrong, which is exactly why
+it survives editing. One question decides any sentence:
 
 > Is this **saying the thing**, or **being clever**?
 
-Humble and plain is the target. Sly and clever is the defect.
+Plain, careful wording is not the defect. It is the target. Plain is also not colloquial, and editing
+a document into conversation is the other way to get it wrong.
 
-An editor who mistakes plainness for the problem sands the text into mush and misses every real tell.
-The models to aim at are Wikipedia, Hacker News technical comments, and academic papers.
+## Two layers
 
-## The default is to change the sentence
+**Principle layer. Absolute, no scene exempts it.** Do not fabricate. Do not judge the person. Do not
+change what a sentence claims. Do not rewrite quoted material. Do not fabricate voice.
+**Do not build a metaphor.** The last one is written as an absolute because it is the one an editor
+grants themselves an exemption for. Never explain A by swapping it for a B from another domain. The
+test is on the reader's side: does the reader have to map A onto B to understand it? Three things sit
+outside the rule:
 
-Assume nothing survives. Raw model prose has almost no sentence usable as written — not because any
-one word is wrong, but because the whole register is off by a constant. A pass that touches a tenth
-of the lines has removed the worst offenders and left the text still sounding like a model wrote it.
+- a name the field has frozen: *deadlock*, *idempotent*, *back-pressure*
+- a dead metaphor the language absorbed: *support*, *framework*, *pipeline*, where the reader maps nothing
+- a subject that genuinely is in that domain
 
-So the burden of proof runs the other way from most editing: **keeping a sentence needs a reason,
-changing it does not.**
+**Expression layer. Elastic, with named caps.** Dashes · openers · signposts · announced actions ·
+triads. The standard is "as few as the text can carry", not literal zero. Real people use a dash.
 
-Aggressive means how much you touch, never how the result reads. The output is still plain, still
-shorter than what it replaced.
+## The nine steps
 
-## Two checks that catch most of it
+The diagram above is the whole procedure. Fixed order, no skipping. Three things are worth saying
+separately:
 
-1. **Delete it — is any information lost?**
-2. **If a reader asks "what specifically does this mean", can you answer with a fact?**
+1. **Freeze before you touch anything.** Numbers, quotations, commands, error strings and attribution
+   get marked, plus a separate ledger of relations: which number modifies which object, who did what,
+   what is based on what. No word list can do this layer, and it is the only one whose damage cannot
+   be recovered from the finished text.
+2. **Only step 06 must be done by a person, and it must be a different person.** Whoever wrote the
+   text cannot audit it. They re-read their own intent instead of the words on the page. Here that is
+   implemented as a hard requirement: the audit runs in a fresh-context subagent.
+3. **Four rereads, and they may not be merged.** They see different things. B checks the replacement
+   text you just wrote yourself; D checks the junction between two edits, which the first three
+   passes structurally cannot see because they work item by item.
 
-From the [nofluff](https://nofluff.0x01.me/nofluff.txt) standard, folded in as
-`references/nofluff.md`. The tables below tell you where to look; these tell you whether the sentence
-should exist. When they disagree, the checks win.
+## Three tiers of indicator
 
-## What it catches
+An indicator earns a place in the counted set only if its hits are almost always real. When
+measurement says otherwise it gets demoted, and the reason is printed in every report so nobody
+quietly puts it back.
 
-| | |
+| tier | authority | contents |
+|---|---|---|
+| **GATED** | drive to zero, or name every survivor | em dash · staged reversal · `顿号` · mid-prose `：` · assistant residue · knowledge-cutoff disclaimer · emoji · inline-title list · `-ing` pseudo-analysis · copula dodge · false range |
+| **CAPPED** | only the excess is a finding | signposts · editorial stance · lecture tone · exclamations · stacked hedges · mid-sentence bold |
+| **REPORTED** | printed, never gates anything | sentence-length CV · conjunction density · nominalisation · metaphor fields · rule-of-three candidates · lexicon hits |
+
+Three were demoted on evidence:
+
+- **Rule of three.** The defect is real, the counter is not. On the first document scanned, all five
+  hits were ordinary enumerations.
+- **Conjunction density.** Calibrated on 95 passages and the criterion inverted. Text that should
+  *not* change had a median of 5.26 per 1000 against 0.00 for text that should. A matched pair pins
+  it: a narrative post at 80.00 needed half its connectives cut, a migration doc at 81.08 needed none.
+- **Bolded assertion.** After the counter was fixed it turned out not to catch the real defect, and a
+  bolded assertion is shape-identical to a bolded list label. Only meaning separates them.
+
+Personification and metaphor are not counted either. A frozen name, a literal use and a live metaphor
+look identical to a word list, so `--metaphor` lists candidates with line numbers and the decision is
+made in the audit table.
+
+## Use
+
+```bash
+python3 tools/measure.py FILE --scene academic      # measure before
+python3 tools/measure.py FILE --metaphor            # borrowed-domain and physical-verb candidates
+python3 tools/measure.py FILE --hits                # lexicon candidates
+python3 tools/measure.py FILE --worksheet           # per-sentence audit worksheet
+python3 tools/measure.py --diff before.json after.json
+python3 evals/run.py                                # regression score for lexical detection
+```
+
+Install as a Claude Code skill by placing this repository at `~/.claude/skills/deslop`, or symlink it.
+
+## A real run
+
+`worked-example/` is a full pass over an academic draft. The input is frozen in `00-input.md`.
+
+| indicator | before | after |
+|---|---|---|
+| em dash | 38 | **0** |
+| staged reversal | 7 | 1 (exempt, named) |
+| editorial stance | 7 | 2 (kept on purpose) |
+| words of prose | 3462 | 3385 |
+| sentences | 227 | 242 |
+
+More sentences, fewer words. That is the signature of decompression rather than deletion: 38 clauses
+hanging off a dash became sentences, appositions or parentheses.
+
+The more useful part is the end of `02-audit.md`. Passes B and D reversed seven of my own decisions.
+Two were over-corrections of mine, one of which removed a hedged self-assessment and so strengthened
+a claim the author never made. Three were junction defects created by my own sentence splits, and
+neither line-by-line pass saw any of them.
+
+## What this version merged
+
+deslop's own half was the test, compression punctuation, the burden-of-proof flip, before/after
+indicators and the over-correction pass. This version merged three more projects in:
+
+| project | what it brought |
 |---|---|
-| **Action metaphor** | `接住每个事件` → `对每个事件创建一条记录` · `costs collapsed` → `costs fell` |
-| **Personification** | `状态活不过一次调用` → `调用结束即失效` · `history reminds you` → `history does not indicate` |
-| **Staged reversal** | `不是 X，是 Y` · `it's not x, it's y` — the single most reliable tell |
-| **Compression punctuation** | `——` `、` `：` — one sentence carrying three thoughts. Counted, and the fix restructures the document |
-| **Imported second person** | dense `你` in Chinese prose, carried over from English docs style |
-| **Dramatized closer** | a short assertion parked at a paragraph's end to leave an aftertaste |
-| **Self-assessment** | `Naur 说得对` → `与 Naur 的结论一致` · `my honest take` → *(cut)* |
-| **Em dashes** | counted, and checked for where they land |
-| **Latching** | one vivid word reused across a document |
-| **Elevated diction** | a rarer, more "professional"-sounding word where a common one exists — 判据 → 判定规则 · utilize → use |
-| **Jargon** | 赛道 / 闭环 / 抓手 · load-bearing / key insight / synthesize |
+| [说人话 / shuorenhua](https://github.com/MrGeDiao/shuorenhua) | the control surface: scene, protected spans, tier, level × scope, unsourced-citation modes, two-stage reread, annotation mode |
+| [natural-talk](https://github.com/chengzhi-c/natural-talk) | the principle/expression split, numeric caps, and the best anti-overcorrection material of the four |
+| [Humanizer-zh](https://github.com/op7418/Humanizer-zh) | the Wikipedia *Signs of AI writing* pattern set: significance inflation, `-ing` pseudo-analysis, copula avoidance, synonym cycling, false ranges, formatting tells |
 
-## Install
-
-```sh
-git clone https://github.com/shuxueshuxue/deslop.git ~/.claude/skills/deslop
-```
-
-Then, in Claude Code:
-
-```
-/deslop  the README
-/deslop  slides/talk.html — Chinese, conference audience
-```
-
-Or just say *"this sounds like AI, fix it"* — the skill's description matches that.
-
-## The scanner
-
-```sh
-python3 scan.py --strip draft.md          # candidates, most frequent first
-python3 scan.py --strip --lines draft.md  # one row per hit, with line numbers
-python3 scan.py --lang zh draft.md        # one language only
-```
-
-```
-count   term            category   replacement          note
-5       leverage        vocab      use
-1       不是历史，是     shape      (只说后半句)          对偶反转。计数指标。
-
-# lexicon hits: 7  (2.9 per 1000 chars)
-# staged reversal: 1
-# em dash: 1
-# 顿号: 14
-# 句中冒号: 3
-```
-
-`顿号` and `句中冒号` usually start high. They are not a punctuation problem — each mark is a place
-the document declined to build structure, so driving them down splits sentences, turns inline
-enumerations into real lists, and surfaces headings that a colon was standing in for. Legality is not
-the test: every one of these marks is correct Chinese, and so is the em dash.
-
-Candidate terms in `references/lexicon.tsv`, Chinese and English, each with a plain replacement. It reports
-candidates and never rewrites: some entries are correct in context and say so in the note column.
-
-Word choice is the half a script can do. A dramatized closer, a paragraph that ends by restating
-itself, an analogy carrying no weight, a heading that narrates instead of naming — none of those are
-lookups. Run the scanner for the worklist, then audit for what it cannot see.
-
-## How it works
-
-1. **Extract** the prose so the audit sees what a reader sees, not the markup.
-2. **Scan** for lexicon hits — the cheap mechanical pass.
-3. **Audit** line by line, in a **fresh-context subagent**. Self-auditing prose you just wrote does
-   not work: you re-read your own intent instead of the words on the page.
-4. **Count** staged reversals and em dashes mechanically; count personification in the audit table.
-5. **Apply** the literal denotation. Never swap one vivid word for another vivid word.
-6. **Re-measure** and report both numbers.
-
-`reversals 12 → 0` is evidence. *"now it reads naturally"* is not.
-
-## What it will not do
-
-**It does not flatten terms of art.** If a mechanism is literally named *drift*, then "spec drift" is
-the term, not a metaphor. Same for *anchor*, *garbage collection*, *back-pressure*. The bar is narrow:
-one agreed referent, and no ordinary word for the thing. Most jargon fails the second condition.
-
-**It does not edit arguments.** It rewrites the sentence that carries a claim; it does not change what
-the sentence claims. Restructuring and cutting sections need the author's sign-off.
-
-**It does not check whether the text is right.** Register and comprehension are different defects. A
-document can be perfectly plain and still contain a dangling pronoun, a contradiction between two
-pages, or a misread citation. See [`references/worked-example.md`](references/worked-example.md) for a
-case where all three existed alongside the register problems.
+They contradicted each other in several places. Every ruling and its reason is in
+[`references/provenance.md`](./references/provenance.md). The two that mattered: **"inject soul"** was
+split into deslop (removal, on by default) and re-voice (addition, off by default, needs material the
+author actually holds); and **conjunction density** lost its global threshold to measurement.
 
 ## Files
 
-```
-SKILL.md                        the skill
-scan.py                         the scanner (python3, no dependencies)
-references/lexicon.tsv          candidate terms, zh + en, with replacements and false-positive notes
-references/markers-zh.md        Chinese taxonomy, eight categories
-references/markers-en.md        English markers, sourced to HN 48905248
-references/titles.md            headings: name the content, don't narrate the reading path
-references/nofluff.md           the nofluff standard's two checks, and what it adds
-references/worked-example.md    a real audit: 45 findings, 12/10/14 → 0/0/0
-```
+| | |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | the behavioural contract, nine fixed steps |
+| [`references/taxonomy.md`](./references/taxonomy.md) | twelve marker families, each attributed to the project it came from |
+| [`references/decisions.md`](./references/decisions.md) | per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates |
+| [`references/overcorrection.md`](./references/overcorrection.md) | the false-positive corpus: what looks like a tell and is not |
+| [`references/provenance.md`](./references/provenance.md) | what came from where, every conflict, and the ruling |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 553 candidate rows, zh and en, each with replacement, note and source project |
+| [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, worksheet, before/after diff |
+| [`docs/pipeline.html`](./docs/pipeline.html) | the diagram and the step notes, one 28 KB page, no external files |
+| [`worked-example/`](./worked-example/) | one complete run |
 
-## Credit
+The lexicon is generated by `tools/build_lexicon.py` from the four upstream checkouts rather than
+typed by hand. Dedupe is by match, not by string equality, or the same word would carry four rows
+under four names.
 
-This project is promoted through [linux.do](https://linux.do/).
+## This repository runs it on itself
 
-The two checks and four of the rules come from the [nofluff](https://nofluff.0x01.me/nofluff.txt)
-writing standard.
+Zero em dashes across every file, staged reversals within the two-per-document exemption cap, and
+zero live metaphors introduced by the author.
 
-
-The English marker list draws on the Hacker News thread cataloguing "claudish"
-([48905248](https://news.ycombinator.com/item?id=48905248)), where readers named the specific words
-and sentence shapes. Quotes are attributed in `references/markers-en.md`.
-
-The lexicon is assembled from four kinds of source, and the difference matters — a measured word list
-and a curated one fail differently:
-
-- **Measured.** Kobak, González-Márquez, Horvát & Lause, [*Delving into LLM-assisted writing in
-  biomedical publications through excess vocabulary*](https://www.science.org/doi/10.1126/sciadv.adt3813)
-  (Science Advances 11(27), 2025) — word frequencies in 14M PubMed abstracts before and after
-  ChatGPT. Also Juzek & Ward, [*Why Does ChatGPT "Delve" So Much?*](https://arxiv.org/abs/2412.11385) (ACL 2025).
-- **Curated with a citation bar.** Wikipedia's
-  [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) (WP:AIVOCAB) —
-  a word is only listed there if its overuse is corroborated by an outside source. It also tracks
-  which words belong to which model era, and warns that a word being overused does not make its
-  synonyms suspect.
-- **Curated by practitioners.** The Chinese lists come from
-  [ninehills/public-skills](https://github.com/ninehills/public-skills) (MIT, via
-  [nmhjklnm/skills](https://github.com/nmhjklnm/skills)) — the jargon two-tier list, the
-  paragraph-closing summary tell, the translationese verb list.
-- **Observed.** Entries added from real audits, marked in the note column.
+`evals/run.py` scores lexical detection against 46 cases: 100% recall, with one known false positive
+from the deliberately broad `你` rule.
 
 ## License
 

@@ -1,0 +1,75 @@
+> Hand-kept supplement: rows that only Humanizer-zh (Wikipedia:Signs of AI writing) or
+> natural-talk carry. Rows already covered by deslop or shuorenhua are dropped at merge time
+> by the match test in tools/build_lexicon.py, so overlap here is harmless.
+lang	pattern	category	replacement	note	source
+zh	标志着	puffery	(删掉，直接说发生了什么)		humanizer-zh
+zh	见证了	puffery	(删掉)		humanizer-zh
+zh	是.{0,8}的(体现|证明|缩影)	puffery	(直接陈述事实)		humanizer-zh
+zh	彰显(了)?其?	puffery	(说清楚做了什么)		humanizer-zh
+zh	反映了更广泛的	puffery	(删掉)		humanizer-zh
+zh	象征着	puffery	(删掉，除非真在讲象征)	讨论符号学、纹章、宗教象征时是本义	humanizer-zh
+zh	奠定(了)?.{0,6}基础	puffery	(说清楚后来发生了什么)		humanizer-zh
+zh	(关键|重要)(的)?转折点	puffery	(给日期和事件)		humanizer-zh
+zh	不断演变的(格局|生态|图景)	puffery	(删掉)		humanizer-zh
+zh	深深植根于	puffery	(说清楚来源)		humanizer-zh
+zh	独立(媒体)?报道	puffery	(给具体出处)		humanizer-zh
+zh	活跃的社交媒体	puffery	(删掉，或给数据)		humanizer-zh
+zh	坐落(于|在)	puffery	位于 · 在	写地理位置时用「在」	humanizer-zh
+zh	令人叹为观止	puffery	(给具体数据)		humanizer-zh
+zh	必(游|读|看)之(地|书)	puffery	(删掉)		humanizer-zh
+zh	致力于	puffery	(说清楚做了什么)	机构章程、正式宗旨里是固定表述	humanizer-zh
+zh	自然(之)?美(景|丽)	puffery	(说清楚是什么景观)		humanizer-zh
+zh	开创性的	puffery	新的 · (给对比)	字面「开创」某个具体领域时放行	humanizer-zh
+zh	尽管(存在|面临)(这些|若干|一些)挑战	template	(删掉整句，或说清楚挑战是什么)		humanizer-zh
+zh	挑战与(未来)?展望	template	(改成具体计划或删掉)	作为真实的章节标题且下面确有具体内容时放行	humanizer-zh
+zh	未来(可期|展望|前景(依然)?光明)	closer	(改成具体计划、日期、数字)		humanizer-zh
+zh	与.{0,8}保持一致	vocab	和……一样 · 符合		humanizer-zh
+zh	相互作用	vocab	互相影响		humanizer-zh
+zh	织锦	puffery	(删掉)	字面纺织品放行	humanizer-zh
+zh	截至我(最后)?的(训练|知识)	assistant	(删掉整句)	用户直接问知识截止时间时如实作答	natural-talk
+zh	根据我(最后)?的训练(更新|数据)?	assistant	(删掉整句)		natural-talk
+zh	虽然具体细节(有限|稀缺|没有广泛记录)	hedge	(去查，或直接说不知道)		humanizer-zh
+zh	基于(现有|可用)信息	hedge	(说清楚信息是什么)		humanizer-zh
+zh	作为(一个)?(AI|人工智能|语言模型)	assistant	(删掉整句)	用户直接问身份时如实、简短作答	natural-talk
+zh	拆一拆	assistant	(删掉，直接说)		natural-talk
+zh	盘一盘	assistant	(删掉，直接说)		natural-talk
+zh	划重点	assistant	(删掉，直接说)		natural-talk
+zh	敲黑板	assistant	(删掉，直接说)		natural-talk
+zh	捋一捋	assistant	(删掉，直接说)	deslop 把「捋一遍」列为物理动作词，同族	natural-talk
+zh	让我(来|为你)	assistant	(删掉，直接说)		natural-talk
+zh	下面我们	assistant	(删掉，直接说)		natural-talk
+zh	由此可见	closer	(删掉)		natural-talk
+zh	数据告诉我们	shape	数据显示 · (给数字)		natural-talk
+zh	问题变成了	shape	(直接说问题是什么)		natural-talk
+zh	你(有很强的|的观察力|问到了)	stance	(删掉，只回应内容)		natural-talk
+zh	这个角度很新颖	stance	(删掉，只回应内容)		natural-talk
+zh	我完全理解(你的)?	empathy	(删掉，或改成低承诺回应)	对方遭遇坏消息时，安慰优先	natural-talk
+zh	我懂你的	empathy	(删掉，或改成低承诺回应)	同上	natural-talk
+en	marks? a (turning point|shift|milestone)	puffery	(give the date and the event)		humanizer-zh
+en	bears? witness to	puffery	(cut)		humanizer-zh
+en	is a (testament|reminder|reflection) (to|of)	puffery	(state the fact)		humanizer-zh
+en	reflect(s|ing)? (a )?broader	puffery	(cut)		humanizer-zh
+en	laid? the (ground|found)work for	puffery	(say what followed)		humanizer-zh
+en	deeply rooted in	puffery	(say where it came from)		humanizer-zh
+en	nestled (in|within|among)	puffery	in	Literal nesting (nested loops, nesting birds) is fine.	humanizer-zh
+en	must-(visit|read|see)	puffery	(cut)		humanizer-zh
+en	breathtaking	puffery	(give the number)		humanizer-zh
+en	committed to	puffery	(say what they did)	A commitment with a date and an amount is a fact.	humanizer-zh
+en	despite (these|some|several) challenges	template	(cut, or name the challenge)		humanizer-zh
+en	challenges and (future )?(prospects|outlook)	template	(replace with a plan, or cut)	A real section with real content under it is fine.	humanizer-zh
+en	the future (looks|is) bright	closer	(give the plan, date, number)		humanizer-zh
+en	exciting times ahead	closer	(cut)		humanizer-zh
+en	an? (interplay|tapestry|mosaic) of	puffery	(cut)		humanizer-zh
+en	as of my (last )?(training|knowledge)	assistant	(cut the sentence)	Answer plainly if the user asked about the cutoff.	natural-talk
+en	while (specific|exact) details (are|remain) (limited|scarce)	hedge	(go find out, or say you don't know)		humanizer-zh
+en	based on (the )?available information	hedge	(say what the information is)		humanizer-zh
+en	as an (AI|artificial intelligence|assistant)	assistant	(cut the sentence)	Answer plainly if the user asked who you are.	natural-talk
+en	let'?s (dive in|break this down|unpack)	assistant	(cut, say the thing)		natural-talk
+en	without further ado	assistant	(cut)		natural-talk
+en	here'?s what you need to know	assistant	(cut)		natural-talk
+en	you'?re absolutely right	assistant	(cut)		natural-talk
+en	great question	assistant	(cut)		natural-talk
+en	I hope (this|that) helps	assistant	(cut)		natural-talk
+en	let me know if	assistant	(cut)		natural-talk
+en	the data tells us	shape	the data shows · (give the number)		natural-talk
+en	from [a-z ]{3,20} to [a-z ]{3,20}, and (from|everything)	shape	(name the actual span)	A real range with two endpoints on one scale is fine.	humanizer-zh
