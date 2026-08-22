@@ -198,7 +198,8 @@ garbled letterforms on a repository about removing AI tells would be the loudest
 the artwork draws is lines of set type, dense and ornamented on the left, thinning to a few clean
 rules on the right, which is the subject drawn as itself rather than as an analogy for itself. That
 is the one exemption H6 grants. The composition script is
-[`tools/make_banner.py`](./tools/make_banner.py).
+[`tools/make_banner.py`](./tools/make_banner.py) and the artwork is kept at `assets/banner-art.jpg`,
+so the banner can be rebuilt. The strapline carries no number that can go stale.
 
 ## This repository runs it on itself
 

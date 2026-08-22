@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Compose the README banner: generated artwork plus real typography.
 
-    python3 tools/make_banner.py     # writes assets/_banner.html
-                                     # render it to PNG at 2x with any headless browser
+    python3 tools/make_banner.py                 # writes assets/_banner.html
+    # render that file to PNG at 1400x440, deviceScaleFactor 2, with any headless browser
+    python3 tools/make_banner.py --compose SHOT.png   # downscales it into assets/banner.png
 
 The artwork behind the banner was generated with an image model. The type is set here in CSS instead,
 because image models garble letterforms, and garbled letterforms on a repository about removing AI
@@ -12,11 +13,20 @@ The prompt asked for no letters at all: two-colour letterpress on paper, a dense
 carrying small ornamental flourishes on the left, thinning to a few clean rules on the right. That is
 the subject drawn as itself rather than as an analogy for itself, which is the one exemption H6 grants.
 
-banner-art.png is not kept in the repository, so the shipped assets/banner.png cannot be rebuilt from
-here. It still carries a lexicon row count from the version that composed it; the strapline no longer
-prints one, so a future rebuild will not age the same way.
+assets/banner-art.jpg is the generated artwork, kept here so the banner can be rebuilt. It is already
+cropped to the 1400x440 box and stored as JPEG, because it is a grainy paper texture and a palette
+PNG of it costs three times as much for no visible gain. The composed banner stays PNG, where the
+type is.
+
+The strapline carries no counts. An earlier version printed the lexicon row count and the shipped
+image went stale the next time the lexicon grew, with no way to rebuild it.
+
+banner.png stays 24-bit rather than a palette PNG. Palette quantisation costs about 120 KB less and
+loses the amber eyebrow every time: the paper grain holds thousands of near-identical shades that
+take the whole palette, and the accent is a few thousand thin pixels with no population to defend
+itself. The shipped banner before this rebuild had lost it that way.
 """
-import base64, os
+import base64, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ART = os.path.join(ROOT, "assets")
@@ -29,7 +39,8 @@ INK, MUTED, AMBER, PAPER = "#17191d", "#7e7a72", "#b0651a", "#f3f1ec"
 
 
 def data_uri(path):
-    return "data:image/png;base64," + base64.b64encode(open(path, "rb").read()).decode()
+    mime = "jpeg" if path.endswith((".jpg", ".jpeg")) else "png"
+    return f"data:image/{mime};base64," + base64.b64encode(open(path, "rb").read()).decode()
 
 
 BANNER = f"""<!doctype html><meta charset="utf-8">
@@ -56,11 +67,22 @@ BANNER = f"""<!doctype html><meta charset="utf-8">
 </div>"""
 
 
+def compose(shot):
+    from PIL import Image
+    im = Image.open(shot).convert("RGB")
+    if im.size != (2800, 880):
+        raise SystemExit(f"{shot} is {im.size}, expected (2800, 880): 1400x440 at 2x")
+    out = os.path.join(ART, "banner.png")
+    im.resize((1400, 440), Image.LANCZOS).save(out, optimize=True)
+    print(f"wrote {out} ({os.path.getsize(out)} bytes)")
+
+
 def main():
-    art = os.path.join(ART, "banner-art.png")
+    if len(sys.argv) > 2 and sys.argv[1] == "--compose":
+        return compose(sys.argv[2])
+    art = os.path.join(ART, "banner-art.jpg")
     if not os.path.exists(art):
-        raise SystemExit(f"missing {art}: the generated artwork is not kept in the repository, "
-                         f"only the composed assets/banner.png is")
+        raise SystemExit(f"missing {art}")
     open(os.path.join(ART, "_banner.html"), "w", encoding="utf-8").write(
         BANNER.replace("{ART}", data_uri(art)))
     print("wrote _banner.html")

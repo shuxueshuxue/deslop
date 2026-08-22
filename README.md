@@ -168,7 +168,8 @@ deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指�
 顶部那条 banner 的底图由图像模型生成，提示词要求画面里不出现任何字母，字是后期用真字体排上去的。
 图像模型排出来的字母是歪的，而在一个讲去 AI 味的仓库里，歪字母是最响的痕迹。
 底图画的是字行本身，密而带花饰的左边渐变到干净的右边，属于 H6 唯一豁免的那种情况：
-所写对象本身就是那个域。合成脚本在 [`tools/make_banner.py`](./tools/make_banner.py)。
+所写对象本身就是那个域。合成脚本在 [`tools/make_banner.py`](./tools/make_banner.py)，
+底图留在 `assets/banner-art.jpg`，所以这张图可以重建。标语里不放会过期的数字。
 
 词表由 `tools/build_lexicon.py` 从四个上游 checkout 生成，不是手抄。去重按"能不能被已有正则命中"判，
 不按字符串相等，否则同一个词会有四家四行。
