@@ -357,7 +357,7 @@ people who both hold it is not a display.
 
 ### E1. AI vocabulary `H D S N`
 
-`references/lexicon.tsv`, 625 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
+`references/lexicon.tsv`, 635 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
 Kobak et al. 2025 on excess vocabulary in biomedical abstracts, Juzek & Ward 2025, HN 48905248, and
 the Chinese community lists. Each row carries a plain replacement and a note where the word is
 sometimes legitimate.

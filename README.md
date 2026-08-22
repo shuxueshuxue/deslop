@@ -213,7 +213,7 @@ deslop 原来解决的是判断标准，压缩标点，burden of proof，前后�
 | [`references/code-comments.md`](./references/code-comments.md) | 代码注释和界面文案，写给谁看，边界在哪一步 |
 | [`references/provenance.md`](./references/provenance.md) | 四家各带来什么，冲突在哪，谁赢，为什么 |
 | [`references/field-reports.md`](./references/field-reports.md) | 外面的抱怨帖里能用的部分，每条都带出处 |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 625 条候选词，中英文，各带替换，豁免注释和来源项目 |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 635 条候选词，中英文，各带替换，豁免注释和来源项目 |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | 本仓库自己没清掉的闸门命中，逐条留名字和理由 |
 | [`tools/measure.py`](./tools/measure.py) | 指标，词表扫描，比喻候选，注释候选，逐句工作表，前后对照 |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | 把闸门跑在本仓库自己的文字上 |

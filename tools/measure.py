@@ -167,8 +167,11 @@ SIGNPOST = re.compile(
     r"|here'?s the thing|more importantly|in conclusion|that said\b|crucially\b"
     r"|^(?:Additionally|Moreover|Furthermore|Notably|Importantly|Ultimately),", re.I | re.M)
 LECTURE = re.compile(r"首先[^。\n]{0,40}其次|让我(?:来|们)|接下来(?:我|我们)|捋一捋"
-                     r"|first(?:ly)?,[^.\n]{0,80}second(?:ly)?,|in this (?:essay|section) we will", re.I)
-EXCL = re.compile(r"[!！]")
+                     r"|first(?:ly)?,[^.\n]{0,80}second(?:ly)?,|in this (?:essay|section) we will"
+                     r"|\blet us\b(?! know)|\blet'?s (?:begin|start|dive|explore|consider)\b", re.I)
+# `!` opening a markdown image is syntax. Counting it charged a photo essay six exclamations
+# it did not contain.
+EXCL = re.compile(r"!(?!\[)|！")
 HEDGE_STACK = re.compile(
     r"(?:可能|也许|或许|大概|大致|应该)[^，。\n]{0,10}(?:可能|也许|或许|大概|大致|应该)"
     r"|(?:might|may|could|possibly|potentially|arguably|somewhat|perhaps)\W+(?:\w+\W+){0,3}"

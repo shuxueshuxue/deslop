@@ -634,3 +634,13 @@ en	high signal	jargon	(say what it tells you)		membership
 en	galaxy[- ]brain	vocab	(say the idea plainly)		membership
 en	big[- ]brain	vocab	(say the idea plainly)		membership
 en	skill issue	vocab	(say what went wrong)		membership
+en	awe and wonder	puffery	(say what you saw)		manifesto-corpus
+en	our shared humanity	puffery	(say what is shared)		manifesto-corpus
+en	a brighter future	closer	(say what changes, and by when)	A6 generic positive ending.	manifesto-corpus
+en	a common thread	borrowed	(say what they have in common)	textile domain; also the metaphor ban.	manifesto-corpus
+en	embrace (our|their|the) (differences|diversity)	puffery	(say what you would do)		manifesto-corpus
+en	celebrate (our|the) diversity	puffery	(say what you would do)		manifesto-corpus
+en	the (endless|boundless) (expanse|diversity|possibilities)	puffery	(give the number or the range)		manifesto-corpus
+en	in this age of	template	(give the years, or cut)	B6 rhetorical setup.	manifesto-corpus
+en	work(ing)? towards a (brighter|better) (future|tomorrow|world)	closer	(name the next action)		manifesto-corpus
+en	more harmonious and inclusive	puffery	(say what would be different)		manifesto-corpus

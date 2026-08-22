@@ -244,7 +244,7 @@ and its cost are in the same file.
 | [`references/code-comments.md`](./references/code-comments.md) | comments and interface text: who the reader is, and which step removes what |
 | [`references/provenance.md`](./references/provenance.md) | what came from where, every conflict, and the ruling |
 | [`references/field-reports.md`](./references/field-reports.md) | what the public complaint threads are worth, attributed line by line |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 625 candidate rows, zh and en, each with replacement, note and source project |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 635 candidate rows, zh and en, each with replacement, note and source project |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | this repository's own surviving gate hits, each with a reason |
 | [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, comment worklist, worksheet, before/after diff |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | runs the gates on this repository's own prose |

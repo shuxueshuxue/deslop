@@ -587,7 +587,7 @@ reader's ordinary language.** `回归` for a regression reads as translated rath
 
 ### 6.2 The scanner is the cheap half
 
-`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (625 rows, Chinese
+`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (635 rows, Chinese
 and English, each with a plain replacement, a note where the word is sometimes legitimate, and the
 upstream project it came from).
 
@@ -990,7 +990,7 @@ at the larger size, which is why this pipeline has four instead of one.
 - `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
 - `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
 - `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
-- `references/lexicon.tsv`. 625 candidate rows, zh and en, each with replacement, note, and source project.
+- `references/lexicon.tsv`. 635 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.
 - `tools/measure.py`. Indicators, worksheet, before/after diff. No dependencies beyond python3.
 - `tools/build_lexicon.py`. Rebuilds the lexicon from the four upstream checkouts, deduping by match.
