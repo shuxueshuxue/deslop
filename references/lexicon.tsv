@@ -587,11 +587,11 @@ zh	一本账	borrowed	(说清楚是哪一份记录)		user-ban
 zh	算账	borrowed	(说清楚是核对还是追责)		user-ban
 zh	欠债	borrowed	(说清楚欠下的是什么工作)		user-ban
 zh	还债	borrowed	(说清楚要补做什么)		user-ban
-zh	技术债	borrowed	(说清楚是哪些没做的整改)	领域里有人当固定名字用，按 E6 两条判；候选不等于判定。	user-ban
+zh	技术债	borrowed	(说清楚是哪些没做的整改)	作者裁定不留 E6 豁免，一律换掉。见 taxonomy E8。	user-ban
 zh	透支	borrowed	(说清楚超出了什么)	所写对象本身是账户时不算。	user-ban
 en	ledger	borrowed	record / list / table	literal in accounting and in distributed-ledger contexts; see E6.	user-ban
 en	book-?keeping	borrowed	record-keeping		user-ban
-en	technical debt	borrowed	(name the work that was not done)	some fields use it as a frozen name; judge by E6.	user-ban
+en	technical debt	borrowed	(name the work that was not done)	ruled out of E6's exemption by the author; always replace. See taxonomy E8.	user-ban
 en	pay(ing)? (it |this )?down	borrowed	(say what gets done)		user-ban
 zh	取得了?(显著|明显|积极)?(成效|成果|进展|突破)	puffery	(说清楚做成了什么)	播报体套话，A1。	anchor-cost
 zh	迈上(了)?新台阶	puffery	(说清楚变化是什么)	同上。	anchor-cost

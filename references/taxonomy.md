@@ -453,9 +453,16 @@ boundary and for why nothing here can be counted.
 `欠债`, `还债`, `技术债` and the English `ledger`, `bookkeeping`, `technical debt` name a borrowed
 domain like any other, and this repository had been using `关系账本` and `relations ledger` in its
 own pipeline description while the H6 ban was in force. Those are now `关系清单` and
-`relations record`. E6 still decides the literal cases: an accounting document keeps its `账本`, a
-distributed ledger keeps its name, and `技术债` may be a frozen name in a codebase that treats it as
-one. `python3 tools/measure.py FILE --metaphor` lists the candidates.
+`relations record`. E6 still decides the literal cases: an accounting document keeps its `账本` and
+a distributed ledger keeps its name. `python3 tools/measure.py FILE --metaphor` lists the candidates.
+
+**`技术债` and `technical debt` are a named exception to E6, ruled by the author.** E6 would arguably
+exempt them, because a large part of the field does treat the phrase as a frozen name with one agreed
+referent. The ruling is to replace them anyway, everywhere, on the grounds that over-killing this one
+costs a rewritten sentence while sparing it has cost the author enough already. The exception is
+written down rather than applied quietly, so that a later reader can see it is a decision and not an
+oversight, and so that E6 itself stays intact for every other word. What replaces it is the work that
+did not get done, named.
 
 ### E9. Synonym cycling `S H`
 

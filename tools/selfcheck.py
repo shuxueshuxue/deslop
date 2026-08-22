@@ -30,7 +30,7 @@ FILES = ["SKILL.md", "README.md", "README.en.md", "evals/README.md"] + [
     f"references/{n}.md" for n in (
         "taxonomy", "decisions", "overcorrection", "provenance", "titles",
         "nofluff", "worked-example", "markers-zh", "markers-en", "field-reports",
-        "code-comments")]
+        "code-comments", "samples")]
 
 SNIP = 60
 

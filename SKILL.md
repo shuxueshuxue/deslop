@@ -989,6 +989,7 @@ at the larger size, which is why this pipeline has four instead of one.
 - `references/provenance.md`. What came from where, every conflict between the four, and the ruling.
 - `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
 - `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
+- `references/samples.md`. Whole texts judged line by line, kept because each is right on one axis and wrong on another.
 - `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
 - `references/lexicon.tsv`. 635 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.

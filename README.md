@@ -211,6 +211,7 @@ deslop 原来解决的是判断标准，压缩标点，burden of proof，前后�
 | [`references/decisions.md`](./references/decisions.md) | 单条命中的判定流程，豁免上限，保留条件，`in-place` 替代动作 |
 | [`references/overcorrection.md`](./references/overcorrection.md) | 误杀语料，看着像命中其实不是的 |
 | [`references/code-comments.md`](./references/code-comments.md) | 代码注释和界面文案，写给谁看，边界在哪一步 |
+| [`references/samples.md`](./references/samples.md) | 逐条判过的整篇样本，每一篇都在一个轴上对、另一个轴上错 |
 | [`references/provenance.md`](./references/provenance.md) | 四家各带来什么，冲突在哪，谁赢，为什么 |
 | [`references/field-reports.md`](./references/field-reports.md) | 外面的抱怨帖里能用的部分，每条都带出处 |
 | [`references/lexicon.tsv`](./references/lexicon.tsv) | 635 条候选词，中英文，各带替换，豁免注释和来源项目 |

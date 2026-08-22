@@ -242,6 +242,7 @@ and its cost are in the same file.
 | [`references/decisions.md`](./references/decisions.md) | per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates |
 | [`references/overcorrection.md`](./references/overcorrection.md) | the false-positive corpus: what looks like a tell and is not |
 | [`references/code-comments.md`](./references/code-comments.md) | comments and interface text: who the reader is, and which step removes what |
+| [`references/samples.md`](./references/samples.md) | whole texts judged line by line, kept because each is right on one axis and wrong on another |
 | [`references/provenance.md`](./references/provenance.md) | what came from where, every conflict, and the ruling |
 | [`references/field-reports.md`](./references/field-reports.md) | what the public complaint threads are worth, attributed line by line |
 | [`references/lexicon.tsv`](./references/lexicon.tsv) | 635 candidate rows, zh and en, each with replacement, note and source project |
