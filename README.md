@@ -138,6 +138,11 @@ deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指�
 | [natural-talk](https://github.com/chengzhi-c/natural-talk) | 原则层 / 表达层的分层，数值上限，以及四家里最好的防矫枉过正清单 |
 | [Humanizer-zh](https://github.com/op7418/Humanizer-zh) | 维基百科 *Signs of AI writing* 那套模式：意义拔高、`-ing` 假分析、系动词回避、同义词轮换、假区间、格式痕迹 |
 
+外面的抱怨帖是第五份材料，但不是第五个被合并的项目。它给的是别人注意到什么，不是一套规则。
+能用的部分和每一条的出处在 [`references/field-reports.md`](./references/field-reports.md)，
+进来的主要是代码注释和界面文案那一族（taxonomy M），以及一条本仓库自己没做过的检查。
+被拒掉的是那条最流行的路子，把文本交给另一个模型重写。理由和它的代价也写在那份文件里。
+
 四家在几处直接对立，每一处的裁决和理由都写在 [`references/provenance.md`](./references/provenance.md)。
 最要紧的两条：**注入灵魂**拆成了去味（默认开）和补声音（默认关，需要作者真有的材料）；
 **连词密度**按实测废掉了全局阈值。
@@ -147,12 +152,16 @@ deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指�
 | | |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | 行为合同，固定九步 |
-| [`references/taxonomy.md`](./references/taxonomy.md) | 十二类问题族，标注每一类来自哪个项目 |
+| [`references/taxonomy.md`](./references/taxonomy.md) | 十三类问题族，标注每一类来自哪个项目 |
 | [`references/decisions.md`](./references/decisions.md) | 单条命中的判定流程、豁免上限、保留条件、`in-place` 替代动作 |
 | [`references/overcorrection.md`](./references/overcorrection.md) | 误杀语料，看着像命中其实不是的 |
 | [`references/provenance.md`](./references/provenance.md) | 四家各带来什么，冲突在哪，谁赢，为什么 |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 553 条候选词，中英文，各带替换、豁免注释和来源项目 |
-| [`tools/measure.py`](./tools/measure.py) | 指标、词表扫描、比喻候选、逐句工作表、前后对照 |
+| [`references/field-reports.md`](./references/field-reports.md) | 外面的抱怨帖里能用的部分，每条都带出处，以及哪几条改了合同 |
+| [`references/code-comments.md`](./references/code-comments.md) | 代码注释和界面文案：写给谁看，边界在哪一步 |
+| [`references/selfcheck.tsv`](./references/selfcheck.tsv) | 本仓库自己没清掉的闸门命中，逐条留名字和理由 |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 570 条候选词，中英文，各带替换、豁免注释和来源项目 |
+| [`tools/measure.py`](./tools/measure.py) | 指标、词表扫描、比喻候选、注释候选、逐句工作表、前后对照 |
+| [`tools/selfcheck.py`](./tools/selfcheck.py) | 把闸门跑在本仓库自己的文字上 |
 | [`docs/pipeline.html`](./docs/pipeline.html) | 流程图解，28 KB 单页，手写 SVG，无外部依赖 |
 | [`worked-example/`](./worked-example/) | 一次完整实跑 |
 
@@ -166,10 +175,19 @@ deslop 原来解决的是判据 · 压缩标点 · burden of proof · 前后指�
 
 ## 本仓库自查
 
-deslop 对自己也跑。全仓破折号 0，对偶反转都在每篇两处的豁免上限内，
-比喻候选逐条判过，自己引入的活比喻 0 处。
+`python3 tools/selfcheck.py` 把闸门跑在 deslop 自己的文字上。15 个用本仓库口吻写的文件，
+每一条 GATED 命中要么改掉，要么在 [`references/selfcheck.tsv`](./references/selfcheck.tsv) 里留下名字和理由。
+没留名的命中判失败；命中已经没了理由还留着的也判失败，免得这张表慢慢变成一张免死牌。
 
-`evals/run.py` 是词表检测的回归分数：46 条用例，召回 100%，一处已知误报是 `你` 那条刻意放宽的规则。
+第一次跑就降了两个指标。尾部对比句（`…, not a style call.`）在这里命中 6 次，真的 1 次。
+内联标题项命中 11 次，真的 0 次，因为 F4 的规则要求"正文重复标题"，而正则看不见后半句。
+两条都从 GATED 降到 CAPPED。还有一条查出来了但没有动。30 行留名里有 17 行说的是同一件事，
+`、` 在分列而不在断句。这几个文件本身就是词表清单，是最不像普通中文的语料，
+拿它去降一个闸门等于挑最能替自己开脱的样本当证据。
+
+全仓破折号 0，比喻候选逐条判过，自己引入的活比喻 0 处。
+
+`evals/run.py` 是词表检测的回归分数：56 条用例，召回 100%，两处已知误报都来自刻意放宽的规则（文档里的 `你`，以及过度共情那条的 `请求`）。
 
 ## License
 

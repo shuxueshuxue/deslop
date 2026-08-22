@@ -158,6 +158,13 @@ indicators and the over-correction pass. This version merged three more projects
 | [natural-talk](https://github.com/chengzhi-c/natural-talk) | the principle/expression split, numeric caps, and the best anti-overcorrection material of the four |
 | [Humanizer-zh](https://github.com/op7418/Humanizer-zh) | the Wikipedia *Signs of AI writing* pattern set: significance inflation, `-ing` pseudo-analysis, copula avoidance, synonym cycling, false ranges, formatting tells |
 
+Public complaint threads are a fifth source and not a fifth merge: they report what strangers
+notice rather than a ruleset. What was usable, with a citation per claim, is in
+[`references/field-reports.md`](./references/field-reports.md). What came in was mostly the comment
+and interface-text family (`taxonomy.md` M) and one check this repository had never run on itself.
+What was declined is the most popular design in that space, handing the text to a second model to
+rewrite. The reason and its cost are in the same file.
+
 They contradicted each other in several places. Every ruling and its reason is in
 [`references/provenance.md`](./references/provenance.md). The two that mattered: **"inject soul"** was
 split into deslop (removal, on by default) and re-voice (addition, off by default, needs material the
@@ -168,12 +175,16 @@ author actually holds); and **conjunction density** lost its global threshold to
 | | |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | the behavioural contract, nine fixed steps |
-| [`references/taxonomy.md`](./references/taxonomy.md) | twelve marker families, each attributed to the project it came from |
+| [`references/taxonomy.md`](./references/taxonomy.md) | thirteen marker families, each attributed to the project it came from |
 | [`references/decisions.md`](./references/decisions.md) | per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates |
 | [`references/overcorrection.md`](./references/overcorrection.md) | the false-positive corpus: what looks like a tell and is not |
 | [`references/provenance.md`](./references/provenance.md) | what came from where, every conflict, and the ruling |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 553 candidate rows, zh and en, each with replacement, note and source project |
-| [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, worksheet, before/after diff |
+| [`references/field-reports.md`](./references/field-reports.md) | what the public complaint threads are worth, attributed line by line, and which parts changed the contract |
+| [`references/code-comments.md`](./references/code-comments.md) | comments and interface text: who the reader is, and which step removes what |
+| [`references/selfcheck.tsv`](./references/selfcheck.tsv) | this repository's own surviving gate hits, each with a reason |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 570 candidate rows, zh and en, each with replacement, note and source project |
+| [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, comment worklist, worksheet, before/after diff |
+| [`tools/selfcheck.py`](./tools/selfcheck.py) | runs the gates on this repository's own prose |
 | [`docs/pipeline.html`](./docs/pipeline.html) | the diagram and the step notes, one 28 KB page, no external files |
 | [`worked-example/`](./worked-example/) | one complete run |
 
@@ -191,11 +202,23 @@ is the one exemption H6 grants. The composition script is
 
 ## This repository runs it on itself
 
-Zero em dashes across every file, staged reversals within the two-per-document exemption cap, and
-zero live metaphors introduced by the author.
+`python3 tools/selfcheck.py` runs the gates over the 15 files that speak in deslop's own voice.
+Every GATED hit is either fixed or named in [`references/selfcheck.tsv`](./references/selfcheck.tsv)
+with its reason. An unnamed hit fails the check, and so does a reason left behind after its hit is
+gone, which is what stops the ledger turning into a blanket exemption.
 
-`evals/run.py` scores lexical detection against 46 cases: 100% recall, with one known false positive
-from the deliberately broad `你` rule.
+The first run demoted two indicators. The trailing contrastive tail (`…, not a style call.`) had six
+hits here and one was real. The inline-title list item had eleven and none was, because F4's rule
+requires the body to restate the label and no regex can see that. A third pattern was found and
+deliberately left alone: 17 of the 30 hit-level survivors say the same thing, that `、` was separating
+list items rather than joining clauses. These files are marker inventories, the least representative
+Chinese prose available, and demoting a gate on them would mean picking the sample most likely to
+excuse it.
+
+Zero em dashes across every file, and zero live metaphors introduced by the author.
+
+`evals/run.py` scores lexical detection against 56 cases: 100% recall, with two known false
+positives, both from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
 
 ## License
 

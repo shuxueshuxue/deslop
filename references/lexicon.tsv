@@ -1,4 +1,4 @@
-> prose-deslop merged lexicon — one candidate per row. The scanner reports hits; it never rewrites.
+> deslop merged lexicon — one candidate per row. The scanner reports hits; it never rewrites.
 > Columns: lang  pattern  category  replacement  note  source
 > lang: en | zh   ·   pattern: Python regex (ASCII patterns get \b…\b added automatically)
 > category: vocab puffery editorial transition template shape jargon hedge assistant physical
@@ -562,3 +562,20 @@ en	great question	assistant	(cut)		natural-talk
 en	I hope (this|that) helps	assistant	(cut)		natural-talk
 en	the data tells us	shape	the data shows · (give the number)		natural-talk
 en	from [a-z ]{3,20} to [a-z ]{3,20}, and (from|everything)	shape	(name the actual span)	A real range with two endpoints on one scale is fine.	humanizer-zh
+en	(let me|I'?ll) ground (my|this) (answer|response)	assistant	(cut)		hn-49388752
+en	the blast radius (of|here|is)	borrowed	(what breaks, and where)		hn-49388752
+en	careful surgery	borrowed	(say what has to be changed)		hn-49388752
+en	(it|this) cuts (deeper|more deeply) than	template	(cut)		hn-49388752
+en	(and honestly\?|honestly,) that changes (the game|everything)	closer	(cut)		hn-49388752
+en	this changes everything	closer	(cut)		hn-49388752
+en	that'?s a sharp (insight|observation)	assistant	(cut)		hn-49388752
+en	(reveals|says) something (core|fundamental|deep) about	puffery	(state the thing)		hn-49388752
+en	the (third|second|last) one is the most (instructive|interesting|telling)	template	(cut the ranking)		hn-49388752
+en	say the word and I'?ll	closer	(ask the question plainly)		hn-49388752
+en	do the joinery	borrowed	(name the work)		hn-49388752
+en	your call on whether to	closer	(ask the question)		hn-49388752
+en	to surface any wrinkles	puffery	(say what you would find out)		hn-49388752
+en	the (spec|plan|design) drifted on	jargon	(name what changed)	drift is a term of art in some repos; see E6	hn-49388752
+en	which is exactly the kind of	template	(cut)		hn-49388752
+en	avoid the stock LLM register	editorial	(name the forms you mean)	the instruction written in the register it forbids	hn-49388752
+en	load bearing	jargon	(say what it carries)	space-spelled variant; the hyphenated form is a separate row	hn-49388752

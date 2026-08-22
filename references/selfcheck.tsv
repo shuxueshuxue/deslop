@@ -1,0 +1,36 @@
+# Named survivors of tools/selfcheck.py. One row per (file, indicator, line).
+# Regenerate with `python3 tools/selfcheck.py --write`; reasons are kept.
+# columns: file	indicator	count	snippet	reason
+SKILL.md	over cap: hedge stacking	1		false positive: two `may` in different clauses of one §4 rule, made adjacent by masking the code spans between them
+references/field-reports.md	em dash	1	- "Still pending: … — your call on whether to start one now …	mention, not use: the — is inside jorl17's parody, quoted verbatim
+references/markers-en.md	assistant residue	1	Adjacent tic, parodied in-thread by user `rydtsc`: opening w…	mention, not use: the line quotes the tic it names
+references/markers-en.md	over cap: editorial stance	1		specimen: all five are entries in the stance watch-list this file exists to publish
+references/markers-zh.md	顿号	9	**副词**：真正、本质上、恰恰、正是、唯一、必然、显然、彻底、从不、永远。	specimen: the 、 separate the banned adverbs this entry inventories, not two clauses
+references/markers-zh.md	顿号	6	**自我评价**：老实说、诚实地讲、说得对、值得一提、更重要的是、关键在于、核心是。	specimen: the 、 separate the banned stance phrases this entry inventories
+references/markers-zh.md	顿号	7	**黑话**：赛道、闭环、抓手、对齐、颗粒度、心智模型、第一性原理、护城河。	specimen: the 、 separate the banned business-jargon terms this entry inventories
+references/markers-zh.md	顿号	2	- **四字格堆砌**：为整齐凑的四字短语（同生共死、逐条落地、一以贯之）。	specimen: the 、 separate the four-character clichés this entry inventories
+references/markers-zh.md	顿号	5	- **文白夹杂**：口语句子里混进文言虚词（其、之、乃、故、遂、藉）。	specimen: the 、 separate the classical particles this entry inventories
+references/markers-zh.md	顿号	3	- *anchor*（锚点）、*warm cache*（热缓存）、*garbage collection*（垃圾回收）、…	specimen: the 、 separate the terms of art this entry inventories
+references/markers-zh.md	顿号	2	- 不用俚语、网络词、圈内黑话	list separator: three kinds of diction under one 不用
+references/markers-zh.md	顿号	3	`专家认为`、`观察者指出`、`行业报告显示`如果没有具体人名、报告或可核对的事实，只是在借一个	specimen: the 、 separate the vague-attribution openers this entry inventories
+references/markers-zh.md	顿号	2	`尽管存在一些挑战，未来前景依然光明`、`未来展望`这类句子没有说明挑战是什么、下一步做什么，	specimen: the 、 separate the two closer templates this entry inventories
+references/markers-zh.md	顿号	2	「用词严谨平实」不是 AI 味，那是目标。AI 味是夸张、性感、自作聪明的类比与修辞。	list separator: three adjectives modifying 类比与修辞; it replaced a comma, not a full stop
+references/markers-zh.md	顿号	2	也没有传递结果。改成具体计划、日期、数字，或者删除整句。不要用乐观情绪替代论证。	list separator: 计划/日期/数字 are three objects of one verb
+references/markers-zh.md	顿号	2	改法：拆成两句，或换成冒号、括号、逗号。	list separator: three punctuation marks offered as alternatives
+references/markers-zh.md	顿号	2	明明有常用词，却挑了一个更书面、更生僻、听起来更「专业」的。	list separator: three adjectives on one noun
+references/markers-zh.md	顿号	3	注意与「不要误伤」一节的边界。**领域标准名称不算端着**。drift、anchor、worktree、	list separator: a run of term names, all objects of the same claim
+references/markers-zh.md	顿号	4	让机制、历史、文档、成本、状态这类抽象主语做人或生物的动作。	list separator: five nouns inside one subject
+references/markers-zh.md	顿号	2	词都平实，结构仍可能暴露模型。常见形状是每段先铺垫、再转折、最后抛一句总结；连续句子长度	list separator: the three stages of one described shape
+references/nofluff.md	顿号	1	- 用词与标点通用，不用破折号 → 第 6 类、第 7 类。	list separator: two section numbers
+references/nofluff.md	顿号	2	给读者本来就不会误解的地方加警告、加着重、加"注意"，暴露的是作者的不安，不是体贴。	list separator: three verb phrases sharing 加; it replaced a comma, not a full stop
+references/taxonomy.md	assistant residue	2	Let's dive in · Let me break this down · Without further ado…	specimen: the line is G3's own watch-list
+references/taxonomy.md	assistant residue	1	You're absolutely right!	specimen: the line is G2's own watch-list
+references/taxonomy.md	assistant residue	3	as an AI · I hope this helps · let me know if · Want me to	specimen: the line is G1's own watch-list
+references/taxonomy.md	assistant residue	1	作为 AI · 根据我的训练 · 希望这对你有帮助 · 如果还有问题请告诉我 ·	specimen: the line is G1's own watch-list
+references/taxonomy.md	assistant residue	4	好问题 · 这个问题很有深度 · 你说得完全对 · 感谢你的提问 · Great question! · Certain…	specimen: the line is G2's own watch-list
+references/taxonomy.md	assistant residue	5	让我来解释一下 · 接下来我们将 · 拆一拆 · 盘一盘 · 划重点 · 敲黑板 · 捋一捋 ·	specimen: the line is G3's own watch-list
+references/taxonomy.md	copula dodge	2	**en watch-list:** marks a turning point · stands as a testa…	specimen: the line is A1's own watch-list
+references/taxonomy.md	copula dodge	1	**en:** vibrant · boasts · nestled · breathtaking · must-vis…	specimen: the line is A3's own watch-list
+references/taxonomy.md	copula dodge	2	**zh watch-list:** 标志着 · 见证了 · 是……的体现/证明/提醒 · 极其重要的/关键性的作用 ·	specimen: the line is A1's own watch-list
+references/taxonomy.md	knowledge-cutoff disclaimer	1	作为 AI · 根据我的训练 · 希望这对你有帮助 · 如果还有问题请告诉我 ·	specimen: same line as G1's watch-list, which quotes the disclaimer verbatim
+references/taxonomy.md	over cap: lecture tone	1		specimen: five are G3 and H4 watch-list entries, the sixth is B4 naming 首先/其次 as legitimate

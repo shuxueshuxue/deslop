@@ -1,10 +1,11 @@
 # The merged taxonomy
 
-Twelve families. Each row of an audit table names one. The behavioural contract is `SKILL.md`;
+Thirteen families. Each row of an audit table names one. The behavioural contract is `SKILL.md`;
 where this file and that one disagree, `SKILL.md` wins.
 
 Attribution is per family, because it is the only way to see what each upstream project actually
 knew. `D` = deslop, `S` = 说人话, `N` = natural-talk, `H` = Humanizer-zh.
+`本项目新增` marks a family none of the four had.
 
 The organising question for every family is the same one:
 
@@ -344,7 +345,7 @@ operator who knows where the number came from, and why D6 is `audit-only` and ne
 
 ### E1. AI vocabulary `H D S N`
 
-`references/lexicon.tsv`, 553 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
+`references/lexicon.tsv`, 570 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
 Kobak et al. 2025 on excess vocabulary in biomedical abstracts, Juzek & Ward 2025, HN 48905248, and
 the Chinese community lists. Each row carries a plain replacement and a note where the word is
 sometimes legitimate.
@@ -718,3 +719,79 @@ will not find:
 
 A rewrite that improves the register can make these *harder* to see, because the surrounding prose
 gets more confident. Run a comprehension pass separately, with a different brief.
+
+---
+
+## M. Wrong reader `本项目新增`
+
+Every family above is about how a sentence performs. This one is about who it is addressed to. The
+text can be plain, specific, accurate and still fail, because it was written for the reader who
+watched it being written. **bhelx** (49394255) states the general case: "The audience they are
+writing for [is] you, but you're trying to write for a totally different audience."
+
+The family comes from field reports rather than from this repository's own runs, and the sources are
+in `references/field-reports.md`. `references/code-comments.md` is the working detail.
+
+**Why it is separate from the rest.** No marker word appears in any of these. A comment can be
+scrubbed of every entry in the lexicon and still be unreadable to the person who arrives next year,
+because what is missing is not in the text at all. That also makes the family expensive to check:
+see `SKILL.md` §12, row 4.
+
+### M1. Temporal comment 时态注释
+
+A comment that narrates the change instead of stating the state. `was` / `now` / `previously` /
+`instead of` / `this fixes` / `needed because otherwise` / `note that we no longer`.
+
+The context is real when it is written and expires when the change merges, because the defect it
+describes no longer exists. What remains is a changelog entry in the wrong file, and a third copy of
+text already in the commit body and the pull request.
+
+**Test:** would this be true and useful to someone reading the file a year from now, who never saw
+the diff? **Default action:** state the current behaviour, or move the history to the commit body.
+What survives is the part `git log` cannot say: why the other approach does not work.
+
+**Scan:** `python3 tools/measure.py FILE --comments` lists candidates with line numbers, in comment
+lines only. Not a counted indicator: outside a comment this vocabulary is ordinary prose.
+
+### M2. Room context 在场者上下文
+
+A reference only someone in the session can resolve: the current conversation, a plan document, a
+sprint identifier, a working file that will be deleted.
+
+```
+// No retry was added here per AC 37b in FEATURE.MD          (pluralmonad, 49392264)
+// PLAN-5.1.A.d.42 load bearing reassertion                  (klardotsh, 49396760)
+// The lesson from the Parse-dont-fail-era campaign          (jorl17, 49393612)
+```
+
+**Not a hit:** a stable identifier that outlives the change and can be looked up, such as an issue
+number in a tracker that still exists. The test is whether the reference can be resolved from the
+repository a year later, not whether it is short.
+
+**Default action:** inline the fact, or cite something durable. `// Workaround: no age column in the
+db. See JIRA-1234` is the same comment made resolvable (**crab_galaxy**, 49396229).
+
+### M3. Leaked internal concern 内部关切外泄
+
+Text the product's user reads, carrying the concerns of the people who built it: every edge case
+handled, every state defended against, every reassurance nobody asked for.
+
+**jorl17** (49393580): "The 'add' button does not need a label letting the user know that they will
+later be able to click the 'delete' button." The tell is a sentence that answers a question the
+reader has not asked, usually beginning as reassurance.
+
+**Default action:** delete. This is the one place where the finding is usually a whole sentence
+rather than a phrase, because the sentence exists to relieve an anxiety the reader does not have.
+See the `ui-copy` scene in `SKILL.md` §2.
+
+### M4. Working notes shipped 笔记未清理
+
+The note was correct while the work was happening. Nothing removed it when the audience changed.
+
+**cerved** (49394869) and **Exoristos** (49395718) both separate these: the notes are useful during
+implementation and unfit to commit. Writing the note was never the problem. What is missing is the
+step between writing it and shipping it.
+
+**Default action:** relocate, do not delete. A note that fails M1's test but records a real decision
+belongs in the commit body or a decisions file, recorded in the relations ledger (`SKILL.md` §4) so
+that the move is visible. Report relocations separately from deletions.

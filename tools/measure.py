@@ -13,7 +13,9 @@ Three tiers, and the tiering is the honest part of this file:
   REPORTED  printed, never gated, because measurement showed the number does not
             separate text that should change from text that should not.
 
-An indicator earns a place in GATED only if its hits are almost always real.
+An indicator earns a place in GATED only if its hits are almost always real. Two indicators lost
+that place by being run on this repository's own prose: the trailing contrastive tail and the
+inline-title list item. `references/field-reports.md` records the counts.
 Two were demoted on evidence, and both notes are printed in the report so nobody
 silently re-promotes them:
 
@@ -100,10 +102,15 @@ REVERSAL = re.compile(
     r"|it'?s not (?:about|that) [^,.;\n]{2,60}[,;] it'?s"
     # `A is not B: it is C` — the colon/semicolon form of the same move
     r"|\b(?:is|are|was|were) not [^,.;:\n]{2,60}[:;] (?:it|they|the)\b"
-    # `Y, not X.` — the reversal written backwards, still a reversal
-    r"|, not (?:because|that|a |an |the |to |for |by |from )[^,.;\n]{2,50}[.]"
     r"|(?:^|[.;] )not [A-Za-z][^,.;\n]{2,40} — [a-z]",
     re.M)
+
+# `Y, not X.` — capped, not gated. It was a GATED branch of REVERSAL until deslop was run on its
+# own prose (references/field-reports.md): 6 hits, 1 real. A contrastive tail is ordinary in both
+# languages and only becomes a tell by density; the staged move it was meant to catch is already
+# covered by the `不是X而是Y` / `not just X but Y` / `isn't X, it's Y` branches above.
+CONTRAST_TAIL = re.compile(
+    r", not (?:because|that|a |an |the |to |for |by |from )[^,.;\n]{2,50}[.]", re.M)
 
 # Deslop marker 5 / markers-en 3: the author grading their own sentence instead of writing it.
 # Scene-sensitive: academic register licenses a few of these (`we note that`), chat does not.
@@ -367,8 +374,8 @@ def measure(text, lang=None, scene="docs"):
         "assistant residue": len(ASSISTANT.findall(masked)),
         "knowledge-cutoff disclaimer": len(CUTOFF.findall(masked)),
         "emoji": len(EMOJI.findall(masked)),
-        "inline-title list item": sum(1 for l in text.split("\n") if INLINE_TITLE.match(l)),
     }
+    inline_title = sum(1 for l in text.split("\n") if INLINE_TITLE.match(l))
     if lang == "zh":
         gated["顿号"] = count_dunhao(masked)
         gated["句中冒号"] = count_staging_colon(masked)
@@ -391,6 +398,8 @@ def measure(text, lang=None, scene="docs"):
         "lecture tone": (len(LECTURE.findall(masked)), 1),
         "exclamation": (len(EXCL.findall(masked)), 3 * scale),
         "hedge stacking": (len(HEDGE_STACK.findall(masked)), 0),
+        "contrastive tail": (len(CONTRAST_TAIL.findall(masked)), scale),
+        "inline-title list item": (inline_title, 2 * scale),
         "paragraphs with mid-sentence bold": (bold_heavy, max(1, len(paras) // 10)),
     }
 
@@ -436,6 +445,41 @@ NOTES = {
     "sentence length CV":
         "report-only; needs >=12 sentences, and no human-written control corpus exists to set a threshold",
 }
+
+
+def gated_hits(text, lang=None, scene="docs"):
+    """Every GATED hit with a line number. Same regexes measure() counts, one entry per match.
+
+    tools/selfcheck.py uses this to hold deslop's own prose to the rule deslop states: drive the
+    gates to zero, or name every survivor.
+    """
+    lang = lang or detect_lang(text)
+    masked = mask(text)
+    raw = text.split("\n")
+    checks = [("staged reversal", REVERSAL), ("em dash", EM_DASH),
+              ("assistant residue", ASSISTANT), ("knowledge-cutoff disclaimer", CUTOFF),
+              ("emoji", EMOJI)]
+    if lang == "zh":
+        checks.append(("curly quote", CURLY))
+    else:
+        checks += [("-ing pseudo-analysis tail", ING_TAIL), ("copula dodge", COPULA_DODGE),
+                   ("false range", FALSE_RANGE)]
+    if scene in ("chat", "public-writing"):
+        checks.append(("editorial stance", STANCE))
+
+    out = []
+    for i, line in enumerate(masked.split("\n"), 1):
+        for name, rx in checks:
+            for m in rx.finditer(line):
+                out.append(dict(indicator=name, line=i, match=m.group(0), text=raw[i - 1].strip()))
+        if lang == "zh":
+            for _ in range(line.count("、")):
+                out.append(dict(indicator="顿号", line=i, match="、", text=raw[i - 1].strip()))
+            body = LABEL_COLON.sub("", line, count=1)
+            for m in re.finditer(r"：(?=\s*\S)", body):
+                out.append(dict(indicator="句中冒号", line=i, match="：", text=raw[i - 1].strip()))
+    out.sort(key=lambda h: (h["line"], h["indicator"]))
+    return out
 
 
 def render(r, path):
@@ -518,6 +562,68 @@ def worksheet(text, lang=None):
 
 
 
+# ---------------------------------------------------------------- taxonomy M (comments)
+
+# taxonomy.md M1: the comment narrates the change instead of stating the state.
+TEMPORAL = re.compile(
+    r"\b(?:used to|previously|formerly|no longer|instead of|rather than before)\b"
+    r"|\b(?:was|were|had been)\s+(?:previously|originally|earlier)\b"
+    r"|\bthis (?:fixes|fixed|addresses|resolves)\b|\bneeded because otherwise\b"
+    r"|\bnote that we (?:no longer|now)\b|\bwe (?:now|used to)\b|\bchanged (?:from|to)\b"
+    r"|\b(?:now|originally) (?:returns|uses|handles|calls|does)\b"
+    r"|以前|原来是|之前是|不再|改成了|这里修复|曾经", re.I)
+
+# taxonomy.md M2: a reference only someone in the session can resolve.
+ROOM = re.compile(
+    r"\b(?:per|see|from) (?:the )?(?:AC|acceptance criteri\w+)\s*\d"
+    r"|\b(?:PLAN|TASK|STEP|PHASE)[-_ ]?\d+(?:[.\-_][A-Za-z0-9]+)+"
+    r"|\b\w*(?:PLAN|FEATURE|DESIGN|NOTES|SCRATCH|TODO)\.(?:md|MD|txt)\b"
+    r"|\bas (?:discussed|we discussed|agreed|noted) (?:above|earlier|previously)\b"
+    r"|\bthe (?:campaign|saga|era|epic|sprint) \w+|\b\w+[- ](?:saga|campaign|era)\b"
+    r"|\bper (?:our|the) (?:conversation|discussion|plan)\b", re.I)
+
+LINE_COMMENT = re.compile(r"(?:^|\s)(?://|#(?!!)|--(?!-)|;;)\s?(.*)$")
+BLOCK_COMMENT = re.compile(r"/\*(.*?)\*/|<!--(.*?)-->|\"\"\"(.*?)\"\"\"", re.S)
+
+
+def comment_lines(text):
+    """(line number, comment body) for every line that carries one.
+
+    A line-level heuristic, not a parser: a `#` inside a string literal will be offered as a
+    candidate. That is the right trade for a lister whose output a person reads.
+    """
+    out = []
+    for i, line in enumerate(text.split("\n"), 1):
+        m = LINE_COMMENT.search(line)
+        if m and m.group(1).strip():
+            out.append((i, m.group(1).strip()))
+    for m in BLOCK_COMMENT.finditer(text):
+        body = next(g for g in m.groups() if g is not None)
+        start = text.count("\n", 0, m.start()) + 1
+        for j, line in enumerate(body.split("\n")):
+            if line.strip():
+                out.append((start + j, line.strip(" *\t")))
+    return sorted(set(out))
+
+
+def comment_worklist(text):
+    """taxonomy.md M1/M2 candidates in comments. Never a count: outside a comment this
+    vocabulary is ordinary prose, so nothing here can gate anything."""
+    L = ["## taxonomy M candidates in comments (a hit is a candidate, not a verdict)"]
+    n = 0
+    for line, body in comment_lines(text):
+        hits = [f"M1:{m.group(0)}" for m in TEMPORAL.finditer(body)]
+        hits += [f"M2:{m.group(0)}" for m in ROOM.finditer(body)]
+        if hits:
+            n += 1
+            L.append(f"  L{line:<5d} {body[:76]}")
+            L.append(f"         {' · '.join(hits)}")
+    L.append(f"\n  {n} comment line(s) flagged of {len(comment_lines(text))} scanned.")
+    L.append("  M1: state the current behaviour, or move the history to the commit body.")
+    L.append("  M2: inline the fact, or cite something a reader can resolve a year from now.")
+    return "\n".join(L)
+
+
 def metaphor_worklist(text, lang=None):
     """Every borrowed-domain term and every physical verb, with line numbers.
 
@@ -572,6 +678,8 @@ def main():
     ap.add_argument("--hits", nargs="?", type=int, const=0, default=None,
                     help="list lexicon hits (optionally top N)")
     ap.add_argument("--worksheet", action="store_true")
+    ap.add_argument("--comments", action="store_true",
+                    help="taxonomy M1/M2 candidates in a source file's comments")
     ap.add_argument("--metaphor", action="store_true",
                     help="list every borrowed-domain term and physical-verb candidate, with line numbers")
     ap.add_argument("--diff", nargs=2, metavar=("BEFORE.json", "AFTER.json"))
@@ -584,6 +692,9 @@ def main():
     text = open(a.file, encoding="utf-8").read() if a.file else sys.stdin.read()
     if a.worksheet:
         print(worksheet(text, a.lang))
+        return 0
+    if a.comments:
+        print(comment_worklist(text))
         return 0
     if a.metaphor:
         print(metaphor_worklist(text, a.lang))

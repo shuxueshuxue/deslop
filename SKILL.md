@@ -144,6 +144,7 @@ paper. Pick the scene first; everything downstream reads from it.
 | `public-writing` | a person with a view, not a poster | standard | `bounded` past ~1000 zh chars | `rewrite-safe` | manufacture a punchline, or shrink by an amount the author did not agree to |
 | `academic` | a good methods section: direct, unadorned, specific | standard | structural | **`audit-only`, always** | flatten an epistemic hedge, cut a limitation, or make a claim more confident than the author made it |
 | `code-context` | a comment that survives the next reader | minimal | in-place | `audit-only` | change what the comment says the code does |
+| `ui-copy` | a label that names the control | standard | `bounded` | `audit-only` | remove a warning the product does not actually handle |
 
 Chinese register anchor, all scenes: **the dubbing register of Japanese film.** Full sentences,
 subjects present, two-syllable verbs (`阻断` not `拦`, `承载` not `装`), no slang, no in-group
@@ -151,6 +152,10 @@ shorthand, steady but not stiff. Read the result aloud; if it could be a dubbing
 is right. Both failure directions are audible immediately.
 
 English anchor, all document scenes: **Wikipedia, Hacker News technical comments, and good papers.**
+
+`code-context` and `ui-copy` have their own file, `references/code-comments.md`, because the
+defect there is usually not a phrase. It is text addressed to the reader who watched it being
+written (`taxonomy.md` M).
 
 ### 2.1 Scene packs
 
@@ -197,6 +202,13 @@ feature`), and em dashes, which academic prose absorbs so readily that they beco
 ## 3. Level × scope
 
 Two independent axes. Confusing them is the most common way this goes wrong.
+
+A length cap is a third instrument and it belongs to the author. **mmastrac** (HN 49389501)
+reports it as the strongest single lever there is: comment blocks under 7 words, function names
+under 4, user-facing strings under 10. A cap is enforceable in a way a style instruction is not,
+which is exactly why it must be *given* rather than inferred. A cap the editor invents is the
+−39% failure `references/provenance.md` records, arriving under a new name. Ask for the number,
+write it into the output contract, and report the length you actually landed on.
 
 **Level.** How hard the register is pulled back.
 
@@ -319,16 +331,18 @@ An indicator earns a place in the counted set only if its hits are almost always
 cannot trust is worse than no number. `tools/measure.py` enforces this in three tiers:
 
 - **GATED.** drive to zero or name every survivor: staged reversal, em dash, `顿号`, mid-prose
-  `：`, assistant residue, knowledge-cutoff disclaimer, emoji, inline-title list items, `-ing`
-  pseudo-analysis tails, copula dodges, false ranges, curly quotes in Chinese.
+  `：`, assistant residue, knowledge-cutoff disclaimer, emoji, `-ing` pseudo-analysis tails,
+  copula dodges, false ranges, curly quotes in Chinese.
 - **CAPPED.** legitimate below a length-normalised cap; only the excess is a finding: signposts,
-  editorial stance, lecture tone, exclamation marks, stacked hedges, bold density. The caps come from
+  editorial stance, lecture tone, exclamation marks, stacked hedges, bold density, inline-title
+  list items, the trailing contrastive tail. The caps come from
   natural-talk's 300–500 character reply baseline and are held as a density for longer text.
 - **REPORTED. Never gates anything.** Sentence-length CV, conjunction density, nominalisation,
   mixed metaphor fields, rule-of-three candidates, lexicon hits by category.
 
-Four families have no counter, three of them by demotion on evidence. The first two are printed in every report so nobody quietly
-re-promotes them:
+Four families have no counter, three of them by demotion on evidence, and two more indicators were
+demoted from GATED to CAPPED the first time this repository ran its own gates over its own prose
+(§5.3). The first two below are printed in every report so nobody quietly re-promotes them:
 
 - **Rule of three is not counted.** On the first document deslop scanned, all five hits were ordinary
   enumerations.
@@ -391,8 +405,8 @@ into "blocking" costs the check its legitimacy and takes neighbouring checks dow
 levels is not finer granularity. Two levels leaves a whole class of property with nowhere to sit.
 
 **What is actually measured here, and what is not.** `evals/run.py` scores the lexicon scan as a
-whole against 46 cases: currently 100% recall at 96.0% precision, with the single false positive
-coming from a deliberately broad rule.
+whole against 56 cases: currently 100% recall at 97.1% precision, with both false positives coming
+from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
 
 That is a corpus number, and **the decision it is being asked to support is a per-indicator one.**
 Aggregate precision tells you whether the scanner is worth running at all. It cannot tell you which
@@ -408,6 +422,28 @@ support for a claim it does not actually cover.
 them.** Deciding
 personification requires knowing whether the subject is abstract and whether the verb is conventional
 in the field. A word-list counter would manufacture a number rather than measure one.
+
+### 5.3 Run the gates on your own contract
+
+Anything that states these rules is text, and the rules apply to it. **ziga** (HN 49390469) asked a
+model to write the anti-register rules and the first line it produced was "Avoid the stock LLM
+register", written in the register it forbade. **dwaltrip** (49395110), reading another tool in this
+family: "The readme is filled with slop. Bad sign…"
+
+`python3 tools/selfcheck.py` holds this repository to §5.1: every GATED hit in the 15 files that
+speak in deslop's own voice is driven to zero or named in `references/selfcheck.tsv`, with the
+reason on the row. An unnamed hit fails the check; so does a reason left behind after its hit is
+gone, which is what stops the ledger becoming a blanket exemption. A CAPPED indicator over its cap
+needs a reason too, one per file and indicator rather than per hit, because the size of the excess
+moves with the file and only the fact of exceeding the cap is worth a sentence.
+
+The first run demoted two indicators. The trailing contrastive tail (`…, not a style call.`) had six
+hits here and one was real; the inline-title list item had eleven and none was, because F4's rule
+requires the body to restate the label and no regex can see that. A third pattern was found and
+deliberately not acted on: 17 of the 30 hit-level survivors are `、` used as a list separator, which the counter
+cannot distinguish from a clause joiner, but marker inventories are the least representative Chinese
+prose available and demoting on them would be fitting the rule to the corpus that embarrasses it.
+`references/field-reports.md` carries the counts and the condition that would settle it.
 
 ---
 
@@ -439,7 +475,7 @@ reader's ordinary language.** `回归` for a regression reads as translated rath
 
 ### 6.2 The scanner is the cheap half
 
-`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (553 rows, Chinese
+`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (570 rows, Chinese
 and English, each with a plain replacement, a note where the word is sometimes legitimate, and the
 upstream project it came from).
 
@@ -449,6 +485,12 @@ It cannot tell whether a quotation is in play, whether `robust` is the statistic
 these: a dramatized closer, a superfluous paragraph-ending summary, an analogy doing no work, a
 heading that narrates instead of naming, uniform cadence, a forced triad, a "challenges and future
 prospects" section, a generic optimistic ending, and a sentence that fails both nofluff checks.
+
+The whole M family is outside it too, and for a different reason: those defects contain no marker
+word at all, so a clean scan says nothing about them. In `code-context` run
+`python3 tools/measure.py FILE --comments`, which lists M1 and M2 candidates in comment lines with
+line numbers. Like `--metaphor` it produces candidates and never a count, because outside a comment
+the same vocabulary is ordinary prose.
 
 Two false-positive classes are predictable enough to expect every time:
 
@@ -521,7 +563,7 @@ The aggregate is the point. Every row of a sustained metaphor passes on its own,
 per-row judgement never catches it. In the failure recorded in `taxonomy.md` H6 the column would
 have read `工厂` fourteen times.
 
-`references/taxonomy.md` holds the twelve families. `references/decisions.md` holds the per-hit
+`references/taxonomy.md` holds the thirteen families. `references/decisions.md` holds the per-hit
 decision procedure, the exemption caps, and the `in-place` alternate for each family.
 
 Two rules that stop an audit from becoming a massacre:
@@ -602,8 +644,8 @@ They catch different damage. Merging them is how each one gets skipped.
    85% of the original length means check whether you deleted, merged, or compressed something;
    sentence-count change past ~10% means check whether you did unapproved structural work.
 
-**Pass B.** Over-correction. This is a separate pass, not a thing to keep in mind. Skipping it is
-the most common way a deslop run makes text worse.
+**Pass B.** Over-correction. Run it as its own pass. Skipping it is the most common way a deslop
+run makes text worse.
 
 - Did a written word become a spoken one? (`判据` → `怎么判`, `触发源` → `触发的地方`)
 - Did a two-syllable verb become one syllable? Chinese written register prefers two.
@@ -672,7 +714,7 @@ Add a one-line explanation only where a high-risk false positive was avoided
 
 ## 11. What this cannot do
 
-`prose-deslop` fixes how a text sounds. **It does not check whether the text is right.**
+deslop fixes how a text sounds. **It does not check whether the text is right.**
 
 In a real audit, three separate reviews of one deck found a dangling pronoun with no antecedent, a
 claim on one page contradicting a claim on another, and a quoted authority whose argument had been
@@ -690,6 +732,35 @@ what makes the before/after numbers meaningful, and it is also what goes stale. 
 hash and the commit it came from, and say plainly that edits landing in a region changed since then
 no longer apply. A rewrite that silently restores a claim the author has retracted is worse than no
 rewrite.
+
+### 11.1 The pass decays while it runs
+
+The rules in this file stop being followed as the session that is applying them gets longer, and the
+process enforcing the rule is not exempt from it.
+
+This repository's own evidence is the strongest kind available, because the rule was in view the
+whole time: **on every editing round without exception**, Pass B caught em dashes, `、` and
+mid-sentence `：` that the pass had just introduced in its own replacement text while removing
+others somewhere else. That is not carelessness that more care would fix. It is the reason Pass B is
+a separate pass with its own reread rather than a thing to bear in mind.
+
+Seven people in HN 49388752 report the same shape from outside (`references/field-reports.md`):
+style rules fade as context grows, the register returns immediately after a compaction, and
+comment rules enforced by a hook are still violated a substantial fraction of the time.
+
+What to do about it, in order of how much it buys:
+
+1. **Re-measure. Never assert.** The counted indicators in §5.1 exist because a claim that the
+   register is gone is worth nothing and a re-scan is worth something. This is the whole defence and
+   the rest is cheaper insurance.
+2. **Run Pass B on your replacements, not on the original.** §9 states it. It is the step people
+   skip because the replacements feel like the fix rather than new prose.
+3. **Take a canary.** **nater5000** (49389776): put one small unmistakable rule in the instructions
+   and watch for the moment it stops being obeyed. In a deslop run, `tools/measure.py` on your own
+   draft report is the canary: if the report about removing em dashes contains em dashes, the
+   session has drifted and the audit needs a fresh read rather than another edit.
+4. **Prefer a fresh read to a longer session.** Pass D is a whole-document read, and it is worth
+   more when the context that produced the edits is no longer in view.
 
 ---
 
@@ -709,6 +780,7 @@ see far enough:
 | a sentence | one audit row (§7) | the shape of that sentence |
 | the document | the counted indicators, the source-domain aggregate, Pass D (§9) | density, sustained metaphor, damage at the junction between two edits |
 | the author, across documents | the recurrence note (§10 item 6) | a habit |
+| everything the writer knows, versus what the reader will have | a reader who was not in the room | text that is accurate and unreadable (`taxonomy.md` M) |
 
 This repository has recorded a failure at each of the top two, and both were invisible one row at a
 time:
@@ -764,8 +836,17 @@ Put the three together and the pattern is one sentence with three placements:
 | the check sees less than the defect spans | it passed |
 | the measurement is taken above the size the decision is made at | the number supports the claim |
 | the relay carries less than the record | the citation means what you need it to mean |
+| the check carries more context than the reader will | the text is clear |
 
-All three are silent, and silence is the reason each one needs its own gate rather than more care.
+All four are silent, and silence is the reason each one needs its own gate rather than more care.
+
+The fourth is the same shape with the sign reversed, and it is the hardest to run. The other three
+are checks that see too little. This one is a check that sees too much: the author supplies the
+missing context for free, every time, without noticing, so the comment reads fine to the only person
+in a position to inspect it. **bhelx** (HN 49394255) states it as a fact about the audience, and
+**jorl17** (49393580) reports the mitigation and its limit in the same breath: hand it to a reader
+with fresh context, and it helps but does not solve it. There is no version of this gate that the
+writer can run alone, which is why `taxonomy.md` M is a report to the author rather than an edit.
 
 **What this is and is not.** Three placements sharing a shape is a reason to take the shape
 seriously. It is not a demonstration that the shape is right. The study it comes from has not yet
@@ -786,13 +867,17 @@ at the larger size, which is why this pipeline has four instead of one.
 
 ## Reference files
 
-- `references/taxonomy.md`. The twelve marker families, merged, with source attribution per family.
+- `references/taxonomy.md`. The thirteen marker families, merged, with source attribution per family.
 - `references/decisions.md`. Per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates.
 - `references/titles.md`. Headings: name the content, do not narrate the reading path.
 - `references/overcorrection.md`. The false-positive corpus: what looks like a tell and is not.
 - `references/provenance.md`. What came from where, every conflict between the four, and the ruling.
-- `references/lexicon.tsv`. 553 candidate rows, zh and en, each with replacement, note, and source project.
+- `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
+- `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
+- `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
+- `references/lexicon.tsv`. 570 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.
 - `tools/measure.py`. Indicators, worksheet, before/after diff. No dependencies beyond python3.
 - `tools/build_lexicon.py`. Rebuilds the lexicon from the four upstream checkouts, deduping by match.
+- `tools/selfcheck.py`. Runs the gates on this repository's own prose. §5.3.
 - `worked-example/`. A full run on a real paper draft: measurements, audit, rewrite, re-measurement.

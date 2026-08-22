@@ -11,6 +11,10 @@ tells would be the loudest tell available.
 The prompt asked for no letters at all: two-colour letterpress on paper, a dense field of ink rules
 carrying small ornamental flourishes on the left, thinning to a few clean rules on the right. That is
 the subject drawn as itself rather than as an analogy for itself, which is the one exemption H6 grants.
+
+banner-art.png is not kept in the repository, so the shipped assets/banner.png cannot be rebuilt from
+here. It still carries a lexicon row count from the version that composed it; the strapline no longer
+prints one, so a future rebuild will not age the same way.
 """
 import base64, os
 
@@ -48,7 +52,7 @@ BANNER = f"""<!doctype html><meta charset="utf-8">
   <div class="eyebrow">a claude code skill</div>
   <h1>deslop</h1>
   <p>检查并改写文本里的模型腔，交出前后可核对的数字。</p>
-  <div class="meta">中文 · ENGLISH　　破折号 38 → 0　　553 行词表　　MIT</div>
+  <div class="meta">中文 · ENGLISH　　破折号 38 → 0　　MIT</div>
 </div>"""
 
 
