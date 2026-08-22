@@ -115,3 +115,34 @@ zh	各方(共同)?努力	puffery	(说清楚谁做了什么)	同上。	anchor-cos
 zh	为.{0,10}(提供|注入)(了)?(强大|坚实|有力)(的)?(动力|支撑|保障)	puffery	(说清楚起了什么作用)		anchor-cost
 zh	谱写(了)?	puffery	(直接说做了什么)		anchor-cost
 zh	翻开(了)?新的?一页	puffery	(说清楚变化是什么)		anchor-cost
+zh	对齐一下	jargon	(说清楚要确认什么)		membership
+zh	飞轮	jargon	(说清楚哪个环节推动哪个)	借域词，同时命中 H6。	membership
+zh	势能	jargon	(说清楚有什么条件)	物理域借喻。	membership
+zh	卡位|卡身位	jargon	(说清楚占了什么位置)		membership
+zh	生态位	jargon	(说清楚是哪一类)	生态学里是术语，按 E6 判。	membership
+zh	加持	jargon	(说清楚加了什么)		membership
+zh	破圈|出圈	jargon	(说清楚被谁看见了)		membership
+zh	复盘	jargon	回顾 / 事后检查	棋类里是本义，按 E6 判。	membership
+zh	打法	jargon	(说清楚是什么做法)	战术里是本义。	membership
+zh	抓变量	jargon	(说清楚要改哪个条件)		membership
+zh	认知(升级|差)	jargon	(说清楚知道了什么)		membership
+zh	玩明白了?	vocab	(说清楚会用了什么)		membership
+zh	这波	vocab	这次		membership
+zh	拿捏	vocab	(说清楚控制住了什么)		membership
+zh	上强度	vocab	(说清楚加了什么难度)		membership
+zh	含金量	vocab	(说清楚价值在哪)		membership
+zh	有一说一	stance	(删掉)	自评式插话，A5。	membership
+zh	讲真|说真的	stance	(删掉)	同上。	membership
+zh	整(个)?活	vocab	(说清楚做了什么)		membership
+zh	属实是	vocab	确实		membership
+zh	格局	jargon	(说清楚看的是什么范围)		membership
+en	circle back	jargon	(say when and about what)		membership
+en	double click on	jargon	look at in detail		membership
+en	table stakes	jargon	the minimum		membership
+en	move the needle	jargon	(say what changes)		membership
+en	north star	jargon	(name the goal)	borrowed domain; also H6.	membership
+en	first principles	jargon	(say what you started from)		membership
+en	high signal	jargon	(say what it tells you)		membership
+en	galaxy[- ]brain	vocab	(say the idea plainly)		membership
+en	big[- ]brain	vocab	(say the idea plainly)		membership
+en	skill issue	vocab	(say what went wrong)		membership

@@ -44,6 +44,29 @@ A pass run by someone who thinks "plain" is the defect will sand the text into m
 real tell. Plain is also not colloquial. The register anchors are in §2. Overshooting into casual
 speech is as wrong as posturing, and it is the more common failure once someone has read the rules.
 
+**第二种表演，用的是另一种货币：证明写的人是圈内人。**上面那一段说的是证明自己聪明。黑话、
+假口语、心照不宣的插话、只有同行才接得住的简写，走的都是另一条路，它们卖的不是智力而是身份。
+
+两者在读者那里的下场不一样，这也是第二种更值得防的原因。端着（`taxonomy.md` E2）听上去像装，
+读者当场就听出来。黑话听上去像熟练，读者往往听不出来，所以它在改稿里活得更久，而作者本人几乎
+永远发现不了，因为在他自己耳朵里那就是行话说得顺。
+
+这一段的说法来自本仓库作者，照录：
+
+> AI 现在的默认是**愚蠢但狡黠**，而目标是**聪明但幼稚**。真正的聪明绝对不是装成小人。
+> 要以童真的初心描写严肃的事情。
+
+狡黠指的是那种心照不宣、见过世面的口气，而底下的内容撑不住这个口气。幼稚在这里不是贬义，
+它指的是愿意用普通词，愿意问显然的问题，愿意在读者面前显得不老练。题目越重，越不该靠口气去撑。
+
+**做法上只有一条纪律，叫做憋着一口气。它是一个动作，不是一条规则。**想到一句漂亮的话，
+圈内人一看就会心，那就不写。不为了显得是圈内人而放松语言。这条没有办法做成计数指标，
+因为被憋回去的那句话根本不会出现在文本里，任何检查都看不见它。它只能发生在写的时候。
+
+**能检查的那一半是 E6 的两条。**这个词有没有一个公认所指，有没有对应的普通词。过了就是术语，
+留着；不过就是黑话，换掉。同一条边界也挡住反方向的失误，幼稚不等于外行，把真正的术语铺平会让
+文本读起来像外行写的，那比留一个痕迹更糟。
+
 Two checks, from the nofluff standard, outrank every table in this repository:
 
 1. **Delete it. Is any information lost?** If not, delete it.
@@ -478,7 +501,7 @@ into "blocking" costs the check its legitimacy and takes neighbouring checks dow
 levels is not finer granularity. Two levels leaves a whole class of property with nowhere to sit.
 
 **What is actually measured here, and what is not.** `evals/run.py` scores the lexicon scan as a
-whole against 58 cases: currently 100% recall at 97.3% precision, with both false positives coming
+whole against 61 cases: currently 100% recall at 97.6% precision, with both false positives coming
 from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
 
 That is a corpus number, and **the decision it is being asked to support is a per-indicator one.**
@@ -548,7 +571,7 @@ reader's ordinary language.** `回归` for a regression reads as translated rath
 
 ### 6.2 The scanner is the cheap half
 
-`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (594 rows, Chinese
+`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (625 rows, Chinese
 and English, each with a plain replacement, a note where the word is sometimes legitimate, and the
 upstream project it came from).
 
@@ -951,7 +974,7 @@ at the larger size, which is why this pipeline has four instead of one.
 - `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
 - `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
 - `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
-- `references/lexicon.tsv`. 594 candidate rows, zh and en, each with replacement, note, and source project.
+- `references/lexicon.tsv`. 625 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.
 - `tools/measure.py`. Indicators, worksheet, before/after diff. No dependencies beyond python3.
 - `tools/build_lexicon.py`. Rebuilds the lexicon from the four upstream checkouts, deduping by match.

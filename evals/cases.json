@@ -964,6 +964,86 @@
       "candidate_findings": [],
       "judgments": [],
       "reason": "同一个播报体，节奏均匀、面向所有人、事情说完就停，没有一处命中。锚点要的正是这一半，所以这条用来防止把整个播报体一起否掉。"
+    },
+    {
+      "id": "zh-membership-display",
+      "tier": "lexicon",
+      "source": "SKILL.md §0 第二种表演",
+      "input": "这波我们先拉齐一下认知，把飞轮跑起来，有一说一，这个方案含金量很高。",
+      "findings": [
+        {
+          "span": "这波",
+          "category": "vocab"
+        },
+        {
+          "span": "拉齐",
+          "category": "physical"
+        },
+        {
+          "span": "飞轮",
+          "category": "jargon"
+        },
+        {
+          "span": "有一说一",
+          "category": "stance"
+        },
+        {
+          "span": "含金量",
+          "category": "vocab"
+        }
+      ],
+      "reason": "卖的是身份不是智力。五处里没有一处指向具体的事，而每一处都在告诉读者作者是圈内人。 拉齐 由上游的物理动词行报出，类别是 physical，不另开 jargon 行；同一个词只该有一行。"
+    },
+    {
+      "id": "zh-term-of-art-not-jargon",
+      "tier": "judgment",
+      "source": "E6 两条，membership 一批词的边界",
+      "input": "复盘的时候发现，这个生态位上只有两家。",
+      "candidate_findings": [
+        {
+          "span": "复盘",
+          "category": "jargon"
+        },
+        {
+          "span": "生态位",
+          "category": "jargon"
+        }
+      ],
+      "judgments": [
+        {
+          "span": "复盘",
+          "category": "jargon",
+          "verdict": "rewrite"
+        },
+        {
+          "span": "生态位",
+          "category": "jargon",
+          "verdict": "keep"
+        }
+      ],
+      "findings": [],
+      "reason": "两个词同一批进的词表，判定相反。复盘有普通词可用（回顾、事后检查），不过 E6 第二条。生态位在生态学里有一个公认所指且没有对应普通词，过 E6，是术语不是黑话。这条用来防止把整批词当成一律要改。"
+    },
+    {
+      "id": "en-membership-display",
+      "tier": "lexicon",
+      "source": "SKILL.md §0 第二种表演",
+      "input": "Let's circle back and double click on this; moving the needle here is table stakes.",
+      "findings": [
+        {
+          "span": "circle back",
+          "category": "jargon"
+        },
+        {
+          "span": "double click on",
+          "category": "jargon"
+        },
+        {
+          "span": "table stakes",
+          "category": "jargon"
+        }
+      ],
+      "reason": "Three phrases, none of which names an action, a threshold or a subject. What they carry is that the writer is inside."
     }
   ]
 }

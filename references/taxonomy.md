@@ -343,9 +343,21 @@ operator who knows where the number came from, and why D6 is `audit-only` and ne
 
 ## E. Diction
 
+**E4, E5, E10 and E11 detect one move from four angles: the writer showing they belong.** Business
+jargon, performed engineer-speak, manufactured colloquialism and register mixing all trade on
+membership rather than on intelligence, which is what separates them from E2. `SKILL.md` §0 states
+the target the four are measured against. Keeping them apart is deliberate, because each one catches
+sentences the others miss; naming what they share is not a reason to merge them.
+
+**E4's severity, and the one exemption.** In every document scene, business jargon is Tier 1,
+replace by default, with no density threshold to clear first. The exemption is E6's two conditions
+and nothing else: one agreed referent, and no ordinary word for it. A word that passes E6 is a term
+of art and was never in this family. `chat` keeps the friend test, because shorthand between two
+people who both hold it is not a display.
+
 ### E1. AI vocabulary `H D S N`
 
-`references/lexicon.tsv`, 594 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
+`references/lexicon.tsv`, 625 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
 Kobak et al. 2025 on excess vocabulary in biomedical abstracts, Juzek & Ward 2025, HN 48905248, and
 the Chinese community lists. Each row carries a plain replacement and a note where the word is
 sometimes legitimate.
