@@ -186,7 +186,7 @@ author actually holds); and **conjunction density** lost its global threshold to
 | [`references/field-reports.md`](./references/field-reports.md) | what the public complaint threads are worth, attributed line by line, and which parts changed the contract |
 | [`references/code-comments.md`](./references/code-comments.md) | comments and interface text: who the reader is, and which step removes what |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | this repository's own surviving gate hits, each with a reason |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 584 candidate rows, zh and en, each with replacement, note and source project |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 594 candidate rows, zh and en, each with replacement, note and source project |
 | [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, comment worklist, worksheet, before/after diff |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | runs the gates on this repository's own prose |
 | [`docs/pipeline.html`](./docs/pipeline.html) | the diagram and the step notes, one 28 KB page, no external files |
@@ -224,7 +224,7 @@ Zero em dashes across every file, which is measured. No live metaphor introduced
 found, which is a read rather than a count, for the reason given above: a word list cannot separate
 one from a frozen name.
 
-`evals/run.py` scores lexical detection against 56 cases: 100% recall, with two known false
+`evals/run.py` scores lexical detection against 58 cases: 100% recall, with two known false
 positives, both from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
 
 ## License

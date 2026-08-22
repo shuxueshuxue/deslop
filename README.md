@@ -162,7 +162,7 @@ deslop 原来解决的是判断标准 · 压缩标点 · burden of proof · 前�
 | [`references/field-reports.md`](./references/field-reports.md) | 外面的抱怨帖里能用的部分，每条都带出处，以及哪几条改了合同 |
 | [`references/code-comments.md`](./references/code-comments.md) | 代码注释和界面文案：写给谁看，边界在哪一步 |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | 本仓库自己没清掉的闸门命中，逐条留名字和理由 |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 584 条候选词，中英文，各带替换、豁免注释和来源项目 |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 594 条候选词，中英文，各带替换、豁免注释和来源项目 |
 | [`tools/measure.py`](./tools/measure.py) | 指标、词表扫描、比喻候选、注释候选、逐句工作表、前后对照 |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | 把闸门跑在本仓库自己的文字上 |
 | [`docs/pipeline.html`](./docs/pipeline.html) | 流程图解，28 KB 单页，手写 SVG，无外部依赖 |
@@ -192,7 +192,7 @@ deslop 原来解决的是判断标准 · 压缩标点 · burden of proof · 前�
 全仓破折号 0，这个是量出来的。比喻候选逐条判过，自己引入的活比喻没有发现；
 这一条是人读出来的判断，不是计数，因为上面刚说过比喻在词面上无法区分。
 
-`evals/run.py` 是词表检测的回归分数：56 条用例，召回 100%，两处已知误报都来自刻意放宽的规则（文档里的 `你`，以及过度共情那条的 `请求`）。
+`evals/run.py` 是词表检测的回归分数：58 条用例，召回 100%，两处已知误报都来自刻意放宽的规则（文档里的 `你`，以及过度共情那条的 `请求`）。
 
 ## License
 

@@ -158,12 +158,33 @@ is right. Both failure directions are audible immediately.
 
 English anchor, all document scenes: **Wikipedia, Hacker News technical comments, and good papers.**
 
-**A second anchor, for pace rather than diction: the encyclopedia entry.** The dubbing register
-settles whether the sentence is whole and whether its subject is present. It says nothing about how
-fast the text moves or how sure it sounds. An encyclopedia entry moves evenly, keeps no surprises
-back, states a disagreement as somebody's disagreement, and marks how firm each claim is. Where the
-two anchors are both available, the encyclopedia one is what `taxonomy.md` N is measured against.
-The English anchor already led with Wikipedia; this makes the same requirement explicit for Chinese.
+**三个锚点，各管一件事。**一个锚点只回答它管得到的问题。把三个并排放，是因为它们管的不是同一件事，
+而不是因为多多益善。
+
+| 锚点 | 它决定什么 | 它决定不了什么 |
+|---|---|---|
+| 日本电影的配音腔 | 句子完不完整，主语在不在位，动词是不是双音节 | 节奏，口气，写给谁看 |
+| 百科条目 | 节奏均不均匀，有没有留悬念，分歧写没写成谁的分歧，把握程度标没标出来 | 怎么收尾，以及是不是在对着一小撮人说话 |
+| 新闻联播的播报体 | 对谁说，以及怎么停。面向所有人，不假设读者属于哪个圈子，不表个人立场，事情说完就停 | 句法和用词 |
+
+`taxonomy.md` N 对着第二个锚点量。第三个锚点回答的那个问题以前没有锚点管：文本是不是在对着
+一小撮人说话。这跟 M2 是同一个方向，M2 问的是读者能不能还原一个指称，这里问的是文本有没有
+假设读者属于某个圈子。
+
+第三个也是三个里最容易吃亏的一个，所以按 §2.3 的规矩，先写明要禁掉它自己的什么。播报体带进来的
+东西不比它给的少：
+
+- **意义拔高。**`取得了显著成效`，`迈上新台阶`，`开创了新局面`。这是 A1，也是播报体带得最重的一样。
+- **口号与四字格堆砌。**为整齐而凑的四字短语，E2 的邻居。
+- **泛指的集体主语。**`广大`，`各方`，`有关方面`。它让 D2 无源归属穿着正式的外衣进来。
+- **程式化的正面收尾。**A6。
+
+取的是前一半，节奏均匀、面向所有人、说完就停。后一半一样也不要。
+
+**两种自吹自擂，taxonomy 里都已经有位置，不需要新族。**推广文案那种是 A3 促销腔加 A1 意义拔高。
+学术那种是 A2 值得性拔高加 A5 自我评价，`§5.2` 里被作者删掉的那句
+`We consider this the strongest feature of the design` 就是标本。两者是同一件事的两个场合，
+所以判定标准也是同一条，作者在给自己的东西打分，而不是把它写出来。
 
 `code-context` and `ui-copy` have their own file, `references/code-comments.md`, because the
 defect there is usually not a phrase. It is text addressed to the reader who watched it being
@@ -457,7 +478,7 @@ into "blocking" costs the check its legitimacy and takes neighbouring checks dow
 levels is not finer granularity. Two levels leaves a whole class of property with nowhere to sit.
 
 **What is actually measured here, and what is not.** `evals/run.py` scores the lexicon scan as a
-whole against 56 cases: currently 100% recall at 97.1% precision, with both false positives coming
+whole against 58 cases: currently 100% recall at 97.3% precision, with both false positives coming
 from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
 
 That is a corpus number, and **the decision it is being asked to support is a per-indicator one.**
@@ -527,7 +548,7 @@ reader's ordinary language.** `回归` for a regression reads as translated rath
 
 ### 6.2 The scanner is the cheap half
 
-`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (584 rows, Chinese
+`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (594 rows, Chinese
 and English, each with a plain replacement, a note where the word is sometimes legitimate, and the
 upstream project it came from).
 
@@ -930,7 +951,7 @@ at the larger size, which is why this pipeline has four instead of one.
 - `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
 - `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
 - `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
-- `references/lexicon.tsv`. 584 candidate rows, zh and en, each with replacement, note, and source project.
+- `references/lexicon.tsv`. 594 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.
 - `tools/measure.py`. Indicators, worksheet, before/after diff. No dependencies beyond python3.
 - `tools/build_lexicon.py`. Rebuilds the lexicon from the four upstream checkouts, deduping by match.

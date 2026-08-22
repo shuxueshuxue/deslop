@@ -345,7 +345,7 @@ operator who knows where the number came from, and why D6 is `audit-only` and ne
 
 ### E1. AI vocabulary `H D S N`
 
-`references/lexicon.tsv`, 584 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
+`references/lexicon.tsv`, 594 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
 Kobak et al. 2025 on excess vocabulary in biomedical abstracts, Juzek & Ward 2025, HN 48905248, and
 the Chinese community lists. Each row carries a plain replacement and a note where the word is
 sometimes legitimate.

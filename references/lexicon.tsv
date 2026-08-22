@@ -593,3 +593,13 @@ en	ledger	borrowed	record / list / table	literal in accounting and in distribute
 en	book-?keeping	borrowed	record-keeping		user-ban
 en	technical debt	borrowed	(name the work that was not done)	some fields use it as a frozen name; judge by E6.	user-ban
 en	pay(ing)? (it |this )?down	borrowed	(say what gets done)		user-ban
+zh	取得了?(显著|明显|积极)?(成效|成果|进展|突破)	puffery	(说清楚做成了什么)	播报体套话，A1。	anchor-cost
+zh	迈上(了)?新台阶	puffery	(说清楚变化是什么)	同上。	anchor-cost
+zh	开创(了)?(新)?局面	puffery	(说清楚开始做什么了)	同上。	anchor-cost
+zh	再上(一个)?新台阶	puffery	(说清楚变化是什么)		anchor-cost
+zh	广大(人民)?(群众|用户|开发者|读者)	puffery	(说清楚是谁)	泛指集体主语，会把 D2 无源归属带进来。	anchor-cost
+zh	有关(方面|部门)	puffery	(说清楚是谁)	同上。	anchor-cost
+zh	各方(共同)?努力	puffery	(说清楚谁做了什么)	同上。	anchor-cost
+zh	为.{0,10}(提供|注入)(了)?(强大|坚实|有力)(的)?(动力|支撑|保障)	puffery	(说清楚起了什么作用)		anchor-cost
+zh	谱写(了)?	puffery	(直接说做了什么)		anchor-cost
+zh	翻开(了)?新的?一页	puffery	(说清楚变化是什么)		anchor-cost

@@ -925,6 +925,45 @@
       "candidate_findings": [],
       "judgments": [],
       "reason": "A taxonomy M1 defect with no marker word in it. The lexicon is the wrong instrument and correctly stays silent; `tools/measure.py --comments` is what looks for this."
+    },
+    {
+      "id": "zh-broadcast-formulas",
+      "tier": "lexicon",
+      "source": "SKILL.md §2 播报体锚点的代价清单",
+      "input": "各方共同努力，取得了显著成效，为高质量发展提供了强大动力，广大用户迈上新台阶。",
+      "findings": [
+        {
+          "span": "为高质量发展提供了强大动力",
+          "category": "puffery"
+        },
+        {
+          "span": "取得了显著成效",
+          "category": "puffery"
+        },
+        {
+          "span": "各方共同努力",
+          "category": "puffery"
+        },
+        {
+          "span": "迈上新台阶",
+          "category": "puffery"
+        },
+        {
+          "span": "广大用户",
+          "category": "puffery"
+        }
+      ],
+      "reason": "播报体自己带的四样毛病在一句里齐了：意义拔高三处，泛指集体主语两处。锚点取的是它的节奏，不是这些。"
+    },
+    {
+      "id": "zh-broadcast-plain-control",
+      "tier": "lexicon",
+      "source": "SKILL.md §2 播报体锚点取的那一半",
+      "input": "会议于三月十二日举行，与会的三方就前两项议程达成一致，第三项推迟到下次会议。",
+      "findings": [],
+      "candidate_findings": [],
+      "judgments": [],
+      "reason": "同一个播报体，节奏均匀、面向所有人、事情说完就停，没有一处命中。锚点要的正是这一半，所以这条用来防止把整个播报体一起否掉。"
     }
   ]
 }
