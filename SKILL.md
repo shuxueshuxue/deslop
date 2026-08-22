@@ -67,6 +67,22 @@ speech is as wrong as posturing, and it is the more common failure once someone 
 留着；不过就是黑话，换掉。同一条边界也挡住反方向的失误，幼稚不等于外行，把真正的术语铺平会让
 文本读起来像外行写的，那比留一个痕迹更糟。
 
+**再往前一步：故意显得笨拙，或者说乐于暴露自己的笨拙。**幼稚是愿意在读者面前显得不老练，
+笨拙是主动去选那个不顺的说法。这一条挡的是本文件自己记录在案的一个失败。§4 写着，
+限定条件正是让句子变钝的那部分，所以一次以可读性为目标的清理会持续朝着删掉它们的方向使劲。
+写的人如果本来就偏爱变钝的那一版，这条路径就窄了。
+
+照着做是四件事：
+
+- 句子读起来磕绊，先问是不是限定条件让它磕绊的。是的话，留着磕绊。
+- 有一面没有验，就写"这一面没有验"，不要绕过去。
+- 宁可用普通词多写几个字，也不要用更贴切的行话省那几个字。
+- 不为了顺，把两件事并进一句。
+
+**边界：笨拙不是邋遢。**它不是把话写不清楚的许可。判据仍然是上面 nofluff 的两条，删掉它信息有没有
+少，读者问"具体指什么"答不答得出一个事实。带着限定条件的磕绊句子过得了这两条，什么都不带的
+磕绊句子过不了。
+
 Two checks, from the nofluff standard, outrank every table in this repository:
 
 1. **Delete it. Is any information lost?** If not, delete it.
@@ -356,8 +372,8 @@ Freeze these before you read for style. Anything below is protected in every sce
   > 在一个 clean-entry 容器里的一次 smoke 中，一个全新 session 自主采纳为零
   > 一个 agent 通过了全部检查却没用那套工作流
 
-  The second reads better. Every register instinct in this document prefers it. It is also a
-  different claim, and nothing downstream will report the difference, because the sentence that
+  The second reads better, and the register instincts in this document mostly prefer it. It is also a
+  different claim, and no check further down this pipeline reports the difference, because the sentence that
   remains is well formed and correctly attributed. See `taxonomy.md` D6, and mark these spans at
   step 2 before any of the rest runs.
 
