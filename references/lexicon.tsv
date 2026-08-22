@@ -192,7 +192,7 @@ zh	[^，。]{2,20}的本质(是|在于)	shape	(直接说是什么)		deslop
 zh	很多人(以为|觉得|认为)	shape	(删，别替读者设定)		deslop
 zh	问题不在[^，。]{1,10}，而在	shape	(只说后半句)		deslop
 zh	——	shape	(改逗号、冒号或句号)	计数指标。	deslop
-zh	判据	vocab	判别方法 / 判断依据	标题里常显得抬高；不要反向改成「怎么判」。	deslop
+zh	判据	vocab	判断的依据 / 判断依据	标题里常显得抬高；不要反向改成「怎么判」，也不要改成「判别方法」，那是流程不是基准。	deslop
 zh	范式	vocab	做法 / 模式	科学哲学语境里是术语。	deslop
 zh	语境	vocab	场合 / 上下文	语言学里是术语。	deslop
 zh	维度	vocab	方面	数学/张量语境里是术语。	deslop

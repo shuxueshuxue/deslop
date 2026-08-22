@@ -305,7 +305,7 @@
           "verdict": "rewrite"
         }
       ],
-      "reason": "Human review called drift 判据 AI-flavored. Keep it as a scanner candidate, but replace it with 判别方法 rather than 怎么判."
+      "reason": "Human review called drift 判据 AI-flavored. Keep it as a scanner candidate. The replacement has to keep naming a basis, so 判断依据 passes and 判别方法 does not, a procedure being a different thing; 怎么判 is the over-correction (taxonomy N1)."
     },
     {
       "id": "zh-negative-trigger-source",
@@ -540,7 +540,7 @@
           "verdict": "rewrite"
         }
       ],
-      "reason": "The title needs a written replacement such as 判别方法, not a conversational question."
+      "reason": "The title needs a written replacement that still names a basis, such as 判断依据, rather than a conversational question."
     },
     {
       "id": "en-model-jargon-use",

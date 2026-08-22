@@ -98,7 +98,8 @@ common way a deslop run makes text worse.
    become `装`; `阻断` does not become `拦`; `复核` does not become `再看一遍`. What goes is the
    *rare* word, not the *written* one.
 3. **Did a heading become a casual question?** Headings sit further toward written register than the
-   body. `drift 判据` → `drift 检查的判别方法` is right; → `drift 怎么判` is over-corrected.
+   body. `drift 判据` → `drift 判断依据` is right; → `drift 怎么判` is over-corrected. `判别方法`
+   is not an alternative: a procedure is not a basis, so it edits the content (`taxonomy.md` N1).
 4. **Did a term of art get flattened?** *drift*, *anchor*, *warm cache*, *starvation*, *garbage
    collection*, *back-pressure*, *idempotent* / 幂等, *deadlock* / 死锁, 埋点. Flattening these makes
    the text read as though the author does not know the field, which is worse than leaving a tell.

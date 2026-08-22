@@ -1,6 +1,6 @@
 # The merged taxonomy
 
-Thirteen families. Each row of an audit table names one. The behavioural contract is `SKILL.md`;
+Fourteen families. Each row of an audit table names one. The behavioural contract is `SKILL.md`;
 where this file and that one disagree, `SKILL.md` wins.
 
 Attribution is per family, because it is the only way to see what each upstream project actually
@@ -356,7 +356,7 @@ A rarer, more "professional" word where a common one exists. Readers hear postur
 
 | 端着 | 常用 | posturing | plain |
 |---|---|---|---|
-| 判据 | 判别方法 · 判断依据 | utilize | use |
+| 判据 | 判断的依据 · 判断依据 | utilize | use |
 | 驻留 | 留在内存里 | commence | start |
 | 涵盖 | 包括 | facilitate | help |
 | 旨在 | 用来 | in order to | to |
@@ -604,14 +604,14 @@ rule. What is banned is performed empathy, not all emotional response.
 的地方。本仓库踩过：一份流程说明把"线性分段的版式"做成了一整套车间比喻，十四类指标全绿，四遍回读
 全过，读者一眼看出是 AI 味，而规则当时明确豁免了它。绝对规则没有这个口子。
 
-**判据在读者侧**：读者要不要在脑子里把 A 映射到 B 才能懂？要就是命中。
+**判断标准在读者侧**：读者要不要在脑子里把 A 映射到 B 才能懂？要就是命中。
 
-把判据放在读者的认知负担上，不放在词源上。词源没有用，所有抽象词往上追都是比喻。
+把判断标准放在读者的认知负担上，不放在词源上。词源没有用，所有抽象词往上追都是比喻。
 
 **三样不在此列**，因为它们不是"在用比喻"：
 
 1. **领域已经冻结成名字的术语。**死锁、幂等、垃圾回收、back-pressure、drift、pipeline、埋点。
-   判据仍是 E6 那两条，有一个公认所指并且没有对应的普通词。名字不是比喻，它是这个东西的叫法。
+   判断标准仍是 E6 那两条，有一个公认所指并且没有对应的普通词。名字不是比喻，它是这个东西的叫法。
    把它换成普通词会让文本读起来像外行写的，那比留一个痕迹更糟。
 2. **已经死掉的隐喻。**深入、支撑、框架、流程、高层、run、handle。读者不做映射就懂，
    它已经是那个词本身了。
@@ -795,3 +795,74 @@ step between writing it and shipping it.
 **Default action:** relocate, do not delete. A note that fails M1's test but records a real decision
 belongs in the commit body or a decisions file, recorded in the relations ledger (`SKILL.md` §4) so
 that the move is visible. Report relocations separately from deletions.
+
+---
+
+## N. 自以为是的干净利落 `本项目新增`
+
+Confidence and compression that the text has not earned. The sentence reads decisive. What was
+removed to make it read that way is the part a reader would have used to check it or to disagree.
+
+This family came out of one conversation, from two examples. By the standard `SKILL.md` §12.1 sets
+for any rule written after a single event, it should be suspected of having compressed its causes,
+and that caveat is recorded here rather than left for someone else to find. Whether the two forms
+below are one mechanism or two that happen to look alike is not settled.
+
+### N1. 词面简省 Clipped to where the reader must expand it
+
+A word compressed until its referent can only be recovered by unpacking it.
+
+| 命中 | 读者要还原成 |
+|---|---|
+| `判据` | 判断的依据 |
+| `触发源` | 触发的源头 |
+| `落不落` | 这一条要不要写进仓库 |
+
+**判断标准在读者侧**：读者要不要在心里把它展开成一个短语，才能确定它指什么？要就是命中。
+
+`落不落` also hits M2, because `落` is shorthand that only the two people in that conversation can
+resolve. A phrase landing in two families is ordinary and neither claim weakens the other.
+
+**没有默认改法，只有一条否决条件。** The replacement has to keep pointing at the same thing.
+`判据` names the basis a judgement rests on; `判别方法` names the procedure by which the judgement is
+made. A basis is not a procedure, so that substitution edits the content while presenting itself as
+a register edit, which `SKILL.md` §0.1 puts in the principle layer. Under the condition,
+`判断的依据`, `判断依据`, `依据` and `标准` all pass and the sentence decides which; `判别方法` does not.
+
+**Two failure directions, not one.** The expansion can fall into speech (`判据` → `怎么判`), which
+Pass B has always asked about. It can also pad a short sentence out with words that carry nothing,
+which Pass B has never asked about. Both are over-correction.
+
+**Not a hit:** a clipped compound a field has adopted as its name. `语料`, `显存`, `环评`, `科普`
+have one agreed referent and no ordinary word for it. The test is E6's two conditions, unchanged.
+Expanding these makes the text read as though an outsider wrote it, which is worse than the trace.
+
+### N2. 断言不留余地 An assertion with nothing to push against
+
+A judgement stated as settled, where the writer has tested it once or twice and the sentence does
+not say so. The confidence is doing work the evidence has not done.
+
+The specimen this family was named from is from this repository's own drafting. A proposed rule was
+argued for as `输出唯一，堵掉一个决策口` and `结构上不可能过校正`. Neither had been tested past one
+example. The second was true in one direction (the expansion cannot fall into speech) and unexamined
+in the other (it can pad), and the sentence gave a reader no way to notice the difference.
+
+**判断标准在读者侧**：如果这句话是错的，读者能不能从句子本身看出它可能错在哪？看不出，而作者的依据
+其实只有一两个例子，就是命中。
+
+**Default action:** put the confidence level back in. Say how many cases it was tested on, what range
+it holds over, which side was not checked. `就目前试过的两个例子而言` and `这一面没有验` are the
+repair.
+
+**What the repair is not.** Sprinkling `可能` over sentences that are not in doubt reads slower and
+tells the reader nothing, and stacking them is D4. Borrowing confidence from an unnamed authority is
+D2. The aim is to state the writer's actual footing, which sometimes means a flat sentence with no
+hedge at all, because the footing is firm.
+
+**Neighbouring families.** A5 is the opposite move at the same place: the author grading their own
+sentence (`老实说`, `关键在于`) rather than writing it. D4 counts hedges stacked. Nothing in the
+taxonomy before this counted hedges **missing**, and the academic pack only protects a hedge the
+author already wrote. A hedge never written is invisible to every check in this file except a read.
+
+**No counter.** There is a unit and a script could list assertive sentences, but hits would not be
+almost always real, so nothing here can be gated. See `SKILL.md` §5.1.

@@ -123,6 +123,11 @@ Fixed. Do not skip, do not reorder. Steps 1–5 cost minutes and prevent most of
 8. **Scan.** the lexicon is a worklist of candidates, never a verdict (§6.2).
 9. **Audit.** line by line against `references/taxonomy.md`, headings against `references/titles.md`.
    Produce the table in §7. In a fresh-context subagent for anything longer than a page.
+   **Two questions in this step are not answerable by scanning**, so ask them explicitly rather than
+   waiting for a hit to surface. On every compressed term: does the reader have to expand it before
+   its referent is fixed (`taxonomy.md` N1)? On every sentence that states a judgement: if this were
+   wrong, could a reader see from the sentence where it might be wrong (N2)? Both fail silently,
+   because a text with neither handle in it reads well.
 10. **Apply.** literal denotation. Never swap one vivid word for another vivid word. Verify the
     input hash first with `python3 tools/freeze.py check FILE <sha>`, and refuse if it moved (§11).
 11. **Reread, in four separate passes** (§9). They catch different damage and cannot be merged.
@@ -152,6 +157,13 @@ shorthand, steady but not stiff. Read the result aloud; if it could be a dubbing
 is right. Both failure directions are audible immediately.
 
 English anchor, all document scenes: **Wikipedia, Hacker News technical comments, and good papers.**
+
+**A second anchor, for pace rather than diction: the encyclopedia entry.** The dubbing register
+settles whether the sentence is whole and whether its subject is present. It says nothing about how
+fast the text moves or how sure it sounds. An encyclopedia entry moves evenly, keeps no surprises
+back, states a disagreement as somebody's disagreement, and marks how firm each claim is. Where the
+two anchors are both available, the encyclopedia one is what `taxonomy.md` N is measured against.
+The English anchor already led with Wikipedia; this makes the same requirement explicit for Chinese.
 
 `code-context` and `ui-copy` have their own file, `references/code-comments.md`, because the
 defect there is usually not a phrase. It is text addressed to the reader who watched it being
@@ -363,6 +375,12 @@ demoted from GATED to CAPPED the first time this repository ran its own gates ov
   table. (This one was demoted during the worked example, when the counter charged a paper eleven
   violations for using labelled bullet lists.)
 
+- **Unearned confidence is not counted.** A script can list sentences that assert without hedging,
+  and most of them will be ordinary statements of fact, so hits are nowhere near almost-always-real.
+  This is a precision problem rather than a scope one (§12.1), which means the script would still
+  earn its keep as a candidate lister. None is written yet, and the family is new enough that
+  writing one now would fix the wrong shape. `taxonomy.md` N2.
+
 - **Metaphor is not counted, and the rule is absolute anyway.** A frozen name (`back-pressure`), a
   literal use (`代码仓库`) and a live metaphor look identical to a word list, so hits are not
   almost-always-real and nothing can be gated. That is not a contradiction with the absolute rule in
@@ -563,7 +581,7 @@ The aggregate is the point. Every row of a sustained metaphor passes on its own,
 per-row judgement never catches it. In the failure recorded in `taxonomy.md` H6 the column would
 have read `工厂` fourteen times.
 
-`references/taxonomy.md` holds the thirteen families. `references/decisions.md` holds the per-hit
+`references/taxonomy.md` holds the fourteen families. `references/decisions.md` holds the per-hit
 decision procedure, the exemption caps, and the `in-place` alternate for each family.
 
 Two rules that stop an audit from becoming a massacre:
@@ -648,6 +666,9 @@ They catch different damage. Merging them is how each one gets skipped.
 run makes text worse.
 
 - Did a written word become a spoken one? (`判据` → `怎么判`, `触发源` → `触发的地方`)
+- Did an expansion pad the sentence? Unpacking a clipped term (`taxonomy.md` N1) makes it longer by
+  construction, and in a short sentence the added words can carry nothing. Both directions are
+  over-correction; only the first one used to be asked about here.
 - Did a two-syllable verb become one syllable? Chinese written register prefers two.
 - Did a heading become a casual question? Headings sit further toward written register than body.
 - In `academic`: did a hedge get stronger? Did a limitation get shorter? Did `suggests` become
@@ -867,7 +888,7 @@ at the larger size, which is why this pipeline has four instead of one.
 
 ## Reference files
 
-- `references/taxonomy.md`. The thirteen marker families, merged, with source attribution per family.
+- `references/taxonomy.md`. The fourteen marker families, merged, with source attribution per family.
 - `references/decisions.md`. Per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates.
 - `references/titles.md`. Headings: name the content, do not narrate the reading path.
 - `references/overcorrection.md`. The false-positive corpus: what looks like a tell and is not.

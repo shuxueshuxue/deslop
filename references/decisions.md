@@ -132,6 +132,31 @@ what separates an edit from a massacre.
     carrying a pause, an emphasis, or a hand-off. Delete it only after checking that the paragraph
     still joins.
 
+## Replacing a compressed term
+
+`taxonomy.md` N1 gives no default replacement, on purpose. What it gives is a condition the
+replacement has to meet, and the sentence picks from whatever passes.
+
+**The condition: the replacement still points at the same thing.** A basis is not a procedure, a
+criterion is not a method, grounds are not steps. `判据` names what a judgement rests on, so
+`判断的依据`, `判断依据`, `依据` and `标准` are all available and `判别方法` is not, whatever it does
+for the register. A substitution that moves the referent is a content edit wearing a style edit's
+clothes, and §0.1 puts it in the principle layer.
+
+Three checks on the result, in this order:
+
+1. **Same referent.** Can you say what the original named, and does the replacement name that?
+2. **Same register.** Written stays written (Pass B question one). `怎么判` fails here.
+3. **No padding.** The expansion is longer by construction. In a short sentence, ask whether the
+   added words carry anything (Pass B question two, added at the same time as this section).
+
+**In a heading, drop the `的`.** `drift 判断依据` is the heading form and `drift 判断的依据` is the
+body form. This is a wrinkle rather than a rule and it is written down because it turned up the
+first time the condition was applied to a real example.
+
+**Not every compressed term is a hit.** E6's two conditions decide that, unchanged: one agreed
+referent, and no ordinary word for it. `语料`, `显存`, `环评` stay.
+
 ## `in-place` alternates
 
 Under `in-place` nothing is deleted, so each family needs a within-sentence move. These are the ones

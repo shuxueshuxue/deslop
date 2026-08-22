@@ -39,7 +39,7 @@ Headings are short, so a rare word is magnified. See `taxonomy.md` E2.
 
 | posturing | common |
 |---|---|
-| drift 判据 | drift 检查的判别方法 |
+| drift 判据 | drift 判断依据 |
 | 意图承载体的选型 | 意图写在哪 |
 
 **But do not over-correct.** `drift 判据` → `drift 检查怎么判` falls into speech: in a heading, a

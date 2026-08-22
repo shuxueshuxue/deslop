@@ -55,11 +55,12 @@ separately:
 
 1. **Freeze before you touch anything.** Numbers, quotations, commands, error strings and attribution
    get marked, plus a separate ledger of relations: which number modifies which object, who did what,
-   what is based on what. No word list can do this layer, and it is the only one whose damage cannot
-   be recovered from the finished text.
-2. **Only step 06 must run in a fresh context.** Whatever wrote the text cannot audit it. It
-   re-reads its own intent instead of the words on the page, and that is as true of an agent as of a
-   person. The rule is implemented as a hard requirement: the audit runs in a fresh-context subagent.
+   what is based on what. No word list can do this layer, and its damage is probably not recoverable
+   from the finished text either, because the finished text no longer holds the relations. Of the
+   layers listed here, that appears to be true of this one alone.
+2. **Only step 06 must run in a fresh context.** Whatever wrote the text is a poor auditor of it,
+   because it re-reads its own intent rather than the words on the page. In this repository's runs
+   that has held for an agent as reliably as for a person. The rule is implemented as a hard requirement: the audit runs in a fresh-context subagent.
    A human enters the loop twice, to sign off the proposed-deletion list under `bounded` scope and to
    read the report.
 3. **Four rereads, and they may not be merged.** They see different things. B checks the replacement
@@ -72,16 +73,16 @@ Worth saying up front, because the pipeline causes it.
 
 Readability is the goal, and **a condition of applicability is exactly what makes a sentence blunt**.
 `in a clean-entry container`, `a single run`, `a smoke test`, `autonomously`. These look like any
-other clause and carry no signature a script can find. So a pass that goes well removes them by
-preference. Compare:
+other clause, and across the signatures tried so far none has separated them from ordinary prose, so
+a pass that goes well is likely to remove them by preference. Compare:
 
 > In one smoke run, in a clean-entry container, a fresh session adopted the workflow zero times on its own.
 >
 > An agent passed every check and never used the workflow.
 
-The second reads better, and every register instinct in this repository prefers it. It is also a
-different claim, and nothing downstream reports the difference, because what remains is well formed
-and correctly attributed.
+The second reads better, and the register instincts in this repository mostly prefer it. It is also
+a different claim, and no check further down this pipeline reports the difference, because what
+remains is well formed and correctly attributed.
 
 The fix is order, not care. **Qualifiers are frozen before the register work starts**, marked once by
 whoever knows where the number came from, after which the tooling only has to leave them alone. That
@@ -96,11 +97,11 @@ quietly puts it back.
 
 | tier | authority | contents |
 |---|---|---|
-| **GATED** | drive to zero, or name every survivor | em dash · staged reversal · `顿号` · mid-prose `：` · assistant residue · knowledge-cutoff disclaimer · emoji · inline-title list · `-ing` pseudo-analysis · copula dodge · false range |
-| **CAPPED** | only the excess is a finding | signposts · editorial stance · lecture tone · exclamations · stacked hedges · mid-sentence bold |
+| **GATED** | drive to zero, or name every survivor | em dash · staged reversal · `顿号` · mid-prose `：` · assistant residue · knowledge-cutoff disclaimer · emoji · `-ing` pseudo-analysis · copula dodge · false range |
+| **CAPPED** | only the excess is a finding | signposts · editorial stance · lecture tone · exclamations · stacked hedges · mid-sentence bold · inline-title list · trailing contrastive tail |
 | **REPORTED** | printed, never gates anything | sentence-length CV · conjunction density · nominalisation · metaphor fields · rule-of-three candidates · lexicon hits |
 
-Three were demoted on evidence:
+Five have been demoted on evidence. The first three came from earlier runs:
 
 - **Rule of three.** The defect is real, the counter is not. On the first document scanned, all five
   hits were ordinary enumerations.
@@ -109,6 +110,9 @@ Three were demoted on evidence:
   it: a narrative post at 80.00 needed half its connectives cut, a migration doc at 81.08 needed none.
 - **Bolded assertion.** After the counter was fixed it turned out not to catch the real defect, and a
   bolded assertion is shape-identical to a bolded list label. Only meaning separates them.
+- **The trailing contrastive tail** and **the inline-title list item**, both demoted when the gates
+  were first run over this repository's own prose. Six hits against one, and eleven against none.
+  "This repository runs it on itself" below has the detail.
 
 Personification and metaphor are not counted either. A frozen name, a literal use and a live metaphor
 look identical to a word list, so `--metaphor` lists candidates with line numbers and the decision is
@@ -175,7 +179,7 @@ author actually holds); and **conjunction density** lost its global threshold to
 | | |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | the behavioural contract, nine fixed steps |
-| [`references/taxonomy.md`](./references/taxonomy.md) | thirteen marker families, each attributed to the project it came from |
+| [`references/taxonomy.md`](./references/taxonomy.md) | fourteen marker families, each attributed to the project it came from |
 | [`references/decisions.md`](./references/decisions.md) | per-hit decision procedure, exemption caps, keep conditions, `in-place` alternates |
 | [`references/overcorrection.md`](./references/overcorrection.md) | the false-positive corpus: what looks like a tell and is not |
 | [`references/provenance.md`](./references/provenance.md) | what came from where, every conflict, and the ruling |
@@ -216,7 +220,9 @@ list items rather than joining clauses. These files are marker inventories, the 
 Chinese prose available, and demoting a gate on them would mean picking the sample most likely to
 excuse it.
 
-Zero em dashes across every file, and zero live metaphors introduced by the author.
+Zero em dashes across every file, which is measured. No live metaphor introduced by the author was
+found, which is a read rather than a count, for the reason given above: a word list cannot separate
+one from a frozen name.
 
 `evals/run.py` scores lexical detection against 56 cases: 100% recall, with two known false
 positives, both from deliberately broad rules (`你` in documents, `请求` under over-catching empathy).
