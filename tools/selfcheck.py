@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Run deslop's gates on deslop's own prose.
 
-    python3 tools/selfcheck.py            # check against the ledger; exit 1 on any drift
-    python3 tools/selfcheck.py --write    # regenerate the ledger, keeping reasons already written
+    python3 tools/selfcheck.py            # check against the named list; exit 1 on any drift
+    python3 tools/selfcheck.py --write    # regenerate the list, keeping reasons already written
     python3 tools/selfcheck.py --list     # print every hit with its line number
 
 SKILL.md 5.1 says a GATED indicator must be driven to zero or every survivor named. This applies
 the same rule to this repository. A survivor with no reason fails the check, and a reason left in
-the ledger after its hit is gone fails too, so the file cannot drift into a blanket exemption.
+the list after its hit is gone fails too, so the file cannot drift into a blanket exemption.
 
 The tool that removes AI register from other people's text has to hold for its own, and the check
 is cheap. It has already earned its keep twice: the first run demoted two GATED indicators whose
@@ -63,7 +63,7 @@ def collect():
     return found
 
 
-def read_ledger():
+def read_named():
     rows = {}
     if not LEDGER.exists():
         return rows
@@ -75,7 +75,7 @@ def read_ledger():
     return rows
 
 
-def write_ledger(found, old):
+def write_named(found, old):
     out = ["# Named survivors of tools/selfcheck.py. One row per (file, indicator, line).",
            "# Regenerate with `python3 tools/selfcheck.py --write`; reasons are kept.",
            "# columns: file\tindicator\tcount\tsnippet\treason"]
@@ -97,22 +97,22 @@ def main():
             print(f"{key[0]}:{','.join(str(n) for n in found[key])}  {key[1]:<28} {key[2]}")
         return 0
     if args.write:
-        write_ledger(found, read_ledger())
+        write_named(found, read_named())
         print(f"wrote {LEDGER.relative_to(ROOT)}: {len(found)} rows, "
               f"{sum(len(v) for v in found.values())} hits")
         return 0
 
-    ledger, bad = read_ledger(), []
+    named, bad = read_named(), []
     for key, lines in sorted(found.items()):
-        if key not in ledger:
+        if key not in named:
             bad.append(f"unnamed  {key[0]}:{lines[0]}  {key[1]}  {key[2]}")
-        elif ledger[key][1].strip() in ("", "TODO"):
+        elif named[key][1].strip() in ("", "TODO"):
             bad.append(f"no reason {key[0]}:{lines[0]}  {key[1]}  {key[2]}")
         elif not key[2]:
             pass                                   # over-cap rows carry no count on purpose
-        elif ledger[key][0] != len(lines):
-            bad.append(f"count {ledger[key][0]}→{len(lines)}  {key[0]}  {key[1]}  {key[2]}")
-    for key in sorted(ledger):
+        elif named[key][0] != len(lines):
+            bad.append(f"count {named[key][0]}→{len(lines)}  {key[0]}  {key[1]}  {key[2]}")
+    for key in sorted(named):
         if key not in found:
             bad.append(f"stale    {key[0]}  {key[1]}  {key[2]}")
 
@@ -125,7 +125,7 @@ def main():
         return 1
     over = sum(1 for k in found if not k[2])
     print(f"selfcheck ok — {total - over} GATED hits and {over} over-cap indicators across "
-          f"{len(FILES)} files, all named ({len(found)} ledger rows)")
+          f"{len(FILES)} files, all named ({len(found)} rows)")
     return 0
 
 

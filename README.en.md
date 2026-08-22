@@ -54,7 +54,7 @@ The diagram above is the whole procedure. Fixed order, no skipping. Three things
 separately:
 
 1. **Freeze before you touch anything.** Numbers, quotations, commands, error strings and attribution
-   get marked, plus a separate ledger of relations: which number modifies which object, who did what,
+   get marked, plus a separate record of relations: which number modifies which object, who did what,
    what is based on what. No word list can do this layer, and its damage is probably not recoverable
    from the finished text either, because the finished text no longer holds the relations. Of the
    layers listed here, that appears to be true of this one alone.
@@ -186,7 +186,7 @@ author actually holds); and **conjunction density** lost its global threshold to
 | [`references/field-reports.md`](./references/field-reports.md) | what the public complaint threads are worth, attributed line by line, and which parts changed the contract |
 | [`references/code-comments.md`](./references/code-comments.md) | comments and interface text: who the reader is, and which step removes what |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | this repository's own surviving gate hits, each with a reason |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 570 candidate rows, zh and en, each with replacement, note and source project |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 584 candidate rows, zh and en, each with replacement, note and source project |
 | [`tools/measure.py`](./tools/measure.py) | indicators, lexicon scan, metaphor worklist, comment worklist, worksheet, before/after diff |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | runs the gates on this repository's own prose |
 | [`docs/pipeline.html`](./docs/pipeline.html) | the diagram and the step notes, one 28 KB page, no external files |
@@ -210,7 +210,7 @@ so the banner can be rebuilt. The strapline carries no number that can go stale.
 `python3 tools/selfcheck.py` runs the gates over the 15 files that speak in deslop's own voice.
 Every GATED hit is either fixed or named in [`references/selfcheck.tsv`](./references/selfcheck.tsv)
 with its reason. An unnamed hit fails the check, and so does a reason left behind after its hit is
-gone, which is what stops the ledger turning into a blanket exemption.
+gone, which is what stops the list turning into a blanket exemption.
 
 The first run demoted two indicators. The trailing contrastive tail (`…, not a style call.`) had six
 hits here and one was real. The inline-title list item had eleven and none was, because F4's rule

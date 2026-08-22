@@ -345,7 +345,7 @@ operator who knows where the number came from, and why D6 is `audit-only` and ne
 
 ### E1. AI vocabulary `H D S N`
 
-`references/lexicon.tsv`, 570 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
+`references/lexicon.tsv`, 584 rows. Sourced to WP:AIVOCAB, Wikipedia's *Signs of AI writing*,
 Kobak et al. 2025 on excess vocabulary in biomedical abstracts, Juzek & Ward 2025, HN 48905248, and
 the Chinese community lists. Each row carries a plain replacement and a note where the word is
 sometimes legitimate.
@@ -436,6 +436,14 @@ war, building/collapse, temperature, warehouse, sea voyage, machine/organ.
 on building a metaphor at all. Mixing fields is the loudest version, not the only one. Literal uses
 (`搜索引擎`, `代码仓库`, `商品库存`) and frozen names are still outside the rule; see H6 for the
 boundary and for why nothing here can be counted.
+
+**账务借贷 is in the field table by request, not by measurement.** `账本`, `记账`, `台账`,
+`欠债`, `还债`, `技术债` and the English `ledger`, `bookkeeping`, `technical debt` name a borrowed
+domain like any other, and this repository had been using `关系账本` and `relations ledger` in its
+own pipeline description while the H6 ban was in force. Those are now `关系清单` and
+`relations record`. E6 still decides the literal cases: an accounting document keeps its `账本`, a
+distributed ledger keeps its name, and `技术债` may be a frozen name in a codebase that treats it as
+one. `python3 tools/measure.py FILE --metaphor` lists the candidates.
 
 ### E9. Synonym cycling `S H`
 
@@ -793,7 +801,7 @@ implementation and unfit to commit. Writing the note was never the problem. What
 step between writing it and shipping it.
 
 **Default action:** relocate, do not delete. A note that fails M1's test but records a real decision
-belongs in the commit body or a decisions file, recorded in the relations ledger (`SKILL.md` §4) so
+belongs in the commit body or a decisions file, recorded in the relations record (`SKILL.md` §4) so
 that the move is visible. Report relocations separately from deletions.
 
 ---

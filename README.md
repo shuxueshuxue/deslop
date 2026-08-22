@@ -46,7 +46,7 @@
 
 上图是完整流程，固定顺序，不许跳步。三件事值得单独说：
 
-1. **动手之前先冻结。**把数字，引用，命令，报错，责任归属都划出来，另记一份关系账本，
+1. **动手之前先冻结。**把数字，引用，命令，报错，责任归属都划出来，另记一份关系清单，
    哪个数字修饰哪个对象，谁做了什么，什么基于什么。这层没有词表能替代。它错了以后大概也无法从成品倒推，因为成品里已经没有原来的关系了；
    就目前这几层来说，能这样说的只有它一层。
 2. **只有第 06 步必须换一个空白上下文。**写的那个 agent 审不了自己写的东西，它重读的是自己的意图，
@@ -162,7 +162,7 @@ deslop 原来解决的是判断标准 · 压缩标点 · burden of proof · 前�
 | [`references/field-reports.md`](./references/field-reports.md) | 外面的抱怨帖里能用的部分，每条都带出处，以及哪几条改了合同 |
 | [`references/code-comments.md`](./references/code-comments.md) | 代码注释和界面文案：写给谁看，边界在哪一步 |
 | [`references/selfcheck.tsv`](./references/selfcheck.tsv) | 本仓库自己没清掉的闸门命中，逐条留名字和理由 |
-| [`references/lexicon.tsv`](./references/lexicon.tsv) | 570 条候选词，中英文，各带替换、豁免注释和来源项目 |
+| [`references/lexicon.tsv`](./references/lexicon.tsv) | 584 条候选词，中英文，各带替换、豁免注释和来源项目 |
 | [`tools/measure.py`](./tools/measure.py) | 指标、词表扫描、比喻候选、注释候选、逐句工作表、前后对照 |
 | [`tools/selfcheck.py`](./tools/selfcheck.py) | 把闸门跑在本仓库自己的文字上 |
 | [`docs/pipeline.html`](./docs/pipeline.html) | 流程图解，28 KB 单页，手写 SVG，无外部依赖 |

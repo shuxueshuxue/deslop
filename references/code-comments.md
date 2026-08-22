@@ -72,7 +72,7 @@ audience changes. That has three consequences for a deslop pass:
 1. Run at the boundary, not during the work. A `code-context` pass over a branch about to merge is
    worth more than one over a working tree.
 2. Prefer relocation to deletion. A comment that fails the survival test but records a real
-   decision goes into the commit body or a decisions file. The relations ledger in `SKILL.md` §4 is
+   decision goes into the commit body or a decisions file. The relations record in `SKILL.md` §4 is
    where that move gets recorded, so nothing quietly disappears.
 3. Report the count of comments moved separately from the count deleted. They are different
    outcomes for the author.

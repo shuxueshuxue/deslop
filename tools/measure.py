@@ -221,6 +221,8 @@ METAPHOR_FIELDS = {
     "医疗": ("病灶", "把脉", "对症下药", "手术刀", "止血", "疗法", "解剖"),
     "法庭": ("判死", "定罪", "无罪", "举证责任", "陪审"),
     "农事烹饪": ("土壤", "生根", "发芽", "开花结果", "火候", "调味", "熬"),
+    "账务借贷": ("账本", "记账", "台账", "流水账", "对账", "入账", "记一笔", "算账", "一本账",
+                 "欠债", "还债", "债务", "技术债", "欠下", "还上这笔", "透支"),
     "road/race": ("racetrack", "fast lane", "crossroads", "finish line", "starting line", "on track"),
     "war": ("moat", "battleground", "arsenal", "frontline", "trenches", "playbook", "silver bullet"),
     "building": ("cornerstone", "foundation", "pillar", "bedrock", "scaffolding", "crumbling", "load-bearing"),
@@ -228,6 +230,8 @@ METAPHOR_FIELDS = {
     "ecology": ("ecosystem", "landscape", "fertile ground", "seeds of", "organic growth"),
     "factory": ("assembly line", "conveyor", "production line", "shop floor", "widget"),
     "medicine": ("diagnose", "symptom", "surgical", "triage", "autopsy"),
+    "accounting": ("ledger", "bookkeeping", "book-keeping", "tally", "pay down", "paid down",
+                   "technical debt", "in the red", "write it off", "balance the books"),
 }
 
 # One-syllable physical verb roots. The object decides: an abstract object means the image is
@@ -239,6 +243,10 @@ METAPHOR_LITERAL_PREFIX = {
     "仓库": ("代码", "git", "Git", "远程", "本地", "私有", "镜像"),
     "库存": ("商品", "实际", "系统", "剩余"),
     "打法": ("战术",),
+    "账本": ("会计", "财务", "记账软件", "复式"),
+    "对账": ("银行", "支付", "财务", "结算"),
+    "债务": ("主权", "国家", "企业", "公司", "家庭"),
+    "ledger": ("general ledger", "accounting ledger", "distributed ledger"),
     "foundation": ("the foundation of the", "software foundation", "linux foundation"),
     "landscape": ("landscape orientation",),
 }
@@ -323,11 +331,19 @@ def scan(text, lexicon, langs=()):
     return hits
 
 
+def _field_rx(term):
+    """ASCII terms need word boundaries: without them `tally` matches inside `totally`."""
+    pat = re.escape(term)
+    if term.isascii():
+        pat = rf"\b{pat}\b"
+    return re.compile(pat, re.I)
+
+
 def metaphor_fields(masked):
     found = {}
     for field, terms in METAPHOR_FIELDS.items():
         for t in terms:
-            for m in re.finditer(re.escape(t), masked, re.I):
+            for m in _field_rx(t).finditer(masked):
                 pre = masked[max(0, m.start() - 12):m.start()]
                 if any(p.lower() in pre.lower() for p in METAPHOR_LITERAL_PREFIX.get(t, ())):
                     continue

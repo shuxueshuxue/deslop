@@ -71,7 +71,7 @@ place under §5.1's own standard:
   so it reports every glossary entry in the repository. Now CAPPED, where density still catches the
   page made entirely of label bullets.
 
-A third pattern showed up and was **not** acted on. Of the 30 hit-level ledger rows, 17 say the same thing about
+A third pattern showed up and was **not** acted on. Of the 30 hit-level rows, 17 say the same thing about
 `、`: it separated items in one list, so it replaced a comma rather than a full stop, which is
 exactly the test F1 states. The counter cannot see the difference. Demoting it on this evidence
 would be wrong, because these files are marker inventories and inventories are list-heavy in a way
@@ -126,7 +126,7 @@ They differ in where they sit:
   separates the channels: keep it in notes and memory, translate on the way out to a person.
 
 **The ruling: deslop stays an in-place editor, and does not adopt the second-model route.** The
-reason is the fidelity contract. §4's protected spans and the relations ledger exist because a free
+reason is the fidelity contract. §4's protected spans and the relations record exist because a free
 rewrite loses which number modifies which object and which actor holds which goal, and a model that
 cannot see the source material cannot preserve what it cannot check. vomit says this about itself.
 **amumu** (49396731) adds a measurement in the same direction: across several local rewriters, the

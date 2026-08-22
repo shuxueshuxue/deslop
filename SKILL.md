@@ -108,7 +108,7 @@ to the scope contract, and only to that.
 Fixed. Do not skip, do not reorder. Steps 1–5 cost minutes and prevent most of the damage.
 
 1. **Scene.** `chat / status / docs / public-writing / academic / code-context`, plus any scene pack (§2).
-2. **Protected spans + fact ledger.** freeze what may not drift, before reading for style (§4).
+2. **Protected spans + fact record.** freeze what may not drift, before reading for style (§4).
    **Run the D6 provenance question here, not in the audit** (`taxonomy.md` D6). For every number
    the text leans on, ask whether you read the original record; where the answer is no, or where the
    record carries conditions the sentence needs, mark those words as frozen spans. This is the only
@@ -252,7 +252,7 @@ Nothing left → it goes on the list (`bounded`) or gets annotated (`in-place`).
 
 ---
 
-## 4. Protected spans, and the ledger
+## 4. Protected spans, and the record
 
 Freeze these before you read for style. Anything below is protected in every scene, at every level.
 
@@ -287,7 +287,7 @@ Freeze these before you read for style. Anything below is protected in every sce
   Strip stance words from a comment; keep what it says the code does. A neighbouring line already
   showing a number does not make the sentence redundant.
 
-Alongside the spans, keep a **relations ledger**. This is where most silent damage happens, and no
+Alongside the spans, keep a **relations record**. This is where most silent damage happens, and no
 word list catches it:
 
 - which number modifies which object;
@@ -451,7 +451,7 @@ family: "The readme is filled with slop. Bad sign…"
 `python3 tools/selfcheck.py` holds this repository to §5.1: every GATED hit in the 15 files that
 speak in deslop's own voice is driven to zero or named in `references/selfcheck.tsv`, with the
 reason on the row. An unnamed hit fails the check; so does a reason left behind after its hit is
-gone, which is what stops the ledger becoming a blanket exemption. A CAPPED indicator over its cap
+gone, which is what stops the list becoming a blanket exemption. A CAPPED indicator over its cap
 needs a reason too, one per file and indicator rather than per hit, because the size of the excess
 moves with the file and only the fact of exceeding the cap is worth a sentence.
 
@@ -493,7 +493,7 @@ reader's ordinary language.** `回归` for a regression reads as translated rath
 
 ### 6.2 The scanner is the cheap half
 
-`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (570 rows, Chinese
+`python3 tools/measure.py FILE --hits` matches against `references/lexicon.tsv` (584 rows, Chinese
 and English, each with a plain replacement, a note where the word is sometimes legitimate, and the
 upstream project it came from).
 
@@ -896,7 +896,7 @@ at the larger size, which is why this pipeline has four instead of one.
 - `references/field-reports.md`. What the public complaint threads are worth, attributed, and which parts changed this file.
 - `references/code-comments.md`. The `code-context` and `ui-copy` scenes in detail: the survival test, the boundary, the specimens.
 - `references/selfcheck.tsv`. Every GATED hit still standing in this repository's own prose, with the reason on the row.
-- `references/lexicon.tsv`. 570 candidate rows, zh and en, each with replacement, note, and source project.
+- `references/lexicon.tsv`. 584 candidate rows, zh and en, each with replacement, note, and source project.
 - `references/supplement.tsv`. Hand-kept rows only Humanizer-zh and natural-talk carry.
 - `tools/measure.py`. Indicators, worksheet, before/after diff. No dependencies beyond python3.
 - `tools/build_lexicon.py`. Rebuilds the lexicon from the four upstream checkouts, deduping by match.

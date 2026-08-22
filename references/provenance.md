@@ -33,7 +33,7 @@ for the sake of politeness: every conflict below has a ruling and a reason.
 - **`bounded` scope and the proposed-deletion list**, which hands length back to the user instead of
   letting the model decide it. The motivating fact is measured: the same long piece comes back at
   −18% or −39% depending on the run.
-- **Protected spans and the relations ledger**, including the part no word list catches: which
+- **Protected spans and the relations record**, including the part no word list catches: which
   number modifies which object, which actor holds which goal, what is based on what.
 - **The three unsourced-citation modes**, and the trap they close: deleting `40%` and leaving "it
   will be faster" converts a checkable false claim into an uncheckable vague one.
